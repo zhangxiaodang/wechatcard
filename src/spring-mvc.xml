@@ -13,9 +13,7 @@
 	<mvc:annotation-driven />
 
 	<!-- 注入Controller -->
-	<context:component-scan base-package="com.sj.web.cash.business.controller" />
-	<context:component-scan base-package="com.sj.web.framework.controller" />
-	<context:component-scan base-package="com.sj.web.cash.controller" />
+	<context:component-scan base-package="cn.com.allinpay.wechatcard.controller" />
 	
 	<!-- 静态资源 -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />

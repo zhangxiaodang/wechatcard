@@ -18,15 +18,9 @@
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	
 	<!-- 注入Dao Service -->
-	<context:component-scan base-package="com.sj.web.cash.business.dao" />
-	<context:component-scan base-package="com.sj.web.cash.business.service" />
-	
-	<context:component-scan base-package="com.sj.web.framework.dao" />
-	<context:component-scan base-package="com.sj.web.framework.service" />
-	
-	<context:component-scan base-package="com.sj.web.cash.dao" />
-	<context:component-scan base-package="com.sj.web.cash.service" />
-	
+	<context:component-scan base-package="cn.com.allinpay.wechatcard.dao" />
+	<context:component-scan base-package="cn.com.allinpay.wechatcard.service" />
+
 	<!-- 数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.drivername}" />
@@ -34,17 +28,37 @@
 		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 
-		<!-- 连接池中保留的最大连接数 -->
-		<property name="maxPoolSize" value="${c3p0.pool.max}" />
-		<!-- 连接池中保留的最小连接数 -->
-		<property name="minPoolSize" value="${c3p0.pool.min}" />
-		<!-- 初始化连接池中的连接数 -->
-		<property name="initialPoolSize" value="${c3p0.pool.init}" />
-		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数 -->
-		<property name="acquireIncrement" value="${c3p0.pool.increment}" />
-		<!--每60秒检查所有连接池中的空闲连接 -->   
-         <property name="idleConnectionTestPeriod" value="${c3p0.pool.connperiod}" />  
+        <!--连接池中保留的最大连接数。默认值: 15 -->
+        <property name="maxPoolSize" value="${c3p0.pool.max}"/>
+        <!-- 连接池中保留的最小连接数，默认为：3-->
+        <property name="minPoolSize" value="${c3p0.pool.min}"/>
+        <!-- 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3-->
+        <property name="initialPoolSize" value="${c3p0.pool.init}"/>
+
+        <!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->
+        <property name="maxIdleTime" value="${c3p0.pool.maxIdleTime}" />
+        <!-- 当连接池连接耗尽时，客户端调用getConnection()后等待获取新连接的时间，超时后将抛出SQLException，如设为0则无限期等待。单位毫秒。默认: 0 -->
+        <property name="checkoutTimeout" value="${c3p0.pool.checkoutTimeout}"/>
+        <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
+        <property name="acquireIncrement" value="${c3p0.pool.increment}"/>
+        <!--定义在从数据库获取新连接失败后重复尝试的次数。默认值: 30 ；小于等于0表示无限次-->
+        <property name="acquireRetryAttempts" value="${c3p0.pool.acquireRetryAttempts}"/>
+        <!--重新尝试的时间间隔，默认为：1000毫秒-->
+        <property name="acquireRetryDelay" value="${c3p0.pool.acquireRetryDelay}" />
+        <!--关闭连接时，是否提交未提交的事务，默认为false，即关闭连接，回滚未提交的事务 -->
+        <property name="autoCommitOnClose" value="${c3p0.pool.autoCommitOnClose}" />
+        <!--如果为false，则获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常，但是数据源仍有效保留，并在下次调用getConnection()的时候继续尝试获取连接。如果设为true，那么在尝试获取连接失败后该数据源将申明已断开并永久关闭。默认: false-->
+        <property name="breakAfterAcquireFailure" value="${c3p0.pool.breakAfterAcquireFailure}"/>
+        <!--每60秒检查所有连接池中的空闲连接。默认值: 0，不检查 -->
+        <property name="idleConnectionTestPeriod" value="${c3p0.pool.idleConnectionTestPeriod}" />
+        <!--c3p0全局的PreparedStatements缓存的大小。如果maxStatements与maxStatementsPerConnection均为0，则缓存不生效，只要有一个不为0，则语句的缓存就能生效。如果默认值: 0-->
+        <property name="maxStatements" value="${c3p0.pool.maxStatements}" />
+        <!--maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。默认值: 0 -->
+        <property name="maxStatementsPerConnection" value="${c3p0.pool.maxStatementsPerConnection}" />
 	</bean>
+
+	<!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"> 
+		<constructor-arg ref="dataSource" /> </bean> -->
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -55,7 +69,7 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!--可用,或者;分割多个扫描的包 -->
 		<property name="basePackage"
-			value="com.sj.web.framework.dao,com.sj.web.cash.dao,com.sj.web.cash.business.dao" />
+			value="cn.com.allinpay.wechatcard.dao" />
 	</bean>
 
 
