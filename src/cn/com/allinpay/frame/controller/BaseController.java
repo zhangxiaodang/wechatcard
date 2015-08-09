@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import cn.com.allinpay.frame.model.BaseModel;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
+import cn.com.weixin.api.util.WeixinMsgCommonUtil;
 
 /**
  * 
@@ -39,6 +40,12 @@ public class BaseController {
 	/** Session中的username KEY. */
 	protected static final String SESSION_KEY_USERNAME = WebConstantValue.SESSION_KEY_USERNAME;
 
+	/** 网页授权code. */
+	private static final String KEY_CODE = "code";
+
+	/** Session中的username KEY. */
+	protected static final String SESSION_KEY_OPENID = "openid";
+
 	/**
 	 * 设置基本对象.
 	 * 
@@ -60,6 +67,20 @@ public class BaseController {
 		this.session = request.getSession(true);
 		// logger
 		this.logger = Logger.getLogger(this.getClass());
+
+		// 微信用户OpenID
+		// String strOpenID = this.getOpenIdByCode();
+		String strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
+
+		if (strOpenID == null || strOpenID.equals("")) {
+			// OpenID
+			strOpenID = this.session.getAttribute(SESSION_KEY_OPENID) == null ? ""
+					: (String) this.session.getAttribute(SESSION_KEY_OPENID);
+		}
+
+		logger.info("===strOpenId:" + strOpenID);
+		// 放到Session中
+		this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
 	}
 
 	/**
@@ -81,7 +102,7 @@ public class BaseController {
 
 		return this.request.getServletPath();
 	}
-	
+
 	/**
 	 * 从Session中取得登录的用户名.
 	 * 
@@ -164,7 +185,7 @@ public class BaseController {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * 设置controller返回异常的信息
 	 */
@@ -180,5 +201,29 @@ public class BaseController {
 		// 返回
 		return model;
 	}
-	
+
+
+	/**
+	 * 根据网页授权Code取得微信用户OpenID.
+	 * 
+	 * @return 微信用户OpenID.
+	 */
+	private String getOpenIdByCode() {
+
+		// OpenID
+		String strOpenId = "";
+
+		// OAuth2.0认证Code
+		String strCode = this.request.getParameter(KEY_CODE);
+
+		if (strCode != null) {
+			// 根据Code取得openID
+			strOpenId = WeixinMsgCommonUtil.getOpenIDByOAuth(strCode)
+					.getOpenid();
+			logger.info("-----BaseController-----openId=" + strOpenId);
+		}
+
+		// 返回
+		return strOpenId;
+	}
 }
