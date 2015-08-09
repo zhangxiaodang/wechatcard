@@ -4,15 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * Copyright(C) JiNanShangJie 2014.
  * 
  * Json转换类.
  * 
- * @author 张振峰 2015/08/09.
- * 
  * @version V1.00.
  * 
- *          更新履历： V1.00 2015/08/09 张振峰 创建.
  */
 public class WebJsonUtil {
 

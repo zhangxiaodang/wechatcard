@@ -2,15 +2,12 @@ package cn.com.allinpay.frame.util;
 
 
 /**
- * Copyright(C) JiNanShangJie 2014.
  * 
  * 常量类
  * 
- * @author 张振峰 2015/08/09.
  * 
  * @version V1.00.
  * 
- *          更新履历： V1.00 2015/08/09 张振峰 创建.
  */
 public class WebConstantValue {
 	
@@ -43,4 +40,10 @@ public class WebConstantValue {
 	
 	/** 获取验证码失败 **/
 	public static final String GET_YZM_ERROR = "获取验证码失败！";
+	
+	/** 申请新卡成功 **/
+	public static final String APPLY_CARD_SUCCESS = "申请新卡成功！";
+	
+	/** 申请新卡失败 **/
+	public static final String APPLY_CARD_ERROR = "申请新卡失败！";
 }

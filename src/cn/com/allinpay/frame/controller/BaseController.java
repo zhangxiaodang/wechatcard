@@ -3,7 +3,6 @@ package cn.com.allinpay.frame.controller;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,15 +16,11 @@ import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
 
 /**
- * Copyright(C) JiNanShangJie 2014.
  * 
  * BaseController
  * 
- * @author 张振峰 2015/08/09.
- * 
  * @version V1.00.
  * 
- *          更新履历： V1.00 2015/08/09 张振峰 创建.
  */
 public class BaseController {
 
@@ -186,13 +181,4 @@ public class BaseController {
 		return model;
 	}
 	
-	/**
-	 * 生成32的UUID
-	 * @return
-	 */
-	public static String getUUID(){ 
-        String s = UUID.randomUUID().toString(); 
-        //去掉“-”符号 
-        return s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24); 
-    } 
 }

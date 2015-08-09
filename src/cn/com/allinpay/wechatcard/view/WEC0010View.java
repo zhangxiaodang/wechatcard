@@ -3,15 +3,11 @@ package cn.com.allinpay.wechatcard.view;
 import cn.com.allinpay.frame.view.BaseView;
 
 /**
- * Copyright(C) JiNanShangJie 2014.
  * 
  * 会员view.
  * 
- * @author 张振峰 2015/08/09.
- * 
  * @version V1.00.
  * 
- *          更新履历： V1.00 2015/08/09 张振峰 创建.
  */
 public class WEC0010View extends BaseView{
 	
@@ -55,6 +51,26 @@ public class WEC0010View extends BaseView{
 	 * 会员申请时间
 	 */
 	private String membersqsj = "";
+	/**
+	 * 备注信息
+	 */
+	private String bz = "";
+	/**
+	 * 会员卡类型
+	 */
+	private String cardmode = "";
+	/**
+	 * 会员卡卡号
+	 */
+	private String cardno = "";
+	/**
+	 * 会员卡密码
+	 */
+	private String password = "";
+	/**
+	 * 会员卡确认密码
+	 */
+	private String confirmpassword = "";
 	
 	public String getMemberid() {
 		return memberid;
@@ -122,11 +138,28 @@ public class WEC0010View extends BaseView{
 	public void setBz(String bz) {
 		this.bz = bz;
 	}
-	/**
-	 * 备注信息
-	 */
-	private String bz = "";
-	
-	
-
+	public String getCardmode() {
+		return cardmode;
+	}
+	public void setCardmode(String cardmode) {
+		this.cardmode = cardmode;
+	}
+	public String getCardno() {
+		return cardno;
+	}
+	public void setCardno(String cardno) {
+		this.cardno = cardno;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getConfirmpassword() {
+		return confirmpassword;
+	}
+	public void setConfirmpassword(String confirmpassword) {
+		this.confirmpassword = confirmpassword;
+	}
 }

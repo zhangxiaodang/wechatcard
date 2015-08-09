@@ -11,22 +11,19 @@ import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.wechatcard.dao.WEC0010Dao;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
-import cn.com.allinpay.wechatcard.service.WEC0010Service;
+import cn.com.allinpay.wechatcard.service.IWEC0010Service;
+import cn.com.allinpay.wechatcard.service.IWEC0021Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 
 /**
- * Copyright(C) JiNanShangJie 2014.
  * 
  * 注册serviceImp
  * 
- * @author 张振峰 2015/08/09.
- * 
  * @version V1.00.
  * 
- *          更新履历： V1.00 2015/08/09 张振峰 创建.
  */
 @Service
-public class WEC0010ServiceImp extends BaseService implements WEC0010Service {
+public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 	
 	/** logger **/
 	private static final Logger logger = Logger.getLogger(WEC0010ServiceImp.class);
@@ -34,6 +31,10 @@ public class WEC0010ServiceImp extends BaseService implements WEC0010Service {
 	/** 注册的dao **/
 	@Autowired
 	private WEC0010Dao wec_001_Dao;
+	
+	/** 开通新卡的service **/
+	@Autowired
+	private IWEC0021Service wec0021Service;
 	
 	/**
 	 * 注册的service
@@ -46,6 +47,15 @@ public class WEC0010ServiceImp extends BaseService implements WEC0010Service {
 		paramMap.put(BEAN, memberView);
 		// 将用户信息添加到会员表中
 		wec_001_Dao.regist(paramMap);
+		
+		// 判断用户是注册新的卡还是绑定旧卡
+		if(memberView.getCardmode() == "1"){
+			// 开通新卡
+			wec0021Service.applyNewCard(memberView);
+		}else{
+			// 绑定旧卡
+			
+		}
 		// 返回前台提示信息
 		WEC0010Model resultModel = new WEC0010Model();
 		resultModel.setState(WebConstantValue.HTTP_OK);

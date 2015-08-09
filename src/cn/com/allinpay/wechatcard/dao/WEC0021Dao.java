@@ -9,7 +9,7 @@ import java.util.Map;
  * @version V1.00.
  * 
  */
-public interface WEC0010Dao {
+public interface WEC0021Dao {
 
 	/**
 	 * 会员注册dao
@@ -17,6 +17,6 @@ public interface WEC0010Dao {
 	 * @param paraMap
 	 * @return
 	 */
-	public void regist(Map<String, Object> paramMap);
+	public void add_card(Map<String, Object> paramMap);
 
 }
