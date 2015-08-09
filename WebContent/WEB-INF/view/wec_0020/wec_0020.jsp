@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>会员卡界面</title>
+    <title>申请会员卡</title>
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-touch-fullscreen" content="yes"/>
