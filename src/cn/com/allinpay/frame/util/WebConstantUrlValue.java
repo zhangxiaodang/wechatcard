@@ -17,4 +17,7 @@ public class WebConstantUrlValue {
 	
 	/** 获取验证码URL **/
 	public static final String GETYZM = "/getyzm";
+	
+	/** 会员卡页面的URL **/
+	public static final String WEC0020_INDEX = "/wec0020";
 }
