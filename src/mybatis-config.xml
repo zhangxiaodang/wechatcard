@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+
+	<mappers>
+
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0001Mapper.xml" />
+
+		<!-- 菜单管理的mapper的映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0003Mapper.xml" />
+
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0004Mapper.xml" />
+
+		<!-- 柜员的签到的mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0101Mapper.xml" />
+
+		<!-- 柜员签退的mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0102Mapper.xml" />
+
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0103Mapper.xml" />
+
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0201Mapper.xml" />
+		<!-- 工作时钟设置 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0202Mapper.xml" />
+
+
+		<!--库存监控的mapper的映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0203Mapper.xml" />
+		
+		<!-- 故障处理的mapper的映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0204Mapper.xml" />
+
+		<!-- 纸币回收的mapper的映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0205Mapper.xml" />
+		
+		<!-- 直接清机 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0301Mapper.xml" />
+
+		<!-- 清机日志的查询 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0302Mapper.xml" />
+
+		<!--首页广告管理映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0501Mapper.xml" />
+		
+		<!-- 机器余额查询的mapper的映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0401Mapper.xml" />
+
+		<!--柜员操作日志查询的mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0402Mapper.xml" />
+
+		<!-- 交易流水查询的mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0403Mapper.xml" />
+
+		<!-- 冠字号查询的mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0404Mapper.xml" />
+
+		<!--首页广告管理映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0501Mapper.xml" />
+
+		<!--存单换发的mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0502Mapper.xml" />
+		
+		<!--存单换发履历查询mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0503Mapper.xml" />
+		
+		<!-- 存单业务交易查询mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC5001Mapper.xml" />
+		
+		<!-- 济宁银行直接清机mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC0303Mapper.xml" />
+		
+		<!-- 业务参数管理mapper映射 -->
+		<mapper resource="com/sj/web/cash/dao/imp/TCRC9901Mapper.xml" />
+
+		<mapper resource="com/sj/web/cash/business/dao/imp/TCRB0001Mapper.xml" />
+		<mapper resource="com/sj/web/cash/business/dao/imp/TCRB0002Mapper.xml" />
+
+		<mapper resource="com/sj/web/framework/dao/imp/SystemLogMapper.xml" />
+		<mapper resource="com/sj/web/framework/dao/imp/SystemInfoMapper.xml" />
+		<mapper resource="com/sj/web/framework/dao/imp/CommonDataMapper.xml" />
+		<mapper resource="com/sj/web/framework/dao/imp/TransactionMarkMapper.xml"/>
+		<mapper resource="com/sj/web/framework/dao/imp/ExclusiveProcessingMapper.xml"/>
+	</mappers>
+</configuration>
