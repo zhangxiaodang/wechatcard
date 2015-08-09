@@ -62,7 +62,7 @@ public class WEC0010Controller extends BaseController{
 			//验证用户名密码
 			resultModel = registerService.getYzm(memberView);
 		} catch (Exception e) {
-			logger.info("========================Exception getYzm Start==========================");
+			logger.info("========================Exception  getYzm Start==========================");
 			e.printStackTrace();
 			
 			return WebJsonUtil.bean2Json(getSysErrorModel());
