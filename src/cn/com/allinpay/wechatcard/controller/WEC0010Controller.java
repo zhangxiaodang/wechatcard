@@ -31,7 +31,7 @@ public class WEC0010Controller extends BaseController{
 	@Autowired
 	private WEC0010Service registerService;
 	
-	@RequestMapping(value = WebConstantUrlValue.REGISTER, produces = WebConstantValue.PRODUCE_TEXT, method = RequestMethod.GET)
+	@RequestMapping(value = WebConstantUrlValue.REGISTER, produces = WebConstantValue.PRODUCE_TEXT, method = RequestMethod.POST)
 	@ResponseBody
 	public String login(WEC0010View memberView){
 		logger.info("========================Controller register Start==========================");
@@ -51,7 +51,7 @@ public class WEC0010Controller extends BaseController{
 		return WebJsonUtil.bean2Json(resultModel);
 	}
 	
-	@RequestMapping(value = WebConstantUrlValue.GETYZM, produces = WebConstantValue.PRODUCE_TEXT, method = RequestMethod.GET)
+	@RequestMapping(value = WebConstantUrlValue.GETYZM, produces = WebConstantValue.PRODUCE_TEXT, method = RequestMethod.POST)
 	@ResponseBody
 	public String getYzm(WEC0010View memberView){
 		logger.info("========================Controller getYzm Start==========================");
