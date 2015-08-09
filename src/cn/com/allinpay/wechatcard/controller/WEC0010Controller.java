@@ -23,8 +23,19 @@ import cn.com.allinpay.wechatcard.view.WEC0010View;
  **/
 @Controller
 public class WEC0010Controller extends BaseController{
+	private static String WEC0010_VIEW = "wec_0010/wec_0010";
+	/**
+	 * 注册页面URL.
+	 * 
+	 * @return 注册页面
+	 */
+	@RequestMapping(value = WebConstantUrlValue.WEC0010_INDEX)
+	public String getPageIndex() {
+		// 返回
+		return WEC0010_VIEW;
+	}
 	
-	/** 登陆的service **/
+	/** 注册的service **/
 	@Autowired
 	private IWEC0010Service registerService;
 	

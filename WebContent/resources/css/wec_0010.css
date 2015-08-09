@@ -1,0 +1,88 @@
+body {
+    background-color:#f0f0f0;
+}
+
+span.red-text {
+    color: #f00;
+    font-weight: bold;
+}
+
+#user-reg {
+    position: relative;
+    padding-top: 10px;
+}
+
+#user-reg>.input-group {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#user-reg>.input-group>.input-group-addon {
+    width: 90px;
+    text-align: right;
+}
+
+#user-reg>.input-group:nth-child(2)>.input-group {
+    margin-right: 106px;
+
+}
+
+#user-reg>.input-group:nth-child(2)>.form-control {
+    width: auto;
+}
+
+#user-reg>.input-group:nth-child(6)>select {
+    width: 30%;
+}
+#user-reg>.input-group:nth-child(6)>select+select {
+    margin-left: 5%;
+}
+
+#user-reg>#get_code {
+    position: absolute;
+    top: 54px;
+    right: 0;
+}
+
+#user-reg>#get_code>button {
+    width: 96px;
+}
+
+#user-reg .tijiao {
+    text-align: center;
+}
+
+#user-reg #tijiao {
+    width: 80%;
+}
+
+#new_card, #old_card {
+    display: none;
+}
+
+#new_card .panel-info,
+#old_card .panel-info {
+    margin-bottom: initial;
+}
+
+#new_card h3.panel-title,
+#old_card h3.panel-title {
+    text-align: center;
+}
+
+#new_card h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+#new_card .input-group,
+#old_card .input-group {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#new_card .input-group>.input-group-addon {
+    width: 100px;
+    text-align: right;
+}

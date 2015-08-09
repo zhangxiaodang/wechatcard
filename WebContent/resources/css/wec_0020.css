@@ -1,0 +1,14 @@
+#btn_group>button:nth-child(1) {
+    float: left;
+    width: 45%;
+}
+
+#btn_group>button:nth-child(2) {
+    float: right;
+    width: 45%;
+}
+
+#carousel-example-generic>.carousel-inner>.item>img {
+    text-align: center;
+    margin: 0 auto;
+}
