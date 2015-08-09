@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0010Dao">
+	
+	<!-- 会员注册 -->
+	<select id="regist" parameterType="java.util.Map">
+		insert into member (memberid,merchantid,memberopenid,membername,membersex,memberbirthday,memberphone,memberyzm,membergrade,membersqsj,bz)
+		values(#{bean.memberid},#{bean.merchantid},#{bean.memberopenid},
+		#{bean.membername},#{bean.membersex},#{bean.memberbirthday},
+		#{bean.memberphone},#{bean.memberyzm},#{bean.membergrade},#{bean.membersqsj},#{bean.bz})
+	</select>
+</mapper>
+	

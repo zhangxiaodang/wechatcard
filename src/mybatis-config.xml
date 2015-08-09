@@ -8,7 +8,6 @@
 	</settings>
 
 	<mappers>
-
-		
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0010Mapper.xml" />
 	</mappers>
 </configuration>
