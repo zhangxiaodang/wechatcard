@@ -18,6 +18,7 @@
     <script src="resources/js/public/jquery.min.js"></script>
     <script src="resources/js/public/bootstrap.min.js"></script>
     <script src="resources/js/public/m.js"></script>
+    
     <script src="resources/js/wec_0022.js"></script>
 </head>
 <body>
