@@ -178,11 +178,11 @@ $(function () {
 
         $(_this).text("注册中...").prop('disabled', true);
 
-        $.post("http://localhost:8080/wechatcard/register", param, function (data) {
+        $.post("/register", param, function (data) {
             $(_this).text("提交").prop('disabled', false);
             if(data.state === '000000') {
                 // 注册成功，跳转页面
-                window.location.href = '../html/wec_0010.html';
+                window.location.href = '/wec_0020';
             } else {
                 $.mAlert( data.msg );
             }

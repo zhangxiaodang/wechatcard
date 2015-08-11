@@ -4,9 +4,9 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>山东通联支付</title>
+	<title>微信卡包</title>
 </head>
 <body>
-	<h1 align="center">欢迎访问山东通联支付微信公众账号！</h1>
+	<h1 align="center">欢迎访问微信卡包微信服务号！</h1>
 </body>
 </html>
