@@ -1,0 +1,31 @@
+body {
+    background-color:#f0f0f0;
+}
+
+span.red-text {
+    color: #f00;
+    font-weight: bold;
+}
+
+#user-reg {
+    position: relative;
+    padding-top: 10px;
+}
+
+#user-reg>.input-group {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#user-reg>.input-group>.input-group-addon {
+    width: 80px;
+    text-align: right;
+}
+
+#user-reg .tijiao {
+    text-align: center;
+}
+
+#user-reg #tijiao {
+    width: 80%;
+}
