@@ -1,9 +1,5 @@
 package cn.com.allinpay.frame.controller;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import cn.com.allinpay.frame.model.BaseModel;
 import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.frame.util.WebJsonUtil;
-import cn.com.weixin.api.util.WeixinMsgCommonUtil;
 
 /**
  * 
@@ -41,7 +35,10 @@ public class BaseController {
 	protected static final String SESSION_KEY_USERNAME = WebConstantValue.SESSION_KEY_USERNAME;
 
 	/** 网页授权code. */
-	private static final String KEY_CODE = "code";
+	protected static final String KEY_CODE = "code";
+
+	/** URL标识. */
+	protected static final String KEY_URL_FLAG = "urlflag";
 
 	/** Session中的username KEY. */
 	protected static final String SESSION_KEY_OPENID = "openid";
@@ -68,19 +65,6 @@ public class BaseController {
 		// logger
 		this.logger = Logger.getLogger(this.getClass());
 
-		// 微信用户OpenID
-		// String strOpenID = this.getOpenIdByCode();
-		String strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
-
-		if (strOpenID == null || strOpenID.equals("")) {
-			// OpenID
-			strOpenID = this.session.getAttribute(SESSION_KEY_OPENID) == null ? ""
-					: (String) this.session.getAttribute(SESSION_KEY_OPENID);
-		}
-
-		logger.info("===strOpenId:" + strOpenID);
-		// 放到Session中
-		this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
 	}
 
 	/**
@@ -128,65 +112,6 @@ public class BaseController {
 	}
 
 	/**
-	 * 将Request中传过来的数据转换为View实体.
-	 * 
-	 * @param request
-	 *            HttpServletRequest.
-	 * 
-	 * @param classOfT
-	 *            View类.
-	 * 
-	 * @return View实体.
-	 */
-	protected <T> T getPostData(HttpServletRequest request, Class<T> classOfT) {
-
-		// POST数据
-		String strPostBody = WebConstantValue.EMPTY;
-		InputStream in = null;
-
-		try {
-			// 避免中文乱码 POST方式提交
-			request.setCharacterEncoding("UTF-8");
-			// 获取流
-			in = request.getInputStream();
-
-			if (in != null) {
-				// 读取流
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(in, "UTF-8"));
-
-				StringBuffer buffer = new StringBuffer();
-				String strTempLine = WebConstantValue.EMPTY;
-
-				while ((strTempLine = reader.readLine()) != null) {
-					buffer.append(strTempLine);
-				}
-
-				// 转换为字符串
-				strPostBody = buffer.toString();
-			}
-
-			// 关闭流
-			in.close();
-			in = null;
-
-			// 没有流时
-			if (strPostBody.equals(WebConstantValue.EMPTY)) {
-				// 返回NULL
-				return null;
-			} else {
-				logger.info(strPostBody);
-				// 返回
-				return WebJsonUtil.json2Bean(strPostBody, classOfT);
-			}
-		} catch (Exception e) {
-			// 异常时返回NULL
-			in = null;
-			return null;
-		}
-	}
-
-	/**
 	 * 设置controller返回异常的信息
 	 */
 	protected BaseModel getSysErrorModel() {
@@ -200,30 +125,5 @@ public class BaseController {
 
 		// 返回
 		return model;
-	}
-
-
-	/**
-	 * 根据网页授权Code取得微信用户OpenID.
-	 * 
-	 * @return 微信用户OpenID.
-	 */
-	private String getOpenIdByCode() {
-
-		// OpenID
-		String strOpenId = "";
-
-		// OAuth2.0认证Code
-		String strCode = this.request.getParameter(KEY_CODE);
-
-		if (strCode != null) {
-			// 根据Code取得openID
-			strOpenId = WeixinMsgCommonUtil.getOpenIDByOAuth(strCode)
-					.getOpenid();
-			logger.info("-----BaseController-----openId=" + strOpenId);
-		}
-
-		// 返回
-		return strOpenId;
 	}
 }

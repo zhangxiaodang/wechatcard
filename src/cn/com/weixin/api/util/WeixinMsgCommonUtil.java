@@ -26,20 +26,17 @@ public class WeixinMsgCommonUtil {
 	 *            微信认证的code,用来换取用户的信息
 	 * @return 认证结果含有用户的信息
 	 */
-	public static OAuthCodeResult getOpenIDByOAuth(String code) {
+	public static OAuthCodeResult getOpenIDByOAuth(String code, String appid,
+			String appSecret) {
 
 		// 返回值
 		OAuthCodeResult result = null;
 
 		try {
-			// 开发者凭据
-			String strAppid = "";
-			String strAppSecret = "";
-
 			// 通过code换取网页授权access_token URL
 			String strUrl = WeixinMsgCommonUtil
 					.getPropertiesValue(WeixinMsgConstValue.URL_GET_OAUTH);
-			strUrl = MessageFormat.format(strUrl, strAppid, strAppSecret, code);
+			strUrl = MessageFormat.format(strUrl, appid, appSecret, code);
 
 			// 通过HTTP GET方式取得openID
 			result = WeixinMsgJsonUtil.json2Bean(

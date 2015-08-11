@@ -13,12 +13,14 @@ import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
 import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
+import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0010Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 
 /**
- * 会员注册controller
+ * 会员注册Controller.
  **/
+
 @Controller
 @Scope(value = "prototype")
 public class WEC0010Controller extends BaseController {
@@ -26,15 +28,25 @@ public class WEC0010Controller extends BaseController {
 	/** 页面URL. */
 	private static String WEC0010_VIEW = "wec_0010/wec_0010";
 
-	/** 注册的service **/
+	/** 注册的service. */
 	@Autowired
 	private IWEC0010Service registerService;
+
+	@Autowired
+	private ICommonService commonService;
 
 	/**
 	 * 注册页面URL.
 	 */
-	@RequestMapping(value = WebConstantUrlValue.WEC0010_INDEX, method = RequestMethod.POST)
+	@RequestMapping(value = WebConstantUrlValue.WEC0010_INDEX, method = RequestMethod.GET)
 	public String getPageIndex() {
+
+		// 取得OpenID
+		String strOpenID = this.commonService.getOpenID(
+				super.request.getParameter(KEY_URL_FLAG),
+				this.request.getParameter(KEY_CODE));
+		// 放到Session中
+		this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
 
 		// 返回
 		return WEC0010_VIEW;
