@@ -27,11 +27,11 @@
         <div class="col-md-12">
             <form class="form-horizontal" id="user-reg">
                 <div class="input-group">
-                    <span class="input-group-addon" for="new_card_psd1">卡号：</span>
+                    <span class="input-group-addon" for="new_card_psd1"><span class="red-text">* </span>卡号：</span>
                     <input type="text" id="old_card_code" class="form-control" aria-describedby="basic-addon1" maxlength="19">
                 </div>
                 <div class="input-group">
-                    <span class="input-group-addon" for="new_card_psd2">密码：</span>
+                    <span class="input-group-addon" for="new_card_psd2"><span class="red-text">* </span>密码：</span>
                     <input type="password" id="old_card_psd" class="form-control" aria-describedby="basic-addon1" maxlentgh="6">
                 </div>
 
