@@ -41,12 +41,19 @@ public class WEC0010Controller extends BaseController {
 	@RequestMapping(value = WebConstantUrlValue.WEC0010_INDEX, method = RequestMethod.GET)
 	public String getPageIndex() {
 
+		// 商户标识
+		String strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
+		// 网页Code
+		String strCode = super.request.getParameter(KEY_CODE);
+
 		// 取得OpenID
-//		String strOpenID = this.commonService.getOpenID(
-//				super.request.getParameter(KEY_URL_FLAG),
-//				this.request.getParameter(KEY_CODE));
-//		// 放到Session中
-//		this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
+		String strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
+		// 放到Session中
+		this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
+		logger.info("用户openid:" + strOpenID);
+
+		// 是否注册
+		boolean isRegister = this.commonService.isRegister(strCode, strOpenID);
 
 		// 返回
 		return WEC0010_VIEW;
