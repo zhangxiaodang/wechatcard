@@ -42,11 +42,11 @@ public class WEC0010Controller extends BaseController {
 	public String getPageIndex() {
 
 		// 取得OpenID
-		String strOpenID = this.commonService.getOpenID(
-				super.request.getParameter(KEY_URL_FLAG),
-				this.request.getParameter(KEY_CODE));
-		// 放到Session中
-		this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
+//		String strOpenID = this.commonService.getOpenID(
+//				super.request.getParameter(KEY_URL_FLAG),
+//				this.request.getParameter(KEY_CODE));
+//		// 放到Session中
+//		this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
 
 		// 返回
 		return WEC0010_VIEW;
@@ -63,7 +63,7 @@ public class WEC0010Controller extends BaseController {
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
 			memberView.setMemberid(WebUtil.getUUID());
-			// 验证用户名密码
+			// 调用注册的service
 			resultModel = registerService.regist(memberView);
 		} catch (Exception e) {
 			logger.info("========================Exception register Start==========================");
@@ -85,7 +85,7 @@ public class WEC0010Controller extends BaseController {
 		logger.info(memberView);
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
-			// 验证用户名密码
+			// 获取验证码
 			resultModel = registerService.getYzm(memberView);
 		} catch (Exception e) {
 			logger.info("========================Exception  getYzm Start==========================");

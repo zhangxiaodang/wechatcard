@@ -111,10 +111,10 @@ $(function () {
             return;
         }
 
-        if (!param.memberyzm || param.memberyzm.length != 6) {
-            $.mAlert("验证码错误");
-            return;
-        }
+//        if (!param.memberyzm || param.memberyzm.length != 6) {
+//            $.mAlert("验证码错误");
+//            return;
+//        }
 
         if( '' === $.trim( param.membername ) ) {
             $.mAlert("姓名不可为空！");
@@ -178,11 +178,12 @@ $(function () {
 
         $(_this).text("注册中...").prop('disabled', true);
 
-        $.post("/register", param, function (data) {
+        $.post("register", param, function (data) {
             $(_this).text("提交").prop('disabled', false);
+            data = JSON.parse(data);
             if(data.state === '000000') {
                 // 注册成功，跳转页面
-                window.location.href = '/wec_0020';
+                window.location.href = 'wec0021';
             } else {
                 $.mAlert( data.msg );
             }

@@ -9,7 +9,11 @@
 
 	<mappers>
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/CommonMapper.xml" />
-
+		<!-- 注册 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0010Mapper.xml" />
+		<!-- 申请新卡 -->
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0021Mapper.xml" />
+		<!-- 绑定旧卡 -->
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0022Mapper.xml" />
 	</mappers>
 </configuration>

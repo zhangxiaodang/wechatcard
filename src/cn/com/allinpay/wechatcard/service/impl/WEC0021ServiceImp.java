@@ -51,18 +51,16 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		wec0021View.setMemberid(memberView.getMemberid());
 		// 商家ID
 		wec0021View.setMerchantid("");
-		// 商家ID(冗余，供查询方便用)
+		// 会员卡号（预付卡系统后台实体卡号）
 		wec0021View.setCardno("");
-		// 电子卡号（预付卡系统后台电子卡号）
-		wec0021View.setDzcardno("");
+		// 电子卡号（预付卡系统后台电子卡号），申请新卡时电子卡号为手机号
+		wec0021View.setDzcardno(memberView.getMemberphone());
 		// 会员卡等级
 		wec0021View.setCardgrade("");
 		// 会员卡二维码信息
 		wec0021View.setCardcode("");
 		// 卡状态
 		wec0021View.setCardstat("");
-		// 申请会员卡时间
-		wec0021View.setCardsqsj(WebUtil.formatTime());
 		// 申请会员卡方式（申请新卡或绑定旧卡)
 		wec0021View.setCardmode("1");
 
