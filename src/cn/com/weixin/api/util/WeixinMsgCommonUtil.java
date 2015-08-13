@@ -10,12 +10,12 @@ import cn.com.weixin.api.result.OAuthCodeResult;
 /**
  * 微信应用共通方法类.
  */
+
 public class WeixinMsgCommonUtil {
 
 	/** properties配置文件名. */
 	private static final String WEIXIN_PROPERTIES = "weixin-msg";
 
-	/** logger. */
 	private static final Logger logger = Logger
 			.getLogger(WeixinMsgCommonUtil.class);
 
@@ -23,7 +23,8 @@ public class WeixinMsgCommonUtil {
 	 * 网页安全认证,通过code获取关注这的用户的信息
 	 * 
 	 * @param code
-	 *            微信认证的code,用来换取用户的信息
+	 *            微信认证的code,用来换取用户的信息.
+	 * 
 	 * @return 认证结果含有用户的信息
 	 */
 	public static OAuthCodeResult getOpenIDByOAuth(String code, String appid,
@@ -44,7 +45,7 @@ public class WeixinMsgCommonUtil {
 					OAuthCodeResult.class);
 		} catch (Exception e) {
 			// 异常
-			e.printStackTrace();
+			logger.info("取得用户openid时异常.\n" + e.getMessage());
 		}
 
 		// 返回

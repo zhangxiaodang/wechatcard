@@ -3,6 +3,7 @@ package cn.com.weixin.api.util;
 /**
  * 微信应用常量类.
  */
+
 public class WeixinMsgConstValue {
 
 	/** 获取token URL. */
