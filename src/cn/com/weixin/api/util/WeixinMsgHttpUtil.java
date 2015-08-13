@@ -13,7 +13,6 @@ import org.apache.http.util.EntityUtils;
 /**
  * Http请求类.
  */
-
 public class WeixinMsgHttpUtil {
 
 	/**

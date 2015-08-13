@@ -3,9 +3,16 @@ package cn.com.weixin.api.result;
 import java.io.Serializable;
 
 /**
+ * Copyright(C) SdShangJie 2014-2015.
+ * 
  * 微信应用通过OAuth2.0网页授权获取用户openID结果类.
+ * 
+ * @author 张孝党 2014/03/14.
+ * 
+ * @version V1.00.
+ * 
+ *          更新履历： V1.00 2013/03/14 张孝党 创建.
  */
-
 public class OAuthCodeResult extends AbstractResult implements Serializable {
 
 	/** serialVersionUID. */
