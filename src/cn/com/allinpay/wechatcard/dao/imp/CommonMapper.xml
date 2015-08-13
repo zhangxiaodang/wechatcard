@@ -7,8 +7,17 @@
 	<select id="getAppInfo" parameterType="java.util.Map" resultType="java.util.Map">
 		select appid,appsecret
 		from merchant
-		where urlflag = #{bean}
-	</select>	
+		where urlflag = #{urlFlag}
+	</select>
+	
+	<select id="getRegister" parameterType="java.util.Map">
+		select count(1) as cnt
+		from member t1, merchant t2
+		where
+		     t1.memberopenid = #{openid}
+		 and t2.urlflag = #{urlflag}
+		 and t1.merchantid = t2.merchantid
+	</select>
 
 </mapper>
 	
