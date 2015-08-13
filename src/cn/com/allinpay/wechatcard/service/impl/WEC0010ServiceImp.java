@@ -13,6 +13,7 @@ import cn.com.allinpay.wechatcard.dao.WEC0010Dao;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
 import cn.com.allinpay.wechatcard.service.IWEC0010Service;
 import cn.com.allinpay.wechatcard.service.IWEC0021Service;
+import cn.com.allinpay.wechatcard.service.IWEC0022Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 
 /**
@@ -36,25 +37,29 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 	@Autowired
 	private IWEC0021Service wec0021Service;
 	
+	/** 绑定新卡的service **/
+	@Autowired
+	private IWEC0022Service wec0022Service;
 	/**
 	 * 注册的service
 	 */
 	@Override
 	public WEC0010Model regist(WEC0010View memberView) throws Exception{
 		logger.info("========================Service regist Start==========================");
-		
+		// 会员卡申请时间
+		//memberView.setMembersqsj(membersqsj);
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put(BEAN, memberView);
 		// 将用户信息添加到会员表中
 		wec_001_Dao.regist(paramMap);
 		
 		// 判断用户是注册新的卡还是绑定旧卡
-		if(memberView.getCardmode() == "1"){
+		if("1".equals(memberView.getCardmode())){
 			// 开通新卡
 			wec0021Service.applyNewCard(memberView);
 		}else{
 			// 绑定旧卡
-			
+			wec0022Service.bindingOldCard(memberView);
 		}
 		// 返回前台提示信息
 		WEC0010Model resultModel = new WEC0010Model();

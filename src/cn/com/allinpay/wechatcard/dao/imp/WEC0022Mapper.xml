@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0021Dao">
+<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0022Dao">
 	
 	<!-- 会员注册 -->
-	<select id="add_card" parameterType="java.util.Map">
+	<select id="binding_card" parameterType="java.util.Map">
 		insert into membercard (merbercardid,memberid,merchantid,cardno,dzcardno,cardgrade,cardcode,cardstat,cardmode,bz)
 		values(#{bean.merbercardid},#{bean.memberid},#{bean.merchantid},#{bean.cardno},#{bean.dzcardno},#{bean.cardgrade},#{bean.cardcode},#{bean.cardstat},#{bean.cardmode},#{bean.bz})
 	</select>

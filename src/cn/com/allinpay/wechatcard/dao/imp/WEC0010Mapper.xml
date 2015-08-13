@@ -5,10 +5,10 @@
 	
 	<!-- 会员注册 -->
 	<select id="regist" parameterType="java.util.Map">
-		insert into member (memberid,merchantid,memberopenid,membername,membersex,memberbirthday,memberphone,memberyzm,membergrade,membersqsj,bz)
+		insert into member (memberid,merchantid,memberopenid,membername,membersex,memberbirthday,memberphone,memberyzm,membergrade,bz)
 		values(#{bean.memberid},#{bean.merchantid},#{bean.memberopenid},
 		#{bean.membername},#{bean.membersex},#{bean.memberbirthday},
-		#{bean.memberphone},#{bean.memberyzm},#{bean.membergrade},#{bean.membersqsj},#{bean.bz})
+		#{bean.memberphone},#{bean.memberyzm},#{bean.membergrade},#{bean.bz})
 	</select>
 </mapper>
 	
