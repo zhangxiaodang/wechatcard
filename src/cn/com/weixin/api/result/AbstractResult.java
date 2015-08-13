@@ -3,6 +3,7 @@ package cn.com.weixin.api.result;
 /**
  * 微信应用返回结果基类.
  */
+
 public abstract class AbstractResult {
 
 	/** 返回码 */

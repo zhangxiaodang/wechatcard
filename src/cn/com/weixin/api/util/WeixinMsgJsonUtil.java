@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 /**
  * Json转换类.
  */
+
 public class WeixinMsgJsonUtil {
 
 	/**

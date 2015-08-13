@@ -44,7 +44,7 @@ public class WeixinMsgCommonUtil {
 					OAuthCodeResult.class);
 		} catch (Exception e) {
 			// 异常
-			e.printStackTrace();
+			logger.info("通过网网页取得用户openid时异常.\n" + e.getMessage());
 		}
 
 		// 返回
