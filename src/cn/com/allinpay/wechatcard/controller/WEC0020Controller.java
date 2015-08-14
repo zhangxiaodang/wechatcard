@@ -28,6 +28,7 @@ public class WEC0020Controller extends BaseController {
 	public String getPageIndex() {
 
 		super.session.setAttribute("key", "test");
+		// 获取会员的信息，级别，卡片信息。
 
 		// 返回
 		return WEC0020_VIEW;

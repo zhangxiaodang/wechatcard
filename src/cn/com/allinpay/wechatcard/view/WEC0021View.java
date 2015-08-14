@@ -1,5 +1,8 @@
 package cn.com.allinpay.wechatcard.view;
 
+
+import java.sql.Timestamp;
+
 import cn.com.allinpay.frame.view.BaseView;
 
 /**
@@ -46,7 +49,7 @@ public class WEC0021View extends BaseView{
 	/**
 	 * 申请会员卡时间
 	 */
-	private String cardsqsj = "";
+	private Timestamp cardsqsj = null;
 	/**
 	 * 申请会员卡方式（申请新卡或绑定旧卡
 	 */
@@ -108,12 +111,6 @@ public class WEC0021View extends BaseView{
 	public void setCardstat(String cardstat) {
 		this.cardstat = cardstat;
 	}
-	public String getCardsqsj() {
-		return cardsqsj;
-	}
-	public void setCardsqsj(String cardsqsj) {
-		this.cardsqsj = cardsqsj;
-	}
 	public String getCardmode() {
 		return cardmode;
 	}
@@ -131,6 +128,12 @@ public class WEC0021View extends BaseView{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Timestamp getCardsqsj() {
+		return cardsqsj;
+	}
+	public void setCardsqsj(Timestamp cardsqsj) {
+		this.cardsqsj = cardsqsj;
 	}
 	
 }

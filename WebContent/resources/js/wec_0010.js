@@ -183,7 +183,7 @@ $(function () {
             data = JSON.parse(data);
             if(data.state === '000000') {
                 // 注册成功，跳转页面
-                window.location.href = 'wec0021';
+                window.location.href = 'wec0020';
             } else {
                 $.mAlert( data.msg );
             }

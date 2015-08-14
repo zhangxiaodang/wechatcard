@@ -23,7 +23,12 @@ public class WebConstantUrlValue {
 
 	/** 申请新卡页面的URL **/
 	public static final String WEC0021_INDEX = "/wec0021";
+	/** 申请新卡的URL **/
+	public static final String APPLYNEWCARD = "/applyNewCard";
 
 	/** 绑定旧卡页面的URL **/
 	public static final String WEC0022_INDEX = "/wec0022";
+	/** 绑定旧卡的URL **/
+	public static final String BINDINGOLDCARD = "/bindingOldCard";
+	
 }

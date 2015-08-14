@@ -36,10 +36,10 @@ $(function () {
             return;
         }
 
-        if (!param.memberyzm || param.memberyzm.length != 6) {
-            $.mAlert("验证码错误");
-            return;
-        }
+//        if (!param.memberyzm || param.memberyzm.length != 6) {
+//            $.mAlert("验证码错误");
+//            return;
+//        }
 
 
 
@@ -66,11 +66,12 @@ $(function () {
 
         $(_this).text("申请中...").prop('disabled', true);
 
-        $.post("http://localhost:8080/wechatcard/register", param, function (data) {
+        $.post("applyNewCard", param, function (data) {
+        	data = JSON.parse(data);
             $(_this).text("提交").prop('disabled', false);
             if(data.state === '000000') {
                 // 注册成功，跳转页面
-                window.location.href = '../html/wec_0010.html';
+                window.location.href = 'wec0010';
             } else {
                 $.mAlert( data['msg'] );
             }
