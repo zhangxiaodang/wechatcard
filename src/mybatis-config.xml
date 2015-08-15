@@ -15,5 +15,7 @@
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0021Mapper.xml" />
 		<!-- 绑定旧卡 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0022Mapper.xml" />
+		<!-- 我的卡包 -->
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0030Mapper.xml" />
 	</mappers>
 </configuration>

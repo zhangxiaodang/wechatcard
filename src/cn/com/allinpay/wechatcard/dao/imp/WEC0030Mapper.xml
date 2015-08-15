@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0030Dao">
+	
+	<!-- 查询会员卡信息 -->
+	<select id="get_card" parameterType="java.util.Map" resultType="map">
+		select merbercardid,memberid,merchantid,cardno,dzcardno,cardgrade,cardcode,cardstat,cardmode,bz from membercard
+		where memberid = #{bean.memberid} 
+	</select>
+	<!-- 查询会员优惠券信息 -->
+	<select id="get_coupon" parameterType="java.util.Map" resultMap="java.util.List">
+		
+	</select>
+</mapper>
+	

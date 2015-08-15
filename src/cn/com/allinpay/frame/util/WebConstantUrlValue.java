@@ -31,4 +31,9 @@ public class WebConstantUrlValue {
 	/** 绑定旧卡的URL **/
 	public static final String BINDINGOLDCARD = "/bindingOldCard";
 	
+	/** 我的卡包页面的URL **/
+	public static final String WEC0030_INDEX = "/wec0030";
+	/** 我的卡包获取会员的卡和优惠券的URL **/
+	public static final String WEC0030_CARD_VOUCHER = "/get_card_voucher";
+	
 }

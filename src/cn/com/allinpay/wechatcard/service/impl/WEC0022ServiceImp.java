@@ -50,7 +50,7 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 		
 		// 更新本地会员卡的信息
 		wec0021View.setMerbercardid(WebUtil.getUUID());
-		// 会员ID
+		// 会员ID 这个地方的需要从session中获取会员的id。
 		wec0021View.setMemberid(memberView.getMemberid());
 		// 商家ID
 		wec0021View.setMerchantid("");
