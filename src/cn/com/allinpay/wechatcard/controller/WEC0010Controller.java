@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
@@ -39,24 +40,53 @@ public class WEC0010Controller extends BaseController {
 	 * 注册页面URL.
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0010_INDEX, method = RequestMethod.GET)
-	public String getPageIndex() {
+	public ModelAndView getPageIndex() {
 
-		 // 商户标识
-		String strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
-		 // 网页Code
-		String strCode = super.request.getParameter(KEY_CODE);
-		//
-		 // 取得OpenID
-		String strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
-		 // 放到Session中
-		 this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
-		 logger.info("用户openid:" + strOpenID);
-		
-		 // 是否注册
-		boolean isRegister = this.commonService.isRegister(strCode, strOpenID);
+		// 商户标识
+		String strUrlFlag = "";
+		// 网页Code
+		String strCode = "";
+		ModelAndView mv = new ModelAndView();
+
+		try {
+			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
+			strCode = super.request.getParameter(KEY_CODE);
+
+			// 取得OpenID
+			String strOpenID = this.commonService
+					.getOpenID(strUrlFlag, strCode);
+
+			// 未获取openid时
+			if (strOpenID == null || strOpenID.equals("")) {
+				logger.info("未获取到openid!");
+				mv.addObject("errmsg", "未获取到openid!");
+				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
+			} else {
+
+				// 放到Session中
+				this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
+				logger.info("用户openid:" + strOpenID);
+
+				// 是否注册
+				boolean isRegister = this.commonService.isRegister(strCode,
+						strOpenID);
+
+				// 已注册时
+				if (isRegister) {
+					// 返回会员卡页面
+				} else {
+					// 返回注册页面
+					mv.setViewName(WEC0010_VIEW);
+				}
+			}
+		} catch (Exception e) {
+			logger.info("异常：\n" + e.getMessage());
+			mv.addObject("errmsg", "打开页面时异常");
+			mv.setViewName(WebConstantUrlValue.WEC_ERROR);
+		}
 
 		// 返回
-		return WEC0010_VIEW;
+		return mv;
 	}
 
 	/**
