@@ -34,6 +34,16 @@ public class WebConstantUrlValue {
 	/** 我的卡包页面的URL **/
 	public static final String WEC0030_INDEX = "/wec0030";
 	/** 我的卡包获取会员的卡和优惠券的URL **/
-	public static final String WEC0030_CARD_VOUCHER = "/get_card_voucher";
+	public static final String WEC0030_CARD_COUPON = "/get_card_coupon";
 	
+	
+	/** 会员卡包页面的URL **/
+	public static final String WEC0031_INDEX = "/wec0031";
+	/** 获取会员卡信息的URL **/
+	public static final String WEC0031_GET_INFO = "/get_card_info";
+	
+	/** 优惠券页面的URL **/
+	public static final String WEC0034_INDEX = "/wec0034";
+	/** 获取优惠券信息的URL **/
+	public static final String WEC0031_GET_COUPON = "/get_coupon";
 }

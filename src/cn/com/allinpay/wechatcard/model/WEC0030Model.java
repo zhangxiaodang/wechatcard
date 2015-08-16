@@ -1,10 +1,10 @@
 package cn.com.allinpay.wechatcard.model;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import cn.com.allinpay.frame.model.BaseModel;
-import cn.com.allinpay.wechatcard.view.CouponView;
 
 /**
  * 
@@ -15,26 +15,24 @@ import cn.com.allinpay.wechatcard.view.CouponView;
  */
 public class WEC0030Model extends BaseModel{
 	// 会员卡
-	private Map<String, Object> card_list = new HashMap<String, Object>();
-	
-	// 优惠券
-	private CouponView coupon_list = new CouponView();
+	private List<Map<String, Object>> card_list = new ArrayList<Map<String, Object>>();
 
-	public Map<String, Object> getCard_list() {
+	// 优惠券
+	private List<Map<String, Object>> coupon_list = new ArrayList<Map<String, Object>>();
+
+	public List<Map<String, Object>> getCard_list() {
 		return card_list;
 	}
 
-	public void setCard_list(Map<String, Object> card_list) {
+	public void setCard_list(List<Map<String, Object>> card_list) {
 		this.card_list = card_list;
 	}
 
-	public CouponView getCoupon_list() {
+	public List<Map<String, Object>> getCoupon_list() {
 		return coupon_list;
 	}
 
-	public void setCoupon_list(CouponView coupon_list) {
+	public void setCoupon_list(List<Map<String, Object>> coupon_list) {
 		this.coupon_list = coupon_list;
 	}
-
-	
 }

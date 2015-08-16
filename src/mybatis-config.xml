@@ -17,5 +17,9 @@
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0022Mapper.xml" />
 		<!-- 我的卡包 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0030Mapper.xml" />
+		<!-- 会员卡信息 -->
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0031Mapper.xml" />
+		<!-- 优惠券详细信息 -->
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0034Mapper.xml" />
 	</mappers>
 </configuration>
