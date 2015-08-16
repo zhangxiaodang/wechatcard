@@ -41,18 +41,18 @@
                             <a href="#" class="list-group-item active">
                                 <div>
                                     <img src="resources/images/u5_normal.jpg" alt=""/>
-                                    <h4 class="list-group-item-heading">林清轩会员储值卡</h4>
+                                    <h4 class="list-group-item-heading">会员储值卡</h4>
                                     <p class="list-group-item-text">储值卡</p>
                                 </div>
-                                <em>林清轩会员储值卡，会员专享活动</em>
+                                <em>会员储值卡，会员专享活动</em>
                             </a>
                             <a href="#" class="list-group-item active">
                                 <div>
                                     <img src="resources/images/u5_normal.jpg" alt=""/>
-                                    <h4 class="list-group-item-heading">林清轩会员储值卡</h4>
+                                    <h4 class="list-group-item-heading">会员储值卡</h4>
                                     <p class="list-group-item-text">储值卡</p>
                                 </div>
-                                <em>林清轩会员储值卡，会员专享活动</em>
+                                <em>会员储值卡，会员专享活动</em>
                             </a>
                         </div>
 
