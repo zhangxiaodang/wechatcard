@@ -55,6 +55,7 @@ public class WEC0010Controller extends BaseController {
 			// 取得OpenID
 			String strOpenID = this.commonService
 					.getOpenID(strUrlFlag, strCode);
+			// strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.equals("")) {
@@ -62,13 +63,12 @@ public class WEC0010Controller extends BaseController {
 				mv.addObject("errmsg", "未获取到openid!");
 				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
 			} else {
-
 				// 放到Session中
 				this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
 				logger.info("用户openid:" + strOpenID);
 
 				// 是否注册
-				boolean isRegister = this.commonService.isRegister(strCode,
+				boolean isRegister = this.commonService.isRegister(strUrlFlag,
 						strOpenID);
 
 				// 已注册时
