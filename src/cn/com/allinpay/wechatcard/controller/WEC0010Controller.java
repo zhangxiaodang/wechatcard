@@ -12,7 +12,6 @@ import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
-import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0010Service;
@@ -53,33 +52,33 @@ public class WEC0010Controller extends BaseController {
 			strCode = super.request.getParameter(KEY_CODE);
 
 			// 取得OpenID
-//			String strOpenID = this.commonService
-//					.getOpenID(strUrlFlag, strCode);
+			String strOpenID = this.commonService
+					.getOpenID(strUrlFlag, strCode);
 			// strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
 
 			// 未获取openid时
-//			if (strOpenID == null || strOpenID.equals("")) {
-//				logger.info("未获取到openid!");
-//				mv.addObject("errmsg", "未获取到openid!");
-//				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
-//			} else {
-//				// 放到Session中
-//				this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
-//				logger.info("用户openid:" + strOpenID);
-//
-//				// 是否注册
-//				boolean isRegister = this.commonService.isRegister(strUrlFlag,
-//						strOpenID);
-//
-//				// 已注册时
-//				if (isRegister) {
-//					// 返回会员卡页面
-//					mv.setViewName("wec_0020/wec_0020");
-//				} else {
-//					// 返回注册页面
-//					mv.setViewName(WEC0010_VIEW);
-//				}
-//			}
+			if (strOpenID == null || strOpenID.equals("")) {
+				logger.info("未获取到openid!");
+				mv.addObject("errmsg", "未获取到openid!");
+				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
+			} else {
+				// 放到Session中
+				this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
+				logger.info("用户openid:" + strOpenID);
+
+				// 是否注册
+				boolean isRegister = this.commonService.isRegister(strUrlFlag,
+						strOpenID);
+
+				// 已注册时
+				if (isRegister) {
+					// 返回会员卡页面
+					mv.setViewName("wec_0020/wec_0020");
+				} else {
+					// 返回注册页面
+					mv.setViewName(WEC0010_VIEW);
+				}
+			}
 			mv.setViewName(WEC0010_VIEW);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,7 +98,7 @@ public class WEC0010Controller extends BaseController {
 	@ResponseBody
 	public String register(WEC0010View memberView) {
 		logger.info("========================Controller register Start==========================");
-		
+
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
 			String strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
