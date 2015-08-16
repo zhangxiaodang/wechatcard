@@ -53,34 +53,36 @@ public class WEC0010Controller extends BaseController {
 			strCode = super.request.getParameter(KEY_CODE);
 
 			// 取得OpenID
-			String strOpenID = this.commonService
-					.getOpenID(strUrlFlag, strCode);
+//			String strOpenID = this.commonService
+//					.getOpenID(strUrlFlag, strCode);
 			// strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
 
 			// 未获取openid时
-			if (strOpenID == null || strOpenID.equals("")) {
-				logger.info("未获取到openid!");
-				mv.addObject("errmsg", "未获取到openid!");
-				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
-			} else {
-				// 放到Session中
-				this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
-				logger.info("用户openid:" + strOpenID);
-
-				// 是否注册
-				boolean isRegister = this.commonService.isRegister(strUrlFlag,
-						strOpenID);
-
-				// 已注册时
-				if (isRegister) {
-					// 返回会员卡页面
-					mv.setViewName("wec_0020/wec_0020");
-				} else {
-					// 返回注册页面
-					mv.setViewName(WEC0010_VIEW);
-				}
-			}
+//			if (strOpenID == null || strOpenID.equals("")) {
+//				logger.info("未获取到openid!");
+//				mv.addObject("errmsg", "未获取到openid!");
+//				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
+//			} else {
+//				// 放到Session中
+//				this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
+//				logger.info("用户openid:" + strOpenID);
+//
+//				// 是否注册
+//				boolean isRegister = this.commonService.isRegister(strUrlFlag,
+//						strOpenID);
+//
+//				// 已注册时
+//				if (isRegister) {
+//					// 返回会员卡页面
+//					mv.setViewName("wec_0020/wec_0020");
+//				} else {
+//					// 返回注册页面
+//					mv.setViewName(WEC0010_VIEW);
+//				}
+//			}
+			mv.setViewName(WEC0010_VIEW);
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.info("异常：\n" + e.getMessage());
 			mv.addObject("errmsg", "打开页面时异常");
 			mv.setViewName(WebConstantUrlValue.WEC_ERROR);
@@ -97,10 +99,16 @@ public class WEC0010Controller extends BaseController {
 	@ResponseBody
 	public String register(WEC0010View memberView) {
 		logger.info("========================Controller register Start==========================");
-		logger.info(memberView);
+		
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
-			memberView.setMemberid(WebUtil.getUUID());
+			String strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
+			String strCode = super.request.getParameter(KEY_CODE);
+
+			// 取得OpenID
+			String strOpenID = this.commonService
+					.getOpenID(strUrlFlag, strCode);
+			memberView.setMemberopenid(strOpenID);
 			// 调用注册的service
 			resultModel = registerService.regist(memberView);
 		} catch (Exception e) {
