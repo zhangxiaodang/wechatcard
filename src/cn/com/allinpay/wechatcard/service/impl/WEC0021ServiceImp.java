@@ -12,6 +12,7 @@ import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.dao.WEC0021Dao;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
+import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0021Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 import cn.com.allinpay.wechatcard.view.WEC0021View;
@@ -29,7 +30,10 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 	/** 注册的dao **/
 	@Autowired
 	private WEC0021Dao wec_0021_Dao;
+	
 
+	@Autowired
+	private ICommonService commonService;
 	/**
 	 * 注册的service
 	 */
@@ -37,6 +41,8 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 	public WEC0010Model applyNewCard(WEC0010View memberView) throws Exception {
 		logger.info("========================Service applyNewCard Start==========================");
 
+		// 返回前台提示信息
+		WEC0010Model resultModel = new WEC0010Model();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		// 会员卡信息
 		WEC0021View wec0021View = new WEC0021View();
@@ -44,15 +50,23 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		// 申请新卡的密码
 		wec0021View.setPassword(memberView.getPassword());
 		// todo
-
+		
+		
+		Map<String, String> memberInfo = commonService.getMemberInfoByOpenID(memberView.getMemberopenid());
+		if(memberInfo.get("memberid") == null || "".equals(memberInfo.get("memberid"))){
+			// 如果根据openid获取会员的id，获取不到，提示用户。
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			resultModel.setMsg(WebConstantValue.ADD_CARD_ERROR);
+			return resultModel;
+		}
 		// 更新本地会员卡的信息
 		wec0021View.setMerbercardid(WebUtil.getUUID());
 		// 会员ID 这个地方的需要从session中获取会员的id。
-		wec0021View.setMemberid(memberView.getMemberid());
+		wec0021View.setMemberid(memberInfo.get("memberid"));
 		// 商家ID
-		wec0021View.setMerchantid("");
-		// 会员卡号（预付卡系统后台实体卡号）
-		wec0021View.setCardno("");
+		wec0021View.setMerchantid(memberInfo.get("merchantid"));
+		// 会员卡号（预付卡系统后台实体卡号） todo
+		wec0021View.setCardno(WebUtil.get_random());
 		// 电子卡号（预付卡系统后台电子卡号），申请新卡时电子卡号为手机号
 		wec0021View.setDzcardno(memberView.getMemberphone());
 		// 会员卡等级
@@ -67,8 +81,6 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		paramMap.put(BEAN, wec0021View);
 		// 生成本地的会员卡号
 		wec_0021_Dao.add_card(paramMap);
-		// 返回前台提示信息
-		WEC0010Model resultModel = new WEC0010Model();
 		resultModel.setState(WebConstantValue.HTTP_OK);
 		resultModel.setMsg(WebConstantValue.APPLY_CARD_SUCCESS);
 
