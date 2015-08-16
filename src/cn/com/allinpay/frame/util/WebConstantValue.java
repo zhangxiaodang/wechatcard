@@ -23,6 +23,8 @@ public class WebConstantValue {
 	/** http请求状态  TS0004失败 **/
 	public static final String HTTP_ERROR = "TS0004";
 	
+	/** 添加会员卡失败 **/
+	public static final String ADD_CARD_ERROR = "对不起，您还不是会员，请注册后使用！";
 	/** 注册成功 **/
 	public static final String REGISTER_SUCCESS = "恭喜您，注册成功！";
 	

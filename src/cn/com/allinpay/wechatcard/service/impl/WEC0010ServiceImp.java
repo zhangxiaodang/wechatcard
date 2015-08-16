@@ -40,14 +40,15 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 	/** 绑定新卡的service **/
 	@Autowired
 	private IWEC0022Service wec0022Service;
+
 	/**
 	 * 注册的service
 	 */
 	@Override
 	public WEC0010Model regist(WEC0010View memberView) throws Exception{
 		logger.info("========================Service regist Start==========================");
-		// 会员卡申请时间
-		//memberView.setMembersqsj(membersqsj);
+		// 返回前台提示信息
+		WEC0010Model resultModel = new WEC0010Model();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put(BEAN, memberView);
 		// 将用户信息添加到会员表中
@@ -61,8 +62,6 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 			// 绑定旧卡
 			wec0022Service.bindingOldCard(memberView);
 		}
-		// 返回前台提示信息
-		WEC0010Model resultModel = new WEC0010Model();
 		resultModel.setState(WebConstantValue.HTTP_OK);
 		resultModel.setMsg(WebConstantValue.REGISTER_SUCCESS);
 		

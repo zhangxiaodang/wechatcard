@@ -18,6 +18,11 @@
 		 and t2.urlflag = #{urlflag}
 		 and t1.merchantid = t2.merchantid
 	</select>
-
+	
+	<!-- 根据openID获取会员的id -->
+	<select id="getMemberIDByOpenID" parameterType="String" resultType="java.util.Map">
+		select memberid, merchantid from member where memberopenid = #{openid}
+	</select>
+	
 </mapper>
 	

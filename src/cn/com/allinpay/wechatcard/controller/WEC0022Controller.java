@@ -12,6 +12,7 @@ import cn.com.allinpay.frame.util.WebConstantUrlValue;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
 import cn.com.allinpay.frame.util.WebUtil;
+import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0022Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 
@@ -29,6 +30,8 @@ public class WEC0022Controller extends BaseController {
 	@Autowired
 	private IWEC0022Service wec0022Service;
 	
+	@Autowired
+	private ICommonService commonService;
 	/**
 	 * 申请会员卡页面URL.
 	 * 
@@ -51,6 +54,13 @@ public class WEC0022Controller extends BaseController {
 		logger.info(memberView);
 		BaseModel resultModel = new BaseModel();
 		try {
+			String strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
+			String strCode = super.request.getParameter(KEY_CODE);
+
+			// 取得OpenID
+			String strOpenID = this.commonService
+					.getOpenID(strUrlFlag, strCode);
+			memberView.setMemberopenid(strOpenID);
 			memberView.setMemberid(WebUtil.getUUID());
 			// 调用注册的service
 			resultModel = wec0022Service.bindingOldCard(memberView);

@@ -1,5 +1,7 @@
 package cn.com.allinpay.wechatcard.service;
 
+import java.util.Map;
+
 /**
  * 共通Service.
  */
@@ -30,4 +32,16 @@ public interface ICommonService {
 	 * @return true:已注册 false:未注册
 	 */
 	public boolean isRegister(String urlFlag, String openid);
+	
+	/**
+	 * 判断微信用户是否注册.
+	 * 
+	 * @param urlFlag
+	 *            商户标识.
+	 * 
+	 * @param openid
+	 *            微信用户openid.
+	 * @return true:已注册 false:未注册
+	 */
+	public Map<String, String> getMemberInfoByOpenID(String openid);
 }

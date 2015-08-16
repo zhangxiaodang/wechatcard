@@ -11,4 +11,6 @@ public interface CommonDao {
 	public Map<String, String> getAppInfo(String urlFlag);
 
 	public int getRegister(Map<String, String> paramMap);
+	
+	public Map<String, String> getMemberIDByOpenID(Map<String, String> paramMap);
 }

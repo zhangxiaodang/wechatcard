@@ -69,4 +69,16 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 		// 返回
 		return result == 0 ? false : true;
 	}
+	
+	@Override
+	public Map<String, String> getMemberInfoByOpenID(String openid) {
+		// TODO Auto-generated method stub
+		Map<String, String> paramMap = new HashMap<String, String>();
+		// openid
+		paramMap.put("openid", openid);
+
+		// 查询是否注册
+		Map<String, String> result = this.dao.getMemberIDByOpenID(paramMap);
+		return result;
+	}
 }

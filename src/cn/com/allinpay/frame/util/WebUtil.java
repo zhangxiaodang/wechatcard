@@ -2,6 +2,7 @@ package cn.com.allinpay.frame.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -31,5 +32,15 @@ public class WebUtil {
 		Date nowTime=new Date(); 
 		SimpleDateFormat time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		return time.format(nowTime); 
+	}
+	
+	/**
+	 * 获取随机数
+	 */
+	public static String get_random(){
+		Random random = new Random();
+		float f = random.nextFloat();
+        Integer i = (int) (f*100000000);
+		return i+""; 
 	}
 }
