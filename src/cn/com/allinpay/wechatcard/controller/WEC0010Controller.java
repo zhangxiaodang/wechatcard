@@ -74,6 +74,7 @@ public class WEC0010Controller extends BaseController {
 				// 已注册时
 				if (isRegister) {
 					// 返回会员卡页面
+					mv.setViewName("wec_0020/wec_0020");
 				} else {
 					// 返回注册页面
 					mv.setViewName(WEC0010_VIEW);
