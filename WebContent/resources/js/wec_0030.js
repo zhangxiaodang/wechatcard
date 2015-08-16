@@ -7,4 +7,5 @@ $(function () {
     $(".list-group-item").click(function(){
     	window.location.href = 'wec0031';
     })
+    
 });

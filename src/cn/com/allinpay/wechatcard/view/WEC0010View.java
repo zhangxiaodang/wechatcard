@@ -71,6 +71,10 @@ public class WEC0010View extends BaseView{
 	 * 会员卡确认密码
 	 */
 	private String confirmpassword = "";
+	/**
+	 * 会员卡旧密码
+	 */
+	private String oldpassword = "";
 	
 	public String getMemberid() {
 		return memberid;
@@ -162,4 +166,11 @@ public class WEC0010View extends BaseView{
 	public void setConfirmpassword(String confirmpassword) {
 		this.confirmpassword = confirmpassword;
 	}
+	public String getOldpassword() {
+		return oldpassword;
+	}
+	public void setOldpassword(String oldpassword) {
+		this.oldpassword = oldpassword;
+	}
+	
 }

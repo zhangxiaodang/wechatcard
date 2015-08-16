@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0036Dao">
+	
+	<!-- 会员注册 -->
+	<update id="change_phone" parameterType="java.util.Map">
+		update member set memberphone = #{bean.memberphone} where memberid = #{bean.memberid}
+	</update>
+</mapper>
+	

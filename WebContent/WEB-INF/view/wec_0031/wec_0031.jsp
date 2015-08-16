@@ -52,17 +52,13 @@
         <div class="col-md-12">
 
             <ul id="list" class="list-group">
-                <li class="list-group-item">
+                <li class="list-group-item" id="change_pass">
                     <img src="resources/images/char-more.png" alt=""/>
                     卡密码修改
                 </li>
                 <li class="list-group-item">
                     <img src="resources/images/char-more.png" alt=""/>
                     我要充值
-                </li>
-                <li class="list-group-item">
-                    <img src="resources/images/char-more.png" alt=""/>
-                    我要付款
                 </li>
                 <li class="list-group-item">
                     <img src="resources/images/char-more.png" alt=""/>

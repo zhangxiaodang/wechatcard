@@ -46,4 +46,16 @@ public class WebConstantValue {
 	
 	/** 申请新卡失败 **/
 	public static final String APPLY_CARD_ERROR = "申请新卡失败！";
+	/** 修改密码成功 **/
+	public static final String CHANGE_PASS_SUCCES = "修改密码成功！";
+	/** 修改密码失败 **/
+	public static final String CHANGE_PASS_ERROR = "修改密码失败！";
+	/** 新密码和确认密码不一致 **/
+	public static final String CHANGE_PASS_ERROR_1 = "新密码和确认密码不一致！";
+	
+
+	/** 修改手机号成功 **/
+	public static final String CHANGE_PHONE_SUCCES = "修改手机号成功！";
+	/** 修改手机号失败 **/
+	public static final String CHANGE_PHONE_ERROR = "修改手机号失败！";
 }
