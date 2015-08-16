@@ -10,7 +10,7 @@
 		where urlflag = #{urlFlag}
 	</select>
 	
-	<select id="getRegister" parameterType="java.util.Map">
+	<select id="getRegister" parameterType="java.util.Map" resultType="int">
 		select count(1) as cnt
 		from member t1, merchant t2
 		where

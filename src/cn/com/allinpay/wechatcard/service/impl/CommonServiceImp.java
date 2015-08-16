@@ -42,7 +42,7 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 				appInfo.get("appid"), appInfo.get("appsecret"));
 
 		// 成功时
-		if (result != null && !result.getErrmsg().equals("")) {
+		if (result != null && result.getErrmsg().equals("")) {
 			strOpenId = result.getOpenid();
 		} else {
 			// 失败时

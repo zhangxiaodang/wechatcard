@@ -1,0 +1,34 @@
+body {
+    background-color:#f0f0f0;
+}
+
+span.red-text {
+    color: #f00;
+    font-weight: bold;
+}
+
+#user-reg {
+    position: relative;
+    padding-top: 10px;
+}
+
+#user-reg>.input-group {
+    margin-top: 20px;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+#user-reg>.input-group>.input-group-addon {
+    width: 99%;
+    text-align: left;
+    font-size: 14px;
+    color: red;
+}
+
+#user-reg .btnClose {
+    text-align: center;
+}
+
+#user-reg #btnClose {
+    width: 99%;
+}
