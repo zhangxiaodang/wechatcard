@@ -71,7 +71,7 @@ $(function () {
             $(_this).text("提交").prop('disabled', false);
             if(data.state === '000000') {
                 // 注册成功，跳转页面
-                window.location.href = 'wec0010';
+                window.location.href = 'wec0031';
             } else {
                 $.mAlert( data['msg'] );
             }
