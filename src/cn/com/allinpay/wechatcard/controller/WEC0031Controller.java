@@ -36,7 +36,7 @@ public class WEC0031Controller extends BaseController {
 	private ICommonService commonService;
 
 	/**
-	 * 注册页面URL.
+	 * 会员卡页面URL.
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0031_INDEX, method = RequestMethod.GET)
 	public String getPageIndex() {

@@ -42,12 +42,14 @@ public class WEC0031ServiceImp extends BaseService implements IWEC0031Service {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put(BEAN, memberView);
 		// 获取会员卡信息
-		Map<String, Object> card_list = wec_0031_Dao.get_card(paramMap);
+		Map<String, Object> card_info = wec_0031_Dao.get_card(paramMap);
 		
+		// 调用接口查询卡的余额  todo
+		card_info.put("money", 111);
 		// 返回前台提示信息
 		WEC0031Model resultModel = new WEC0031Model();
 		
-		resultModel.setCard_list(card_list);
+		resultModel.setCard_info(card_info);
 		
 		resultModel.setState(WebConstantValue.HTTP_OK);
 

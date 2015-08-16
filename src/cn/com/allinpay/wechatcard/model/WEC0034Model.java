@@ -15,13 +15,14 @@ import cn.com.allinpay.frame.model.BaseModel;
 public class WEC0034Model extends BaseModel{
 	
 	// 优惠券信息
-	private Map<String, Object> coupon_list = new HashMap<String, Object>();
+	private Map<String, Object> coupon_info = new HashMap<String, Object>();
 
-	public Map<String, Object> getCoupon_list() {
-		return coupon_list;
+	public Map<String, Object> getCoupon_info() {
+		return coupon_info;
 	}
 
-	public void setCoupon_list(Map<String, Object> coupon_list) {
-		this.coupon_list = coupon_list;
+	public void setCoupon_info(Map<String, Object> coupon_info) {
+		this.coupon_info = coupon_info;
 	}
+	
 }

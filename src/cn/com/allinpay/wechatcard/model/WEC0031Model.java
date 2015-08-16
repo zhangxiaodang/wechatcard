@@ -15,14 +15,14 @@ import cn.com.allinpay.frame.model.BaseModel;
 public class WEC0031Model extends BaseModel{
 	
 	// 会员卡
-	private Map<String, Object> card_list = new HashMap<String, Object>();
+	private Map<String, Object> card_info = new HashMap<String, Object>();
 
-	public Map<String, Object> getCard_list() {
-		return card_list;
+	public Map<String, Object> getCard_info() {
+		return card_info;
 	}
 
-	public void setCard_list(Map<String, Object> card_list) {
-		this.card_list = card_list;
+	public void setCard_info(Map<String, Object> card_info) {
+		this.card_info = card_info;
 	}
-
+	
 }

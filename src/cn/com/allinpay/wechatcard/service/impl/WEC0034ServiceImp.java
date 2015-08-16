@@ -42,12 +42,12 @@ public class WEC0034ServiceImp extends BaseService implements IWEC0034Service {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put(BEAN, memberView);
 		// 获取优惠券信息
-		Map<String, Object> card_list = wec_0034_Dao.get_coupon(paramMap);
+		Map<String, Object> coupon_info = wec_0034_Dao.get_coupon(paramMap);
 		
 		// 返回前台提示信息
 		WEC0034Model resultModel = new WEC0034Model();
 		
-		resultModel.setCoupon_list(card_list);
+		resultModel.setCoupon_info(coupon_info);
 		
 		resultModel.setState(WebConstantValue.HTTP_OK);
 
