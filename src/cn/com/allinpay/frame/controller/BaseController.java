@@ -31,9 +31,6 @@ public class BaseController {
 	/** HttpSession. */
 	protected HttpSession session;
 
-	/** Session中的username KEY. */
-	protected static final String SESSION_KEY_USERNAME = WebConstantValue.SESSION_KEY_USERNAME;
-
 	/** 网页授权code. */
 	protected static final String KEY_CODE = "code";
 
@@ -42,6 +39,9 @@ public class BaseController {
 
 	/** Session中的username KEY. */
 	protected static final String SESSION_KEY_OPENID = "openid";
+
+	/** Session中的urlflag KEY. */
+	protected static final String SESSION_KEY_URLFLAG = "urlfalg";
 
 	/**
 	 * 设置基本对象.
@@ -85,30 +85,6 @@ public class BaseController {
 	protected String getWebRootPath() {
 
 		return this.request.getServletPath();
-	}
-
-	/**
-	 * 从Session中取得登录的用户名.
-	 * 
-	 * @return 用户名.
-	 */
-	protected String getUserName() {
-
-		// 返回用户名.
-		return this.session.getAttribute(SESSION_KEY_USERNAME) == null ? ""
-				: (String) this.session.getAttribute(SESSION_KEY_USERNAME);
-	}
-
-	/**
-	 * 将登录者的用户名放到Session中.
-	 * 
-	 * @param username
-	 *            用户名.
-	 */
-	protected void setUserName(String username) {
-
-		// 设定用户名
-		this.session.setAttribute(SESSION_KEY_USERNAME, username);
 	}
 
 	/**
