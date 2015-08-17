@@ -1,11 +1,14 @@
 package cn.com.allinpay.wechatcard.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
@@ -40,12 +43,31 @@ public class WEC0021Controller extends BaseController {
 	 * @return 申请会员卡页面
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0021_INDEX, method = RequestMethod.GET)
-	public String getPageIndex() {
+	public ModelAndView getPageIndex() {
 
 		super.logger.info(super.session.getAttribute("key"));
-
+		ModelAndView mv = new ModelAndView();
+		// 获取当前登陆用户的手机号
+		try {
+			// 取得OpenID
+			String strOpenID = (String) this.session.getAttribute(SESSION_KEY_OPENID);
+			Map<String, String> memberInfo = commonService.getMemberInfoByOpenID(strOpenID);
+			if(memberInfo == null || memberInfo.get("memberphone") == null || "".equals(memberInfo.get("memberphone"))){
+				// 如果根据openid获取会员的id，获取不到，提示用户。
+				mv.addObject("errmsg", WebConstantValue.ADD_CARD_ERROR);
+				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
+				return mv;
+			}
+			mv.addObject("memberphone", memberInfo.get("memberphone"));
+			mv.setViewName(WEC0021_VIEW);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("异常：\n" + e.getMessage());
+			mv.addObject("errmsg", "打开页面时异常");
+			mv.setViewName(WebConstantUrlValue.WEC_ERROR);
+		}
 		// 返回
-		return WEC0021_VIEW;
+		return mv;
 	}
 	
 	/**
@@ -58,12 +80,8 @@ public class WEC0021Controller extends BaseController {
 		logger.info(memberView);
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
-			String strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
-			String strCode = super.request.getParameter(KEY_CODE);
-
 			// 取得OpenID
-			String strOpenID = this.commonService
-					.getOpenID(strUrlFlag, strCode);
+			String strOpenID = (String) this.session.getAttribute(SESSION_KEY_OPENID);
 			memberView.setMemberopenid(strOpenID);
 			memberView.setMemberid(WebUtil.getUUID());
 			// 调用注册的service

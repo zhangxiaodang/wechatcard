@@ -38,8 +38,8 @@ public class WEC0022Controller extends BaseController {
 	 * @return 申请会员卡页面
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0022_INDEX, method = RequestMethod.GET)
-	public String getPageIndex() {
-
+	public String getPageIndex(){
+		
 		// 返回
 		return WEC0022_VIEW;
 	}
@@ -54,12 +54,8 @@ public class WEC0022Controller extends BaseController {
 		logger.info(memberView);
 		BaseModel resultModel = new BaseModel();
 		try {
-			String strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
-			String strCode = super.request.getParameter(KEY_CODE);
-
 			// 取得OpenID
-			String strOpenID = this.commonService
-					.getOpenID(strUrlFlag, strCode);
+			String strOpenID = (String) this.session.getAttribute(SESSION_KEY_OPENID);
 			memberView.setMemberopenid(strOpenID);
 			memberView.setMemberid(WebUtil.getUUID());
 			// 调用注册的service

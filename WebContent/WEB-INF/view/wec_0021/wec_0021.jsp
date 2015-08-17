@@ -28,7 +28,7 @@
             <form class="form-horizontal" id="user-reg">
                 <div class="input-group">
                     <span class="input-group-addon" for="mobile"><span class="red-text">* </span>手机号：</span>
-                    <input type="text" id="mobile" class="form-control" readonly="readonly" value="18678399534" placeholder="手机号不可为空" aria-describedby="basic-addon1">
+                    <input type="text" id="mobile" class="form-control" readonly="readonly" value="${memberphone}" placeholder="手机号不可为空" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" for="yzm"><span class="red-text">* </span>验证码：</span>

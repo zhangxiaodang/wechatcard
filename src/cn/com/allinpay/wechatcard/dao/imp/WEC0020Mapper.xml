@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0020Dao">
+	
+	<!-- 会员注册 -->
+	<select id="phone_is_rigist" parameterType="java.util.Map" resultType="int">
+		select count(1) as cnt
+		from member t1, merchant t2
+		where
+		t1.memberopenid = #{bean.openid}
+		and t1.memberphone = #{bean.memberphone}
+		and t2.urlflag = #{bean.urlflag}
+		and t1.merchantid = t2.merchantid
+	</select>
+</mapper>
+	

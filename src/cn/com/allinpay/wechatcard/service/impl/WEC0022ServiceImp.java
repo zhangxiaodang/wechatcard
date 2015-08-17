@@ -55,7 +55,7 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 		// todo  
 		
 		Map<String, String> memberInfo = commonService.getMemberInfoByOpenID(memberView.getMemberopenid());
-		if(memberInfo.get("memberid") == null || "".equals(memberInfo.get("memberid"))){
+		if(memberInfo == null || memberInfo.get("memberid") == null || "".equals(memberInfo.get("memberid"))){
 			// 如果根据openid获取会员的id，获取不到，提示用户。
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			resultModel.setMsg(WebConstantValue.ADD_CARD_ERROR);

@@ -32,16 +32,25 @@ public interface ICommonService {
 	 * @return true:已注册 false:未注册
 	 */
 	public boolean isRegister(String urlFlag, String openid);
-	
+
 	/**
-	 * 判断微信用户是否注册.
-	 * 
-	 * @param urlFlag
-	 *            商户标识.
+	 * 获取登陆用户的信息
+	 * 根据OpenID取得会员信息.
 	 * 
 	 * @param openid
-	 *            微信用户openid.
-	 * @return true:已注册 false:未注册
+	 *            openid.
+	 * 
+	 * return map  用户信息
 	 */
 	public Map<String, String> getMemberInfoByOpenID(String openid);
+
+	/**
+	 * 根据URL Flag取得商户信息.
+	 * 
+	 * @param urlflag
+	 *            商户标识.
+	 * 
+	 * @return 商户信息.
+	 */
+	public Map<String, String> getMerchantInfoByUrlFlag(String urlflag);
 }

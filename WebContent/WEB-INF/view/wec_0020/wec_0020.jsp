@@ -47,7 +47,7 @@
                         <h3 class="panel-title">会员卡级别：</h3>
                     </div>
                     <div class="panel-body">
-                        普通会员
+                        ${membergrade}
                     </div>
                 </div>
             </div>
