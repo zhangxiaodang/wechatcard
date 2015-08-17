@@ -13,10 +13,10 @@ public class WebConstantUrlValue {
 	public static final String WEC0010_INDEX = "/wec0010";
 
 	/** 注册的URL. */
-	public static final String REGISTER = "/register";
+	public static final String REGISTER = "/wec0010/register";
 
 	/** 获取验证码URL. */
-	public static final String GETYZM = "/getyzm";
+	public static final String GETYZM = "/wec0010/getyzm";
 
 	/** 会员卡页面的URL. */
 	public static final String WEC0020_INDEX = "/wec0020";
@@ -49,12 +49,12 @@ public class WebConstantUrlValue {
 
 	/** 获取优惠券信息的URL */
 	public static final String WEC0031_GET_COUPON = "/get_coupon";
-	
+
 	/** 修改卡密码页面的URL **/
 	public static final String WEC0035_INDEX = "/wec0035";
 	/** 修改卡密码URL **/
 	public static final String WEC0035_CHANGE_PASS = "/change_pass";
-	
+
 	/** 修改手机号页面的URL **/
 	public static final String WEC0036_INDEX = "/wec0036";
 	/** 修改手机号URL **/

@@ -50,11 +50,13 @@ public class WEC0010Controller extends BaseController {
 		try {
 			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
 			strCode = super.request.getParameter(KEY_CODE);
+			// 放到session中
+			super.session.setAttribute(SESSION_KEY_URLFLAG, strCode);
 
 			// 取得OpenID
 			String strOpenID = this.commonService
 					.getOpenID(strUrlFlag, strCode);
-			// strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
+			strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.equals("")) {
@@ -63,7 +65,7 @@ public class WEC0010Controller extends BaseController {
 				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
 			} else {
 				// 放到Session中
-				this.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
+				super.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
 				logger.info("用户openid:" + strOpenID);
 
 				// 是否注册
@@ -101,15 +103,21 @@ public class WEC0010Controller extends BaseController {
 
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
-			String strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
-			String strCode = super.request.getParameter(KEY_CODE);
+			// urlFlag
+			String strUrlFlag = super.session.getAttribute(SESSION_KEY_URLFLAG)
+					.toString();
+			// OpenID
+			String strOpenID = super.session.getAttribute(SESSION_KEY_OPENID)
+					.toString();
 
-			// 取得OpenID
-			String strOpenID = this.commonService
-					.getOpenID(strUrlFlag, strCode);
+			// URLFlag
+			memberView.setUrlflag(strUrlFlag);
+			// OpenID
 			memberView.setMemberopenid(strOpenID);
+
 			// 调用注册的service
 			resultModel = registerService.regist(memberView);
+
 		} catch (Exception e) {
 			logger.info("========================Exception register Start==========================");
 			e.printStackTrace();

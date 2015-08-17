@@ -81,4 +81,12 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 		Map<String, String> result = this.dao.getMemberIDByOpenID(paramMap);
 		return result;
 	}
+
+	@Override
+	public Map<String, String> getMerchantInfoByUrlFlag(String urlflag) {
+		
+		
+		
+		return null;
+	}
 }
