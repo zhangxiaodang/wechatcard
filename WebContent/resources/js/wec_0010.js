@@ -178,7 +178,7 @@ $(function () {
 
         $(_this).text("注册中...").prop('disabled', true);
 
-        $.post("register", param, function (data) {
+        $.post("wec0010/register", param, function (data) {
             $(_this).text("提交").prop('disabled', false);
             data = JSON.parse(data);
             if(data.state === '000000') {

@@ -12,11 +12,12 @@ import java.util.Map;
 public interface WEC0010Dao {
 
 	/**
-	 * 会员注册dao
+	 * 会员注册dao.
 	 * 
 	 * @param paraMap
-	 * @return
+	 *            参数.
+	 * 
+	 * @return 影响行数.
 	 */
-	public void regist(Map<String, Object> paramMap);
-
+	public int regist(Map<String, Object> paramMap);
 }
