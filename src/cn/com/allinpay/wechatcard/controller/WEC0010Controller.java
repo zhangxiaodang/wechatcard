@@ -52,9 +52,9 @@ public class WEC0010Controller extends BaseController {
 			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
 			strCode = super.request.getParameter(KEY_CODE);
 			// 测试使用
-			if(strUrlFlag == null){
-				strUrlFlag = "121";
-			}
+//			if(strUrlFlag == null){
+//				strUrlFlag = "121";
+//			}
 			// 放到session中
 			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
 
