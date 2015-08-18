@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>密码修改</title>
+    <title>修改手机号</title>
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-touch-fullscreen" content="yes"/>
@@ -29,11 +29,11 @@
                 <form class="form-horizontal" id="user-reg">
                 	<div class="input-group">
                         <span class="input-group-addon" for="mobile">原手机号：</span>
-                        <input type="text" id="mobile" class="form-control" value="18363016696"  disabled="disabled" aria-describedby="basic-addon1">
+                        <input type="text" id="mobile" class="form-control" value="${oldphone}"  disabled="disabled" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group">
-                        <span class="input-group-addon" for="mobile"><span class="red-text">* </span>手机号：</span>
-                        <input type="text" id="memberphone" class="form-control" value="" placeholder="手机号不可为空" aria-describedby="basic-addon1">
+                        <span class="input-group-addon" for="mobile"><span class="red-text">* </span>新手机号：</span>
+                        <input type="text" id="newphone" class="form-control" value="" placeholder="手机号不可为空" aria-describedby="basic-addon1" maxlength="11">
                     </div>
                     <div class="input-group"> 
                         <div class="input-group">
@@ -41,14 +41,17 @@
                             <input type="text" id="yzm" class="form-control" placeholder="验证码不可为空"  aria-describedby="basic-addon1">
                         </div>
                     </div>
-                    <div id="get_code"><button type="button" class="btn btn-info">获取验证码</button></div>
+                    
+                    <div id="get_code">
+                        <button type="button" class="btn btn-info">获取验证码</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="form-group" style="margin-top:40px;">
         <div class="col-sm-12">
-            <button id="tijiao" type="button" class="btn btn-primary btn-lg btn-block">确定修改</button>
+            <button id="tijiao" type="button" class="btn btn-primary btn-lg btn-block">修改</button>
         </div>
     </div>
 </div>

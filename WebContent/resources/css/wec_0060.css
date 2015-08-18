@@ -55,34 +55,3 @@ span.red-text {
 #user-reg #tijiao {
     width: 100%;
 }
-
-#new_card, #old_card {
-    display: none;
-}
-
-#new_card .panel-info,
-#old_card .panel-info {
-    margin-bottom: initial;
-}
-
-#new_card h3.panel-title,
-#old_card h3.panel-title {
-    text-align: center;
-}
-
-#new_card h4 {
-    font-size: 14px;
-    font-weight: bold;
-    margin: 0 0 10px 0;
-}
-
-#new_card .input-group,
-#old_card .input-group {
-    margin-bottom: 10px;
-    width: 100%;
-}
-
-#new_card .input-group>.input-group-addon {
-    width: 100px;
-    text-align: right;
-}

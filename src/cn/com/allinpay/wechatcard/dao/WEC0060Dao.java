@@ -3,19 +3,28 @@ package cn.com.allinpay.wechatcard.dao;
 import java.util.Map;
 
 /**
- * 
  * 修改手机号dao.
- * 
- * @version V1.00.
- * 
  */
+
 public interface WEC0060Dao {
-	
+
+	/**
+	 * 取得会员现有手机号.
+	 * 
+	 * @param paramMap
+	 *            参数.
+	 * 
+	 * @return 手机号
+	 */
+	public String getCurrentPhoneNum(Map<String, String> paramMap);
+
 	/**
 	 * 修改手机号dao
 	 * 
 	 * @param paraMap
+	 *            参数.
+	 * 
 	 * @return
 	 */
-	public void change_phone(Map<String, Object> paramMap);
+	public int updatePhoneNum(Map<String, String> paramMap);
 }

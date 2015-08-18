@@ -46,21 +46,33 @@ public class WEC0010Controller extends BaseController {
 		String strUrlFlag = "";
 		// 网页Code
 		String strCode = "";
+		// openid
+		String strOpenID = "";
+		// 返回值
 		ModelAndView mv = new ModelAndView();
 
 		try {
 			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
 			strCode = super.request.getParameter(KEY_CODE);
+			// 测试使用
+//			if(strUrlFlag == null){
+//				strUrlFlag = "121";
+//			}
 			// 放到session中
-			super.session.setAttribute(SESSION_KEY_URLFLAG, strCode);
+			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
 
-			// 取得OpenID
-			String strOpenID = this.commonService
-					.getOpenID(strUrlFlag, strCode);
-			strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
+			// 从session中取得openid
+			strOpenID = super.session.getAttribute(SESSION_KEY_OPENID)
+					.toString();
+			// 从其它页面跳转过来时
+			if (strOpenID == null || strOpenID.isEmpty()) {
+				// 取得OpenID
+				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
+				strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
+			}
 
 			// 未获取openid时
-			if (strOpenID == null || strOpenID.equals("")) {
+			if (strOpenID == null || strOpenID.isEmpty()) {
 				logger.info("未获取到openid!");
 				mv.addObject("errmsg", "未获取到openid!");
 				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
@@ -82,7 +94,6 @@ public class WEC0010Controller extends BaseController {
 					mv.setViewName(WEC0010_VIEW);
 				}
 			}
-			mv.setViewName(WEC0010_VIEW);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.info("异常：\n" + e.getMessage());
@@ -116,7 +127,7 @@ public class WEC0010Controller extends BaseController {
 			// OpenID
 			memberView.setMemberid(WebUtil.getUUID());
 			memberView.setMemberopenid(strOpenID);
-
+			
 			// 调用注册的service
 			resultModel = registerService.regist(memberView);
 

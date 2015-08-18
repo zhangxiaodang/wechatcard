@@ -58,10 +58,10 @@ public class WebConstantUrlValue {
 	public static final String WEC0035_CHANGE_PASS = "/change_pass";
 
 	/** 修改手机号页面的URL **/
-	public static final String WEC0036_INDEX = "/wec0060";
+	public static final String WEC0060_INDEX = "/wec0060";
 
 	/** 修改手机号URL **/
-	public static final String WEC0035_CHANGE_PHONE = "/wec0060/change_phone";
+	public static final String WEC0060_CHANGE_PHONE = "/wec0060/change_phone";
 
 	/** 全局错误页面. */
 	public static final String WEC_ERROR = "/wec_error";
