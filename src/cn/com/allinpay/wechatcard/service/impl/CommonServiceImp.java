@@ -72,7 +72,6 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 
 	@Override
 	public Map<String, String> getMemberInfoByOpenID(String openid) {
-		// TODO Auto-generated method stub
 		Map<String, String> paramMap = new HashMap<String, String>();
 		// openid
 		paramMap.put("openid", openid);

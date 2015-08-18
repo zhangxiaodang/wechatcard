@@ -54,10 +54,7 @@ public class WEC0010Controller extends BaseController {
 		try {
 			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
 			strCode = super.request.getParameter(KEY_CODE);
-			// 测试使用
-//			if(strUrlFlag == null){
-//				strUrlFlag = "121";
-//			}
+
 			// 放到session中
 			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
 
@@ -68,6 +65,7 @@ public class WEC0010Controller extends BaseController {
 			if (strOpenID == null || strOpenID.isEmpty()) {
 				// 取得OpenID
 				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
+				// todo
 				strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
 			}
 
@@ -127,7 +125,7 @@ public class WEC0010Controller extends BaseController {
 			// OpenID
 			memberView.setMemberid(WebUtil.getUUID());
 			memberView.setMemberopenid(strOpenID);
-			
+
 			// 调用注册的service
 			resultModel = registerService.regist(memberView);
 
