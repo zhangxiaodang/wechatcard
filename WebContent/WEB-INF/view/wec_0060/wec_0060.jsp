@@ -12,13 +12,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <link href="resources/css/public/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/wec_0036.css" rel="stylesheet">
+    <link href="resources/css/wec_0060.css" rel="stylesheet">
     <link href="resources/css/public/m.css" rel="stylesheet">
 
     <script src="resources/js/public/jquery.min.js"></script>
     <script src="resources/js/public/bootstrap.min.js"></script>
     <script src="resources/js/public/m.js"></script>
-    <script src="resources/js/wec_0036.js"></script>
+    <script src="resources/js/wec_0060.js"></script>
 </head>
 <body>
 
