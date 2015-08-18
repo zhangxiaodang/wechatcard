@@ -14,7 +14,7 @@ import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
 import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.service.ICommonService;
-import cn.com.allinpay.wechatcard.service.IWEC0036Service;
+import cn.com.allinpay.wechatcard.service.IWEC0060Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 
 /**
@@ -23,14 +23,14 @@ import cn.com.allinpay.wechatcard.view.WEC0010View;
 
 @Controller
 @Scope(value = "prototype")
-public class WEC0036Controller extends BaseController {
+public class WEC0060Controller extends BaseController {
 
 	/** 页面URL. */
 	private static String WEC0036_VIEW = "wec_0036/wec_0036";
 
 	/** 修改手机号service. */
 	@Autowired
-	private IWEC0036Service wec0036Service;
+	private IWEC0060Service wec0036Service;
 
 	@Autowired
 	private ICommonService commonService;

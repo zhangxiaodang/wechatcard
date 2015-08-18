@@ -6,7 +6,7 @@ import cn.com.allinpay.wechatcard.view.WEC0010View;
 /**
  * 修改手机号Service.
  */
-public interface IWEC0036Service {
+public interface IWEC0060Service {
 	
 	
 	/**

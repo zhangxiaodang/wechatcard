@@ -23,6 +23,7 @@ public class WebConstantUrlValue {
 
 	/** 申请新卡页面的URL. */
 	public static final String WEC0021_INDEX = "/wec0021";
+
 	/** 申请新卡的URL. */
 	public static final String APPLYNEWCARD = "/applyNewCard";
 
@@ -52,13 +53,15 @@ public class WebConstantUrlValue {
 
 	/** 修改卡密码页面的URL **/
 	public static final String WEC0035_INDEX = "/wec0035";
+
 	/** 修改卡密码URL **/
 	public static final String WEC0035_CHANGE_PASS = "/change_pass";
 
 	/** 修改手机号页面的URL **/
-	public static final String WEC0036_INDEX = "/wec0036";
+	public static final String WEC0036_INDEX = "/wec0060";
+
 	/** 修改手机号URL **/
-	public static final String WEC0035_CHANGE_PHONE = "/change_phone";
+	public static final String WEC0035_CHANGE_PHONE = "/wec0060/change_phone";
 
 	/** 全局错误页面. */
 	public static final String WEC_ERROR = "/wec_error";

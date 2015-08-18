@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import cn.com.allinpay.frame.model.BaseModel;
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.wechatcard.dao.WEC0036Dao;
+import cn.com.allinpay.wechatcard.dao.WEC0060Dao;
 import cn.com.allinpay.wechatcard.model.WEC0034Model;
-import cn.com.allinpay.wechatcard.service.IWEC0036Service;
+import cn.com.allinpay.wechatcard.service.IWEC0060Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 
 /**
@@ -23,15 +23,15 @@ import cn.com.allinpay.wechatcard.view.WEC0010View;
  * 
  */
 @Service
-public class WEC0036ServiceImp extends BaseService implements IWEC0036Service {
+public class WEC0060ServiceImp extends BaseService implements IWEC0060Service {
 
 	/** logger **/
 	private static final Logger logger = Logger
-			.getLogger(WEC0036ServiceImp.class);
+			.getLogger(WEC0060ServiceImp.class);
 
 	/** 修改手机号dao **/
 	@Autowired
-	private WEC0036Dao wec_0036_Dao;
+	private WEC0060Dao wec_0036_Dao;
 
 	/**
 	 * 修改手机号service
