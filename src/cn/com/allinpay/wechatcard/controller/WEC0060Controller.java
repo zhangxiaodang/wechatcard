@@ -19,7 +19,7 @@ import cn.com.allinpay.wechatcard.view.WEC0060View;
 
 /**
  * 修改手机号Controller.
- **/
+ */
 
 @Controller
 @Scope(value = "prototype")
@@ -27,7 +27,7 @@ public class WEC0060Controller extends BaseController {
 
 	/** 页面URL. */
 	private static String WEC0060_VIEW = "wec_0060/wec_0060";
-	
+
 	/** 修改手机号service. */
 	@Autowired
 	private IWEC0060Service wec0060Service;
