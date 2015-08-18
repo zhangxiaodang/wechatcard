@@ -65,8 +65,8 @@
                         <span class="input-group-addon" for="kaleixing"><span class="red-text">* </span>卡类型：</span>
                         <select id="kaleixing" class="form-control" aria-describedby="basic-addon1">
                             <option value="">请选择</option>
-                            <option value="1">申请新卡</option>
-                            <option value="2">绑定旧卡</option>
+                            <option value="01">申请新卡</option>
+                            <option value="02">绑定旧卡</option>
                         </select>
                     </div>
 

@@ -1,4 +1,7 @@
 $(function() {
+	if (phone_is_used == true || phone_is_used == 'true'){
+		$("#btnNewCard").attr('disabled','disabled');
+	}
 
 	/**
 	 * 申请新卡按钮.

@@ -25,6 +25,10 @@ public class WebConstantValue {
 	
 	/** 添加会员卡失败 **/
 	public static final String ADD_CARD_ERROR = "对不起，您还不是会员，请注册后使用！";
+	
+	/** 注册失败 **/
+	public static final String GET_MERCHANT_ERROR = "对不起，您所在的商户状态异常！";
+	
 	/** 注册成功 **/
 	public static final String REGISTER_SUCCESS = "恭喜您，注册成功！";
 	
