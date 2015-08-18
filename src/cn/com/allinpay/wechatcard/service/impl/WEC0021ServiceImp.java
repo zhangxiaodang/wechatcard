@@ -76,7 +76,7 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		// 卡状态
 		wec0021View.setCardstat("");
 		// 申请会员卡方式（申请新卡或绑定旧卡)
-		wec0021View.setCardmode("1");
+		wec0021View.setCardmode("01");
 
 		paramMap.put(BEAN, wec0021View);
 		// 生成本地的会员卡号

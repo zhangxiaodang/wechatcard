@@ -56,11 +56,11 @@ $(function () {
     $("#kaleixing").on('change', function (evt) {
         var _this = this;
         switch ($(_this).val()) {
-            case '1':
+            case '01':
                 $("#old_card").hide();
                 $("#new_card").show();
                 break;
-            case '2':
+            case '02':
                 $("#new_card").hide();
                 $("#old_card").show();
                 break;
@@ -132,7 +132,7 @@ $(function () {
         }
 
         // 卡类型验证
-        if(param.cardmode === '1') {
+        if(param.cardmode === '01') {
 
             var new_card_psd1 = $('#new_card_psd1').val();
             var new_card_psd2 = $('#new_card_psd2').val();
@@ -153,7 +153,7 @@ $(function () {
 
         }
 
-        if(param.cardmode === '2') {
+        if(param.cardmode === '02') {
 
             var old_card_psd = $("#old_card_psd").val();
             var old_card_code = $("#old_card_code").val();

@@ -86,8 +86,9 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 	@Override
 	public Map<String, String> getMerchantInfoByUrlFlag(String urlflag) {
 		
+		// 根据urlFlag查询商户的信息
+		Map<String, String> result = this.dao.getMerchantInfoByUrlFlag(urlflag);
 		
-		
-		return null;
+		return result;
 	}
 }

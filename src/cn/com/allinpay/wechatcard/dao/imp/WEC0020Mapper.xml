@@ -3,15 +3,17 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0020Dao">
 	
-	<!-- 会员注册 -->
+	<!-- 判断手机是否在改商户下使用了。 -->
 	<select id="phone_is_rigist" parameterType="java.util.Map" resultType="int">
 		select count(1) as cnt
-		from member t1, merchant t2
-		where
-		t1.memberopenid = #{bean.openid}
+		from member t1, merchant t2, membercard t3
+		where t1.merchantid = t2.merchantid
+		and t3.merchantid = t2.merchantid
+		and t3.memberid = t1.memberid
+		and t1.memberopenid = #{bean.openid}
 		and t1.memberphone = #{bean.memberphone}
 		and t2.urlflag = #{bean.urlflag}
-		and t1.merchantid = t2.merchantid
+		and t3.cardmode = '01'
 	</select>
 </mapper>
 	

@@ -11,6 +11,8 @@
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/CommonMapper.xml" />
 		<!-- 注册 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0010Mapper.xml" />
+		<!-- 申请会员卡 -->
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0020Mapper.xml" />
 		<!-- 申请新卡 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0021Mapper.xml" />
 		<!-- 绑定旧卡 -->
@@ -23,7 +25,8 @@
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0034Mapper.xml" />
 		<!-- 修改密码 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0035Mapper.xml" />
+
 		<!-- 修改手机号 -->
-		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0036Mapper.xml" />
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0060Mapper.xml" />
 	</mappers>
 </configuration>

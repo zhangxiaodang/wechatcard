@@ -57,10 +57,20 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 		// 返回前台提示信息
 		WEC0010Model resultModel = new WEC0010Model();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		//根据urlFlag查询商户的id
+		Map<String, String> merchantInfo = commonService.getMerchantInfoByUrlFlag(memberView.getUrlflag());
+		// 如果没有商户信息，则提示用户
+		if("".equals(merchantInfo.get("merchantid"))){
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
+			return resultModel;
+		}
+		// 会员级别
+		memberView.setMembergrade("01");
+		memberView.setMerchantid(merchantInfo.get("merchantid"));
 		paramMap.put(BEAN, memberView);
-
 		// 将用户信息添加到会员表中
-		int result = wec_001_Dao.regist(paramMap);
+		wec_001_Dao.regist(paramMap);
 
 		// 判断用户是注册新的卡还是绑定旧卡
 		if ("1".equals(memberView.getCardmode())) {

@@ -19,5 +19,5 @@ public interface WEC0010Dao {
 	 * 
 	 * @return 影响行数.
 	 */
-	public int regist(Map<String, Object> paramMap);
+	public void regist(Map<String, Object> paramMap);
 }

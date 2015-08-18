@@ -9,7 +9,7 @@ import java.util.Map;
  * @version V1.00.
  * 
  */
-public interface WEC0036Dao {
+public interface WEC0060Dao {
 	
 	/**
 	 * 修改手机号dao
