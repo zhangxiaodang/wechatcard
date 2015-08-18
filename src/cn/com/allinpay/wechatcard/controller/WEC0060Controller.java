@@ -28,7 +28,7 @@ public class WEC0060Controller extends BaseController {
 	/** 页面URL. */
 	private static String WEC0036_VIEW = "wec_0036/wec_0036";
 
-	/** 修改手机号service. */
+	/** 修改手机号service. */ 
 	@Autowired
 	private IWEC0060Service wec0036Service;
 
