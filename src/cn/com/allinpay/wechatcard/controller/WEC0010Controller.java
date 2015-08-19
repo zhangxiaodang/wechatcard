@@ -16,6 +16,7 @@ import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0010Service;
+import cn.com.allinpay.wechatcard.service.IWEC0020Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 
 /**
@@ -35,6 +36,9 @@ public class WEC0010Controller extends BaseController {
 
 	@Autowired
 	private ICommonService commonService;
+	
+	@Autowired
+	private IWEC0020Service wec0020Service;
 
 	/**
 	 * 注册页面URL.
@@ -54,13 +58,11 @@ public class WEC0010Controller extends BaseController {
 		try {
 			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
 			strCode = super.request.getParameter(KEY_CODE);
-
 			// 放到session中
 			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
 
 			// 从session中取得openid
-			strOpenID = super.session.getAttribute(SESSION_KEY_OPENID)
-					.toString();
+			strOpenID = (String) super.session.getAttribute(SESSION_KEY_OPENID);
 			// 从其它页面跳转过来时
 			if (strOpenID == null || strOpenID.isEmpty()) {
 				// 取得OpenID
@@ -85,6 +87,8 @@ public class WEC0010Controller extends BaseController {
 
 				// 已注册时
 				if (isRegister) {
+					// 查询当前登陆人的卡的信息（会员级别，是否可以申请新卡）
+					mv = wec0020Service.getMemberCardInfo(strOpenID, strUrlFlag);
 					// 返回会员卡页面
 					mv.setViewName("wec_0020/wec_0020");
 				} else {
@@ -114,11 +118,9 @@ public class WEC0010Controller extends BaseController {
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
 			// urlFlag
-			String strUrlFlag = super.session.getAttribute(SESSION_KEY_URLFLAG)
-					.toString();
+			String strUrlFlag = (String)super.session.getAttribute(SESSION_KEY_URLFLAG);
 			// OpenID
-			String strOpenID = super.session.getAttribute(SESSION_KEY_OPENID)
-					.toString();
+			String strOpenID = (String)super.session.getAttribute(SESSION_KEY_OPENID);
 
 			// URLFlag
 			memberView.setUrlflag(strUrlFlag);

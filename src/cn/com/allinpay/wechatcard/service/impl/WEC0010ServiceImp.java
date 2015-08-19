@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.thoughtworks.xstream.alias.ClassMapper.Null;
+
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.wechatcard.dao.WEC0010Dao;
@@ -57,10 +59,20 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 		// 返回前台提示信息
 		WEC0010Model resultModel = new WEC0010Model();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put(BEAN, memberView);
+		// 判断用户的手机号是否注册过
+		int count = wec_001_Dao.phone_is_regist(paramMap);
+		if (count > 0){
+			// 标识成该手机好已被注册
+			resultModel.setPhone_is_regist(true);
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
+			return resultModel;
+		}
 		//根据urlFlag查询商户的id
 		Map<String, String> merchantInfo = commonService.getMerchantInfoByUrlFlag(memberView.getUrlflag());
 		// 如果没有商户信息，则提示用户
-		if("".equals(merchantInfo.get("merchantid"))){
+		if(merchantInfo == null || "".equals(merchantInfo.get("merchantid"))){
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
 			return resultModel;
@@ -68,12 +80,11 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 		// 会员级别
 		memberView.setMembergrade("01");
 		memberView.setMerchantid(merchantInfo.get("merchantid"));
-		paramMap.put(BEAN, memberView);
 		// 将用户信息添加到会员表中
 		wec_001_Dao.regist(paramMap);
 
 		// 判断用户是注册新的卡还是绑定旧卡
-		if ("1".equals(memberView.getCardmode())) {
+		if ("01".equals(memberView.getCardmode())) {
 			// 开通新卡
 			wec0021Service.applyNewCard(memberView);
 		} else {

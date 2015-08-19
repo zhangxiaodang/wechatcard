@@ -2,6 +2,8 @@ package cn.com.allinpay.wechatcard.service;
 
 import java.util.Map;
 
+import org.springframework.web.servlet.ModelAndView;
+
 /**
  * 共通Service.
  */
@@ -53,4 +55,5 @@ public interface ICommonService {
 	 * @return 商户信息.
 	 */
 	public Map<String, String> getMerchantInfoByUrlFlag(String urlflag);
+	
 }

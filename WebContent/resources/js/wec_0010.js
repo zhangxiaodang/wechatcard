@@ -185,7 +185,12 @@ $(function () {
                 // 注册成功，跳转页面
                 window.location.href = 'wec0020';
             } else {
-                $.mAlert( data.msg );
+            	$.mAlert( data.msg );
+            	// 如果手机号已经被注册了。
+            	if(data.phone_is_regist){
+            		window.location.href = 'wec0060';
+            	}
+                
             }
         })
     });

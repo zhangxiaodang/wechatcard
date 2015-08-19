@@ -24,6 +24,7 @@
 		select memberid,b.itemvalue as membergrade, merchantid, memberphone from member a
 		left join selectoptions b on a.membergrade = b.itemcode and b.itemtpye = '1003'
 		where memberopenid = #{openid}
+		limit 1
 	</select>
 	
 	<!-- 根据urlFlag获取商户信息 -->

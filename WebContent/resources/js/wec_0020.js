@@ -1,5 +1,5 @@
 $(function() {
-	if (phone_is_used == true || phone_is_used == 'true'){
+	if (phone_is_used == 'true'){
 		$("#btnNewCard").attr('disabled','disabled');
 	}
 

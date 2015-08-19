@@ -20,4 +20,14 @@ public interface WEC0010Dao {
 	 * @return 影响行数.
 	 */
 	public void regist(Map<String, Object> paramMap);
+	
+	/**
+	 * 判断手机号再商户下是否注册过
+	 * 
+	 * @param paraMap
+	 *            参数.
+	 * 
+	 * @return 注册个数.
+	 */
+	public int phone_is_regist(Map<String, Object> paramMap);
 }

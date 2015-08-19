@@ -49,26 +49,8 @@ public class WEC0020Controller extends BaseController {
 			// 取得OpenID
 			String strOpenID = (String) this.session.getAttribute(SESSION_KEY_OPENID);
 			String strUrlFlag = (String) this.session.getAttribute(SESSION_KEY_URLFLAG);
-			Map<String, String> memberInfo = commonService.getMemberInfoByOpenID(strOpenID);
-			if(memberInfo == null || memberInfo.get("membergrade") == null || "".equals(memberInfo.get("membergrade"))){
-				// 如果根据openid获取会员的id，获取不到，提示用户。
-				mv.addObject("errmsg", WebConstantValue.ADD_CARD_ERROR);
-				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
-				return mv;
-			}
-			WEC0020View wec0020View = new WEC0020View();
-			// 获取用户是否注册过改商户
-			wec0020View.setMemberphone(memberInfo.get("memberphone"));
-			wec0020View.setOpenid(strOpenID);
-			wec0020View.setUrlflag(strUrlFlag);
-			// 查询改手机号是否开过卡
-			int cnt = wec0020Service.phone_is_rigist(wec0020View);
-			boolean phone_is_used = false;
-			if (cnt > 0){
-				phone_is_used = true;
-			}
-			mv.addObject("phone_is_used", phone_is_used);
-			mv.addObject("membergrade", memberInfo.get("membergrade"));
+			// 查询当前登陆人的卡的信息（会员级别，是否可以申请新卡）
+			mv = wec0020Service.getMemberCardInfo(strOpenID, strUrlFlag);
 			mv.setViewName(WEC0020_VIEW);
 		} catch (Exception e) {
 			e.printStackTrace();

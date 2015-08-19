@@ -20,7 +20,7 @@
     <script src="resources/js/public/m.js"></script>
     <script src="resources/js/wec_0020.js"></script>
     <script type="text/javascript">
-    	var phone_is_used = ${phone_is_used};
+    	var phone_is_used = '${phone_is_used}';
     </script>
 </head>
 <body>

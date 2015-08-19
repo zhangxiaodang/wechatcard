@@ -21,7 +21,6 @@ $(function() {
 			$.mAlert(data.msg);
 			if (data.state === '000000') {
 				// 修改成功，跳转页面
-				alert('手机号修改成功!');
 				
 				$('#mobile').val(param.newphone);
 				$("#newphone").val('');
