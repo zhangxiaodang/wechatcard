@@ -6,16 +6,10 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.allinpay.frame.service.BaseService;
-import cn.com.allinpay.frame.util.WebConstantUrlValue;
-import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.dao.CommonDao;
 import cn.com.allinpay.wechatcard.service.ICommonService;
-import cn.com.allinpay.wechatcard.service.IWEC0020Service;
-import cn.com.allinpay.wechatcard.view.WEC0020View;
 import cn.com.weixin.api.result.OAuthCodeResult;
 import cn.com.weixin.api.util.WeixinMsgCommonUtil;
 
@@ -40,22 +34,21 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 		// OpenID
 		String strOpenId = "";
 
-//		// 根据商户标识取得商户微信服务号的appid和appsecrt
-//		Map<String, String> appInfo = this.dao.getAppInfo(urlFlag);
-//
-//		// 根据Code取得openID
-//		OAuthCodeResult result = WeixinMsgCommonUtil.getOpenIDByOAuth(code,
-//				appInfo.get("appid"), appInfo.get("appsecret"));
-//
-//		// 成功时
-//		if (result != null && result.getErrmsg().equals("")) {
-//			strOpenId = result.getOpenid();
-//		} else {
-//			// 失败时
-//			logger.info("取得用户openid失败,errcode:" + result.getErrcode()
-//					+ ",errmsg:" + result.getErrmsg());
-//		}
-		strOpenId = WebUtil.testGetOpenID();
+		// 根据商户标识取得商户微信服务号的appid和appsecrt
+		Map<String, String> appInfo = this.dao.getAppInfo(urlFlag);
+
+		// 根据Code取得openID
+		OAuthCodeResult result = WeixinMsgCommonUtil.getOpenIDByOAuth(code,
+				appInfo.get("appid"), appInfo.get("appsecret"));
+
+		// 成功时
+		if (result != null && result.getErrmsg().equals("")) {
+			strOpenId = result.getOpenid();
+		} else {
+			// 失败时
+			logger.info("取得用户openid失败,errcode:" + result.getErrcode()
+					+ ",errmsg:" + result.getErrmsg());
+		}
 		// 返回
 		return strOpenId;
 	}

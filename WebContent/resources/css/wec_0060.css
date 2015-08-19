@@ -18,24 +18,12 @@ span.red-text {
 }
 
 #user-reg>.input-group>.input-group-addon {
-    width: 90px;
+    width: 110px;
     text-align: right;
 }
 
-#user-reg>.input-group:nth-child(2)>.input-group {
-    margin-right: 106px;
-
-}
-
-#user-reg>.input-group:nth-child(2)>.form-control {
-    width: auto;
-}
-
-#user-reg>.input-group:nth-child(6)>select {
-    width: 30%;
-}
-#user-reg>.input-group:nth-child(6)>select+select {
-    margin-left: 5%;
+#user-reg>.input-group:nth-child(2) {
+    padding-right: 106px;
 }
 
 #user-reg>#get_code {
@@ -53,5 +41,6 @@ span.red-text {
 }
 
 #user-reg #tijiao {
-    width: 100%;
+    width: 80%;
+    letter-spacing: .25em;
 }
