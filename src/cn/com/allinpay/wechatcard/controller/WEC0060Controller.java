@@ -43,21 +43,16 @@ public class WEC0060Controller extends BaseController {
 
 		// 商户标识
 		String strUrlFlag = "";
-		// 网页Code
-		String strCode = "";
+		// openid
+		String strOpenID = "";
 		// 返回值
 		ModelAndView mv = new ModelAndView();
 
 		try {
-			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
-			strCode = super.request.getParameter(KEY_CODE);
-			// 放到session中
-			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
-
-			// 取得OpenID
-			String strOpenID = this.commonService
-					.getOpenID(strUrlFlag, strCode);
-			strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp2o";
+			// urlFlag
+			strUrlFlag = (String)super.session.getAttribute(SESSION_KEY_URLFLAG);
+			// OpenID
+			strOpenID = (String)super.session.getAttribute(SESSION_KEY_OPENID);
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.equals("")) {

@@ -26,6 +26,13 @@ public class BaseModel {
 
 	/** 前台渲染的List. */
 	private List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
+	
+	/** urlflag **/
+	private String urlflag = "";
+	
+	/** openid **/
+	private String openid = "";
+	
 
 	public String getState() {
 		return state;
@@ -58,7 +65,21 @@ public class BaseModel {
 	public void setRows(List<Map<String, Object>> rows) {
 		this.rows = rows;
 	}
-	
-	
+
+	public String getUrlflag() {
+		return urlflag;
+	}
+
+	public void setUrlflag(String urlflag) {
+		this.urlflag = urlflag;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
 	
 }

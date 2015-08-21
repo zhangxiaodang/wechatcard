@@ -29,6 +29,9 @@ public class WebConstantUrlValue {
 
 	/** 绑定旧卡页面的URL. */
 	public static final String WEC0022_INDEX = "/wec0022";
+	
+	/** 重新绑定页面的URL. */
+	public static final String WEC0023_INDEX = "/wec0023";
 
 	/** 绑定旧卡的URL. */
 	public static final String BINDINGOLDCARD = "/bindingOldCard";

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.com.allinpay.frame.service.BaseService;
+import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.dao.CommonDao;
 import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.weixin.api.result.OAuthCodeResult;
