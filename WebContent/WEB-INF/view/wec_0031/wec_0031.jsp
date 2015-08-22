@@ -19,6 +19,9 @@
     <script src="resources/js/public/bootstrap.min.js"></script>
     <script src="resources/js/public/m.js"></script>
     <script src="resources/js/wec_0031.js"></script>
+    <script type="text/javascript">
+    	var membercard = ${membercard};
+    </script>
 </head>
 <body>
 
@@ -28,8 +31,8 @@
 
             <header class="jumbotron">
                 <img src="resources/images/u5_normal.jpg" alt=""/>
-                <h1>0.00元</h1>
-                <p>卡号：3080 495</p>
+                <h1>798.41</h1>
+                <p >卡号： ${membercard.card_info.dzcardno}</p>
             </header>
 
         </div>

@@ -17,16 +17,6 @@ public class WEC0060View extends BaseView {
 	 */
 	private String yzm = "";
 
-	/**
-	 * openid.
-	 */
-	private String openid = "";
-
-	/**
-	 * 商户标识.
-	 */
-	private String urlflag = "";
-
 	public String getNewphone() {
 		return newphone;
 	}
@@ -43,19 +33,4 @@ public class WEC0060View extends BaseView {
 		this.yzm = yzm;
 	}
 
-	public String getOpenid() {
-		return openid;
-	}
-
-	public void setOpenid(String openid) {
-		this.openid = openid;
-	}
-
-	public String getUrlflag() {
-		return urlflag;
-	}
-
-	public void setUrlflag(String urlflag) {
-		this.urlflag = urlflag;
-	}
 }

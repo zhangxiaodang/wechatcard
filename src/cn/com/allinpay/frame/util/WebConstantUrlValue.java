@@ -32,6 +32,9 @@ public class WebConstantUrlValue {
 	
 	/** 重新绑定页面的URL. */
 	public static final String WEC0023_INDEX = "/wec0023";
+	
+	/** 重新绑定的URL. */
+	public static final String CHANGE_OPENID = "/wec0023/change_openid";
 
 	/** 绑定旧卡的URL. */
 	public static final String BINDINGOLDCARD = "/bindingOldCard";

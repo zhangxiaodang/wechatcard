@@ -20,11 +20,19 @@
     <script src="resources/js/public/m.js"></script>
     
     <script src="resources/js/wec_0023.js"></script>
+    <script type="text/javascript">
+    	var member_phone = "${member_phone}";
+    </script>
 </head>
 <body>
 
 <div class="container-fluid">
-        该手机号已被其他微信号绑定，点击<a id="change" href="#">重新绑定</a>
+        该手机号已被其他微信号绑定
+   <div class="form-group">
+       <div class="col-sm-12 tijiao">
+           <button id="tijiao" type="button" class="btn btn-primary btn-lg btn-block">点击重新绑定</button>
+       </div>
+   </div>
 </div>
 
 </body>

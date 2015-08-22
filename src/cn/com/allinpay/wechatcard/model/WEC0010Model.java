@@ -15,6 +15,9 @@ public class WEC0010Model extends BaseModel{
 	
 	// 标识手机号是否已经在该商户下注册过了
 	private boolean phone_is_regist = false;
+	
+	// 被注册的手机号
+	private String member_phone = "";
 
 	public String getYzm() {
 		return yzm;
@@ -32,4 +35,11 @@ public class WEC0010Model extends BaseModel{
 		this.phone_is_regist = phone_is_regist;
 	}
 
+	public String getMember_phone() {
+		return member_phone;
+	}
+
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
 }

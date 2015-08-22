@@ -4,3 +4,5 @@
 3.一级页面从commonservice中取。
 5.二级页面从session取。
 6.把测试使用的代码都删除掉。
+7.common.xml中getMemberIDByOpenID使用了limit，这个是mysql的要换成oracle的方式
+8.wec0030Mapper.xml中使用了格式化时间的

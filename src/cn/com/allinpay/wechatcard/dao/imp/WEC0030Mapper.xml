@@ -5,13 +5,25 @@
 	
 	<!-- 查询会员卡信息 -->
 	<select id="get_card" parameterType="java.util.Map" resultType="java.util.Map">
-		select merbercardid,memberid,merchantid,cardno,dzcardno,cardgrade,cardcode,cardstat,cardmode,bz from membercard
-		where memberid = #{bean.memberid} 
+		select b.merbercardid,b.memberid,b.merchantid,b.cardno,b.dzcardno,b.cardgrade,b.cardcode,b.cardstat,b.cardmode,b.bz,b.cardname,
+		"http://localhost:8080/wechatcard/resources/images/u5_normal.jpg" as merbercardimg
+		from member a, membercard b, merchant c
+		where a.memberid = b.memberid
+		and b.merchantid = c.merchantid
+		and a.merchantid = c.merchantid
+		and a.memberopenid = #{bean.openid} 
+		and c.urlflag = #{bean.urlflag}
 	</select>
 	<!-- 查询会员优惠券信息 -->
 	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
-		select couponid,memberid,merchantcouponid,merchantid,membercouponstate,couponcode,couponsj,bz from coupon
-		where memberid = #{bean.memberid} 
+		select b.couponid,b.memberid,b.merchantcouponid,b.merchantid,b.membercouponstate,b.couponcode,b.couponsj,b.bz,b.couponname,
+		"http://localhost:8080/wechatcard/resources/images/u5_normal.jpg" as couponimg,date_format(b.starttime,'%Y-%m-%d') as starttime,date_format(b.endtime,'%Y-%m-%d') as endtime
+		from member a, coupon b, merchant c
+		where a.memberid = b.memberid
+		and b.merchantid = c.merchantid
+		and a.merchantid = c.merchantid
+		and a.memberopenid = #{bean.openid} 
+		and c.urlflag = #{bean.urlflag}
 	</select>
 </mapper>
 	

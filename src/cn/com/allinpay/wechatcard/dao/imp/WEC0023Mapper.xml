@@ -4,8 +4,9 @@
 <mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0023Dao">
 	
 	<!-- 会员注册 -->
-	<select id="change_openid" parameterType="java.util.Map">
-		
+	<select id="change_member_openid" parameterType="java.util.Map">
+		update member set memberopenid = #{bean.openid}
+		where merchantid = #{bean.merchantid} and memberphone = #{bean.memberphone}
 	</select>
 </mapper>
 	

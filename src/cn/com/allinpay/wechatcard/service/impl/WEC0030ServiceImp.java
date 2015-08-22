@@ -39,7 +39,7 @@ public class WEC0030ServiceImp extends BaseService implements IWEC0030Service {
 	@Override
 	public WEC0030Model get_card_coupon(WEC0010View memberView) throws Exception {
 		logger.info("========================Service get_card_voucher Start==========================");
-		memberView.setMemberid("0612db1f7f744b1ba11cf9b136381e29");
+		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put(BEAN, memberView);
 		// 获取会员卡信息

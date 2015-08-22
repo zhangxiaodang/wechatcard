@@ -36,11 +36,10 @@ public class WEC0031ServiceImp extends BaseService implements IWEC0031Service {
 	 * 注册的service
 	 */
 	@Override
-	public WEC0031Model get_card_info(WEC0010View memberView) throws Exception {
+	public WEC0031Model get_card_info(String membercardid) throws Exception {
 		logger.info("========================Service get_card_info Start==========================");
-		memberView.setMemberid("0612db1f7f744b1ba11cf9b136381e29");
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put(BEAN, memberView);
+		paramMap.put("merbercardid", membercardid);
 		// 获取会员卡信息
 		Map<String, Object> card_info = wec_0031_Dao.get_card(paramMap);
 		

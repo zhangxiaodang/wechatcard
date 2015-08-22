@@ -7,8 +7,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.thoughtworks.xstream.alias.ClassMapper.Null;
-
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.wechatcard.dao.WEC0010Dao;
@@ -63,6 +61,7 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 		// 判断用户的手机号是否注册过
 		int count = wec_001_Dao.phone_is_regist(paramMap);
 		if (count > 0){
+			resultModel.setMember_phone(memberView.getMemberphone());
 			// 标识成该手机好已被注册
 			resultModel.setPhone_is_regist(true);
 			resultModel.setState(WebConstantValue.HTTP_ERROR);

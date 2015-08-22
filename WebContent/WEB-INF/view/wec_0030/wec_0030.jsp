@@ -37,25 +37,6 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="ka">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item active">
-                                <div>
-                                    <img src="resources/images/u5_normal.jpg" alt=""/>
-                                    <h4 class="list-group-item-heading">会员储值卡</h4>
-                                    <p class="list-group-item-text">储值卡</p>
-                                </div>
-                                <em>会员储值卡，会员专享活动</em>
-                            </a>
-                            <a href="#" class="list-group-item active">
-                                <div>
-                                    <img src="resources/images/u5_normal.jpg" alt=""/>
-                                    <h4 class="list-group-item-heading">会员储值卡</h4>
-                                    <p class="list-group-item-text">储值卡</p>
-                                </div>
-                                <em>会员储值卡，会员专享活动</em>
-                            </a>
-                        </div>
-
                         <div class="form-group">
                             <div class="col-sm-12 old_card_bind">
                                 <button id="old_card_bind" type="button" class="btn btn-primary btn-lg">绑定旧卡</button>
@@ -63,24 +44,6 @@
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="quan">
-
-                        <div class="list-group">
-                            <a href="#" class="list-group-item active">
-                                <div>
-                                    <img src="resources/images/u5_normal.jpg" alt=""/>
-                                    <h4 class="list-group-item-heading">【8月会员日专享】法兰西起酥蛋糕1片</h4>
-                                    <p class="list-group-item-text">2015-08-12至2015-08-12</p>
-                                </div>
-                            </a>
-                            <a href="#" class="list-group-item active">
-                                <div>
-                                    <img src="resources/images/u5_normal.jpg" alt=""/>
-                                    <h4 class="list-group-item-heading">【8.12免费领】红豆蛋黄酥1个</h4>
-                                    <p class="list-group-item-text">2015-08-12至2015-08-12</p>
-                                </div>
-                            </a>
-                        </div>
-
                     </div>
                 </div>
             </div>

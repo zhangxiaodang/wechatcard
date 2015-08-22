@@ -48,13 +48,19 @@ public class WEC0030Controller extends BaseController {
 	/**
 	 * 注册.
 	 */
-	@RequestMapping(value = WebConstantUrlValue.WEC0030_CARD_COUPON, method = RequestMethod.GET, produces = WebConstantValue.PRODUCE_TEXT)
+	@RequestMapping(value = WebConstantUrlValue.WEC0030_CARD_COUPON, method = RequestMethod.POST, produces = WebConstantValue.PRODUCE_TEXT)
 	@ResponseBody
 	public String get_card_coupon(WEC0010View memberView) {
 		logger.info("========================Controller get_card_coupon Start==========================");
 		logger.info(memberView);
 		WEC0030Model resultModel = new WEC0030Model();
 		try {
+			// urlFlag
+			String strUrlFlag = (String)super.session.getAttribute(SESSION_KEY_URLFLAG);
+			// OpenID
+			String strOpenID = (String)super.session.getAttribute(SESSION_KEY_OPENID);
+			memberView.setOpenid(strOpenID);
+			memberView.setUrlflag(strUrlFlag);
 			memberView.setMemberid(WebUtil.getUUID());
 			// 调用注册的service
 			resultModel = wec0030Service.get_card_coupon(memberView);
