@@ -5,8 +5,7 @@
 	
 	<!-- 会员注册 -->
 	<select id="binding_card" parameterType="java.util.Map">
-		insert into membercard (merbercardid,memberid,merchantid,cardno,dzcardno,cardgrade,cardcode,cardstat,cardmode,bz)
-		values(#{bean.merbercardid},#{bean.memberid},#{bean.merchantid},#{bean.cardno},#{bean.dzcardno},#{bean.cardgrade},#{bean.cardcode},#{bean.cardstat},#{bean.cardmode},#{bean.bz})
+		insert into membercard (merbercardid,memberid,merchantid,cardno,dzcardno,cardgrade,cardcode,cardstat,cardmode,bz,cardname)
+		values(#{bean.merbercardid},#{bean.memberid},#{bean.merchantid},#{bean.cardno},#{bean.dzcardno},#{bean.cardgrade},#{bean.cardcode},#{bean.cardstat},#{bean.cardmode},#{bean.bz},#{bean.cardname})
 	</select>
 </mapper>
-	

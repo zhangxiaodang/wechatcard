@@ -62,7 +62,10 @@ public class WEC0021View extends BaseView{
 	 * 会员卡密码
 	 */
 	private String password = "";
-	
+	/**
+	 * 卡名称
+	 */
+	private String cardname = "";
 	public String getMerbercardid() {
 		return merbercardid;
 	}
@@ -134,6 +137,12 @@ public class WEC0021View extends BaseView{
 	}
 	public void setCardsqsj(Timestamp cardsqsj) {
 		this.cardsqsj = cardsqsj;
+	}
+	public String getCardname() {
+		return cardname;
+	}
+	public void setCardname(String cardname) {
+		this.cardname = cardname;
 	}
 	
 }

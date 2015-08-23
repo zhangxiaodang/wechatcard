@@ -27,6 +27,10 @@
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0034Mapper.xml" />
 		<!-- 修改密码 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0035Mapper.xml" />
+		<!-- 我的优惠券 -->
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0040Mapper.xml" />
+		<!-- 优惠券领取 -->
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0041Mapper.xml" />
 
 		<!-- 修改手机号 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0060Mapper.xml" />

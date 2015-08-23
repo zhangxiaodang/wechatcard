@@ -63,6 +63,10 @@
                     <img src="resources/images/char-more.png" alt=""/>
                     我要充值
                 </li>
+                <li class="list-group-item" id="mycoupon">
+                    <img src="resources/images/char-more.png" alt=""/>
+                    我的优惠券
+                </li>
                 <li class="list-group-item">
                     <img src="resources/images/char-more.png" alt=""/>
                     充值记录

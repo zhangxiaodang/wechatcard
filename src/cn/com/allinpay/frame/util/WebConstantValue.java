@@ -67,4 +67,8 @@ public class WebConstantValue {
 	
 	/** 重新绑定成功 **/
 	public static final String CHANGE_OPENID_SUCCES = "重新绑定成功！";
+	/** 领取优惠券成功 **/
+	public static final String COLLECT_SUCCESS = "领取成功！";
+	/** 没有优惠券 **/
+	public static final String NULL_COUPON = "亲，您没有未领取的优惠券奥！";
 }

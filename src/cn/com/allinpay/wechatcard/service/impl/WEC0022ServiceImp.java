@@ -79,13 +79,15 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 		wec0021View.setCardstat("");
 		// 申请会员卡方式（申请新卡或绑定旧卡)
 		wec0021View.setCardmode("02");
+		// 会员卡名称
+		wec0021View.setCardname("优惠金卡");
 
 		paramMap.put(BEAN, wec0021View);
 		// 生成本地的会员卡号
 		wec_0022_Dao.binding_card(paramMap);
 		resultModel.setState(WebConstantValue.HTTP_OK);
 		resultModel.setMsg(WebConstantValue.APPLY_CARD_SUCCESS);
-
+		resultModel.setMembercardid(wec0021View.getMerbercardid());
 		logger.info("========================Service bindingOldCard End==========================");
 		return resultModel;
 	}

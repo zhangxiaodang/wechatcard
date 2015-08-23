@@ -18,6 +18,9 @@ public class WEC0010Model extends BaseModel{
 	
 	// 被注册的手机号
 	private String member_phone = "";
+	
+	// 注册的会员卡id
+	private String membercardid = "";
 
 	public String getYzm() {
 		return yzm;
@@ -42,4 +45,13 @@ public class WEC0010Model extends BaseModel{
 	public void setMember_phone(String member_phone) {
 		this.member_phone = member_phone;
 	}
+
+	public String getMembercardid() {
+		return membercardid;
+	}
+
+	public void setMembercardid(String membercardid) {
+		this.membercardid = membercardid;
+	}
+	
 }

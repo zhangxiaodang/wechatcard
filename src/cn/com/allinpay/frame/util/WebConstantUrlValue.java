@@ -62,6 +62,16 @@ public class WebConstantUrlValue {
 
 	/** 修改卡密码URL **/
 	public static final String WEC0035_CHANGE_PASS = "/change_pass";
+	
+	/** 我的优惠券URL. */
+	public static final String WEC0040_INDEX = "/wec0040";
+	/** 我的优惠券URL. */
+	public static final String WEC0040_MY_COUPON = "/wec0040/my_coupon";
+	
+	/** 优惠券领取的URL **/
+	public static final String WEC0041_INDEX = "/wec0041";
+	/** 优惠券领取URL **/
+	public static final String WEC0041_COLLECT_COUPON = "/wec0041/collect_coupon";
 
 	/** 修改手机号页面的URL **/
 	public static final String WEC0060_INDEX = "/wec0060";

@@ -1,0 +1,28 @@
+body {
+    background-color:#f0f0f0;
+}
+
+.carousel .carousel-indicators {
+    display: none;
+}
+
+h1 {
+    font-size: 1.3em;
+    margin: .3em;
+    font-weight: normal;
+    padding-bottom: 5px;
+}
+p {
+    margin: .5em .3em 1.3em .3em;
+    font-weight: 400;
+    font-size: .85em;
+    font-family: normal;
+}
+
+.tijiao {
+    text-align: center;
+}
+
+#tijiao {
+    width: 80%;
+}

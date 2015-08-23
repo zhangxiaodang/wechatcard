@@ -12,7 +12,6 @@ import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.wechatcard.dao.WEC0031Dao;
 import cn.com.allinpay.wechatcard.model.WEC0031Model;
 import cn.com.allinpay.wechatcard.service.IWEC0031Service;
-import cn.com.allinpay.wechatcard.view.WEC0010View;
 
 /**
  * 

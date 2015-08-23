@@ -55,7 +55,6 @@ public class WEC0034Controller extends BaseController {
 		logger.info(memberView);
 		WEC0034Model resultModel = new WEC0034Model();
 		try {
-			memberView.setMemberid(WebUtil.getUUID());
 			// 调用注册的service
 			resultModel = wec0034Service.get_coupon(memberView);
 		} catch (Exception e) {
