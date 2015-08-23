@@ -168,6 +168,7 @@ CREATE TABLE "COUPON" (
 "starttime" date not null,
 "endtime" data not null,
 "couponname" not null,
+"coupontype" varchar2(2) NOT NULL,
 );
 
 ALTER TABLE "COUPON" ADD PRIMARY KEY ("COUPONID");
@@ -184,19 +185,10 @@ COMMENT ON COLUMN "COUPON"."BZ" IS '备注信息';
 COMMENT ON COLUMN "COUPON"."starttime" IS '优惠券的有效开始时间';
 COMMENT ON COLUMN "COUPON"."endtime" IS '优惠券的有效结束时间';
 COMMENT ON COLUMN "COUPON"."couponname" IS '优惠券名称';
-
--- 数据初始化
-INSERT INTO "SELECTOPTIONS" VALUES ('b147ddb9d1074070ab9534ac86498767', '1002', '性别', '1', '男', '1', null);
-INSERT INTO "SELECTOPTIONS" VALUES ('2c8aa116b5e64292ae215993798f66e9', '1002', '性别', '2', '女', '2', null);
-INSERT INTO "SELECTOPTIONS" VALUES ('28538fc1de664b99ac979dbe956edcec', '1004', '已领用', '01', '优惠券状态', '1', null);
-INSERT INTO "SELECTOPTIONS" VALUES ('c0691f91ae5341de92b330625b86944d', '1004', '已使用', '02', '优惠券状态', '2', null);
-INSERT INTO "SELECTOPTIONS" VALUES ('56fd463e00be409e8fe522a39923e83c', '1004', '已过期', '03', '优惠券状态', '3', null);
-INSERT INTO "SELECTOPTIONS" VALUES ('9667d801bdde4da2b15ea3777d465d81', '1003', '会员级别', '01', '普通会员', '1', null);
-INSERT INTO "SELECTOPTIONS" VALUES ('6146513cafed4acca6c8e9635630c261', '1001', '卡类型', '01', '申请新卡', '1', null);
-INSERT INTO "SELECTOPTIONS" VALUES ('d6459e61c9104584b94a2f7dd070aad5', '1001', '卡类型', '02', '绑定旧卡', '2', null);
-
+COMMENT ON COLUMN "COUPON"."coupontype" IS '优惠券类别';
 
 -- 商家优惠券信息
+DROP TABLE merchantcoupon;
 CREATE TABLE merchantcoupon
 (
 merchantcouponid varchar2(32),
@@ -208,9 +200,10 @@ couponjssj varchar2(50),
 couponcontent varchar2(1000),
 merchantcouponstate varchar2(2),
 bz varchar2(1000),
+couponname varchar(100),
+coupontype varchar2(2),
 primary key(merchantcouponid,merchantid)
 );
-
 
 -- 注释
 comment on column merchantcoupon.merchantcouponid IS '商家优惠券ID，主键';
@@ -222,7 +215,8 @@ comment on column merchantcoupon.couponjssj IS '优惠券有效期的结束时间';
 comment on column merchantcoupon.couponcontent IS '商家优惠券内容';
 comment on column merchantcoupon.merchantcouponstate IS '优惠券状态';
 comment on column merchantcoupon.bz IS '备注信息';
-
+comment on column merchantcoupon.couponname IS '优惠券名称';
+comment on column merchantcoupon.coupontype IS '优惠券类别';
 
 
 -- 会员卡充值记录表
@@ -251,3 +245,17 @@ comment on column recharge.rechargemode IS '充值方式';
 comment on column recharge.rechargesj IS '充值时间';
 comment on column recharge.rechargecode IS '返回码';
 comment on column recharge.bz IS '备注信息';
+
+-- 初始化数据
+INSERT INTO SELECTOPTIONS VALUES ('b147ddb9d1074070ab9534ac86498767', '1002', '性别', '1', '男', '1', null);
+INSERT INTO SELECTOPTIONS VALUES ('2c8aa116b5e64292ae215993798f66e9', '1002', '性别', '2', '女', '2', null);
+INSERT INTO SELECTOPTIONS VALUES ('28538fc1de664b99ac979dbe956edcec', '1004', '优惠券状态', '01', '已领用', '2', null);
+INSERT INTO SELECTOPTIONS VALUES ('c0691f91ae5341de92b330625b86944d', '1004', '优惠券状态', '02', '已使用', '3', null);
+INSERT INTO SELECTOPTIONS VALUES ('56fd463e00be409e8fe522a39923e83c', '1004', '优惠券状态', '03', '已过期', '4', null);
+INSERT INTO SELECTOPTIONS VALUES ('df92a524edf4445b998e9e450f2df5b5', '1005', '优惠券类别', '01', '现金券', '1', null);
+INSERT INTO SELECTOPTIONS VALUES ('796a18c5e6e9449da254ca7cbd682199', '1005', '优惠券类别', '02', '折扣券', '2', null);
+INSERT INTO SELECTOPTIONS VALUES ('fa8b4a2b1e1f47e98489a32b919c72be', '1005', '优惠券类别', '03', '实物券', '3', null);
+INSERT INTO SELECTOPTIONS VALUES ('3be52ec3f5ed4c6c817e38b08682e927', '1004', '优惠券状态', '00', '未领用', '4', null);
+INSERT INTO SELECTOPTIONS VALUES ('9667d801bdde4da2b15ea3777d465d81', '1003', '会员级别', '01', '普通会员', '1', null);
+INSERT INTO SELECTOPTIONS VALUES ('6146513cafed4acca6c8e9635630c261', '1001', '卡类型', '01', '申请新卡', '1', null);
+INSERT INTO SELECTOPTIONS VALUES ('d6459e61c9104584b94a2f7dd070aad5', '1001', '卡类型', '02', '绑定旧卡', '2', null);
