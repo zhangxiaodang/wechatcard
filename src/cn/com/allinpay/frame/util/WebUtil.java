@@ -43,10 +43,4 @@ public class WebUtil {
         Integer i = (int) (f*100000000);
 		return i+""; 
 	}
-	/**
-	 * 测试返回openid
-	 */
-	public static String testGetOpenID(){
-		return "oA36ajksXyuTmcVCO6EI-jWhQp2o";
-	}
 }

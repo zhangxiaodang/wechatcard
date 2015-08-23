@@ -36,7 +36,7 @@ public class WEC0010Controller extends BaseController {
 
 	@Autowired
 	private ICommonService commonService;
-	
+
 	@Autowired
 	private IWEC0020Service wec0020Service;
 
@@ -68,7 +68,7 @@ public class WEC0010Controller extends BaseController {
 				// 取得OpenID
 				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
 				// todo
-				strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp21";
+				// strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp21";
 			}
 
 			// 未获取openid时
@@ -88,7 +88,8 @@ public class WEC0010Controller extends BaseController {
 				// 已注册时
 				if (isRegister) {
 					// 查询当前登陆人的卡的信息（会员级别，是否可以申请新卡）
-					mv = wec0020Service.getMemberCardInfo(strOpenID, strUrlFlag);
+					mv = wec0020Service
+							.getMemberCardInfo(strOpenID, strUrlFlag);
 					// 返回会员卡页面
 					mv.setViewName("wec_0020/wec_0020");
 				} else {
@@ -118,9 +119,11 @@ public class WEC0010Controller extends BaseController {
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
 			// urlFlag
-			String strUrlFlag = (String)super.session.getAttribute(SESSION_KEY_URLFLAG);
+			String strUrlFlag = (String) super.session
+					.getAttribute(SESSION_KEY_URLFLAG);
 			// OpenID
-			String strOpenID = (String)super.session.getAttribute(SESSION_KEY_OPENID);
+			String strOpenID = (String) super.session
+					.getAttribute(SESSION_KEY_OPENID);
 
 			// URLFlag
 			memberView.setUrlflag(strUrlFlag);
