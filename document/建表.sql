@@ -45,7 +45,8 @@ CREATE TABLE "MEMBERCARD" (
 "CARDSTAT" VARCHAR2(2 BYTE) NULL ,
 "CARDSQSJ" TIMESTAMP(6)  NULL ,
 "CARDMODE" VARCHAR2(2 BYTE) NULL ,
-"BZ" VARCHAR2(600 BYTE) NULL 
+"BZ" VARCHAR2(600 BYTE) NULL,
+"cardname" varchar2(100) not null
 );
 
 ALTER TABLE "MEMBERCARD" ADD PRIMARY KEY ("MERBERCARDID");
@@ -62,6 +63,7 @@ COMMENT ON COLUMN "MEMBERCARD"."CARDSTAT" IS '卡状态';
 COMMENT ON COLUMN "MEMBERCARD"."CARDSQSJ" IS '申请会员卡时间';
 COMMENT ON COLUMN "MEMBERCARD"."CARDMODE" IS '申请会员卡方式(申请新卡或绑定旧卡)';
 COMMENT ON COLUMN "MEMBERCARD"."BZ" IS '备注信息';
+COMMENT ON COLUMN "membercard"."cardname" IS '会员卡名称';
 
 
 -- ----------------------------
@@ -162,7 +164,10 @@ CREATE TABLE "COUPON" (
 "MEMBERCOUPONSTATE" VARCHAR2(2 BYTE) NULL ,
 "COUPONCODE" VARCHAR2(1000 BYTE) NULL ,
 "COUPONSJ" TIMESTAMP(6)  NULL ,
-"BZ" VARCHAR2(1000 BYTE) NULL 
+"BZ" VARCHAR2(1000 BYTE) NULL,
+"starttime" date not null,
+"endtime" data not null,
+"couponname" not null,
 );
 
 ALTER TABLE "COUPON" ADD PRIMARY KEY ("COUPONID");
@@ -176,8 +181,9 @@ COMMENT ON COLUMN "COUPON"."MEMBERCOUPONSTATE" IS '优惠券状态';
 COMMENT ON COLUMN "COUPON"."COUPONCODE" IS '优惠券的二维码信息';
 COMMENT ON COLUMN "COUPON"."COUPONSJ" IS '申领优惠券时间';
 COMMENT ON COLUMN "COUPON"."BZ" IS '备注信息';
-
-
+COMMENT ON COLUMN "COUPON"."starttime" IS '优惠券的有效开始时间';
+COMMENT ON COLUMN "COUPON"."endtime" IS '优惠券的有效结束时间';
+COMMENT ON COLUMN "COUPON"."couponname" IS '优惠券名称';
 
 -- 数据初始化
 INSERT INTO "SELECTOPTIONS" VALUES ('b147ddb9d1074070ab9534ac86498767', '1002', '性别', '1', '男', '1', null);
@@ -188,3 +194,60 @@ INSERT INTO "SELECTOPTIONS" VALUES ('56fd463e00be409e8fe522a39923e83c', '1004', 
 INSERT INTO "SELECTOPTIONS" VALUES ('9667d801bdde4da2b15ea3777d465d81', '1003', '会员级别', '01', '普通会员', '1', null);
 INSERT INTO "SELECTOPTIONS" VALUES ('6146513cafed4acca6c8e9635630c261', '1001', '卡类型', '01', '申请新卡', '1', null);
 INSERT INTO "SELECTOPTIONS" VALUES ('d6459e61c9104584b94a2f7dd070aad5', '1001', '卡类型', '02', '绑定旧卡', '2', null);
+
+
+-- 商家优惠券信息
+CREATE TABLE merchantcoupon
+(
+merchantcouponid varchar2(32),
+merchantid varchar2(32),
+couponclass varchar2(2),
+couponvalid varchar2(50),
+couponkssj varchar2(50),
+couponjssj varchar2(50),
+couponcontent varchar2(1000),
+merchantcouponstate varchar2(2),
+bz varchar2(1000),
+primary key(merchantcouponid,merchantid)
+);
+
+
+-- 注释
+comment on column merchantcoupon.merchantcouponid IS '商家优惠券ID，主键';
+comment on column merchantcoupon.merchantid IS '商家ID，主键';
+comment on column merchantcoupon.couponclass IS '优惠券分类';
+comment on column merchantcoupon.couponvalid IS '优惠券有效期';
+comment on column merchantcoupon.couponkssj IS '优惠券有效期的起始时间';
+comment on column merchantcoupon.couponjssj IS '优惠券有效期的结束时间';
+comment on column merchantcoupon.couponcontent IS '商家优惠券内容';
+comment on column merchantcoupon.merchantcouponstate IS '优惠券状态';
+comment on column merchantcoupon.bz IS '备注信息';
+
+
+
+-- 会员卡充值记录表
+CREATE TABLE recharge
+(
+rechargeid varchar2(32),
+membercardid varchar2(32),
+accountid varchar2(32),
+memberid  varchar2(32),
+merchantid varchar2(32),
+rechargenum number(16,2),
+rechargemode varchar2(2),
+rechargesj timestamp,
+rechargecode varchar2(10),
+bz varchar2(1000)
+);
+
+-- 注释
+comment on column recharge.rechargeid IS '标识ID';
+comment on column recharge.membercardid IS '会员卡ID';
+comment on column recharge.accountid IS '账户ID';
+comment on column recharge.memberid  IS '会员ID';
+comment on column recharge.merchantid IS '商家ID';
+comment on column recharge.rechargenum IS '充值金额';
+comment on column recharge.rechargemode IS '充值方式';
+comment on column recharge.rechargesj IS '充值时间';
+comment on column recharge.rechargecode IS '返回码';
+comment on column recharge.bz IS '备注信息';
