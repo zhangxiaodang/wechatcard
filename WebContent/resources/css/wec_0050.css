@@ -1,0 +1,48 @@
+body {
+    background-color:#f0f0f0;
+}
+
+span.red-text {
+    color: #f00;
+    font-weight: bold;
+}
+
+#user-reg {
+    position: relative;
+    padding-top: 10px;
+}
+
+#user-reg>.input-group {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#user-reg>.input-group>.input-group-addon:first-child {
+    width: 90px;
+    text-align: right;
+}
+
+#user-reg .tijiao {
+    text-align: center;
+}
+
+#user-reg #tijiao {
+    width: 80%;
+}
+
+.yfje {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.yfje>div:first-child {
+    text-align: center;
+}
+
+.input-group.choiceYhjC {
+    text-align: center;
+}
+
+.choiceYhj {
+    width: 80%;
+}

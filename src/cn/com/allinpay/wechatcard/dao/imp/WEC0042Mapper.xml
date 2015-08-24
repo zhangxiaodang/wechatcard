@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0042Dao">
+	
+	<!-- 查询优惠券信息 -->
+	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
+		select b.couponid,b.memberid,b.merchantcouponid,b.merchantid,b.membercouponstate,b.couponsj,b.bz,b.couponname,
+		"http://localhost:8080/wechatcard/resources/images/u5_normal.jpg" as couponimg,date_format(b.starttime,'%Y-%m-%d') as starttime,date_format(b.endtime,'%Y-%m-%d') as endtime,
+		"http://localhost:8080/wechatcard/resources/images/ewm.jpg" as couponcode
+		from member a, coupon b, merchant c
+		where a.memberid = b.memberid
+		and b.merchantid = c.merchantid
+		and a.merchantid = c.merchantid
+		and a.memberopenid = #{bean.openid} 
+		and c.urlflag = #{bean.urlflag}
+		and b.couponid = #{bean.couponid}
+	</select>
+	
+</mapper>
+	

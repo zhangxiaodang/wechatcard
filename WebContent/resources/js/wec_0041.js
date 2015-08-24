@@ -6,7 +6,7 @@ $(function () {
         $.post('wec0041/collect_coupon', { couponid: couponid }, function (data) {
             if(data.state === '000000') {
                 // 领取完毕后，展示优惠券详情页0042
-            	$.mAlert( data['msg'] );
+            	window.location.href = 'wec0042?couponid='+couponid;
             } else {
                 $.mAlert( data['msg'] );
             }

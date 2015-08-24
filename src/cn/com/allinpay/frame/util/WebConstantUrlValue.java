@@ -72,6 +72,12 @@ public class WebConstantUrlValue {
 	public static final String WEC0041_INDEX = "/wec0041";
 	/** 优惠券领取URL **/
 	public static final String WEC0041_COLLECT_COUPON = "/wec0041/collect_coupon";
+	
+	/** 优惠券领取完毕的URL **/
+	public static final String WEC0042_INDEX = "/wec0042";
+	
+	/** 我要付款的URL **/
+	public static final String WEC0050_INDEX = "/wec0050";
 
 	/** 修改手机号页面的URL **/
 	public static final String WEC0060_INDEX = "/wec0060";

@@ -6,3 +6,4 @@
 6.把测试使用的代码都删除掉。
 7.common.xml中getMemberIDByOpenID使用了limit，这个是mysql的要换成oracle的方式
 8.wec0030Mapper.xml中使用了格式化时间的
+9.优惠券的二维码图片和卡的图片都是写死的。
