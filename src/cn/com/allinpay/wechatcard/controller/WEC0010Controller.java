@@ -72,6 +72,9 @@ public class WEC0010Controller extends BaseController {
 				// 取得OpenID
 				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
 			}
+			logger.info("zhangxd取得的openid为:" + strOpenID);
+
+			// strOpenID = "asdfasdf";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.isEmpty()) {

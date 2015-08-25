@@ -51,10 +51,11 @@ public class WEC0060Controller extends BaseController {
 		ModelAndView mv = new ModelAndView();
 
 		try {
-			// urlFlag
-			strUrlFlag = (String) super.session
-					.getAttribute(SESSION_KEY_URLFLAG);
+			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
 			strCode = super.request.getParameter(KEY_CODE);
+
+			super.logger.info("zhangxd==获取网页code：" + strCode);
+			super.logger.info("zhangxd==获取网页urlflag：" + strUrlFlag);
 
 			// 放到session中
 			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);

@@ -40,12 +40,17 @@ public class WeixinMsgCommonUtil {
 			logger.info("zhangxd 网页url=" + strUrl);
 
 			// 通过HTTP GET方式取得openID
-			result = WeixinMsgJsonUtil.json2Bean(
-					WeixinMsgHttpUtil.getResponseWithGET(strUrl),
+			String strResult = WeixinMsgHttpUtil.getResponseWithGET(strUrl);
+			logger.info("zhangxd获取openid结果为:" + result);
+
+			// 转换
+			result = WeixinMsgJsonUtil.json2Bean(strResult,
 					OAuthCodeResult.class);
+
 		} catch (Exception e) {
+			e.printStackTrace();
 			// 异常
-			logger.info("通过网网页取得用户openid时异常.\n" + e.getMessage());
+			logger.info("通过网	页取得用户openid时异常.\n" + e.getMessage());
 		}
 
 		// 返回
