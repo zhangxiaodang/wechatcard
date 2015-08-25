@@ -98,7 +98,6 @@ public class WEC0010Controller extends BaseController {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			logger.info("异常：\n" + e.getMessage());
 			mv.addObject("errmsg", "打开页面时异常");
 			mv.setViewName(WebConstantUrlValue.WEC_ERROR);

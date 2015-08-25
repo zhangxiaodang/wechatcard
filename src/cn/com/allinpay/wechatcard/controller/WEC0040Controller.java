@@ -11,11 +11,8 @@ import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
-import cn.com.allinpay.frame.util.WebUtil;
-import cn.com.allinpay.wechatcard.model.WEC0030Model;
 import cn.com.allinpay.wechatcard.model.WEC0040Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
-import cn.com.allinpay.wechatcard.service.IWEC0030Service;
 import cn.com.allinpay.wechatcard.service.IWEC0040Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 
@@ -42,7 +39,7 @@ public class WEC0040Controller extends BaseController {
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0040_INDEX, method = RequestMethod.GET)
 	public String getPageIndex() {
-		
+
 		// 返回
 		return WEC0040_VIEW;
 	}
@@ -58,9 +55,11 @@ public class WEC0040Controller extends BaseController {
 		WEC0040Model resultModel = new WEC0040Model();
 		try {
 			// urlFlag
-			String strUrlFlag = (String)super.session.getAttribute(SESSION_KEY_URLFLAG);
+			String strUrlFlag = (String) super.session
+					.getAttribute(SESSION_KEY_URLFLAG);
 			// OpenID
-			String strOpenID = (String)super.session.getAttribute(SESSION_KEY_OPENID);
+			String strOpenID = (String) super.session
+					.getAttribute(SESSION_KEY_OPENID);
 			memberView.setOpenid(strOpenID);
 			memberView.setUrlflag(strUrlFlag);
 			// 调用注册的service
@@ -68,7 +67,7 @@ public class WEC0040Controller extends BaseController {
 		} catch (Exception e) {
 			logger.info("========================Exception my_coupon Start==========================");
 			e.printStackTrace();
-			
+
 			return WebJsonUtil.bean2Json(getSysErrorModel());
 		}
 		logger.info("========================Controller my_coupon End==========================");
