@@ -45,14 +45,27 @@ public class WEC0060Controller extends BaseController {
 		String strUrlFlag = "";
 		// openid
 		String strOpenID = "";
+		// 网页Code
+		String strCode = "";
 		// 返回值
 		ModelAndView mv = new ModelAndView();
 
 		try {
 			// urlFlag
-			strUrlFlag = (String)super.session.getAttribute(SESSION_KEY_URLFLAG);
-			// OpenID
-			strOpenID = (String)super.session.getAttribute(SESSION_KEY_OPENID);
+			strUrlFlag = (String) super.session
+					.getAttribute(SESSION_KEY_URLFLAG);
+			strCode = super.request.getParameter(KEY_CODE);
+
+			// 放到session中
+			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
+
+			// 从session中取得openid
+			strOpenID = (String) super.session.getAttribute(SESSION_KEY_OPENID);
+			// 从其它页面跳转过来时
+			if (strOpenID == null || strOpenID.isEmpty()) {
+				// 取得OpenID
+				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
+			}
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.equals("")) {

@@ -58,7 +58,6 @@ public class WEC0010Controller extends BaseController {
 		try {
 			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
 			strCode = super.request.getParameter(KEY_CODE);
-
 			super.logger.info("获取网页code：" + strCode);
 
 			// 放到session中
@@ -70,8 +69,6 @@ public class WEC0010Controller extends BaseController {
 			if (strOpenID == null || strOpenID.isEmpty()) {
 				// 取得OpenID
 				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
-				// todo
-				// strOpenID = "oA36ajksXyuTmcVCO6EI-jWhQp21";
 			}
 
 			// 未获取openid时
