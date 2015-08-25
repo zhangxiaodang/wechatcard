@@ -58,6 +58,9 @@ public class WEC0010Controller extends BaseController {
 		try {
 			strUrlFlag = super.request.getParameter(KEY_URL_FLAG);
 			strCode = super.request.getParameter(KEY_CODE);
+
+			super.logger.info("获取网页code：" + strCode);
+
 			// 放到session中
 			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
 

@@ -37,6 +37,7 @@ public class WeixinMsgCommonUtil {
 			String strUrl = WeixinMsgCommonUtil
 					.getPropertiesValue(WeixinMsgConstValue.URL_GET_OAUTH);
 			strUrl = MessageFormat.format(strUrl, appid, appSecret, code);
+			logger.info("zhangxd 网页url=" + strUrl);
 
 			// 通过HTTP GET方式取得openID
 			result = WeixinMsgJsonUtil.json2Bean(
