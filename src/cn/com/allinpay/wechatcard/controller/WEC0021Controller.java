@@ -30,13 +30,14 @@ public class WEC0021Controller extends BaseController {
 
 	/** 页面URL */
 	private static String WEC0021_VIEW = "wec_0021/wec_0021";
-	
+
 	/** 开通新卡的service **/
 	@Autowired
 	private IWEC0021Service wec0021Service;
-	
+
 	@Autowired
 	private ICommonService commonService;
+
 	/**
 	 * 申请会员卡页面URL.
 	 * 
@@ -50,15 +51,18 @@ public class WEC0021Controller extends BaseController {
 		// 获取当前登陆用户的手机号
 		try {
 			// 取得OpenID
-			String strOpenID = (String) this.session.getAttribute(SESSION_KEY_OPENID);
-			Map<String, String> memberInfo = commonService.getMemberInfoByOpenID(strOpenID);
-			if(memberInfo == null || memberInfo.get("memberphone") == null || "".equals(memberInfo.get("memberphone"))){
+			String strOpenID = (String) this.session
+					.getAttribute(SESSION_KEY_OPENID);
+			Map<String, String> memberInfo = commonService
+					.getMemberIDByOpenID(strOpenID);
+			if (memberInfo == null || memberInfo.get("MEMBERPHONE") == null
+					|| "".equals(memberInfo.get("MEMBERPHONE"))) {
 				// 如果根据openid获取会员的id，获取不到，提示用户。
 				mv.addObject("errmsg", WebConstantValue.ADD_CARD_ERROR);
 				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
 				return mv;
 			}
-			mv.addObject("memberphone", memberInfo.get("memberphone"));
+			mv.addObject("MEMBERPHONE", memberInfo.get("MEMBERPHONE"));
 			mv.setViewName(WEC0021_VIEW);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,7 +73,7 @@ public class WEC0021Controller extends BaseController {
 		// 返回
 		return mv;
 	}
-	
+
 	/**
 	 * 注册新卡.
 	 */
@@ -81,7 +85,8 @@ public class WEC0021Controller extends BaseController {
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
 			// 取得OpenID
-			String strOpenID = (String) this.session.getAttribute(SESSION_KEY_OPENID);
+			String strOpenID = (String) this.session
+					.getAttribute(SESSION_KEY_OPENID);
 			memberView.setMemberopenid(strOpenID);
 			memberView.setMemberid(WebUtil.getUUID());
 			// 调用注册的service

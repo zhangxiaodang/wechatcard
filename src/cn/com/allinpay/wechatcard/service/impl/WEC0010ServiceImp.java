@@ -57,10 +57,11 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 		// 返回前台提示信息
 		WEC0010Model resultModel = new WEC0010Model();
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+
 		paramMap.put(BEAN, memberView);
 		// 判断用户的手机号是否注册过
 		int count = wec_001_Dao.phone_is_regist(paramMap);
-		if (count > 0){
+		if (count > 0) {
 			resultModel.setMember_phone(memberView.getMemberphone());
 			// 标识成该手机好已被注册
 			resultModel.setPhone_is_regist(true);
@@ -68,25 +69,29 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
 			return resultModel;
 		}
-		//根据urlFlag查询商户的id
-		Map<String, String> merchantInfo = commonService.getMerchantInfoByUrlFlag(memberView.getUrlflag());
+		// 根据urlFlag查询商户的id
+		Map<String, String> merchantInfo = commonService
+				.getMerchantInfoByUrlFlag(memberView.getUrlflag());
 		// 如果没有商户信息，则提示用户
-		if(merchantInfo == null || "".equals(merchantInfo.get("merchantid"))){
+		if (merchantInfo == null || "".equals(merchantInfo.get("MERCHANTID"))) {
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
 			return resultModel;
 		}
 		// 会员级别
 		memberView.setMembergrade("01");
-		memberView.setMerchantid(merchantInfo.get("merchantid"));
+		memberView.setMerchantid(merchantInfo.get("MERCHANTID"));
+
+		Map<String, Object> paramMap1 = new HashMap<String, Object>();
+		paramMap1.put(BEAN, memberView);
 		// 将用户信息添加到会员表中
-		wec_001_Dao.regist(paramMap);
+		wec_001_Dao.regist(paramMap1);
 
 		// 判断用户是注册新的卡还是绑定旧卡
 		if ("01".equals(memberView.getCardmode())) {
 			// 开通新卡
 			resultModel = wec0021Service.applyNewCard(memberView);
-		} else if("02".equals(memberView.getCardmode())){
+		} else if ("02".equals(memberView.getCardmode())) {
 			// 绑定旧卡
 			resultModel = wec0022Service.bindingOldCard(memberView);
 		}

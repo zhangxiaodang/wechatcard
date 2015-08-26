@@ -22,9 +22,8 @@
 	<!-- 根据openID获取会员的id -->
 	<select id="getMemberIDByOpenID" parameterType="String" resultType="java.util.Map">
 		select memberid,b.itemvalue as membergrade, merchantid, memberphone from member a
-		left join selectoptions b on a.membergrade = b.itemcode and b.itemtpye = '1003'
+		left join selectoptions b on a.membergrade = b.itemcode and b.itemtype = '1003'
 		where memberopenid = #{openid}
-		limit 1
 	</select>
 	
 	<!-- 根据urlFlag获取商户信息 -->

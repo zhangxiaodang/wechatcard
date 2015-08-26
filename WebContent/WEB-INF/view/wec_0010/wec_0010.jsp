@@ -42,7 +42,7 @@
                         <input type="text" id="name" class="form-control" placeholder="姓名不可为空"  aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group">
-                        <span class="input-group-addon" for="xingbie">性别：</span>
+                        <span class="input-group-addon" for="xingbie"><span class="red-text">* </span>性别：</span>
                         <select id="xingbie" class="form-control" aria-describedby="basic-addon1">
                             <option value="">请选择</option>
                             <option value="1">男</option>
@@ -50,7 +50,7 @@
                         </select>
                     </div>
                     <div class="input-group">
-                        <span class="input-group-addon" for="shengri">生日：</span>
+                        <span class="input-group-addon" for="shengri"><span class="red-text">* </span>生日：</span>
                         <select id="shengri_year" class="form-control" aria-describedby="basic-addon1">
                             <option value="">年</option>
                         </select>
