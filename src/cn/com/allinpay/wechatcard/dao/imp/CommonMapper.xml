@@ -21,16 +21,15 @@
 	
 	<!-- 根据openID获取会员的id -->
 	<select id="getMemberIDByOpenID" parameterType="String" resultType="java.util.Map">
-		select memberid,b.itemvalue as membergrade, merchantid, memberphone from member a
-		left join selectoptions b on a.membergrade = b.itemcode and b.itemtpye = '1003'
-		where memberopenid = #{openid}
-		limit 1
+		SELECT MEMBERID,B.ITEMVALUE AS MEMBERGRADE, MERCHANTID, MEMBERPHONE FROM MEMBER A
+		LEFT JOIN SELECTOPTIONS B ON A.MEMBERGRADE = B.ITEMCODE AND B.ITEMTPYE = '1003'
+		WHERE MEMBEROPENID = #{openid}
 	</select>
 	
 	<!-- 根据urlFlag获取商户信息 -->
 	<select id="getMerchantInfoByUrlFlag" parameterType="java.util.Map" resultType="java.util.Map">
-		select merchantid from merchant
-		where urlflag = #{urlflag}
+		SELECT MERCHANTID FROM MERCHANT
+		WHERE URLFLAG = #{urlflag}
 	</select>
 </mapper>
 	

@@ -44,7 +44,7 @@ public interface ICommonService {
 	 * 
 	 * return map  用户信息
 	 */
-	public Map<String, String> getMemberInfoByOpenID(String openid);
+	public Map<String, String> getMemberIDByOpenID(String openid);
 
 	/**
 	 * 根据URL Flag取得商户信息.

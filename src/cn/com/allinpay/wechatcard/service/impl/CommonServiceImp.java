@@ -51,7 +51,7 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 			logger.info("取得用户openid失败,errcode:" + result.getErrcode()
 					+ ",errmsg:" + result.getErrmsg());
 		}
-
+		
 		// 返回
 		return strOpenId;
 	}
@@ -73,7 +73,7 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 	}
 
 	@Override
-	public Map<String, String> getMemberInfoByOpenID(String openid) {
+	public Map<String, String> getMemberIDByOpenID(String openid) {
 		Map<String, String> paramMap = new HashMap<String, String>();
 		// openid
 		paramMap.put("openid", openid);

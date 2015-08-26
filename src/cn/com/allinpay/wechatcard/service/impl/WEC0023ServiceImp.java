@@ -50,12 +50,12 @@ public class WEC0023ServiceImp extends BaseService implements IWEC0023Service {
 		Map<String, String> merchantInfo = commonService.getMerchantInfoByUrlFlag(wec0023View.getUrlflag());
 		
 		// 如果查询不到商户的信息
-		if (merchantInfo == null || merchantInfo.get("merchantid") == null) {
+		if (merchantInfo == null || merchantInfo.get("merchantid".toUpperCase()) == null) {
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
 			return resultModel;
 		}
-		wec0023View.setMerchantid(merchantInfo.get("merchantid"));
+		wec0023View.setMerchantid(merchantInfo.get("merchantid".toUpperCase()));
 
 		paramMap.put(BEAN, wec0023View);
 		

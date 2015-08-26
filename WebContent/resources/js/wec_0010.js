@@ -45,7 +45,7 @@ $(function () {
         var month_num = new Date(year, month, 0).getDate();
         var month_arr = [];
         for(var i = 1; i <= month_num; i++) {
-            month_arr.push( i<9 ? '0' + i: i );
+            month_arr.push( i<10 ? '0' + i: i );
         }
         return month_arr;
     }
@@ -107,20 +107,23 @@ $(function () {
         param.password = "";
         param.memberbirthday = $("#shengri_year").val() + '-' + $("#shengri_month").val() + '-' + $("#shengri_day").val();
 
-
-
         if (!param.memberphone.isPhone()) {
             $.mAlert("请输入有效的手机号码");
             return;
         }
 
-//        if (!param.memberyzm || param.memberyzm.length != 6) {
-//            $.mAlert("验证码错误");
-//            return;
-//        }
+        if (!param.memberyzm || param.memberyzm.length != 6) {
+            $.mAlert("验证码错误");
+            return;
+        }
 
         if( '' === $.trim( param.membername ) ) {
             $.mAlert("姓名不可为空！");
+            return;
+        }
+        
+        if( '' == param.membersex ) {
+        	$.mAlert("请选择性别！");
             return;
         }
 
@@ -173,11 +176,13 @@ $(function () {
             param.password = $("#old_card_psd").val();
             param.cardno = $("#old_card_code").val();
         }
-
-//        if (!param.password.isPassword()) {
-//            $.mAlert("密码错误");
-//            return;
-//        }
+        // 如果不是【暂不开卡】的话，需要校验密码位数。
+        if (param.cardmode != '03'){
+        	if (!param.password.isPassword()) {
+                $.mAlert("密码必须是6到18位之间！");
+                return;
+            }
+        }
 
         $(_this).text("注册中...").prop('disabled', true);
 

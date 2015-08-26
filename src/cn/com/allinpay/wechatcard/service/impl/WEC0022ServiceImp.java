@@ -34,7 +34,7 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 	/** 注册的dao **/
 	@Autowired
 	private WEC0022Dao wec_0022_Dao;
-	
+
 	@Autowired
 	private ICommonService commonService;
 
@@ -53,8 +53,10 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 		// 调用总公司的预付卡后台电子卡开卡接口，进行开卡
 		// todo  
 		
-		Map<String, String> memberInfo = commonService.getMemberInfoByOpenID(memberView.getMemberopenid());
-		if(memberInfo == null || memberInfo.get("memberid") == null || "".equals(memberInfo.get("memberid"))){
+		Map<String, String> memberInfo = commonService
+				.getMemberIDByOpenID(memberView.getMemberopenid());
+		if (memberInfo == null || memberInfo.get("MEMBERID") == null
+				|| "".equals(memberInfo.get("MEMBERID"))) {
 			// 如果根据openid获取会员的id，获取不到，提示用户。
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			resultModel.setMsg(WebConstantValue.ADD_CARD_ERROR);
@@ -63,9 +65,9 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 		// 更新本地会员卡的信息
 		wec0021View.setMerbercardid(WebUtil.getUUID());
 		// 会员ID 这个地方的需要从session中获取会员的id。
-		wec0021View.setMemberid(memberInfo.get("memberid"));
+		wec0021View.setMemberid(memberInfo.get("MEMBERID"));
 		// 商家ID
-		wec0021View.setMerchantid(memberInfo.get("merchantid"));
+		wec0021View.setMerchantid(memberInfo.get("MERCHANTID"));
 		// 会员卡号（预付卡系统后台实体卡号）
 		wec0021View.setCardno(memberView.getCardno());
 		// 电子卡号（预付卡系统后台电子卡号），新申请卡时为手机号，绑定旧卡时为卡号

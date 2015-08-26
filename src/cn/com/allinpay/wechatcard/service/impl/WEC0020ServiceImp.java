@@ -25,15 +25,15 @@ import cn.com.allinpay.wechatcard.view.WEC0020View;
  */
 @Service
 public class WEC0020ServiceImp extends BaseService implements IWEC0020Service {
-	
+
 	/** logger **/
-	private static final Logger logger = Logger.getLogger(WEC0020ServiceImp.class);
-	
+	private static final Logger logger = Logger
+			.getLogger(WEC0020ServiceImp.class);
+
 	/** 注册的dao **/
 	@Autowired
 	private WEC0020Dao wec_002_Dao;
 
-	
 	@Autowired
 	private ICommonService commonService;
 
@@ -41,7 +41,7 @@ public class WEC0020ServiceImp extends BaseService implements IWEC0020Service {
 	 * 注册的service
 	 */
 	@Override
-	public int phone_is_rigist(WEC0020View wec0020View) throws Exception{
+	public int phone_is_rigist(WEC0020View wec0020View) throws Exception {
 		logger.info("========================Service regist Start==========================");
 		// 返回前台提示信息
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -50,13 +50,16 @@ public class WEC0020ServiceImp extends BaseService implements IWEC0020Service {
 		logger.info("========================Service regist End==========================");
 		return count;
 	}
-	
+
 	@Override
-	public ModelAndView getMemberCardInfo(String strOpenID, String strUrlFlag) throws Exception {
+	public ModelAndView getMemberCardInfo(String strOpenID, String strUrlFlag)
+			throws Exception {
 		ModelAndView mv = new ModelAndView();
-		Map<String, String> memberInfo = commonService.getMemberInfoByOpenID(strOpenID);
+		Map<String, String> memberInfo = commonService
+				.getMemberIDByOpenID(strOpenID);
 		// 获取会员信息
-		if(memberInfo == null || memberInfo.get("membergrade") == null || "".equals(memberInfo.get("membergrade"))){
+		if (memberInfo == null || memberInfo.get("MEMBERGRADE") == null
+				|| "".equals(memberInfo.get("MEMBERGRADE"))) {
 			// 如果根据openid获取会员的id，获取不到，提示用户。
 			mv.addObject("errmsg", WebConstantValue.ADD_CARD_ERROR);
 			mv.setViewName(WebConstantUrlValue.WEC_ERROR);
@@ -64,19 +67,19 @@ public class WEC0020ServiceImp extends BaseService implements IWEC0020Service {
 		}
 		WEC0020View wec0020View = new WEC0020View();
 		// 获取用户是否注册过改商户
-		wec0020View.setMemberphone(memberInfo.get("memberphone"));
+		wec0020View.setMemberphone(memberInfo.get("MEMBERPHONE"));
 		wec0020View.setOpenid(strOpenID);
 		wec0020View.setUrlflag(strUrlFlag);
 		// 查询改手机号是否开过卡
 		int cnt = this.phone_is_rigist(wec0020View);
 		boolean phone_is_used = false;
-		if (cnt > 0){
+		if (cnt > 0) {
 			phone_is_used = true;
 		}
 		mv.addObject("phone_is_used", phone_is_used);
-		mv.addObject("membergrade", memberInfo.get("membergrade"));
-		
+		mv.addObject("membergrade", memberInfo.get("MEMBERGRADE"));
+
 		return mv;
 	}
-	
+
 }

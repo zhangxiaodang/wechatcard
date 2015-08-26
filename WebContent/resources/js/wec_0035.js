@@ -28,8 +28,8 @@ $(function () {
 	        data = JSON.parse(data);
 	        $.mAlert( data.msg );
 	        if(data.state === '000000') {
-	            // 修改成功，跳转页面
-	            window.location.href = 'wec0031';
+	            // 修改成功，跳转页面到卡详情页面。返回历史即可。
+	        	window.history.go(-1);
 	        }
 	    })
 	})

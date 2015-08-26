@@ -89,7 +89,7 @@ public class WEC0030Controller extends BaseController {
 	}
 
 	/**
-	 * 注册.
+	 * 获取会员卡和会员的优惠券.
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0030_CARD_COUPON, method = RequestMethod.POST, produces = WebConstantValue.PRODUCE_TEXT)
 	@ResponseBody
