@@ -143,7 +143,31 @@
             $.post("http://localhost:8080/wechatcard/register", json,function(data){
                 $.isFunction(callback) ? callback( data ) : "";
             });
-        }
+        },
+        "dxlBackgroundShow":function(type,execute){
+            $.dxlBackgroundHide();
+            $("body").append('<div id="dxlBackgroundDiv" style="z-index:999; position:absolute; top:0; left:0; filter:alpha(opacity=70); opacity: 0.7; -moz-opacity:0.7;"></div>');
+            type == "fadeIn" ? $("#dxlBackgroundDiv").hide().fadeIn() : "";
+            var dxlbd = $("#dxlBackgroundDiv");
+            function dxlBackgroundDivFun(){
+                dxlbd.css({"width":$(window).width(),"height":$(document).height()})
+            }
+            $(window).on("resize.bd",dxlBackgroundDivFun);
+            $(window).on("scroll.bd",dxlBackgroundDivFun);
+            dxlBackgroundDivFun();
+            $.isFunction(execute) ? execute(data) : "";
+        },
+        "dxlBackgroundHide":function(type,execute){
+            if(type == "fadeOut"){
+                $("#dxlBackgroundDiv").fadeOut(function(){
+                    $("#dxlBackgroundDiv").remove();
+                })
+            }else{
+                $("#dxlBackgroundDiv").remove();
+            }
+            $(window).off("resize.dxlbd");
+            $(window).off("scroll.dxlbd");
+        },
     });
 
 })( jQuery );

@@ -85,10 +85,10 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 		// 判断用户是注册新的卡还是绑定旧卡
 		if ("01".equals(memberView.getCardmode())) {
 			// 开通新卡
-			wec0021Service.applyNewCard(memberView);
-		} else {
+			resultModel = wec0021Service.applyNewCard(memberView);
+		} else if("02".equals(memberView.getCardmode())){
 			// 绑定旧卡
-			wec0022Service.bindingOldCard(memberView);
+			resultModel = wec0022Service.bindingOldCard(memberView);
 		}
 		resultModel.setState(WebConstantValue.HTTP_OK);
 		resultModel.setMsg(WebConstantValue.REGISTER_SUCCESS);

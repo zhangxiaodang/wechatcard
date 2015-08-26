@@ -9,5 +9,14 @@ $(function () {
     	window.location.href = 'wec0040';
     })
     
+    $("header>img").on('click', function (evt) {
+        $.dxlBackgroundShow();
+        $("#ersanwei").show().dxlLayerFixedShow();
+    });
+
+    $("#ersanwei").on('click', function (evt) {
+        $.dxlBackgroundHide();
+        $("#ersanwei").hide();
+    })
 })
     

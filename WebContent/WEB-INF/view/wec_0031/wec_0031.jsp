@@ -37,20 +37,23 @@
 
         </div>
     </div>
-
-    <div class="row">
+	<div class="row" id="ersanwei">
         <div class="col-md-12">
 
-            <div id="txm" class="panel panel-default">
-                <div class="panel-body">
+            <ul class="list-group" id="txm">
+                <li class="list-group-item">
                     <img src="resources/images/txm.png" alt=""/>
-                    <p>使用时向店员展示</p>
-                </div>
-            </div>
+                </li>
+                <li class="list-group-item">
+                     ${membercard.card_info.dzcardno}
+                </li>
+                <li class="list-group-item">
+                    <img src="resources/images/ewm.jpg" />
+                </li>
+            </ul>
 
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-12">
 

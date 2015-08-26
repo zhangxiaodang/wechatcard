@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.com.allinpay.frame.model.BaseModel;
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebUtil;
@@ -43,7 +42,7 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 	 * 注册的service
 	 */
 	@Override
-	public BaseModel bindingOldCard(WEC0010View memberView) throws Exception {
+	public WEC0010Model bindingOldCard(WEC0010View memberView) throws Exception {
 		logger.info("========================Service bindingOldCard Start==========================");
 
 		// 返回前台提示信息

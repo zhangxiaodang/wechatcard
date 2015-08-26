@@ -1,4 +1,5 @@
 $(function () {
+    $("#new_card").show();
 
     // 设置日期的年-月-日 shengri_year shengri_month shengri_day
 
@@ -102,6 +103,8 @@ $(function () {
         param.cardmode = $("#kaleixing").val();
         param.membername = $('#name').val();
         param.membersex = $("#xingbie").val();
+        // 默认为空
+        param.password = "";
         param.memberbirthday = $("#shengri_year").val() + '-' + $("#shengri_month").val() + '-' + $("#shengri_day").val();
 
 
@@ -171,10 +174,10 @@ $(function () {
             param.cardno = $("#old_card_code").val();
         }
 
-        if (!param.password.isPassword()) {
-            $.mAlert("密码错误");
-            return;
-        }
+//        if (!param.password.isPassword()) {
+//            $.mAlert("密码错误");
+//            return;
+//        }
 
         $(_this).text("注册中...").prop('disabled', true);
 
@@ -182,8 +185,13 @@ $(function () {
             $(_this).text("提交").prop('disabled', false);
             data = JSON.parse(data);
             if(data.state === '000000') {
-                // 注册成功，跳转页面
-                window.location.href = 'wec0020';
+            	// 如果选择的是【暂不开卡】，跳转到申请会员卡界面。
+            	if(param.cardmode === '03'){
+            		window.location.href = 'wec0020'
+            	}else{
+            		// 注册成功，跳转页面
+                    window.location.href = 'wec0031?membercardid='+data.membercardid;
+            	}
             } else {
             	$.mAlert( data.msg );
             	// 如果手机号已经被注册了。

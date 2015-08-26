@@ -1,6 +1,6 @@
 package cn.com.allinpay.wechatcard.service;
 
-import cn.com.allinpay.frame.model.BaseModel;
+import cn.com.allinpay.wechatcard.model.WEC0010Model;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
 
 /**
@@ -14,5 +14,5 @@ public interface IWEC0022Service {
 	 * @param memberView
 	 * @return
 	 */
-	public BaseModel bindingOldCard(WEC0010View memberView) throws Exception;
+	public WEC0010Model bindingOldCard(WEC0010View memberView) throws Exception;
 }

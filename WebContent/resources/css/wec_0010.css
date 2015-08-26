@@ -13,7 +13,7 @@ span.red-text {
 }
 
 #user-reg>.input-group {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -40,7 +40,7 @@ span.red-text {
 
 #user-reg>#get_code {
     position: absolute;
-    top: 54px;
+    top: 64px;
     right: 0;
 }
 
@@ -53,7 +53,7 @@ span.red-text {
 }
 
 #user-reg #tijiao {
-    width: 100%;
+    width: 80%;
 }
 
 #new_card, #old_card {
