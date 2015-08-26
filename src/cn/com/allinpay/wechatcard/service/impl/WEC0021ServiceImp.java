@@ -50,7 +50,6 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		// 申请新卡的密码
 		wec0021View.setPassword(memberView.getPassword());
 		// todo
-		
 		Map<String, String> memberInfo = commonService
 				.getMemberIDByOpenID(memberView.getMemberopenid());
 		if (memberInfo == null || memberInfo.get("MEMBERID") == null

@@ -51,8 +51,6 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 		// 会员卡信息
 		WEC0021View wec0021View = new WEC0021View();
 		// 调用总公司的预付卡后台电子卡开卡接口，进行开卡
-		// todo  
-		
 		Map<String, String> memberInfo = commonService
 				.getMemberIDByOpenID(memberView.getMemberopenid());
 		if (memberInfo == null || memberInfo.get("MEMBERID") == null

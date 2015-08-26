@@ -126,6 +126,11 @@ $(function () {
         	$.mAlert("请选择性别！");
             return;
         }
+        
+        if( '' == param.membersex ) {
+        	$.mAlert("请选择性别！");
+            return;
+        }
 
         if (param.memberbirthday && !param.memberbirthday.isShengRi()) {
             $.mAlert("生日格式错误");
