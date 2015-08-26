@@ -62,7 +62,7 @@ public class WEC0021Controller extends BaseController {
 				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
 				return mv;
 			}
-			mv.addObject("MEMBERPHONE", memberInfo.get("MEMBERPHONE"));
+			mv.addObject("memberphone", memberInfo.get("MEMBERPHONE"));
 			mv.setViewName(WEC0021_VIEW);
 		} catch (Exception e) {
 			e.printStackTrace();
