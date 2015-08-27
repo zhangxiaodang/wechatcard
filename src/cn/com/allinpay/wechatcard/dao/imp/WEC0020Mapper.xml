@@ -5,7 +5,7 @@
 	
 	<!-- 判断手机是否在改商户下使用了。 -->
 	<select id="phone_is_rigist" parameterType="java.util.Map" resultType="int">
-		select count(1) as cnt
+		select count(1) as "cnt"
 		from member t1, merchant t2, membercard t3
 		where t1.merchantid = t2.merchantid
 		and t3.merchantid = t2.merchantid

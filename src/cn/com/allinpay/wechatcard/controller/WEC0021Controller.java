@@ -55,14 +55,14 @@ public class WEC0021Controller extends BaseController {
 					.getAttribute(SESSION_KEY_OPENID);
 			Map<String, String> memberInfo = commonService
 					.getMemberIDByOpenID(strOpenID);
-			if (memberInfo == null || memberInfo.get("MEMBERPHONE") == null
-					|| "".equals(memberInfo.get("MEMBERPHONE"))) {
+			if (memberInfo == null || memberInfo.get("memberphone") == null
+					|| "".equals(memberInfo.get("memberphone"))) {
 				// 如果根据openid获取会员的id，获取不到，提示用户。
 				mv.addObject("errmsg", WebConstantValue.ADD_CARD_ERROR);
 				mv.setViewName(WebConstantUrlValue.WEC_ERROR);
 				return mv;
 			}
-			mv.addObject("memberphone", memberInfo.get("MEMBERPHONE"));
+			mv.addObject("memberphone", memberInfo.get("memberphone"));
 			mv.setViewName(WEC0021_VIEW);
 		} catch (Exception e) {
 			e.printStackTrace();

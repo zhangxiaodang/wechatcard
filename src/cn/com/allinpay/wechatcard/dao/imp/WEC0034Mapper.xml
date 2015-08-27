@@ -5,7 +5,8 @@
 	
 	<!-- 查询优惠券信息 -->
 	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
-		select couponid,memberid,merchantcouponid,merchantid,membercouponstate,couponcode,couponsj,bz from coupon
+		select couponid as "couponid",memberid as "memberid",merchantcouponid as "merchantcouponid",
+		merchantid as "merchantid",membercouponstate as "membercouponstate",couponcode as "couponcode",couponsj as "couponsj",bz as "bz" from coupon
 		where memberid = #{bean.memberid} 
 	</select>
 	

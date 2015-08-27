@@ -7,7 +7,7 @@
 	<!-- 获取手机号 -->
 	<select id="getCurrentPhoneNum" parameterType="java.util.Map"
 		resultType="String">
-		select a.memberphone as memberphone
+		select a.memberphone as "memberphone"
 		from member a, merchant b
 		where
 		     a.merchantid = b.merchantid

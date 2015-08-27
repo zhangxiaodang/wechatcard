@@ -52,8 +52,8 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		// todo
 		Map<String, String> memberInfo = commonService
 				.getMemberIDByOpenID(memberView.getMemberopenid());
-		if (memberInfo == null || memberInfo.get("MEMBERID") == null
-				|| "".equals(memberInfo.get("MEMBERID"))) {
+		if (memberInfo == null || memberInfo.get("memberid") == null
+				|| "".equals(memberInfo.get("memberid"))) {
 			// 如果根据openid获取会员的id，获取不到，提示用户。
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			resultModel.setMsg(WebConstantValue.ADD_CARD_ERROR);
@@ -62,9 +62,9 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		// 更新本地会员卡的信息
 		wec0021View.setMerbercardid(WebUtil.getUUID());
 		// 会员ID 这个地方的需要从session中获取会员的id。
-		wec0021View.setMemberid(memberInfo.get("MEMBERID"));
+		wec0021View.setMemberid(memberInfo.get("memberid"));
 		// 商家ID
-		wec0021View.setMerchantid(memberInfo.get("MERCHANTID"));
+		wec0021View.setMerchantid(memberInfo.get("merchantid"));
 		// 会员卡号（预付卡系统后台实体卡号）
 		wec0021View.setCardno(WebUtil.get_random());
 		// 电子卡号（预付卡系统后台电子卡号），申请新卡时电子卡号为手机号

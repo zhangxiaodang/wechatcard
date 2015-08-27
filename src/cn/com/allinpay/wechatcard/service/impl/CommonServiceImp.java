@@ -36,12 +36,12 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 
 		// 根据商户标识取得商户微信服务号的appid和appsecrt
 		Map<String, String> appInfo = this.dao.getAppInfo(urlFlag);
-		logger.info("appid=" + appInfo.get("APPID") + ",appsecret="
-				+ appInfo.get("APPSECRET"));
+		logger.info("appid=" + appInfo.get("appid") + ",appsecret="
+				+ appInfo.get("appsecret"));
 
 		// 根据Code取得openID
 		OAuthCodeResult result = WeixinMsgCommonUtil.getOpenIDByOAuth(code,
-				appInfo.get("APPID"), appInfo.get("APPSECRET"));
+				appInfo.get("appid"), appInfo.get("appsecret"));
 
 		// 成功时
 		if (result != null && result.getErrmsg().equals("")) {

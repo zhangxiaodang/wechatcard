@@ -73,14 +73,14 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 		Map<String, String> merchantInfo = commonService
 				.getMerchantInfoByUrlFlag(memberView.getUrlflag());
 		// 如果没有商户信息，则提示用户
-		if (merchantInfo == null || "".equals(merchantInfo.get("MERCHANTID"))) {
+		if (merchantInfo == null || "".equals(merchantInfo.get("merchantid"))) {
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
 			return resultModel;
 		}
 		// 会员级别
 		memberView.setMembergrade("01");
-		memberView.setMerchantid(merchantInfo.get("MERCHANTID"));
+		memberView.setMerchantid(merchantInfo.get("merchantid"));
 
 		Map<String, Object> paramMap1 = new HashMap<String, Object>();
 		paramMap1.put(BEAN, memberView);

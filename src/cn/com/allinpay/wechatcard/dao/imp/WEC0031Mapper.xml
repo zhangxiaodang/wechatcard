@@ -5,7 +5,8 @@
 	
 	<!-- 查询会员卡信息 -->
 	<select id="get_card" parameterType="java.util.Map" resultType="java.util.Map">
-		select merbercardid,memberid,merchantid,cardno,dzcardno,cardgrade,cardcode,cardstat,cardmode,bz from membercard
+		select merbercardid as "merbercardid",memberid as "memberid",merchantid as "merchantid",cardno as "cardno",dzcardno as "dzcardno",
+		cardgrade as "cardgrade",cardcode as "cardcode",cardstat as "cardstat",cardmode as "cardmode",bz as "bz" from membercard
 		where merbercardid = #{merbercardid} 
 	</select>
 </mapper>

@@ -5,8 +5,8 @@
 	
 	<!-- 查询优惠券信息 -->
 	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
-		select b.couponid,b.memberid,b.merchantcouponid,b.merchantid,b.membercouponstate,b.couponcode,b.couponsj,b.bz,b.couponname,
-		"http://localhost:8080/wechatcard/resources/images/u5_normal.jpg" as couponimg,date_format(b.starttime,'%Y-%m-%d') as starttime,date_format(b.endtime,'%Y-%m-%d') as endtime
+		select b.couponid as "couponid",b.memberid as "memberid",b.merchantcouponid as "merchantcouponid",b.merchantid as "merchantid",b.membercouponstate as "membercouponstate",b.couponcode as "couponcode",b.couponsj as "couponsj",b.bz as "bz",b.couponname as "couponname",
+		"http://localhost:8080/wechatcard/resources/images/u5_normal.jpg" as "couponimg",date_format(b.starttime,'%Y-%m-%d') as "starttime",date_format(b.endtime,'%Y-%m-%d') as "endtime"
 		from member a, coupon b, merchant c
 		where a.memberid = b.memberid
 		and b.merchantid = c.merchantid
