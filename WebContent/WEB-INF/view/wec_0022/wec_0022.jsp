@@ -17,6 +17,7 @@
 
     <script src="resources/js/public/jquery.min.js"></script>
     <script src="resources/js/public/bootstrap.min.js"></script>
+    <script src="resources/js/public/common.js"></script>
     <script src="resources/js/public/m.js"></script>
     
     <script src="resources/js/wec_0022.js"></script>
@@ -33,7 +34,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" for="new_card_psd2"><span class="red-text">* </span>密码：</span>
-                    <input type="password" id="old_card_psd" class="form-control" aria-describedby="basic-addon1" maxlentgh="6">
+                    <input type="password" id="old_card_psd" class="form-control" aria-describedby="basic-addon1" maxlength="6">
                 </div>
 
                 <div class="form-group">

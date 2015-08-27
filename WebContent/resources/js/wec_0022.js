@@ -12,9 +12,13 @@ $(function () {
             $.mAlert("卡号不可为空！");
             return;
         }
-
-        if('' === old_card_psd) {
-            $.mAlert("密码不可为空！");
+        if(!check_card(old_card_code)) {
+            $.mAlert("卡号只能为数字！");
+            return;
+        }
+        
+        if(!check_pass(old_card_psd)) {
+            $.mAlert("密码只能为6位数字！");
             return;
         }
 

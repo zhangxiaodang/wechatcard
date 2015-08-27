@@ -30,7 +30,7 @@ public class WEC0035ServiceImp extends BaseService implements IWEC0035Service {
 	private WEC0035Dao wec_0035_Dao;
 
 	/**
-	 * 优惠券的service
+	 * 卡密码修改的service
 	 */
 	@Override
 	public WEC0034Model change_pass(WEC0010View memberView) throws Exception {

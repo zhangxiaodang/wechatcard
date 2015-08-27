@@ -1,57 +1,17 @@
 $(function () {
+	// 设置日期的年-月-日
+    $('#shengri').scroller('destroy').scroller({
+        preset: 'date',
+        invalid: { daysOfWeek: [0, 6], daysOfMonth: ['5/1', '12/24', '12/25'] },
+        dateFormat: 'yyyy-mm-dd', // 日期格式
+        theme: 'ios7',
+        mode: 'scroller',
+        lang: 'zh',
+        display: 'modal',
+        animate: 'fade',
+        dateOrder: 'yymmdd'
+    });
     $("#new_card").show();
-
-    // 设置日期的年-月-日 shengri_year shengri_month shengri_day
-
-    // 只计算出年 从今年开始的近50年
-    var year_all = '';
-    var year = (new Date()).getFullYear();
-    for(var i = year; i > year - 50; i--) {
-        year_all += '<option value="' + i + '">' + i + '</option>';
-    }
-    $('#shengri_year').append( year_all );
-
-    var month = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
-
-    $("#shengri_year").on('change', function (evt) {
-        var _this = this;
-        var month_str = '<option value="">月</option>';
-        if('' !== $(_this).val()) {
-            for(var i = 0; i < month.length; i++) {
-                month_str += '<option value="' + month[i] + '">' + month[i] + '</option>';
-            }
-        }
-        $('#shengri_day').empty().append( '<option value="">日</option>' );
-        $('#shengri_month').empty().append( month_str );
-    });
-
-    $('#shengri_month').on('change', function (evt) {
-        var _this = this;
-        var day_str = '<option value="">日</option>';
-        var year = $("#shengri_year").val();
-        var month = $(_this).val();
-        var day = getDay(year, month);
-
-        if('' !== $(_this).val()) {
-            for(var i = 0; i < day.length; i++) {
-                day_str += '<option value="' + day[i] + '">' + day[i] + '</option>';
-            }
-        }
-
-        $('#shengri_day').empty().append( day_str );
-    });
-
-    function getDay(year, month) {
-        var month_num = new Date(year, month, 0).getDate();
-        var month_arr = [];
-        for(var i = 1; i <= month_num; i++) {
-            month_arr.push( i<10 ? '0' + i: i );
-        }
-        return month_arr;
-    }
-
-
-    // 通过年月计算出日
 
     // 卡类型值变化
     $("#kaleixing").on('change', function (evt) {
@@ -105,7 +65,7 @@ $(function () {
         param.membersex = $("#xingbie").val();
         // 默认为空
         param.password = "";
-        param.memberbirthday = $("#shengri_year").val() + '-' + $("#shengri_month").val() + '-' + $("#shengri_day").val();
+        param.memberbirthday = $("#shengri").val();
 
         if (!param.memberphone.isPhone()) {
             $.mAlert("请输入有效的手机号码");
@@ -132,8 +92,8 @@ $(function () {
             return;
         }
 
-        if (param.memberbirthday && !param.memberbirthday.isShengRi()) {
-            $.mAlert("生日格式错误");
+        if (param.memberbirthday == '' || param.memberbirthday == null) {
+            $.mAlert("生日不可为空！");
             return;
         }
 
@@ -147,12 +107,12 @@ $(function () {
 
             var new_card_psd1 = $('#new_card_psd1').val();
             var new_card_psd2 = $('#new_card_psd2').val();
-            if('' === new_card_psd1) {
-                $.mAlert("密码不可为空！");
+            if(!check_pass(new_card_psd1)) {
+                $.mAlert("密码只能为6位数字！");
                 return;
             }
-            if('' === new_card_psd2) {
-                $.mAlert("确认密码不可为空！");
+            if(!check_pass(new_card_psd2)) {
+                $.mAlert("确认密码只能为6位数字！");
                 return;
             }
             if(new_card_psd1 != new_card_psd2) {
@@ -172,9 +132,13 @@ $(function () {
                 $.mAlert("卡号不可为空！");
                 return;
             }
+            if(!check_card(old_card_code)) {
+                $.mAlert("卡号只能为数字！");
+                return;
+            }
 
-            if('' === old_card_psd) {
-                $.mAlert("密码不可为空！");
+            if(!check_pass(old_card_psd)) {
+                $.mAlert("密码只能为6位数字！");
                 return;
             }
 

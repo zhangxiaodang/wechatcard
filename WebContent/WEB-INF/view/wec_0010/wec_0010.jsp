@@ -14,9 +14,13 @@
     <link href="resources/css/public/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/wec_0010.css" rel="stylesheet">
     <link href="resources/css/public/m.css" rel="stylesheet">
+    <link href="resources/css/public/mobiscroll.css" rel="stylesheet">
 
+    
     <script src="resources/js/public/jquery.min.js"></script>
     <script src="resources/js/public/bootstrap.min.js"></script>
+    <script src="resources/js/public/mobiscroll.js"></script>
+    <script src="resources/js/public/common.js"></script>
     <script src="resources/js/public/m.js"></script>
     <script src="resources/js/wec_0010.js"></script>
 </head>
@@ -51,15 +55,7 @@
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon" for="shengri"><span class="red-text">* </span>生日：</span>
-                        <select id="shengri_year" class="form-control" aria-describedby="basic-addon1">
-                            <option value="">年</option>
-                        </select>
-                        <select id="shengri_month" class="form-control" aria-describedby="basic-addon1">
-                            <option value="">月</option>
-                        </select>
-                        <select id="shengri_day" class="form-control" aria-describedby="basic-addon1">
-                            <option value="">日</option>
-                        </select>
+                        <input type="text" id="shengri" class="form-control" aria-describedby="basic-addon1">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon" for="kaleixing"><span class="red-text">* </span>卡类型：</span>
@@ -80,11 +76,11 @@
                                 <h4>请输入6位开卡密码</h4>
                                 <div class="input-group">
                                     <span class="input-group-addon" for="new_card_psd1"><span class="red-text">* </span>密码：</span>
-                                    <input type="password" id="new_card_psd1" class="form-control" aria-describedby="basic-addon1" maxlength="18">
+                                    <input type="password" id="new_card_psd1" class="form-control" aria-describedby="basic-addon1" maxlength="6">
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon" for="new_card_psd2"><span class="red-text">* </span>确认密码：</span>
-                                    <input type="password" id="new_card_psd2" class="form-control" aria-describedby="basic-addon1" maxlength="18">
+                                    <input type="password" id="new_card_psd2" class="form-control" aria-describedby="basic-addon1" maxlength="6">
                                 </div>
                             </div>
                         </div>

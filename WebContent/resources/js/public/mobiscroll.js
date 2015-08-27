@@ -2923,18 +2923,26 @@
 
 (function ($) {
 
-    $.mobiscroll.themes.android = {
-        dateOrder: 'Mddyy',
-        mode: 'clickpick',
-        height: 50,
+    $.mobiscroll.themes.ios7 = {
+        dateOrder: 'MMdyy',
+        rows: 5,
+        height: 34,
+        minWidth: 55,
+        headerText: false,
         showLabel: false,
-        btnStartClass: 'mbsc-ic mbsc-ic-play3',
-        btnStopClass: 'mbsc-ic mbsc-ic-pause2',
-        btnResetClass: 'mbsc-ic mbsc-ic-stop2',
-        btnLapClass: 'mbsc-ic mbsc-ic-loop2'
+        btnWidth: false,
+        selectedLineHeight: true,
+        selectedLineBorder: 1,
+        useShortLabels: true,
+        btnCalPrevClass: 'mbsc-ic mbsc-ic-arrow-left5',
+        btnCalNextClass: 'mbsc-ic mbsc-ic-arrow-right5',
+        btnPlusClass: 'mbsc-ic mbsc-ic-arrow-down5',
+        btnMinusClass: 'mbsc-ic mbsc-ic-arrow-up5'
     };
 
 })(jQuery);
+
+
 
 (function ($) {
     $.mobiscroll.i18n.zh = $.extend($.mobiscroll.i18n.zh, {

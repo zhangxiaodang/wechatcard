@@ -7,16 +7,16 @@ $(function () {
 	    param.confirmpassword = $("#confirmpassword").val();
 	    param.oldpassword = $("#oldpassword").val();
 	    
-	    if('' === param.oldpassword) {
-	        $.mAlert("原密码不可为空！");
+	    if(!check_pass(param.oldpassword)) {
+	        $.mAlert("原密码只能为6位数字！");
 	        return;
 	    }
-	    if('' === param.password) {
-	        $.mAlert("新密码不可为空！");
+	    if(!check_pass(param.password)) {
+	        $.mAlert("新密码只能为6位数字！");
 	        return;
 	    }
-	    if('' === param.confirmpassword) {
-	        $.mAlert("确认密码不可为空！");
+	    if(!check_pass(param.confirmpassword)) {
+	        $.mAlert("确认密码只能为6位数字！");
 	        return;
 	    }
 	    if(param.password != param.confirmpassword) {
