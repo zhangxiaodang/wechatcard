@@ -20,9 +20,7 @@ $(function() {
 			data = JSON.parse(data);
 			$.mAlert(data.msg);
 			if (data.state === '000000') {
-				// 修改成功，跳转页面
-				
-				$('#mobile').val(param.newphone);
+				$('#old_mobile').val(param.newphone);
 				$("#newphone").val('');
 				$("#yzm").val('');
 			}

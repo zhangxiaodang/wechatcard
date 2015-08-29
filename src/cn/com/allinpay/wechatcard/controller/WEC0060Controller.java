@@ -68,6 +68,9 @@ public class WEC0060Controller extends BaseController {
 				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
 			}
 
+			// todo-zhangxd
+			//strOpenID = "asdfasdfoo";
+
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.equals("")) {
 				logger.info("未获取到openid!");

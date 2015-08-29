@@ -61,9 +61,9 @@ public class WebConstantValue {
 	
 
 	/** 修改手机号成功 **/
-	public static final String CHANGE_PHONE_SUCCES = "修改手机号成功！";
+	public static final String CHANGE_PHONE_SUCCES = "手机号修改成功！";
 	/** 修改手机号失败 **/
-	public static final String CHANGE_PHONE_ERROR = "修改手机号失败！";
+	public static final String CHANGE_PHONE_ERROR = "手机号修改失败！";
 	
 	/** 重新绑定成功 **/
 	public static final String CHANGE_OPENID_SUCCES = "重新绑定成功！";
