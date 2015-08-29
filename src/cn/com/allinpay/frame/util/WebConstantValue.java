@@ -17,6 +17,18 @@ public class WebConstantValue {
 	/** Session中的username KEY. */
 	public static final String SESSION_KEY_USERNAME = "username";
 	
+	/** 会员卡图片 **/
+	public static final String CARD_IMG = "resources/images/u5_normal.jpg";
+	
+	/** 条形码图片 **/
+	public static final String TXM_IMG = "resources/images/txm.png";
+	
+	/** 二维码图片 **/
+	public static final String EW_IMG = "resources/images/ewm.jpg";
+	
+	/** 优惠券图片图片 **/
+	public static final String COUPON_IMG = "resources/images/u5_normal.jpg";
+	
 	/** http请求状态  000000成功 **/
 	public static final String HTTP_OK = "000000";
 	

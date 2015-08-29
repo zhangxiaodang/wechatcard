@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.wechatcard.dao.WEC0041Dao;
+import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.dao.WEC0042Dao;
 import cn.com.allinpay.wechatcard.model.WEC0034Model;
 import cn.com.allinpay.wechatcard.service.IWEC0042Service;
@@ -43,6 +43,9 @@ public class WEC0042ServiceImp extends BaseService implements IWEC0042Service {
 		paramMap.put(BEAN, wec0041View);
 		// 获取优惠券信息
 		Map<String, Object> coupon_info = wec_0042_Dao.get_coupon(paramMap);
+		// todo-zhangxd
+		// 如果有空图片地址的话，给一个默认的图片地址。
+		coupon_info = WebUtil.test_set_null_coupon_img_map(coupon_info);
 		
 		// 返回前台提示信息
 		WEC0034Model resultModel = new WEC0034Model();

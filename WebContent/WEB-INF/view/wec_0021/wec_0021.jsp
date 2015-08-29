@@ -38,11 +38,11 @@
                 <h4>请输入6位开卡密码</h4>
                 <div class="input-group">
                     <span class="input-group-addon" for="new_card_psd1"><span class="red-text">* </span>密码：</span>
-                    <input type="password" id="new_card_psd1" class="form-control" aria-describedby="basic-addon1">
+                    <input type="password" id="new_card_psd1" class="form-control" aria-describedby="basic-addon1" maxlength="6">
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" for="new_card_psd2"><span class="red-text">* </span>确认密码：</span>
-                    <input type="password" id="new_card_psd2" class="form-control" aria-describedby="basic-addon1">
+                    <input type="password" id="new_card_psd2" class="form-control" aria-describedby="basic-addon1" maxlength="6">
                 </div>
 
                 <div class="form-group">

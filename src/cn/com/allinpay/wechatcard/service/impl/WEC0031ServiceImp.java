@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
+import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.dao.WEC0031Dao;
 import cn.com.allinpay.wechatcard.model.WEC0031Model;
 import cn.com.allinpay.wechatcard.service.IWEC0031Service;
@@ -41,7 +42,7 @@ public class WEC0031ServiceImp extends BaseService implements IWEC0031Service {
 		paramMap.put("merbercardid", membercardid);
 		// 获取会员卡信息
 		Map<String, Object> card_info = wec_0031_Dao.get_card(paramMap);
-		
+		card_info = WebUtil.test_set_null_card_img_map(card_info);
 		// 调用接口查询卡的余额  todo
 		card_info.put("money", 111);
 		// 返回前台提示信息

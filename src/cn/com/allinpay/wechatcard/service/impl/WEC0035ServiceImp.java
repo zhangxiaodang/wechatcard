@@ -3,6 +3,7 @@ package cn.com.allinpay.wechatcard.service.impl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
@@ -33,6 +34,7 @@ public class WEC0035ServiceImp extends BaseService implements IWEC0035Service {
 	 * 卡密码修改的service
 	 */
 	@Override
+	@Transactional(rollbackFor = { Exception.class, RuntimeException.class })
 	public WEC0034Model change_pass(WEC0010View memberView) throws Exception {
 		logger.info("========================Service get_coupon Start==========================");
 		// 返回前台提示信息

@@ -7,3 +7,4 @@
 7.common.xml中getMemberIDByOpenID使用了limit，这个是mysql的要换成oracle的方式
 8.wec0030Mapper.xml中使用了格式化时间的
 9.优惠券的二维码图片和卡的图片都是写死的。
+10.将数据的字段都检查一遍。所有的字段必须是大写，要不然查询报错

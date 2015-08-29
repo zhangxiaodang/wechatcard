@@ -30,28 +30,38 @@
         <div class="col-md-12">
 
             <header class="jumbotron">
-                <img src="resources/images/u5_normal.jpg" alt=""/>
+                <img src="${membercard.card_info.merbercardimg}"  data-toggle="modal" data-target=".bs-example-modal-lg" alt=""/>
                 <h1>798.41</h1>
                 <p >卡号： ${membercard.card_info.dzcardno}</p>
             </header>
 
         </div>
     </div>
-	<div class="row" id="ersanwei">
-        <div class="col-md-12">
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
 
-            <ul class="list-group" id="txm">
-                <li class="list-group-item">
-                    <img src="resources/images/txm.png" alt=""/>
-                </li>
-                <li class="list-group-item">
-                     ${membercard.card_info.dzcardno}
-                </li>
-                <li class="list-group-item">
-                    <img src="resources/images/ewm.jpg" />
-                </li>
-            </ul>
 
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">将本页面展示给店员即可使用</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="jumbotron">
+                        <ul class="list-group" id="txm">
+                            <li class="list-group-item">
+                                <img src="${membercard.card_info.merbercardtxm}" alt=""/>
+                            </li>
+                            <li class="list-group-item">
+                                ${membercard.card_info.dzcardno}
+                            </li>
+                            <li class="list-group-item">
+                                <img src="${membercard.card_info.cardcode}" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">

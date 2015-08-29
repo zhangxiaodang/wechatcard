@@ -5,16 +5,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
-import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.frame.util.WebJsonUtil;
 import cn.com.allinpay.wechatcard.model.WEC0034Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
-import cn.com.allinpay.wechatcard.service.IWEC0041Service;
 import cn.com.allinpay.wechatcard.service.IWEC0042Service;
 import cn.com.allinpay.wechatcard.view.WEC0041View;
 

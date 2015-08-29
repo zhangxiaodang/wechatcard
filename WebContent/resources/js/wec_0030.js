@@ -2,7 +2,7 @@ $(function () {
 
     $("#old_card_bind").on('click', function (evt) {
     	window.location.href = 'wec0022';
-    })
+    });
 
     
     $.post('get_card_coupon',function(data) {

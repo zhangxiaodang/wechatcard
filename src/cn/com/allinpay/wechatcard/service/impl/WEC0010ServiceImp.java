@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
@@ -51,6 +52,7 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 	 * 注册的service
 	 */
 	@Override
+	@Transactional(rollbackFor = { Exception.class, RuntimeException.class })
 	public WEC0010Model regist(WEC0010View memberView) throws Exception {
 		logger.info("========================Service regist Start==========================");
 

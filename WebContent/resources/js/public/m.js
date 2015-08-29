@@ -31,7 +31,6 @@
             }
             if(_this.parent().css("position") == "relative"){
                 var _thisRelative = _this.parent();
-
                     def.w = _thisRelative.offset().left + (_thisRelative.width()/2);
             }
             _this.css("position","fixed");

@@ -15,7 +15,3 @@
     transition: display 0.3s ease-in-out;
     -webkit-transition: display 0.3s ease-in-out;
 }
-
-#dxlBackgroundDiv {
-    background-color: rgba(0,0,0,.2)
-}

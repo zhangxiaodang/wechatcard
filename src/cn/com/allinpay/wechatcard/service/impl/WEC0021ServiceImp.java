@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
@@ -38,6 +39,7 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 	 * 注册的service
 	 */
 	@Override
+	@Transactional(rollbackFor = { Exception.class, RuntimeException.class })
 	public WEC0010Model applyNewCard(WEC0010View memberView) throws Exception {
 		logger.info("========================Service applyNewCard Start==========================");
 
@@ -79,6 +81,8 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		wec0021View.setCardmode("01");
 		// 会员卡名称
 		wec0021View.setCardname("优惠金卡");
+		// 会员卡图片
+		wec0021View.setMerbercardimg(WebConstantValue.CARD_IMG);
 
 		paramMap.put(BEAN, wec0021View);
 		// 生成本地的会员卡号

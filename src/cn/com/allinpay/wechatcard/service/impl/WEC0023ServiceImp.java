@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.allinpay.frame.model.BaseModel;
 import cn.com.allinpay.frame.service.BaseService;
@@ -40,6 +41,7 @@ public class WEC0023ServiceImp extends BaseService implements IWEC0023Service {
 	 * 重新绑定service
 	 */
 	@Override
+	@Transactional(rollbackFor = { Exception.class, RuntimeException.class })
 	public BaseModel change_openid(WEC0023View wec0023View) throws Exception {
 		logger.info("========================Service change_openid Start==========================");
 

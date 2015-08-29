@@ -11,7 +11,6 @@ import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
-import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.model.WEC0034Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0034Service;
