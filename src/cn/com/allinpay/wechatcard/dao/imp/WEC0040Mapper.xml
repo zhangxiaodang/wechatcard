@@ -13,8 +13,9 @@
 		and a.merchantid = c.merchantid
 		and a.memberopenid = #{bean.openid} 
 		and c.urlflag = #{bean.urlflag}
-		and b.coupontype = '00'
+		and b.coupontype = '01'
 	</select> -->
+	<!-- 查询会员未领用的优惠券 oracle -->
 	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
 		select b.couponid as "couponid",b.memberid as "memberid",b.merchantcouponid as "merchantcouponid",b.merchantid as "merchantid",b.membercouponstate as "membercouponstate",b.couponcode as "couponcode",b.couponsj as "couponsj",b.bz as "bz",b.couponname as "couponname",
 		couponimg as "couponimg",to_char(b.starttime,'YYYY-MM-DD') as "starttime",to_char(b.endtime,'YYYY-MM-DD') as "endtime"
@@ -24,7 +25,7 @@
 		and a.merchantid = c.merchantid
 		and a.memberopenid = #{bean.openid} 
 		and c.urlflag = #{bean.urlflag}
-		and b.coupontype = '00'
+		and b.coupontype = '01'
 	</select>
 </mapper>
 	

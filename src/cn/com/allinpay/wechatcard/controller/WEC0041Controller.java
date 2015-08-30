@@ -26,7 +26,7 @@ import cn.com.allinpay.wechatcard.view.WEC0041View;
 public class WEC0041Controller extends BaseController {
 
 	/** 页面URL. */
-	private static String WEC0034_VIEW = "wec_0041/wec_0041";
+	private static String WEC0041_VIEW = "wec_0041/wec_0041";
 
 	/** 优惠券领取service. */
 	@Autowired
@@ -36,14 +36,13 @@ public class WEC0041Controller extends BaseController {
 	private ICommonService commonService;
 
 	/**
-	 * 注册页面URL.
+	 * 优惠券领取URL.
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0041_INDEX, method = RequestMethod.GET)
 	public ModelAndView getPageIndex() {
 		ModelAndView mv = new ModelAndView();
-		// 获取手机号
+		// 优惠券id
 		try {
-
 			String couponid = super.request.getParameter("couponid");
 			// urlFlag
 			String strUrlFlag = (String)super.session.getAttribute(SESSION_KEY_URLFLAG);
@@ -56,7 +55,7 @@ public class WEC0041Controller extends BaseController {
 			WEC0034Model coupon = wec0041Service.get_coupon(wec0041View);
 			
 			mv.addObject("coupon", coupon);
-			mv.setViewName(WEC0034_VIEW);
+			mv.setViewName(WEC0041_VIEW);
 		} catch (Exception e) {
 			logger.info("异常：\n" + e.getMessage());
 			mv.addObject("errmsg", "打开页面时异常");

@@ -22,11 +22,8 @@ span.red-text {
     text-align: right;
 }
 
-#user-reg>.input-group:nth-child(2) {
-    padding-right: 0px;
-}
-#user-reg>.input-group:nth-child(4) {
-    padding-right: 108px;
+#user-reg>.input-group:nth-child(3) {
+    padding-right: 106px;
 }
 
 #user-reg>#get_code {
@@ -44,6 +41,6 @@ span.red-text {
 }
 
 #user-reg #tijiao {
-    width: 98%;
+    width: 80%;
     letter-spacing: .25em;
 }

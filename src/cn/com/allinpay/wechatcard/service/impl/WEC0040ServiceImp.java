@@ -53,7 +53,7 @@ public class WEC0040ServiceImp extends BaseService implements IWEC0040Service {
 		resultModel.setCoupon_list(coupon_info);
 		resultModel.setState(WebConstantValue.HTTP_OK);
 		if(coupon_info.size() == 0){
-			resultModel.setMsg(WebConstantValue.NULL_COUPON);
+			resultModel.setMsg(WebConstantValue.NULL_MERCHANTCOUPON);
 		}
 
 		logger.info("========================Service get_coupon End==========================");

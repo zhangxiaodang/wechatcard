@@ -33,6 +33,8 @@
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0041Mapper.xml" />
 		<!-- 优惠券领取完毕 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0042Mapper.xml" />
+		<!-- 优惠券列表【商家优惠券】 -->
+		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0043Mapper.xml" />
 		<!-- 我要付款 -->
 		<mapper resource="cn/com/allinpay/wechatcard/dao/imp/WEC0050Mapper.xml" />
 		<!-- 修改手机号 -->

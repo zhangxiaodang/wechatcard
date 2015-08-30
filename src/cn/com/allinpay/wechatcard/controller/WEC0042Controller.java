@@ -33,7 +33,7 @@ public class WEC0042Controller extends BaseController {
 	private ICommonService commonService;
 
 	/**
-	 * 注册页面URL.
+	 * 优惠券领取完毕URL.
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0042_INDEX, method = RequestMethod.GET)
 	public ModelAndView getPageIndex() {

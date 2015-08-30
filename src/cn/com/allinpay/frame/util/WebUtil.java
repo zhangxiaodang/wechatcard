@@ -55,10 +55,10 @@ public class WebUtil {
 		for(int i = 0; i < card_list.size(); i++){
 			String merbercardimg = (String) card_list.get(i).get("merbercardimg");
 			String merbercardtxm = (String) card_list.get(i).get("merbercardtxm");
-			if (merbercardimg == null || merbercardimg == ""){
+			if (merbercardimg == null || merbercardimg == "null" || merbercardimg == "" || "".equals(merbercardimg)){
 				card_list.get(i).put("merbercardimg", WebConstantValue.CARD_IMG);
 			}
-			if (merbercardtxm == null || merbercardtxm == ""){
+			if (merbercardtxm == null || merbercardtxm == "null" || merbercardtxm == "" || "".equals(merbercardtxm)){
 				card_list.get(i).put("merbercardtxm", WebConstantValue.TXM_IMG);
 			}
 		}
@@ -77,13 +77,13 @@ public class WebUtil {
 		String merbercardimg = (String) card_list.get("merbercardimg");
 		String merbercardtxm = (String) card_list.get("merbercardtxm");
 		String cardcode = (String) card_list.get("cardcode");
-		if (merbercardimg == null || merbercardimg == ""){
+		if (merbercardimg == null || merbercardimg == "null" || merbercardimg == "" || "".equals(merbercardimg)){
 			card_list.put("merbercardimg", WebConstantValue.CARD_IMG);
 		}
-		if (merbercardtxm == null || merbercardtxm == ""){
+		if (merbercardtxm == null || merbercardtxm == "null" || merbercardtxm == "" || "".equals(merbercardtxm)){
 			card_list.put("merbercardtxm", WebConstantValue.TXM_IMG);
 		}
-		if (cardcode == null || cardcode == ""){
+		if (cardcode == null || cardcode == "null" || cardcode == "" || "".equals(cardcode)){
 			card_list.put("cardcode", WebConstantValue.EW_IMG);
 		}
 		return card_list;
@@ -98,10 +98,10 @@ public class WebUtil {
 		for(int i = 0; i < coupon_list.size(); i++){
 			String merbercardimg = (String) coupon_list.get(i).get("couponimg");
 			String couponcode = (String) coupon_list.get(i).get("couponcode");
-			if (merbercardimg == null || merbercardimg == ""){
+			if (merbercardimg == null || merbercardimg == "null" || merbercardimg == "" || "".equals(merbercardimg)){
 				coupon_list.get(i).put("couponimg", WebConstantValue.COUPON_IMG);
 			}
-			if (couponcode == null || couponcode == ""){
+			if (couponcode == null || couponcode == "null" || couponcode == "" || "".equals(couponcode)){
 				coupon_list.get(i).put("couponcode", WebConstantValue.EW_IMG);
 			}
 		}
@@ -117,10 +117,10 @@ public class WebUtil {
 		String merbercardimg = (String) coupon_list.get("couponimg");
 		String couponcode = (String) coupon_list.get("couponcode");
 		
-		if (merbercardimg == null || merbercardimg == ""){
+		if (merbercardimg == null || merbercardimg == "null" || merbercardimg == "" || "".equals(merbercardimg)){
 			coupon_list.put("couponimg", WebConstantValue.COUPON_IMG);
 		}
-		if (couponcode == null || couponcode == ""){
+		if (couponcode == null || couponcode == "null" || couponcode == "" || "".equals(couponcode)){
 			coupon_list.put("couponcode", WebConstantValue.EW_IMG);
 		}
 		return coupon_list;

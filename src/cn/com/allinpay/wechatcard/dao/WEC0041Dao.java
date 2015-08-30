@@ -26,5 +26,13 @@ public interface WEC0041Dao {
 	 * @return
 	 */
 	public void collect_coupon(Map<String, Object> paramMap);
+	
+	/**
+	 * 优惠券添加dao
+	 * 
+	 * @param paraMap
+	 * @return
+	 */
+	public void add_coupon(Map<String, Object> paramMap);
 
 }

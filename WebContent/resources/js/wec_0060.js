@@ -1,19 +1,20 @@
 $(function() {
 	// 验证账户
-    $("#get_code").touchClick(function(){
-        var mobile = $("#mobile").val();
-        if (!mobile.isPhone()) {
-            $.mAlert("请输入有效的手机号码");
+	$("#get_code").touchClick(function(){
+        var newphone = $("#newphone").val();
+
+        if (!newphone.isPhone()) {
+            $.mAlert("请输入有效的新手机号");
             return;
         }
 
         $("#get_code>button").dxlCountdown({
             firstText: "发送验证码",
             sendText: "重新发送",
-            waitText: "s",
-            mobile: $("#mobile"),
+            waitText: "秒",
+            mobile: $("#newphone"),
             sendAction: function() {
-                sendCode($("#mobile").val(), $("#yzm"));
+                sendCode($("#newphone").val(), $("#yzm"));
             },
             sendError: function() {
                 $.mAlert("请输入有效的手机号码");
@@ -57,4 +58,22 @@ $(function() {
 			}
 		})
 	})
+	// 发送短信验证码
+    function sendCode(mobile, $focusDom) {
+        var getCodeBtn = $("#get_code>button");
+        getCodeBtn.prop('disabled', true);
+        $.dxlSmsSend({
+            mobile: mobile
+        }, function (data) {
+            if (data.code == 1) {
+                $.mAlert("验证码已发送，请注意查收");
+                $focusDom.focus();
+                setTimeout(function() {
+                    getCodeBtn.prop('disabled', false);
+                }, 60 * 1000);
+            } else {
+                $.mAlert( data['msg'] );
+            }
+        });
+    }
 })

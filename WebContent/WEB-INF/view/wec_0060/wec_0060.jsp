@@ -14,14 +14,16 @@
     <link href="resources/css/public/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/wec_0060.css" rel="stylesheet">
     <link href="resources/css/public/m.css" rel="stylesheet">
+    <link href="resources/css/public/mobiscroll.css" rel="stylesheet">
 
     <script src="resources/js/public/jquery.min.js"></script>
     <script src="resources/js/public/bootstrap.min.js"></script>
+    <script src="resources/js/public/mobiscroll.js"></script>
+    <script src="resources/js/public/common.js"></script>
     <script src="resources/js/public/m.js"></script>
     <script src="resources/js/wec_0060.js"></script>
 </head>
 <body>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -34,12 +36,12 @@
                     <span class="input-group-addon" for="newphone"><span class="red-text">* </span>新手机号：</span>
                     <input type="text" id="newphone" class="form-control" value="" placeholder="新手机号不可为空" aria-describedby="basic-addon1">
                 </div>
-                <div id="get_code"><button type="button" class="btn btn-info">获取验证码</button></div>
-                
-				<div class="input-group">
+                <div class="input-group">
                     <span class="input-group-addon" for="yzm"><span class="red-text">* </span>验证码：</span>
                     <input type="text" id="yzm" class="form-control" aria-describedby="basic-addon1">
                 </div>
+                <div id="get_code"><button type="button" class="btn btn-info">获取验证码</button></div>
+
                 <div class="form-group">
                     <div class="col-sm-12 tijiao">
                         <button id="tijiao" type="button" class="btn btn-primary btn-lg">修改</button>
@@ -49,6 +51,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

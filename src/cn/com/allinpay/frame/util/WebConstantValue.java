@@ -83,4 +83,24 @@ public class WebConstantValue {
 	public static final String COLLECT_SUCCESS = "领取成功！";
 	/** 没有优惠券 **/
 	public static final String NULL_COUPON = "亲，您没有未领取的优惠券奥！";
+	/** 商家没有优惠券 **/
+	public static final String NULL_MERCHANTCOUPON = "亲，您没有优惠券奥！";
+	/** 商家优惠券不存在 **/
+	public static final String NULL_MERCHANTCOUPON_CAP = "亲，优惠券已经下架了奥！";
+	
+	// 优惠券状态--未领用
+	public static final String WLY = "00";
+	// 优惠券状态--已领用
+	public static final String YLY = "01";
+	// 优惠券状态--已使用
+	public static final String YSY = "02";
+	// 优惠券状态--已过期
+	public static final String YGQ = "03";
+	
+	// 优惠券类别--现金券
+	public static final String XJQ = "00";
+	// 优惠券状态--折扣券
+	public static final String ZKQ = "01";
+	// 优惠券状态--实物券
+	public static final String SWQ = "02";
 }

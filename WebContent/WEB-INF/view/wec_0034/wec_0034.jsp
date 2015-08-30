@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>优惠券领取</title>
+    <title>优惠券详情</title>
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-touch-fullscreen" content="yes"/>
@@ -13,16 +13,15 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width">
     <link href="resources/css/public/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/wec_0041.css" rel="stylesheet">
+    <link href="resources/css/wec_0034.css" rel="stylesheet">
     <link href="resources/css/public/m.css" rel="stylesheet">
 
     <script src="resources/js/public/jquery.min.js"></script>
     <script src="resources/js/public/bootstrap.min.js"></script>
     <script src="resources/js/public/m.js"></script>
-    <script src="resources/js/wec_0041.js"></script>
+    <script src="resources/js/wec_0034.js"></script>
     <script type="text/javascript">
-    	var couponid = "${coupon.coupon_info.merchantcouponid}";
-    	var ly_zt = "${coupon.coupon_info.ly_zt}";
+    	var couponid = "${coupon.coupon_info.couponid}";
     </script>
 </head>
 <body>
@@ -43,14 +42,8 @@
 
             <h1>${coupon.coupon_info.couponname}</h1>
             <p>${coupon.coupon_info.couponcontent}</p>
-            <p>有限期：${coupon.coupon_info.couponkssj}至${coupon.coupon_info.couponjssj}</p>
+            <p>有限期：${coupon.coupon_info.starttime}至${coupon.coupon_info.endtime}</p>
             <p>适用门店：全国各门店</p>
-
-            <div class="form-group">
-                <div class="col-sm-12 tijiao">
-                    <button id="tijiao" type="button" class="btn btn-primary btn-lg">领取</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

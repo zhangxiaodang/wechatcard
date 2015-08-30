@@ -1,12 +1,17 @@
 package cn.com.allinpay.wechatcard.view;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
+import cn.com.allinpay.frame.view.BaseView;
+
 /**
  * 
  * 优惠券
  * @author margin
  *
  */
-public class CouponView {
+public class CouponView extends BaseView{
 	
 	// 会员优惠券标识id
 	private String couponid = "";
@@ -21,9 +26,21 @@ public class CouponView {
 	// 优惠券的二维码信息
 	private String couponcode = "";
 	// 申领优惠券时间
-	private String couponsj = "";
+	private Timestamp couponsj = null;
 	// 备注信息
 	private String bz = "";
+	// 优惠券的有效开始时间
+	private Date starttime = null;
+	// 优惠券的有效结束时间
+	private Date endtime = null;
+	// 优惠券名称
+	private String couponname = "";
+	// 优惠券类别
+	private String coupontype = "";
+	// 优惠券图片
+	private String couponimg = "";
+	// 优惠券内容
+	private String couponcontent = "";
 	public String getCouponid() {
 		return couponid;
 	}
@@ -60,10 +77,10 @@ public class CouponView {
 	public void setCouponcode(String couponcode) {
 		this.couponcode = couponcode;
 	}
-	public String getCouponsj() {
+	public Timestamp getCouponsj() {
 		return couponsj;
 	}
-	public void setCouponsj(String couponsj) {
+	public void setCouponsj(Timestamp couponsj) {
 		this.couponsj = couponsj;
 	}
 	public String getBz() {
@@ -73,6 +90,40 @@ public class CouponView {
 		this.bz = bz;
 	}
 	
-	
-
+	public Date getStarttime() {
+		return starttime;
+	}
+	public void setStarttime(Date starttime) {
+		this.starttime = starttime;
+	}
+	public Date getEndtime() {
+		return endtime;
+	}
+	public void setEndtime(Date endtime) {
+		this.endtime = endtime;
+	}
+	public String getCouponname() {
+		return couponname;
+	}
+	public void setCouponname(String couponname) {
+		this.couponname = couponname;
+	}
+	public String getCoupontype() {
+		return coupontype;
+	}
+	public void setCoupontype(String coupontype) {
+		this.coupontype = coupontype;
+	}
+	public String getCouponimg() {
+		return couponimg;
+	}
+	public void setCouponimg(String couponimg) {
+		this.couponimg = couponimg;
+	}
+	public String getCouponcontent() {
+		return couponcontent;
+	}
+	public void setCouponcontent(String couponcontent) {
+		this.couponcontent = couponcontent;
+	}
 }

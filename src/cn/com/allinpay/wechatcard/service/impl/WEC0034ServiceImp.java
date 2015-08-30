@@ -13,7 +13,7 @@ import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.dao.WEC0034Dao;
 import cn.com.allinpay.wechatcard.model.WEC0034Model;
 import cn.com.allinpay.wechatcard.service.IWEC0034Service;
-import cn.com.allinpay.wechatcard.view.WEC0010View;
+import cn.com.allinpay.wechatcard.view.CouponView;
 
 /**
  * 
@@ -37,10 +37,10 @@ public class WEC0034ServiceImp extends BaseService implements IWEC0034Service {
 	 * 优惠券的service
 	 */
 	@Override
-	public WEC0034Model get_coupon(WEC0010View memberView) throws Exception {
+	public WEC0034Model get_coupon(CouponView coupon) throws Exception {
 		logger.info("========================Service get_coupon Start==========================");
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put(BEAN, memberView);
+		paramMap.put(BEAN, coupon);
 		// 获取优惠券信息
 		Map<String, Object> coupon_info = wec_0034_Dao.get_coupon(paramMap);
 		// todo-zhangxd

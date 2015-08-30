@@ -3,11 +3,29 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0034Dao">
 	
-	<!-- 查询优惠券信息 -->
+	<!-- 查询优惠券信息 mysql -->
+	<!-- <select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
+		select b.couponid as "couponid",b.memberid as "memberid",b.merchantcouponid as "merchantcouponid",b.merchantid as "merchantid",b.membercouponstate as "membercouponstate",b.couponcode as "couponcode",b.couponsj as "couponsj",b.bz as "bz",b.couponname as "couponname",
+		couponimg as "couponimg",date_format(b.starttime,'%Y-%m-%d') as "starttime",date_format(b.endtime,'%Y-%m-%d') as "endtime"
+		from member a, coupon b, merchant c
+		where a.memberid = b.memberid
+		and b.merchantid = c.merchantid
+		and a.merchantid = c.merchantid
+		and a.memberopenid = #{bean.openid} 
+		and c.urlflag = #{bean.urlflag}
+		and b.couponid = #{bean.couponid}
+	</select> -->
+	<!-- oracle -->
 	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
-		select couponid as "couponid",memberid as "memberid",merchantcouponid as "merchantcouponid",
-		merchantid as "merchantid",membercouponstate as "membercouponstate",couponcode as "couponcode",couponsj as "couponsj",bz as "bz" from coupon
-		where memberid = #{bean.memberid} 
+		select b.couponid as "couponid",b.memberid as "memberid",b.merchantcouponid as "merchantcouponid",b.merchantid as "merchantid",b.membercouponstate as "membercouponstate",b.couponcode as "couponcode",b.couponsj as "couponsj",b.bz as "bz",b.couponname as "couponname",
+		couponimg as "couponimg",to_char(b.starttime,'YYYY-MM-DD') as "starttime",to_char(b.endtime,'YYYY-MM-DD') as "endtime"
+		from member a, coupon b, merchant c
+		where a.memberid = b.memberid
+		and b.merchantid = c.merchantid
+		and a.merchantid = c.merchantid
+		and a.memberopenid = #{bean.openid} 
+		and c.urlflag = #{bean.urlflag}
+		and b.couponid = #{bean.couponid}
 	</select>
 	
 </mapper>

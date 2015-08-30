@@ -49,6 +49,10 @@ $(function () {
             	var id = this.id.split("_")[1];
             	card_click(id);
             })
+            $("#quan [id^=coupon_]").click(function(){
+            	var id = this.id.split("_")[1];
+            	coupon_click(id);
+            })
         } else {
             $.mAlert( data['msg'] );
         }
@@ -56,5 +60,8 @@ $(function () {
     
     function card_click(id){
     	window.location.href = 'wec0031?membercardid='+id;
+    }
+    function coupon_click(id){
+    	window.location.href = 'wec0034?couponid='+id;
     }
 });

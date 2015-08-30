@@ -1,6 +1,6 @@
 $(function () {
 
-    // 验证账户
+	// 验证账户
     $("#get_code").touchClick(function(){
         var mobile = $("#mobile").val();
         if (!mobile.isPhone()) {
@@ -11,7 +11,7 @@ $(function () {
         $("#get_code>button").dxlCountdown({
             firstText: "发送验证码",
             sendText: "重新发送",
-            waitText: "s",
+            waitText: "秒",
             mobile: $("#mobile"),
             sendAction: function() {
                 sendCode($("#mobile").val(), $("#yzm"));

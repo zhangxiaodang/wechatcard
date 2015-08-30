@@ -5,16 +5,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
-import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.frame.util.WebJsonUtil;
 import cn.com.allinpay.wechatcard.model.WEC0034Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0034Service;
-import cn.com.allinpay.wechatcard.view.WEC0010View;
+import cn.com.allinpay.wechatcard.view.CouponView;
 
 /**
  * 优惠券信息Controller.
@@ -38,31 +36,37 @@ public class WEC0034Controller extends BaseController {
 	 * 注册页面URL.
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0034_INDEX, method = RequestMethod.GET)
-	public String getPageIndex() {
-		
-		// 返回
-		return WEC0034_VIEW;
-	}
-
-	/**
-	 * 优惠券信息.
-	 */
-	@RequestMapping(value = WebConstantUrlValue.WEC0031_GET_COUPON, method = RequestMethod.GET, produces = WebConstantValue.PRODUCE_TEXT)
-	@ResponseBody
-	public String get_coupon(WEC0010View memberView) {
-		logger.info("========================Controller get_coupon Start==========================");
-		logger.info(memberView);
-		WEC0034Model resultModel = new WEC0034Model();
+	public ModelAndView getPageIndex() {
+		// 商户标识
+		String strUrlFlag = "";
+		// openid
+		String strOpenID = "";
+		// 返回值
+		ModelAndView mv = new ModelAndView();
+		CouponView coupon = new CouponView();
 		try {
+			String couponid = super.request.getParameter("couponid");
+			// urlFlag
+			strUrlFlag = (String) super.session
+					.getAttribute(SESSION_KEY_URLFLAG);
+			// OpenID
+			strOpenID = (String) super.session
+					.getAttribute(SESSION_KEY_OPENID);
+			// URLFlag
+			coupon.setUrlflag(strUrlFlag);
+			coupon.setOpenid(strOpenID);
+			coupon.setCouponid(couponid);
 			// 调用注册的service
-			resultModel = wec0034Service.get_coupon(memberView);
-		} catch (Exception e) {
-			logger.info("========================Exception get_coupon Start==========================");
-			e.printStackTrace();
+			WEC0034Model resultModel = wec0034Service.get_coupon(coupon);
+			mv.addObject("coupon", resultModel);
 			
-			return WebJsonUtil.bean2Json(getSysErrorModel());
+			mv.setViewName(WEC0034_VIEW);
+		} catch (Exception e) {
+			logger.info("异常：\n" + e.getMessage());
+			mv.addObject("errmsg", "打开页面时异常");
+			mv.setViewName(WebConstantUrlValue.WEC_ERROR);
 		}
-		logger.info("========================Controller get_coupon End==========================");
-		return WebJsonUtil.bean2Json(resultModel);
+		// 返回
+		return mv;
 	}
 }

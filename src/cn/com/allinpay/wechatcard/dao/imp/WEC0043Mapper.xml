@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0041Dao">
+<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0043Dao">
 	
-	<!-- 查询优惠券信息 mysql -->
-	<!-- <select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
-		select a.merchantcouponid as "merchantcouponid",a.merchantid as "merchantid",d.itemvalue as "couponclass",a.couponclass as "couponclass_code",
+	<!-- 查询商家的优惠券 mysql -->
+	<!-- <select id="get_merchantcoupon" parameterType="java.util.Map" resultType="java.util.Map">
+		select a.merchantcouponid as "merchantcouponid",a.merchantid as "merchantid",d.itemvalue as "couponclass",
 		a.couponvalid as "couponvalid",date_format(a.couponkssj,'%Y-%m-%d') as "couponkssj",date_format(a.couponjssj,'%Y-%m-%d') as "couponjssj",a.couponcontent as "couponcontent",
 		c.itemvalue as "merchantcouponstate",a.bz as "bz",a.couponname as "couponname",a.couponimg  as "couponimg"
 		from merchantcoupon a, merchant b, selectoptions c, selectoptions d
@@ -15,11 +15,10 @@
 		and c.itemtype = '1004'
 		and a.couponclass = d.itemcode
 		and d.itemtype = '1005'
-		and a.merchantcouponid = #{bean.couponid}
 	</select> -->
-	<!-- 查询优惠券信息 oracle -->
-	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
-		select a.merchantcouponid as "merchantcouponid",a.merchantid as "merchantid",d.itemvalue as "couponclass",a.couponclass as "couponclass_code",
+	<!-- 查询商家的优惠券 oracle -->
+	<select id="get_merchantcoupon" parameterType="java.util.Map" resultType="java.util.Map">
+		select a.merchantcouponid as "merchantcouponid",a.merchantid as "merchantid",d.itemvalue as "couponclass",
 		a.couponvalid as "couponvalid",to_char(a.couponkssj,'YYYY-MM-DD') as "couponkssj",to_char(a.couponjssj,'YYYY-MM-DD') as "couponjssj",a.couponcontent as "couponcontent",
 		c.itemvalue as "merchantcouponstate",a.bz as "bz",a.couponname as "couponname",a.couponimg  as "couponimg"
 		from merchantcoupon a, merchant b, selectoptions c, selectoptions d
@@ -29,15 +28,6 @@
 		and c.itemtype = '1004'
 		and a.couponclass = d.itemcode
 		and d.itemtype = '1005'
-		and a.merchantcouponid = #{bean.couponid}
-	</select>
-	
-	<!-- 添加优惠券 -->
-	<select id="add_coupon" parameterType="java.util.Map" >
-		insert into coupon (couponid,memberid,merchantcouponid,merchantid,membercouponstate,couponcode
-		,couponsj,bz,starttime,endtime,couponname,coupontype,couponimg,couponcontent)
-		values(#{bean.couponid},#{bean.memberid},#{bean.merchantcouponid},#{bean.merchantid},#{bean.membercouponstate},#{bean.couponcode
-		},#{bean.couponsj},#{bean.bz},#{bean.starttime},#{bean.endtime},#{bean.couponname},#{bean.coupontype},#{bean.couponimg},#{bean.couponcontent})
 	</select>
 	
 </mapper>
