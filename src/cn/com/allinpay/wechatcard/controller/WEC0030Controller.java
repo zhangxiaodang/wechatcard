@@ -66,7 +66,7 @@ public class WEC0030Controller extends BaseController {
 				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
 			}
 			// todo-zhangxd
-			// strOpenID = "asdfasdfoo";
+			 strOpenID = "wwasdfasdfoo";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.isEmpty()) {
@@ -78,7 +78,18 @@ public class WEC0030Controller extends BaseController {
 				super.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
 				logger.info("用户openid:" + strOpenID);
 
-				mv.setViewName(WEC0030_VIEW);
+				// 是否注册
+				boolean isRegister = this.commonService.isRegister(strUrlFlag,
+						strOpenID);
+
+				// 已注册时
+				if (isRegister) {
+					// 返回我的卡包页面
+					mv.setViewName(WEC0030_VIEW);
+				} else {
+					// 返回注册页面
+					mv.setViewName("wec_0010/wec_0010");
+				}
 			}
 		} catch (Exception e) {
 			logger.info("异常：\n" + e.getMessage());
