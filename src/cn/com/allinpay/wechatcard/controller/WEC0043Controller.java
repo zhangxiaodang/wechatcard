@@ -67,9 +67,9 @@ public class WEC0043Controller extends BaseController {
 				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
 			}
 			logger.info("zhangxd取得的openid为:" + strOpenID);
-			
+
 			// todo-zhangxd
-//			strOpenID = "asdfasdfoo";
+			strOpenID = "asdfasdfoo";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.isEmpty()) {
@@ -109,7 +109,7 @@ public class WEC0043Controller extends BaseController {
 					.getAttribute(SESSION_KEY_OPENID);
 			memberView.setOpenid(strOpenID);
 			memberView.setUrlflag(strUrlFlag);
-			// 调用注册的service 
+			// 调用注册的service
 			resultModel = wec0043Service.get_merchantcoupon(memberView);
 		} catch (Exception e) {
 			logger.info("========================Exception merchantcoupon_list Start==========================");

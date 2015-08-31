@@ -75,7 +75,7 @@ public class WEC0043ServiceImp extends BaseService implements IWEC0043Service {
 		resultModel.setMerchantcoupon_list(coupon_info);
 		resultModel.setState(WebConstantValue.HTTP_OK);
 		if(coupon_info.size() == 0){
-			resultModel.setMsg(WebConstantValue.NULL_MERCHANTCOUPON);
+			resultModel.setMsg("亲，我们暂时还没有优惠券！");
 		}
 
 		logger.info("========================Service get_merchantcoupon End==========================");

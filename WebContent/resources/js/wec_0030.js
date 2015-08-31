@@ -24,7 +24,7 @@ $(function () {
                         '<h4 class="list-group-item-heading">'+ card_list[i]['cardname'] +'</h4>' +
                         '<p class="list-group-item-text">储值卡</p>' +
                         '</div>' +
-                        '<em>林清轩会员储值卡，会员专享活动</em>' +
+                        '<em><font color="#000000">会员储值卡，会员专享活动</font></em>' +
                     '</a>';
                 }
 
