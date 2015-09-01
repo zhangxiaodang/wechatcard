@@ -30,8 +30,8 @@
             <div id="my-card">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#ka" aria-controls="ka" role="tab" data-toggle="tab">卡</a></li>
-                    <li role="presentation"><a href="#quan" aria-controls="quan" role="tab" data-toggle="tab">券</a></li>
+                    <li role="presentation" class="active"><a href="#ka" aria-controls="ka" role="tab" data-toggle="tab">会员卡</a></li>
+                    <li role="presentation"><a href="#quan" aria-controls="quan" role="tab" data-toggle="tab">优惠券</a></li>
                 </ul>
 
                 <!-- Tab panes -->

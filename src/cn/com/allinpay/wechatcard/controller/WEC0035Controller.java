@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.model.BaseModel;
@@ -39,10 +40,23 @@ public class WEC0035Controller extends BaseController {
 	 * 修改卡密码URL.
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0035_INDEX, method = RequestMethod.GET)
-	public String getPageIndex() {
-		
+	public ModelAndView getPageIndex() {
+		// 返回值
+		ModelAndView mv = new ModelAndView();
+
+		try {
+			String dzcardno = super.request.getParameter("dzcardno");
+			mv.addObject("dzcardno", dzcardno);
+			// 返回修改手机号页面
+			mv.setViewName(WEC0035_VIEW);
+		} catch (Exception e) {
+			logger.info("异常：\n" + e.getMessage());
+			mv.addObject("errmsg", "打开页面时异常");
+			mv.setViewName(WebConstantUrlValue.WEC_ERROR);
+		}
+
 		// 返回
-		return WEC0035_VIEW;
+		return mv;
 	}
 
 	/**

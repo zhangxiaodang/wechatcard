@@ -27,7 +27,7 @@
     <div class="panel-body">
         <div class="input-group">
             <span class="input-group-addon" for="new_card_psd1"><span class="red-text">* </span>卡&nbsp;&nbsp;&nbsp;号：</span>
-            <input type="text" id="new_card_psd1" class="form-control" disabled="disabled" aria-describedby="basic-addon1" maxlength="6" value="80076431">
+            <input type="text" id="new_card_psd1" class="form-control" disabled="disabled" aria-describedby="basic-addon1" value="${dzcardno}">
         </div>
         <div class="input-group" style="margin-top:20px;">
             <span class="input-group-addon" for="oldpassword"><span class="red-text">* </span>原密码：</span>
@@ -45,7 +45,7 @@
     </div>
     <div class="form-group" style="margin-top:40px;">
         <div class="col-sm-12">
-            <button id="tijiao" type="button" class="btn btn-primary btn-lg btn-block">确定修改</button>
+            <button id="tijiao" type="button" class="btn btn-primary btn-lg btn-block">提交</button>
         </div>
     </div>
 </div>

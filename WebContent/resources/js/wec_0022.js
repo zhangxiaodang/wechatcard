@@ -18,7 +18,7 @@ $(function () {
         }
         
         if(!check_pass(old_card_psd)) {
-            $.mAlert("密码只能为6位数字！");
+            $.mAlert("请输入6位数字密码！");
             return;
         }
 

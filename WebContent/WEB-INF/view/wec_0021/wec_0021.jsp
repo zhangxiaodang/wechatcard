@@ -17,6 +17,7 @@
 
     <script src="resources/js/public/jquery.min.js"></script>
     <script src="resources/js/public/bootstrap.min.js"></script>
+    <script src="resources/js/public/common.js"></script>
     <script src="resources/js/public/m.js"></script>
     <script src="resources/js/wec_0021.js"></script>
 </head>
@@ -32,7 +33,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" for="yzm"><span class="red-text">* </span>验证码：</span>
-                    <input type="text" id="yzm" class="form-control" aria-describedby="basic-addon1">
+                    <input type="text" id="yzm" class="form-control" aria-describedby="basic-addon1"  maxlength="6">
                 </div>
                 <div id="get_code"><button type="button" class="btn btn-info">获取验证码</button></div>
                 <h4>请输入6位开卡密码</h4>

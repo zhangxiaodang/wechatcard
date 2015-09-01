@@ -108,11 +108,11 @@ $(function () {
             var new_card_psd1 = $('#new_card_psd1').val();
             var new_card_psd2 = $('#new_card_psd2').val();
             if(!check_pass(new_card_psd1)) {
-                $.mAlert("密码只能为6位数字！");
+                $.mAlert("请输入6位数字开卡密码！");
                 return;
             }
             if(!check_pass(new_card_psd2)) {
-                $.mAlert("确认密码只能为6位数字！");
+                $.mAlert("请输入6位数字开卡确认密码！");
                 return;
             }
             if(new_card_psd1 != new_card_psd2) {
@@ -138,7 +138,7 @@ $(function () {
             }
 
             if(!check_pass(old_card_psd)) {
-                $.mAlert("密码只能为6位数字！");
+                $.mAlert("请输入6位数字密码！");
                 return;
             }
 

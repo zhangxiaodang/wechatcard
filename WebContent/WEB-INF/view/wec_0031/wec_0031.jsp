@@ -20,7 +20,7 @@
     <script src="resources/js/public/m.js"></script>
     <script src="resources/js/wec_0031.js"></script>
     <script type="text/javascript">
-    	var membercard = ${membercard};
+    	var dzcardno = "${membercard.card_info.dzcardno}";
     </script>
 </head>
 <body>
@@ -76,10 +76,10 @@
                     <img src="resources/images/char-more.png" alt=""/>
                     我要充值
                 </li>
-                <li class="list-group-item" id="mycoupon">
+                <!-- <li class="list-group-item" id="mycoupon">
                     <img src="resources/images/char-more.png" alt=""/>
                     我的优惠券
-                </li>
+                </li> -->
                 <li class="list-group-item">
                     <img src="resources/images/char-more.png" alt=""/>
                     充值记录
@@ -91,14 +91,6 @@
                 <li class="list-group-item">
                     <img src="resources/images/char-more.png" alt=""/>
                     卡说明
-                </li>
-                <li class="list-group-item">
-                    <img src="resources/images/char-more.png" alt=""/>
-                    使用门店
-                </li>
-                <li class="list-group-item">
-                    <img src="resources/images/char-more.png" alt=""/>
-                    我要销卡
                 </li>
                 <li class="list-group-item">
                     服务电话：400 800 920

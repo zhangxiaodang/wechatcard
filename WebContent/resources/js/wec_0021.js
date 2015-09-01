@@ -36,20 +36,17 @@ $(function () {
             return;
         }
 
-//        if (!param.memberyzm || param.memberyzm.length != 6) {
-//            $.mAlert("验证码错误");
-//            return;
-//        }
-
-
-
-        // check
-        if('' === new_card_psd1) {
-            $.mAlert("密码不可为空！");
+        if (!param.memberyzm || param.memberyzm.length != 6) {
+            $.mAlert("验证码错误");
             return;
         }
-        if('' === new_card_psd2) {
-            $.mAlert("确认密码不可为空！");
+        
+        if(!check_pass(new_card_psd1)) {
+            $.mAlert("请输入6位数字开卡密码！");
+            return;
+        }
+        if(!check_pass(new_card_psd2)) {
+            $.mAlert("请输入6位数字开卡确认密码！");
             return;
         }
         if(new_card_psd1 != new_card_psd2) {
