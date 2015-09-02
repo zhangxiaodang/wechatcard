@@ -69,9 +69,11 @@
                     <!-- 申请新卡界面 -->
                     <div id="new_card" class="input-group">
                         <div class="panel panel-info">
+                        	<!--
                             <div class="panel-heading">
                                 <h3 class="panel-title">申请新卡</h3>
                             </div>
+                             -->
                             <div class="panel-body">
                                 <h4>请输入6位开卡密码</h4>
                                 <div class="input-group">
@@ -89,9 +91,11 @@
                     <!-- 申请新卡界面 -->
                     <div id="old_card" class="input-group">
                         <div class="panel panel-info">
+                        	<!--
                             <div class="panel-heading">
                                 <h3 class="panel-title">绑定旧卡</h3>
                             </div>
+                             -->
                             <div class="panel-body">
                                 <div class="input-group">
                                     <span class="input-group-addon" for="new_card_psd1"><span class="red-text">* </span>卡号：</span>
