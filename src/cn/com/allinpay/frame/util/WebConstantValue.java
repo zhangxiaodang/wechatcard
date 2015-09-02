@@ -38,6 +38,9 @@ public class WebConstantValue {
 	/** 添加会员卡失败 **/
 	public static final String ADD_CARD_ERROR = "对不起，您还不是会员，请注册后使用！";
 	
+	/** 开卡失败 **/
+	public static final String OPEN_CARD_ERROR = "开卡失败！";
+	
 	/** 注册失败 **/
 	public static final String GET_MERCHANT_ERROR = "对不起，您所在的商户状态异常！";
 	
@@ -70,6 +73,8 @@ public class WebConstantValue {
 	public static final String CHANGE_PASS_ERROR = "修改密码失败！";
 	/** 新密码和确认密码不一致 **/
 	public static final String CHANGE_PASS_ERROR_1 = "新密码和确认密码不一致！";
+	
+	public static final String VERIFYMSG = "验证码为：";
 	
 
 	/** 修改手机号成功 **/
