@@ -28,7 +28,7 @@
 	
 	<!-- 根据urlFlag获取商户信息 -->
 	<select id="getMerchantInfoByUrlFlag" parameterType="java.util.Map" resultType="java.util.Map">
-		select merchantid as "merchantid" from merchant
+		select merchantid as "merchantid", merbercardimg as "merbercardimg" from merchant
 		where urlflag = #{urlflag}
 	</select>
 </mapper>

@@ -5,9 +5,12 @@
 	
 	<!-- 查询会员卡信息 -->
 	<select id="get_card" parameterType="java.util.Map" resultType="java.util.Map">
-		select merbercardid as "merbercardid",memberid as "memberid",merchantid as "merchantid",cardno as "cardno",dzcardno as "dzcardno",
-		merbercardtxm as "merbercardtxm", cardgrade as "cardgrade",cardcode as "cardcode",cardstat as "cardstat",cardmode as "cardmode",bz as "bz" from membercard
+		select a.merbercardid as "merbercardid",a.memberid as "memberid",a.merchantid as "merchantid",a.cardno as "cardno",a.dzcardno as "dzcardno",a.
+		merbercardtxm as "merbercardtxm",a. cardgrade as "cardgrade",a.cardcode as "cardcode",a.cardstat as "cardstat",a.cardmode as "cardmode",a.bz as "bz",
+		b.merbercardimg as "merbercardimg" 
+		from membercard a, merchant b
 		where merbercardid = #{merbercardid} 
+		and a.merchantid = b.merchantid
 	</select>
 </mapper>
 	

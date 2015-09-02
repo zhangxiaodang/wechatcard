@@ -35,7 +35,7 @@
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="resources/images/u5_normal.jpg" />
+                            <img src="${merbercardimg}" />
                         </div>
                     </div>
                 </div>

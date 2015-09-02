@@ -5,13 +5,15 @@
 	
 	<!-- 查询优惠券信息oracle -->
 	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
-		select b.couponid as "couponid",b.memberid as "memberid",b.merchantcouponid as "merchantcouponid",b.merchantid as "merchantid",b.membercouponstate as "membercouponstate",b.couponsj as "couponsj",b.bz as "bz",b.couponname as "couponname",
-		couponimg as "couponimg",to_char(b.starttime,'YYYY-MM-DD') as "starttime",to_char(b.endtime,'YYYY-MM-DD') as "endtime",
+		select b.couponid as "couponid",b.memberid as "memberid",b.merchantcouponid as "merchantcouponid",
+		b.merchantid as "merchantid",b.membercouponstate as "membercouponstate",b.couponsj as "couponsj",b.bz as "bz",d.couponname as "couponname",
+		d.couponimg as "couponimg",to_char(d.couponkssj,'YYYY-MM-DD') as "starttime",to_char(d.couponjssj,'YYYY-MM-DD') as "endtime",
 		couponcode as "couponcode"
-		from member a, coupon b, merchant c
+		from member a, coupon b, merchant c, merchantcoupon d
 		where a.memberid = b.memberid
 		and b.merchantid = c.merchantid
 		and a.merchantid = c.merchantid
+		and d.merchantcouponid = b.merchantcouponid
 		and a.memberopenid = #{bean.openid} 
 		and c.urlflag = #{bean.urlflag}
 		and b.couponid = #{bean.couponid}
@@ -19,13 +21,15 @@
 	
 	<!-- 查询优惠券信息mysql -->
 	<!-- <select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
-		select b.couponid as "couponid",b.memberid as "memberid",b.merchantcouponid as "merchantcouponid",b.merchantid as "merchantid",b.membercouponstate as "membercouponstate",b.couponsj as "couponsj",b.bz as "bz",b.couponname as "couponname",
-		couponimg as "couponimg",date_format(b.starttime,'%Y-%m-%d') as "starttime",date_format(b.endtime,'%Y-%m-%d') as "endtime",
+		select b.couponid as "couponid",b.memberid as "memberid",b.merchantcouponid as "merchantcouponid",b.merchantid as "merchantid",
+		b.membercouponstate as "membercouponstate",b.couponsj as "couponsj",b.bz as "bz",d.couponname as "couponname",
+		d.couponimg as "couponimg",date_format(d.couponkssj,'%Y-%m-%d') as "starttime",date_format(d.couponjssj,'%Y-%m-%d') as "endtime",
 		couponcode as "couponcode"
-		from member a, coupon b, merchant c
+		from member a, coupon b, merchant c, merchantcoupon d
 		where a.memberid = b.memberid
 		and b.merchantid = c.merchantid
 		and a.merchantid = c.merchantid
+		and d.merchantcouponid = b.merchantcouponid
 		and a.memberopenid = #{bean.openid} 
 		and c.urlflag = #{bean.urlflag}
 		and b.couponid = #{bean.couponid}
