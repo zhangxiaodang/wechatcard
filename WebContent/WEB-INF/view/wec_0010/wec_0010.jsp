@@ -75,7 +75,7 @@
                             </div>
                              -->
                             <div class="panel-body">
-                                <h4>请输入6位开卡密码</h4>
+                                <h4>请输入6位数字开卡密码</h4>
                                 <div class="input-group">
                                     <span class="input-group-addon" for="new_card_psd1"><span class="red-text">* </span>密码：</span>
                                     <input type="password" id="new_card_psd1" class="form-control" aria-describedby="basic-addon1" maxlength="6">

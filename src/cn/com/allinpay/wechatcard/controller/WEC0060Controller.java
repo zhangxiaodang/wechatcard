@@ -69,7 +69,7 @@ public class WEC0060Controller extends BaseController {
 			}
 
 			// todo-zhangxd
-//			 strOpenID = "asdfasdfoo";
+			// strOpenID = "asdfasdfoo";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.equals("")) {
@@ -94,8 +94,8 @@ public class WEC0060Controller extends BaseController {
 					// 返回修改手机号页面
 					mv.setViewName(WEC0060_VIEW);
 				} else {
-					// 返回注册页面
-					mv.setViewName("wec_0010/wec_0010");
+					// 返回提示页面
+					mv.setViewName("wec_0061/wec_0061");
 				}
 			}
 		} catch (Exception e) {

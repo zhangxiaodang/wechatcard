@@ -80,13 +80,21 @@ header.jumbotron > h1 {
     border-top: 1px solid #ddd;
 }
 
-#list > li > img {
+.list-img-left {
+	position: absolute;
+    left: 5px;
+    top: 15px;
+    width: 30px;
+    height: 30px;
+}
+
+.list-img-right {
     position: absolute;
     right: 10px;
     top: 23px;
     cursor: pointer;
-    width: 24px;
-    height: 24px;
+    width: 12px;
+    height: 12px;
 }
 
 .modal .jumbotron {

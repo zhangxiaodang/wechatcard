@@ -37,6 +37,7 @@
 
         </div>
     </div>
+
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -64,36 +65,44 @@
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12">
-
             <ul id="list" class="list-group">
                 <li class="list-group-item" id="change_pass">
-                    <img src="resources/images/char-more.png" alt=""/>
-                    卡密码修改
+                    <img class="list-img-left" src="resources/images/carddetail/modifypassword.png" alt=""/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卡密码修改
+                    <img class="list-img-right" src="resources/images/char-more.png" alt=""/>
                 </li>
                 <li class="list-group-item">
-                    <img src="resources/images/char-more.png" alt=""/>
-                    我要充值
+                    <img class="list-img-left" src="resources/images/carddetail/memberAddValue.png" alt=""/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我要充值
+                    <img class="list-img-right" src="resources/images/char-more.png" alt=""/>
                 </li>
                 <!-- <li class="list-group-item" id="mycoupon">
                     <img src="resources/images/char-more.png" alt=""/>
                     我的优惠券
                 </li> -->
                 <li class="list-group-item">
-                    <img src="resources/images/char-more.png" alt=""/>
-                    充值记录
+                    <img class="list-img-left" src="resources/images/carddetail/valueRecord.png" alt=""/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;充值记录
+                    <img class="list-img-right" src="resources/images/char-more.png" alt=""/>
                 </li>
                 <li class="list-group-item">
-                    <img src="resources/images/char-more.png" alt=""/>
-                    消费记录
+                    <img class="list-img-left" src="resources/images/carddetail/consume.png" alt=""/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消费记录
+                    <img class="list-img-right" src="resources/images/char-more.png" alt=""/>
                 </li>
                 <li class="list-group-item">
-                    <img src="resources/images/char-more.png" alt=""/>
-                    卡说明
+                    <img class="list-img-left" src="resources/images/carddetail/myCoupon.png" alt=""/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卡说明
+                    <img class="list-img-right" src="resources/images/char-more.png" alt=""/>
                 </li>
                 <li class="list-group-item">
-                    服务电话：400 800 920
+                	<img class="list-img-left" src="resources/images/carddetail/tel.png" alt=""/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="tel://400 800 920">服务电话：400 800 920</a>
+                    <img class="list-img-right" src="resources/images/char-more.png" alt=""/>
                 </li>
             </ul>
 

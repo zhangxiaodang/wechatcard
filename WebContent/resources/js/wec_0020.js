@@ -1,6 +1,7 @@
 $(function() {
 	if (phone_is_used == 'true'){
 		$("#btnNewCard").attr('disabled','disabled');
+		$("#btnNewCard").css("background-color","#444444");
 	}
 
 	/**
