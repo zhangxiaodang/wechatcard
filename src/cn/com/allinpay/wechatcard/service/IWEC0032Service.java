@@ -1,25 +1,12 @@
 package cn.com.allinpay.wechatcard.service;
 
-import cn.com.allinpay.frame.model.BaseModel;
-import cn.com.allinpay.wechatcard.view.WEC0060View;
+import cn.com.allinpay.wechatcard.model.WEC0032Model;
+import cn.com.allinpay.wechatcard.view.WEC0032View;
 
 /**
- * 修改手机号Service.
+ * 我要充值Service.
  */
 public interface IWEC0032Service {
-
-	/**
-	 * 取得会员现有手机号.
-	 * 
-	 * @param merchantflag
-	 *            商户URL Flag.
-	 * 
-	 * @param opendid
-	 *            会员Openid.
-	 * 
-	 * @return 手机号.
-	 */
-	public String getCurrentPhonum(String merchantflag, String opendid);
 
 	/**
 	 * 修改手机号
@@ -29,5 +16,5 @@ public interface IWEC0032Service {
 	 * 
 	 * @return 结果.
 	 */
-	public BaseModel change_phone(WEC0060View view) throws Exception;
+	public WEC0032Model chongzhi_ser(WEC0032View view) throws Exception;
 }

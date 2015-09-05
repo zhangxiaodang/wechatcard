@@ -2,7 +2,7 @@ $(function() {
 
 	$('#tijiao').on('click', function(evt) {
 
-		var regex = /^([+-]?)((\d{1,3}(,\d{3})*)|(\d+))(\.\d{2})?$/;
+		var regex = /^[0-9]*(\.[0-9]{1,2})?$/;
 		var money = $("#money").val();
 
 		if ('' === money) {
@@ -10,17 +10,24 @@ $(function() {
 			return;
 		}
 
-		if (!regex.test(this.value)) {
+		if (!regex.test(money)) {
 			$.mAlert("金额输入不正确！");
 			return;
 		}
 
-		// $.post("wec0060/change_phone", param, function(data) {
-		// data = JSON.parse(data);
-		// $.mAlert(data.msg);
-		// if (data.state === '000000') {
-		// }
-		// })
+		$.post("wec0032/chongzhi", {
+			cardno : $("#cardno").val(),
+			money : money
+		}, function(data) {
+			data = JSON.parse(data);
+			$.mAlert(data.msg);
+			if (data.state === '000000') {
+				$.mAlert("充值成功！");
+				$("#money").val('');
+			} else {
+				$.mAlert("充值失败，请重试！");
+			}
+		})
 	})
 
 })

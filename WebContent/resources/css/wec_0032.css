@@ -1,0 +1,46 @@
+body {
+    background-color:#f0f0f0;
+}
+
+span.red-text {
+    color: #f00;
+    font-weight: bold;
+}
+
+#user-reg {
+    position: relative;
+    padding-top: 10px;
+}
+
+#user-reg>.input-group {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#user-reg>.input-group>.input-group-addon {
+    width: 110px;
+    text-align: right;
+}
+
+#user-reg>.input-group:nth-child(3) {
+    padding-right: 106px;
+}
+
+#user-reg>#get_code {
+    position: absolute;
+    top: 98px;
+    right: 0;
+}
+
+#user-reg>#get_code>button {
+    width: 96px;
+}
+
+#user-reg .tijiao {
+    text-align: center;
+}
+
+#user-reg #tijiao {
+    width: 99%;
+    letter-spacing: .25em;
+}

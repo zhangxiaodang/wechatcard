@@ -59,6 +59,9 @@ public class WebConstantUrlValue {
 
 	/** 我要充值页面的URL. */
 	public static final String WEC0032_INDEX = "/wec0032";
+	
+	/** 充值URL. */
+	public static final String WEC0032_CHONGZHI = "/wec0032/chongzhi";
 
 	/** 优惠券页面的URL. */
 	public static final String WEC0034_INDEX = "/wec0034";

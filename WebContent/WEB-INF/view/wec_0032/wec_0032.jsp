@@ -12,7 +12,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <link href="resources/css/public/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/wec_0060.css" rel="stylesheet">
+    <link href="resources/css/wec_0032.css" rel="stylesheet">
     <link href="resources/css/public/m.css" rel="stylesheet">
     <link href="resources/css/public/mobiscroll.css" rel="stylesheet">
 
@@ -31,7 +31,7 @@
             <form class="form-horizontal" id="user-reg">
                 <div class="input-group">
                     <span class="input-group-addon" for="old_mobile"><span class="red-text">* </span>卡号：</span>
-                    <input type="text" id="old_mobile" class="form-control" readonly="readonly" value="${cardno}" placeholder="手机号不可为空" aria-describedby="basic-addon1">
+                    <input type="text" id="cardno" class="form-control" readonly="readonly" value="${cardno}" placeholder="卡号不可为空" aria-describedby="basic-addon1">
                 </div>
                 
                 <div class="input-group">

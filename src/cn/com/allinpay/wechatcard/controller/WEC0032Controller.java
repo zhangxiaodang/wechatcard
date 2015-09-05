@@ -5,12 +5,17 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
+import cn.com.allinpay.frame.util.WebConstantValue;
+import cn.com.allinpay.frame.util.WebJsonUtil;
+import cn.com.allinpay.wechatcard.model.WEC0032Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0032Service;
+import cn.com.allinpay.wechatcard.view.WEC0032View;
 
 /**
  * 我要充值Controller.
@@ -70,5 +75,37 @@ public class WEC0032Controller extends BaseController {
 
 		// 返回
 		return mv;
+	}
+
+	/**
+	 * 充值.
+	 */
+	@RequestMapping(value = WebConstantUrlValue.WEC0032_CHONGZHI, method = RequestMethod.POST, produces = WebConstantValue.PRODUCE_TEXT)
+	@ResponseBody
+	public String chongzhi(WEC0032View wec0032View) {
+		logger.info("========================Controller chongzhi==========================");
+
+		WEC0032Model resultModel = new WEC0032Model();
+
+		try {
+			// urlFlag
+			String strUrlFlag = (String) super.session
+					.getAttribute(SESSION_KEY_URLFLAG);
+			// OpenID
+			String strOpenID = (String) super.session
+					.getAttribute(SESSION_KEY_OPENID);
+
+			wec0032View.setOpenid(strOpenID);
+			wec0032View.setUrlflag(strUrlFlag);
+			// 调用注册的service
+			resultModel = this.wec0032Service.chongzhi_ser(wec0032View);
+		} catch (Exception e) {
+			logger.info("========================Exception chongzhi==========================");
+			e.printStackTrace();
+
+			return WebJsonUtil.bean2Json(getSysErrorModel());
+		}
+		logger.info("========================Controller chongzhi End==========================");
+		return WebJsonUtil.bean2Json(resultModel);
 	}
 }
