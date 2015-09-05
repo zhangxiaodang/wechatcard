@@ -18,8 +18,12 @@
     <script src="resources/js/public/jquery.min.js"></script>
     <script src="resources/js/public/bootstrap.min.js"></script>
     <script src="resources/js/public/m.js"></script>
+    <script src="resources/js/public/qrcode.js"></script>
+    <script src="resources/js/public/jquery-barcode-1.3.3.js"></script>
+    
     <script src="resources/js/wec_0031.js"></script>
     <script type="text/javascript">
+    	var cardno = "${membercard.card_info.cardno}";
     	var dzcardno = "${membercard.card_info.dzcardno}";
     </script>
 </head>
@@ -41,8 +45,6 @@
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-
-
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">将本页面展示给店员即可使用</h4>
@@ -51,13 +53,18 @@
                     <div class="jumbotron">
                         <ul class="list-group" id="txm">
                             <li class="list-group-item">
-                                <img src="${membercard.card_info.merbercardtxm}" alt=""/>
+                                <!-- <img src="${membercard.card_info.merbercardtxm}" alt=""/> -->
+                                <div class="barcodeImg" id="bcTarget"></div>   
                             </li>
+                            
+                            <!-- 
                             <li class="list-group-item">
                                 ${membercard.card_info.dzcardno}
                             </li>
+                             -->
                             <li class="list-group-item">
-                                <img src="${membercard.card_info.cardcode}" />
+                                <!-- <img id="imgQrcode" src="${membercard.card_info.cardcode}" /> -->
+                                <div align="center" id="qrcode"></div>
                             </li>
                         </ul>
                     </div>

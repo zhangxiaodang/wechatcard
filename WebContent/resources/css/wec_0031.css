@@ -100,3 +100,7 @@ header.jumbotron > h1 {
 .modal .jumbotron {
     padding: 0;
 }
+
+.barcodeImg {
+	margin-left: 23%;
+}
