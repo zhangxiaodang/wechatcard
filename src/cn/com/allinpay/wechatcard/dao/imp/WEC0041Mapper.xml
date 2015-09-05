@@ -20,7 +20,7 @@
 	<!-- 查询优惠券信息 oracle -->
 	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
 		select a.merchantcouponid as "merchantcouponid",a.merchantid as "merchantid",d.itemvalue as "couponclass",a.couponclass as "couponclass_code",
-		a.couponvalid as "couponvalid",to_char(a.couponkssj,'YYYY-MM-DD') as "couponkssj",to_char(a.couponjssj,'YYYY-MM-DD') as "couponjssj",a.couponcontent as "couponcontent",
+		a.couponvalid as "couponvalid",a.couponkssj as "couponkssj",a.couponjssj as "couponjssj",a.couponcontent as "couponcontent",
 		c.itemvalue as "merchantcouponstate",a.bz as "bz",a.couponname as "couponname",a.couponimg  as "couponimg"
 		from merchantcoupon a, merchant b, selectoptions c, selectoptions d
 		where a.merchantid = b.merchantid

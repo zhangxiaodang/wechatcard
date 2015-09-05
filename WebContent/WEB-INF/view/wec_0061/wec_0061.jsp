@@ -12,7 +12,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <link href="resources/css/public/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/wec_error.css" rel="stylesheet">
+    <link href="resources/css/wec_0061.css" rel="stylesheet">
     <link href="resources/css/public/m.css" rel="stylesheet">
 
     <script src="resources/js/public/jquery.min.js"></script>
@@ -30,9 +30,13 @@
             <form class="form-horizontal" id="user-reg">
                 <div class="input-group">
                     <span class="input-group-addon red-text" for="new_card_psd1">
-                    <font size="4">
-                    温馨提示，您还不是会员，享更多服务，请<br>
-                    先申请会员卡，下方申请会员卡按钮 点击跳<br>转申请会员卡界面！
+                    <font size="4" color="red">
+                    温馨提示
+                    </font>
+                    <br>
+                    <font size="4" color="black">
+                    对不起！您还不是会员，享受更多<br>
+                    优惠服务，请点击申请会员卡。
                     </font>
                     </span>
                 </div>

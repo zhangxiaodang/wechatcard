@@ -33,7 +33,7 @@
 	<select id="get_coupon" parameterType="java.util.Map" resultType="java.util.Map">
 		select b.couponid as "couponid",b.memberid as "memberid",b.merchantcouponid as "merchantcouponid",
 		b.merchantid as "merchantid",b.membercouponstate as "membercouponstate",b.couponcode as "couponcode",b.couponsj as "couponsj",b.bz as "bz",d.couponname as "couponname",
-		b.couponimg as "couponimg",to_char(d.couponkssj,'YYYY-MM-DD') as "starttime",to_char(d.couponjssj,'YYYY-MM-DD') as "endtime"
+		b.couponimg as "couponimg",d.couponkssj as "starttime",d.couponjssj as "endtime"
 		from member a, coupon b, merchant c, merchantcoupon d
 		where a.memberid = b.memberid
 		and b.merchantid = c.merchantid
