@@ -1,0 +1,46 @@
+body {
+    background-color:#f0f0f0;
+}
+
+
+.list-group > .list-group-item {
+    background: #FFF;
+    color: #000;
+    overflow: hidden;
+    border: 0;
+    margin-bottom: 1px;
+}
+
+.list-group > a.list-group-item > div > img {
+    width: 120px;
+    height: 100px;
+    border-radius: 0;
+    float: left;
+    margin-right: 10px;
+}
+
+.list-group > a.list-group-item > div > h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.3em;
+    padding-top: .7em;
+}
+
+.list-group > a.list-group-item > div > p {
+    color: #666;
+    font-weight: normal;
+}
+
+.jzgd {
+    text-align: center;
+}
+
+.jzgd p {
+    display: none;
+}
+
+#jzgd {
+    width: 80%;
+}
+

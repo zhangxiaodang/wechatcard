@@ -92,6 +92,8 @@ public class WebConstantValue {
 	public static final String NULL_MERCHANTCOUPON = "亲，您没有优惠券奥！";
 	/** 商家优惠券不存在 **/
 	public static final String NULL_MERCHANTCOUPON_CAP = "亲，优惠券已经下架了奥！";
+	/** 用户没有消费记录 **/
+	public static final String NULL_CONSUME = "亲，您没有消费记录奥！";
 	
 	// 优惠券状态--未领用
 	public static final String WLY = "00";
