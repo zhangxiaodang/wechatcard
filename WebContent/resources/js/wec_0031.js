@@ -1,5 +1,8 @@
 $(function () {
 	
+	/**
+	 * 卡密码修改.
+	 */
 	$("#change_pass").on('click', function (evt) {
     	window.location.href = 'wec0035?dzcardno='+dzcardno;
     });
@@ -7,6 +10,13 @@ $(function () {
     
     $("#mycoupon").on('click', function (evt) {
     	window.location.href = 'wec0040';
+    });
+    
+    /**
+     * 我要充值.
+     */
+    $("#chongzhi_pass").on('click', function (evt) {
+    	window.location.href = 'wec0032?cardno='+cardno;
     });
     
     // 条形码

@@ -81,7 +81,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卡密码修改
                     <img class="list-img-right" src="resources/images/char-more.png" alt=""/>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item" id="chongzhi_pass">
                     <img class="list-img-left" src="resources/images/carddetail/memberAddValue.png" alt=""/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我要充值
                     <img class="list-img-right" src="resources/images/char-more.png" alt=""/>
