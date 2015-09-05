@@ -12,6 +12,10 @@ $(function () {
     	window.location.href = 'wec0040';
     });
     
+    $("#consume").on('click', function (evt) {
+    	window.location.href = 'wec0033?dzcardno='+dzcardno;
+    });
+    
     /**
      * 我要充值.
      */

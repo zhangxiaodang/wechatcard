@@ -95,7 +95,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;充值记录
                     <img class="list-img-right" src="resources/images/char-more.png" alt=""/>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item" id="consume">
                     <img class="list-img-left" src="resources/images/carddetail/consume.png" alt=""/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消费记录
                     <img class="list-img-right" src="resources/images/char-more.png" alt=""/>

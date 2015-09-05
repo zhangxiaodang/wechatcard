@@ -50,6 +50,12 @@ public class WebConstantUrlValue {
 
 	/** 获取会员卡信息的URL. */
 	public static final String WEC0031_GET_INFO = "/get_card_info";
+	
+	/** 消费记录URL. */
+	public static final String WEC0033_INDEX = "/wec0033";
+
+	/** 消费记录URL. */
+	public static final String WEC0033_GET_CONSUME = "/wec0033/get_consume";
 
 	/** 我要充值页面的URL. */
 	public static final String WEC0032_INDEX = "/wec0032";

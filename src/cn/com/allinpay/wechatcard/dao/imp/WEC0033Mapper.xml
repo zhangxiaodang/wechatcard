@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0033Dao">
+	
+	<!-- 获取消费记录 -->
+	<select id="get_consume" parameterType="java.util.Map" resultType="java.util.Map">
+		select a.consumesj as "consumesj", c.merchantaddr as "merchantaddr", a.consumenum as "consumenum",
+			b.cardname as "cardname", b.cardno as "cardno", c.merbercardimg as "merbercardimg", a.consumenr as "consumenr"
+			from consume a, membercard b, merchant c, member d
+			where a.membercardid = b.merbercardid 
+			and b.merchantid = c.merchantid
+			and a.memberid = d.memberid
+			and d.memberopenid = #{bean.openid} 
+			and c.urlflag = #{bean.urlflag}
+			and a.membercardid = #{bean.dzcardno}
+	</select>
+</mapper>
+	
