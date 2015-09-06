@@ -31,5 +31,14 @@
 		select merchantid as "merchantid", merbercardimg as "merbercardimg" from merchant
 		where urlflag = #{urlflag}
 	</select>
+	<!-- 根据merchantid获取会员的parameter -->
+	<select id="getParametersByMerchantid" parameterType="String" resultType="java.util.Map">
+		select merchantid as "merchantid",appkey as "appkey", appsecret as "appsecret", apiversion as "apiversion", deskey as "deskey", branchcode as "branchcode" ,branchno as "branchno" , channo as "channo" from merchantparameter where merchantid = #{merchantid}
+	</select>
+	
+	<!-- 根据merchantid获取会员的parameter -->
+	<select id="getOrderIdByDual" parameterType="String" resultType="String">
+	       select SEQ_ORDERID.nextval as "orderId" from dual
+	</select>
 </mapper>
 	

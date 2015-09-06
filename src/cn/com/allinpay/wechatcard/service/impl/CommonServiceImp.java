@@ -92,4 +92,17 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 		return result;
 	}
 
+	@Override
+	public Map<String, String> getParametersByMerchantid(String merchantid) {
+		// TODO Auto-generated method stub
+		Map<String, String> result = this.dao.getParametersByMerchantid(merchantid);
+		return result;
+	}
+
+	@Override
+	public String getOrderIdByDual(String id) {
+		// TODO Auto-generated method stub
+		String result = this.dao.getOrderIdByDual(id);
+		return result;
+	}
 }

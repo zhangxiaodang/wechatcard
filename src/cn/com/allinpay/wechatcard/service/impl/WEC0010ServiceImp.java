@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.allinpay.frame.service.BaseService;
+import cn.com.allinpay.frame.util.MsgUtil;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.wechatcard.dao.WEC0010Dao;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
@@ -112,7 +113,9 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 		logger.info("========================Service getYzm Start==========================");
 		// TODO Auto-generated method stub
 		// 调用通联接口返回验证码，这里先todo
-
+		int verify = (int) ((Math.random() * 9 + 1) * 100000);
+		MsgUtil _smsManager = new MsgUtil();
+		_smsManager.demoClient(memberView.getMemberphone(), WebConstantValue.VERIFYMSG + verify);
 		WEC0010Model resultModel = new WEC0010Model();
 		resultModel.setState(WebConstantValue.HTTP_OK);
 		resultModel.setMsg(WebConstantValue.GET_YZM_SUCCESS);

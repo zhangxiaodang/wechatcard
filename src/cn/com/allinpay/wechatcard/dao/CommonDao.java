@@ -16,4 +16,7 @@ public interface CommonDao {
 	
 	public Map<String, String> getMerchantInfoByUrlFlag(String urlflag);
 	
+	public Map<String, String> getParametersByMerchantid(String merchantid);
+	
+	public String getOrderIdByDual(String id);
 }

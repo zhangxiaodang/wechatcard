@@ -53,4 +53,16 @@ public interface ICommonService {
 	 */
 	public Map<String, String> getMerchantInfoByUrlFlag(String urlflag);
 
+	/**
+	 * @param merchantid
+	 * @return
+	 */
+	public Map<String, String> getParametersByMerchantid(String merchantid);
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	public  String  getOrderIdByDual(String  id);
+
 }

@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.com.allinpay.frame.model.BranchparametersForm;
+import cn.com.allinpay.frame.model.Yufuka;
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebUtil;
+import cn.com.allinpay.frame.util.cardUtil.AllinpayAPI;
 import cn.com.allinpay.wechatcard.dao.WEC0021Dao;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
@@ -61,16 +64,55 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 			resultModel.setMsg(WebConstantValue.ADD_CARD_ERROR);
 			return resultModel;
 		}
+		// 从数据库中读取数据
+		Map<String, String> parameters = commonService.getParametersByMerchantid(memberInfo.get("merchantid"));
+		if (parameters == null) {
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
+			return resultModel;
+		}
+		
+		String orderid = commonService.getOrderIdByDual("");
+		if(orderid == null){
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
+			return resultModel;
+		}
+
+
+		Yufuka yufuka = new Yufuka();
+		BranchparametersForm _branchInfoform = new BranchparametersForm();
+		_branchInfoform.setAppkey(parameters.get("appkey"));
+		_branchInfoform.setAppsecret(parameters.get("appsecret"));
+		_branchInfoform.setApiversion(parameters.get("apiversion"));
+		_branchInfoform.setDeskey(parameters.get("deskey"));
+		yufuka.setBrh_id(parameters.get("branchcode"));
+		yufuka.setBrand_no(parameters.get("branchno"));
+		yufuka.setChan_no(parameters.get("channo"));
+		yufuka.setPhone_num(memberView.getMemberphone());
+		yufuka.setPassword(memberView.getPassword());
+		yufuka.setOrder_id(orderid);
+
+		yufuka = AllinpayAPI.openaccount(yufuka, _branchInfoform);
+		if (yufuka.getReturnMsg() == null || !"00".equals(yufuka.getReturnMsg())) {
+			// 如果根据openid获取会员的id，获取不到，提示用户。
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			if (yufuka.getReturnMsg() == null)
+				resultModel.setMsg(WebConstantValue.OPEN_CARD_ERROR);
+			else
+				resultModel.setMsg(yufuka.getReturnMsg());
+			return resultModel;
+		}
 		// 更新本地会员卡的信息
-		wec0021View.setMerbercardid(WebUtil.getUUID());
+		wec0021View.setMerbercardid(yufuka.getOrder_id());
 		// 会员ID 这个地方的需要从session中获取会员的id。
 		wec0021View.setMemberid(memberInfo.get("memberid"));
 		// 商家ID
 		wec0021View.setMerchantid(memberInfo.get("merchantid"));
 		// 会员卡号（预付卡系统后台实体卡号）
-		wec0021View.setCardno(WebUtil.get_random());
+		wec0021View.setCardno(yufuka.getCard_id());
 		// 电子卡号（预付卡系统后台电子卡号），申请新卡时电子卡号为手机号
-		wec0021View.setDzcardno(memberView.getMemberphone());
+		wec0021View.setDzcardno(yufuka.getPhone_num());
 		// 会员卡等级
 		wec0021View.setCardgrade("");
 		// 会员卡二维码信息

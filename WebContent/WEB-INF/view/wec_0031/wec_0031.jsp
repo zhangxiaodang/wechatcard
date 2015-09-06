@@ -35,7 +35,7 @@
 
             <header class="jumbotron">
                 <img src="${membercard.card_info.merbercardimg}"  data-toggle="modal" data-target=".bs-example-modal-lg" alt=""/>
-                <h1>798.41</h1>
+                <h1>余额：${membercard.card_info.money}</h1>
                 <p >卡号： ${membercard.card_info.dzcardno}</p>
             </header>
 
