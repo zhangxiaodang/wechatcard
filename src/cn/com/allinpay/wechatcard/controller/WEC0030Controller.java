@@ -88,7 +88,7 @@ public class WEC0030Controller extends BaseController {
 					mv.setViewName(WEC0030_VIEW);
 				} else {
 					// 返回注册页面
-					mv.setViewName("wec_0010/wec_0010");
+					mv.setViewName("wec_0061/wec_0061");
 				}
 			}
 		} catch (Exception e) {

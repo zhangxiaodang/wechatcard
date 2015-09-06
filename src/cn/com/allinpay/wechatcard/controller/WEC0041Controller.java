@@ -45,17 +45,29 @@ public class WEC0041Controller extends BaseController {
 		try {
 			String couponid = super.request.getParameter("couponid");
 			// urlFlag
-			String strUrlFlag = (String)super.session.getAttribute(SESSION_KEY_URLFLAG);
+			String strUrlFlag = (String) super.session
+					.getAttribute(SESSION_KEY_URLFLAG);
 			// OpenID
-			String strOpenID = (String)super.session.getAttribute(SESSION_KEY_OPENID);
-			WEC0041View wec0041View = new WEC0041View();
-			wec0041View.setUrlflag(strUrlFlag);
-			wec0041View.setOpenid(strOpenID);
-			wec0041View.setCouponid(couponid);
-			WEC0034Model coupon = wec0041Service.get_coupon(wec0041View);
-			
-			mv.addObject("coupon", coupon);
-			mv.setViewName(WEC0041_VIEW);
+			String strOpenID = (String) super.session
+					.getAttribute(SESSION_KEY_OPENID);
+
+			// 是否注册
+			boolean isRegister = this.commonService.isRegister(strUrlFlag,
+					strOpenID);
+
+			if (isRegister) {
+				WEC0041View wec0041View = new WEC0041View();
+				wec0041View.setUrlflag(strUrlFlag);
+				wec0041View.setOpenid(strOpenID);
+				wec0041View.setCouponid(couponid);
+				WEC0034Model coupon = wec0041Service.get_coupon(wec0041View);
+
+				mv.addObject("coupon", coupon);
+				mv.setViewName(WEC0041_VIEW);
+			} else {
+				// 返回注册页面
+				mv.setViewName("wec_0061/wec_0061");
+			}
 		} catch (Exception e) {
 			logger.info("异常：\n" + e.getMessage());
 			mv.addObject("errmsg", "打开页面时异常");
@@ -76,8 +88,10 @@ public class WEC0041Controller extends BaseController {
 		WEC0034Model resultModel = new WEC0034Model();
 		try {
 			// urlFlag
-			String strUrlFlag = (String)super.session.getAttribute(SESSION_KEY_URLFLAG);
-			String strOpenID = (String)super.session.getAttribute(SESSION_KEY_OPENID);
+			String strUrlFlag = (String) super.session
+					.getAttribute(SESSION_KEY_URLFLAG);
+			String strOpenID = (String) super.session
+					.getAttribute(SESSION_KEY_OPENID);
 			wec0041View.setUrlflag(strUrlFlag);
 			wec0041View.setOpenid(strOpenID);
 			// 领取会员优惠券
@@ -85,7 +99,7 @@ public class WEC0041Controller extends BaseController {
 		} catch (Exception e) {
 			logger.info("========================Exception collect_coupon Start==========================");
 			e.printStackTrace();
-			
+
 			return WebJsonUtil.bean2Json(getSysErrorModel());
 		}
 		logger.info("========================Controller collect_coupon End==========================");

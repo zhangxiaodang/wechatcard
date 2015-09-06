@@ -43,7 +43,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-12 tijiao">
-                        <button id="btnClose" type="button" class="btn btn-primary btn-lg">关闭</button>
+                        <button id="btnClose" type="button" class="btn btn-primary btn-lg">申请会员卡</button>
                     </div>
                 </div>
             </form>
