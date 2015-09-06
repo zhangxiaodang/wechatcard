@@ -62,11 +62,19 @@ public class WEC0010Controller extends BaseController {
 			super.logger.info("zhangxd==获取网页code：" + strCode);
 			super.logger.info("zhangxd==获取网页urlflag：" + strUrlFlag);
 
-			// 放到session中
-			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
+			if (strUrlFlag != null) {
+				// 放到session中
+				super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
+			}
 
 			// 从session中取得openid
 			strOpenID = (String) super.session.getAttribute(SESSION_KEY_OPENID);
+
+			// 从session中取得urlflag
+			strUrlFlag = (String) super.session
+					.getAttribute(SESSION_KEY_URLFLAG);
+			super.logger.info("zhangxd==session中的urlflag=" + strUrlFlag);
+
 			// 从其它页面跳转过来时
 			if (strOpenID == null || strOpenID.isEmpty()) {
 				// 取得OpenID
@@ -75,7 +83,7 @@ public class WEC0010Controller extends BaseController {
 			logger.info("zhangxd取得的openid为:" + strOpenID);
 
 			// todo-zhangxd
-//			 strOpenID = "asdfasdfoo";
+			// strOpenID = "asdfasdfoo";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.isEmpty()) {
