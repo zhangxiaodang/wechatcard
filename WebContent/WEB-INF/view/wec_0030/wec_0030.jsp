@@ -39,7 +39,7 @@
                     <div role="tabpanel" class="tab-pane active" id="ka">
                         <div class="form-group">
                             <div class="col-sm-12 old_card_bind">
-                                <!-- <button id="old_card_bind" type="button" class="btn btn-primary btn-lg">绑定旧卡</button> -->
+                                <button id="old_card_bind" type="button" class="btn btn-primary btn-lg">绑定旧卡</button>
                             </div>
                         </div>
                     </div>
