@@ -12,51 +12,51 @@ import cn.com.allinpay.frame.controller.BaseController;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
-import cn.com.allinpay.wechatcard.model.WEC0033Model;
+import cn.com.allinpay.wechatcard.model.WEC0036Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
-import cn.com.allinpay.wechatcard.service.IWEC0033Service;
-import cn.com.allinpay.wechatcard.view.WEC0033View;
+import cn.com.allinpay.wechatcard.service.IWEC0036Service;
+import cn.com.allinpay.wechatcard.view.WEC0036View;
 
 /**
- * 消费记录Controller.
+ * 充值记录Controller.
  **/
 
 @Controller
 @Scope(value = "prototype")
-public class WEC0033Controller extends BaseController {
+public class WEC0036Controller extends BaseController {
 
 	/** 页面URL. */
-	private static String WEC0033_VIEW = "wec_0033/wec_0033";
+	private static String WEC0036_VIEW = "wec_0036/wec_0036";
 
-	/** 消费记录的service. */
+	/** 充值记录的service. */
 	@Autowired
-	private IWEC0033Service wec0033Service;
+	private IWEC0036Service wec0036Service;
 
 	@Autowired
 	private ICommonService commonService;
 
 	/**
-	 * 消费记录URL.
+	 * 充值记录URL.
 	 */
-	@RequestMapping(value = WebConstantUrlValue.WEC0033_INDEX, method = RequestMethod.GET)
+	@RequestMapping(value = WebConstantUrlValue.WEC0036_INDEX, method = RequestMethod.GET)
 	public ModelAndView getPageIndex() {
 		String dzcardno = super.request.getParameter("dzcardno");
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName(WEC0033_VIEW);
+		mv.setViewName(WEC0036_VIEW);
 		mv.addObject("dzcardno", dzcardno);
 		// 返回
 		return mv;
 	}
 
 	/**
-	 * 获取我的消费记录.
+	 * 获取我的充值记录.
 	 */
-	@RequestMapping(value = WebConstantUrlValue.WEC0033_GET_CONSUME, method = RequestMethod.POST, produces = WebConstantValue.PRODUCE_TEXT)
+	@RequestMapping(value = WebConstantUrlValue.WEC0036_GET_RECHARGE, method = RequestMethod.POST, produces = WebConstantValue.PRODUCE_TEXT)
 	@ResponseBody
-	public String get_consume(WEC0033View wec0033View) {
-		logger.info("========================Controller get_consume Start==========================");
-		logger.info(wec0033View);
-		WEC0033Model resultModel = new WEC0033Model();
+	public String get_recharge(WEC0036View wec0036View) {
+		logger.info("========================Controller get_recharge Start==========================");
+		logger.info(wec0036View);
+		WEC0036Model resultModel = new WEC0036Model();
 		try {
 			// urlFlag
 			String strUrlFlag = (String) super.session
@@ -64,17 +64,17 @@ public class WEC0033Controller extends BaseController {
 			// OpenID
 			String strOpenID = (String) super.session
 					.getAttribute(SESSION_KEY_OPENID);
-			wec0033View.setOpenid(strOpenID);
-			wec0033View.setUrlflag(strUrlFlag);
+			wec0036View.setOpenid(strOpenID);
+			wec0036View.setUrlflag(strUrlFlag);
 			// 调用注册的service 
-			resultModel = wec0033Service.get_consume(wec0033View);
+			resultModel = wec0036Service.get_recharge(wec0036View);
 		} catch (Exception e) {
-			logger.info("========================Exception get_consume Start==========================");
+			logger.info("========================Exception get_recharge Start==========================");
 			e.printStackTrace();
 
 			return WebJsonUtil.bean2Json(getSysErrorModel());
 		}
-		logger.info("========================Controller get_consume End==========================");
+		logger.info("========================Controller get_recharge End==========================");
 		return WebJsonUtil.bean2Json(resultModel);
 	}
 }

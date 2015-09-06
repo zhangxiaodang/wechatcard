@@ -5,7 +5,7 @@ $(function () {
     var pageNum = 0;
 
     function listPage() {
-        $.post('wec0033/get_consume?dzcardno='+dzcardno, {
+        $.post('wec0036/get_recharge?dzcardno='+dzcardno, {
             page: pageNum,
             limit: 10
         }, function (data) {
@@ -25,10 +25,10 @@ $(function () {
                     a += '<a href="#" class="list-group-item active">'+
                     '<div>' +
                     '<img src="'+ dataList[i]['merbercardimg'] +'" alt=""/>'+
-                    '<h4 class="list-group-item-heading">'+ dataList[i]['consumenr'] +'</h4>'+
-                    '<p class="list-group-item-text">消费时间：'+ dataList[i]['consumesj'] +'</p>'+
-                    '<p class="list-group-item-text">消费门店：'+ dataList[i]['merchantaddr'] +'</p>'+
-                    '<p class="list-group-item-text">消费金额：￥'+ dataList[i]['consumenum'] +'</p>'+
+                    '<h4 class="list-group-item-heading">'+ dataList[i]['dzcardno'] +'</h4>'+
+                    '<p class="list-group-item-text">充值时间：'+ dataList[i]['rechargesj'] +'</p>'+
+                    '<p class="list-group-item-text">充值状态：'+ dataList[i]['rechargecode'] +'</p>'+
+                    '<p class="list-group-item-text">充值金额：￥'+ dataList[i]['rechargenum'] +'</p>'+
                     '</div>'+
                     '</a>';
                 }

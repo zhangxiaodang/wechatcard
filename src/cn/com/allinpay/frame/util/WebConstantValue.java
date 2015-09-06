@@ -94,6 +94,8 @@ public class WebConstantValue {
 	public static final String NULL_MERCHANTCOUPON_CAP = "亲，优惠券已经下架了奥！";
 	/** 用户没有消费记录 **/
 	public static final String NULL_CONSUME = "亲，您没有消费记录奥！";
+	/** 用户没有充值记录 **/
+	public static final String NULL_RECHARGE = "亲，您还没有充值过奥！";
 	
 	// 优惠券状态--未领用
 	public static final String WLY = "00";

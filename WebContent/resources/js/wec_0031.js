@@ -12,9 +12,19 @@ $(function () {
     	window.location.href = 'wec0040';
     });
     
+    /**
+     * 消费记录
+     */
     $("#consume").on('click', function (evt) {
     	window.location.href = 'wec0033?dzcardno='+dzcardno;
     });
+    
+    /**
+    * 充值记录
+    */
+   $("#consume").on('click', function (evt) {
+   		window.location.href = 'wec0036?dzcardno='+dzcardno;
+   });
     
     /**
      * 我要充值.

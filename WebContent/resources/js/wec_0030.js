@@ -9,7 +9,7 @@ $(function () {
         if(data.state === '000000') {
             var card_list = data['card_list'] || [];
             var coupon_list = data['coupon_list'] || [];
-            var $ka = $("#ka").children();
+            var $ka = $("#ka_list");
             var $quan = $("#quan");
             var ka_html = '';
             var quan_html = '';
@@ -28,7 +28,7 @@ $(function () {
                     '</a>';
                 }
 
-                $ka.empty().append( ka_html );
+                $ka.append( ka_html );
             }
 
             if(quan_len) {

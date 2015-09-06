@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.allinpay.wechatcard.dao.WEC0036Dao">
+	
+	<!-- 获取消费记录 -->
+	<select id="get_recharge" parameterType="java.util.Map" resultType="java.util.Map">
+		select a.rechargesj as "rechargesj", d.itemvalue as "rechargemode", a.rechargenum as "rechargenum", 
+			c.itemvalue as "rechargecode", b.dzcardno as "dzcardno", b.cardname as "cardname", f.merbercardimg as "merbercardimg"
+			from recharge a, membercard b, selectoptions c, selectoptions d, member e, merchant f
+			where a.membercardid = b.merbercardid
+			and a.rechargecode = c.itemcode
+			and c.itemtype = '1006'
+			and a.rechargemode = d.itemcode
+			and d.itemtype = '1007'
+			and a.memberid = e.memberid
+			and a.merchantid = f.merchantid
+			and e.memberopenid = #{bean.openid} 
+			and f.urlflag = #{bean.urlflag}
+			and b.dzcardno = #{bean.dzcardno}
+	</select>
+</mapper>
+	

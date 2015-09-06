@@ -90,7 +90,7 @@
                     <img src="resources/images/char-more.png" alt=""/>
                     我的优惠券
                 </li> -->
-                <li class="list-group-item">
+                <li class="list-group-item" id="recharge">
                     <img class="list-img-left" src="resources/images/carddetail/valueRecord.png" alt=""/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;充值记录
                     <img class="list-img-right" src="resources/images/char-more.png" alt=""/>

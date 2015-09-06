@@ -6,14 +6,14 @@
 	<!-- 获取消费记录 -->
 	<select id="get_consume" parameterType="java.util.Map" resultType="java.util.Map">
 		select a.consumesj as "consumesj", c.merchantaddr as "merchantaddr", a.consumenum as "consumenum",
-			b.cardname as "cardname", b.cardno as "cardno", c.merbercardimg as "merbercardimg", a.consumenr as "consumenr"
+			b.cardname as "cardname", b.dzcardno as "dzcardno", c.merbercardimg as "merbercardimg", a.consumenr as "consumenr"
 			from consume a, membercard b, merchant c, member d
 			where a.membercardid = b.merbercardid 
 			and b.merchantid = c.merchantid
 			and a.memberid = d.memberid
 			and d.memberopenid = #{bean.openid} 
 			and c.urlflag = #{bean.urlflag}
-			and a.membercardid = #{bean.dzcardno}
+			and a.dzcardno = #{bean.dzcardno}
 	</select>
 </mapper>
 	

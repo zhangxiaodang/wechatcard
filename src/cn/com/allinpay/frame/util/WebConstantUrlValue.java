@@ -56,6 +56,12 @@ public class WebConstantUrlValue {
 
 	/** 消费记录URL. */
 	public static final String WEC0033_GET_CONSUME = "/wec0033/get_consume";
+	
+	/** 充值记录URL. */
+	public static final String WEC0036_INDEX = "/wec0036";
+
+	/** 充值记录URL. */
+	public static final String WEC0036_GET_RECHARGE = "/wec0036/get_recharge";
 
 	/** 我要充值页面的URL. */
 	public static final String WEC0032_INDEX = "/wec0032";
