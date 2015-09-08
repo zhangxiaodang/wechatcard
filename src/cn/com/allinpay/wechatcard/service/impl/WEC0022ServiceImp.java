@@ -62,6 +62,20 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 			resultModel.setMsg(WebConstantValue.ADD_CARD_ERROR);
 			return resultModel;
 		}
+
+		// 如果该卡号已注册过提示已注册
+		Map<String, String> param = new HashMap<String, String>();
+		// 会员ID
+		param.put("memberid", memberInfo.get("memberid"));
+		// 卡号
+		param.put("cardno", memberView.getCardno());
+		int intResult = this.wec_0022_Dao.getCardNoCnt(param);
+		if (intResult > 0) {
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			resultModel.setMsg("该卡号已绑定！");
+			return resultModel;
+		}
+
 		// 更新本地会员卡的信息
 		wec0021View.setMerbercardid(WebUtil.getUUID());
 		// 会员ID 这个地方的需要从session中获取会员的id。

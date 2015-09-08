@@ -13,7 +13,6 @@ import cn.com.allinpay.frame.model.BaseModel;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
-import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0035Service;
 import cn.com.allinpay.wechatcard.view.WEC0010View;
@@ -69,13 +68,20 @@ public class WEC0035Controller extends BaseController {
 		logger.info(memberView);
 		BaseModel resultModel = new BaseModel();
 		try {
-			memberView.setMemberid(WebUtil.getUUID());
+
+			// 商户标识
+			String strUrlfalg = (String) super.session
+					.getAttribute(SESSION_KEY_URLFLAG);
+
+			// 会员openid
+			memberView.setOpenid((String) super.session
+					.getAttribute(SESSION_KEY_OPENID));
 			// 调用修改密码的service
 			resultModel = wec0035Service.change_pass(memberView);
 		} catch (Exception e) {
 			logger.info("========================Exception change_pass Start==========================");
 			e.printStackTrace();
-			
+
 			return WebJsonUtil.bean2Json(getSysErrorModel());
 		}
 		logger.info("========================Controller change_pass End==========================");

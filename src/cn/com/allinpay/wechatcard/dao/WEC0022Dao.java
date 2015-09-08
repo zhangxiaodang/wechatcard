@@ -19,4 +19,5 @@ public interface WEC0022Dao {
 	 */
 	public void binding_card(Map<String, Object> paramMap);
 
+	public int getCardNoCnt(Map<String, String> paramMap);
 }

@@ -8,4 +8,12 @@
 		insert into membercard (merbercardid,memberid,merchantid,cardno,dzcardno,cardgrade,cardcode,cardstat,cardmode,bz,cardname)
 		values(#{bean.merbercardid},#{bean.memberid},#{bean.merchantid},#{bean.cardno},#{bean.dzcardno},#{bean.cardgrade},#{bean.cardcode},#{bean.cardstat},#{bean.cardmode},#{bean.bz},#{bean.cardname})
 	</select>
+	
+	<select id="getCardNoCnt" parameterType="Map" resultType="int">
+		select count(1) as "cnt"
+		from membercard
+		where 
+			 cardno = #{cardno}
+	     and memberid = #{memberid}
+	</select>
 </mapper>
