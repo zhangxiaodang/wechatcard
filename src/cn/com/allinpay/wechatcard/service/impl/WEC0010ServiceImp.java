@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.allinpay.frame.service.BaseService;
+import cn.com.allinpay.frame.util.MException;
 import cn.com.allinpay.frame.util.MsgUtil;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.wechatcard.dao.WEC0010Dao;
@@ -30,8 +31,7 @@ import cn.com.allinpay.wechatcard.view.WEC0010View;
 public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 
 	/** logger **/
-	private static final Logger logger = Logger
-			.getLogger(WEC0010ServiceImp.class);
+	private static final Logger logger = Logger.getLogger(WEC0010ServiceImp.class);
 
 	/** 注册的dao **/
 	@Autowired
@@ -73,8 +73,7 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 			return resultModel;
 		}
 		// 根据urlFlag查询商户的id
-		Map<String, String> merchantInfo = commonService
-				.getMerchantInfoByUrlFlag(memberView.getUrlflag());
+		Map<String, String> merchantInfo = commonService.getMerchantInfoByUrlFlag(memberView.getUrlflag());
 		// 如果没有商户信息，则提示用户
 		if (merchantInfo == null || "".equals(merchantInfo.get("merchantid"))) {
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
@@ -98,6 +97,10 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 			// 绑定旧卡
 			resultModel = wec0022Service.bindingOldCard(memberView);
 		}
+		if (!WebConstantValue.HTTP_OK.equals(resultModel.getState())) {
+			throw new MException(resultModel.getMsg(),resultModel.getState() );
+		}
+
 		resultModel.setState(WebConstantValue.HTTP_OK);
 		resultModel.setMsg(WebConstantValue.REGISTER_SUCCESS);
 

@@ -29,8 +29,7 @@ import cn.com.allinpay.wechatcard.service.IWEC0031Service;
 public class WEC0031ServiceImp extends BaseService implements IWEC0031Service {
 
 	/** logger **/
-	private static final Logger logger = Logger
-			.getLogger(WEC0031ServiceImp.class);
+	private static final Logger logger = Logger.getLogger(WEC0031ServiceImp.class);
 
 	/** 注册的dao **/
 	@Autowired
@@ -71,20 +70,28 @@ public class WEC0031ServiceImp extends BaseService implements IWEC0031Service {
 			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
 			return resultModel;
 		}
-		CalculateinterestForm calform = AllinpayAPI.getCardinfoNopassAPI(card_info.get("cardno").toString(), orderid, _branchInfoform);
-        if(calform.getCardproductList().size()>0){
-             for(int i=0;i<calform.getCardproductList().size();i++){
-                 CalculateinterestForm temForm=(CalculateinterestForm)calform.getCardproductList().get(i);
-                 temForm.getAccount_balance();//账户余额
-                 temForm.getProduct_id();//产品号
-                 temForm.getValid_balance();//有效余额
-             }
-             //此处应列表展示 账户 1  余额  账户2  余额 。。详情见低保真
-             
-         //测试   应删掉
-         card_info.put("money", ((CalculateinterestForm)calform.getCardproductList().get(0)).getAccount_balance());
-             
-         }
+		CalculateinterestForm calform = AllinpayAPI.getCardinfoNopassAPI(card_info.get("cardno").toString(), orderid,
+				_branchInfoform);
+		if (calform.getCardproductList().size() > 0) {
+			for (int i = 0; i < calform.getCardproductList().size(); i++) {
+				CalculateinterestForm temForm = (CalculateinterestForm) calform.getCardproductList().get(i);
+				temForm.getAccount_balance();// 账户余额
+				temForm.getProduct_id();// 产品号
+				temForm.getValid_balance();// 有效余额
+			}
+			// 此处应列表展示 账户 1 余额 账户2 余额 。。详情见低保真
+
+			// 测试 应删掉
+			CalculateinterestForm mfirstform = (CalculateinterestForm) calform.getCardproductList().get(0);
+			String money = mfirstform.getAccount_balance();
+			if("".equals(money))
+				money = "0.00";
+			card_info.put("money", money);
+
+		}else{//新开的卡 没有 card_product_info_arrays --account_balance
+			card_info.put("money",  "0.00");
+		}
+		
 		resultModel.setCard_info(card_info);
 		
 		resultModel.setState(WebConstantValue.HTTP_OK);

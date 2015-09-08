@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.allinpay.frame.controller.BaseController;
+import cn.com.allinpay.frame.util.MException;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
@@ -51,10 +52,8 @@ public class WEC0021Controller extends BaseController {
 		// 获取当前登陆用户的手机号
 		try {
 			// 取得OpenID
-			String strOpenID = (String) this.session
-					.getAttribute(SESSION_KEY_OPENID);
-			Map<String, String> memberInfo = commonService
-					.getMemberIDByOpenID(strOpenID);
+			String strOpenID = (String) this.session.getAttribute(SESSION_KEY_OPENID);
+			Map<String, String> memberInfo = commonService.getMemberIDByOpenID(strOpenID);
 			if (memberInfo == null || memberInfo.get("memberphone") == null
 					|| "".equals(memberInfo.get("memberphone"))) {
 				// 如果根据openid获取会员的id，获取不到，提示用户。
@@ -85,12 +84,15 @@ public class WEC0021Controller extends BaseController {
 		WEC0010Model resultModel = new WEC0010Model();
 		try {
 			// 取得OpenID
-			String strOpenID = (String) this.session
-					.getAttribute(SESSION_KEY_OPENID);
+			String strOpenID = (String) this.session.getAttribute(SESSION_KEY_OPENID);
 			memberView.setMemberopenid(strOpenID);
 			memberView.setMemberid(WebUtil.getUUID());
 			// 调用注册的service
 			resultModel = wec0021Service.applyNewCard(memberView);
+		} catch (MException e) {
+			resultModel.setState(e.getCauseCode());
+			resultModel.setMsg(e.getCauseMsg());
+			return WebJsonUtil.bean2Json(resultModel);
 		} catch (Exception e) {
 			logger.info("========================Exception applyNewCard Start==========================");
 			e.printStackTrace();

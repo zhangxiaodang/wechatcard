@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.allinpay.frame.controller.BaseController;
+import cn.com.allinpay.frame.util.MException;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
 import cn.com.allinpay.frame.util.WebConstantValue;
 import cn.com.allinpay.frame.util.WebJsonUtil;
@@ -148,7 +149,11 @@ public class WEC0010Controller extends BaseController {
 			// 调用注册的service
 			resultModel = registerService.regist(memberView);
 
-		} catch (Exception e) {
+		} catch (MException e) {
+			resultModel.setState(e.getCauseCode());
+			resultModel.setMsg(e.getCauseMsg());
+			return WebJsonUtil.bean2Json(resultModel);
+		}catch (Exception e) {
 			logger.info("========================Exception register Start==========================");
 			e.printStackTrace();
 
