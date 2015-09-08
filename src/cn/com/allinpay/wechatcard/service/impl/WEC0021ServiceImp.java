@@ -12,7 +12,6 @@ import cn.com.allinpay.frame.model.BranchparametersForm;
 import cn.com.allinpay.frame.model.Yufuka;
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.frame.util.cardUtil.AllinpayAPI;
 import cn.com.allinpay.wechatcard.dao.WEC0021Dao;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
@@ -51,9 +50,9 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		// 会员卡信息
 		WEC0021View wec0021View = new WEC0021View();
-		// 调用总公司的预付卡后台电子卡开卡接口，进行开卡
 		// 申请新卡的密码
 		wec0021View.setPassword(memberView.getPassword());
+		// 调用总公司的预付卡后台电子卡开卡接口，进行开卡
 		// todo
 		Map<String, String> memberInfo = commonService
 				.getMemberIDByOpenID(memberView.getMemberopenid());
@@ -65,21 +64,20 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 			return resultModel;
 		}
 		// 从数据库中读取数据
-		Map<String, String> parameters = commonService.getParametersByMerchantid(memberInfo.get("merchantid"));
+		Map<String, String> parameters = commonService
+				.getParametersByMerchantid(memberInfo.get("merchantid"));
 		if (parameters == null) {
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
 			return resultModel;
 		}
-		
+
 		String orderid = commonService.getOrderIdByDual("");
-		if(orderid == null){
+		if (orderid == null) {
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
 			return resultModel;
 		}
-
-
 		Yufuka yufuka = new Yufuka();
 		BranchparametersForm _branchInfoform = new BranchparametersForm();
 		_branchInfoform.setAppkey(parameters.get("appkey"));
@@ -94,7 +92,8 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		yufuka.setOrder_id(orderid);
 
 		yufuka = AllinpayAPI.openaccount(yufuka, _branchInfoform);
-		if (yufuka.getReturnMsg() == null || !"00".equals(yufuka.getReturnMsg())) {
+		if (yufuka.getReturnMsg() == null
+				|| !"00".equals(yufuka.getReturnMsg())) {
 			// 如果根据openid获取会员的id，获取不到，提示用户。
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
 			if (yufuka.getReturnMsg() == null)

@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.com.allinpay.frame.model.BranchparametersForm;
+import cn.com.allinpay.frame.model.CalculateinterestForm;
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.frame.util.WebUtil;
+import cn.com.allinpay.frame.util.cardUtil.AllinpayAPI;
 import cn.com.allinpay.wechatcard.dao.WEC0022Dao;
 import cn.com.allinpay.wechatcard.model.WEC0010Model;
 import cn.com.allinpay.wechatcard.service.ICommonService;
@@ -76,8 +78,43 @@ public class WEC0022ServiceImp extends BaseService implements IWEC0022Service {
 			return resultModel;
 		}
 
+		// 从数据库中读取数据
+		Map<String, String> parameters = commonService
+				.getParametersByMerchantid(memberInfo.get("merchantid"));
+		if (parameters == null) {
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
+			return resultModel;
+		}
+
+		String orderid = commonService.getOrderIdByDual("");
+		if (orderid == null) {
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			resultModel.setMsg(WebConstantValue.GET_MERCHANT_ERROR);
+			return resultModel;
+		}
+		BranchparametersForm _branchInfoform = new BranchparametersForm();
+		_branchInfoform.setAppkey(parameters.get("appkey"));
+		_branchInfoform.setAppsecret(parameters.get("appsecret"));
+		_branchInfoform.setApiversion(parameters.get("apiversion"));
+		_branchInfoform.setDeskey(parameters.get("deskey"));
+
+		CalculateinterestForm cForm = AllinpayAPI.getCardinfoNopassAPI(
+				memberView.getCardno(), orderid, _branchInfoform);
+		// 旧卡 查询失败 或者不存在该卡时
+		if (cForm.getReturn_message() == null
+				|| !"00".equals(cForm.getReturn_message())) {
+			// 如果根据openid获取会员的id，获取不到，提示用户。
+			resultModel.setState(WebConstantValue.HTTP_ERROR);
+			if (cForm.getReturn_message() == null)
+				resultModel.setMsg(WebConstantValue.BAND_CARD_ERROR);
+			else
+				resultModel.setMsg(cForm.getReturn_message());
+			return resultModel;
+		}
+
 		// 更新本地会员卡的信息
-		wec0021View.setMerbercardid(WebUtil.getUUID());
+		wec0021View.setMerbercardid(orderid);
 		// 会员ID 这个地方的需要从session中获取会员的id。
 		wec0021View.setMemberid(memberInfo.get("memberid"));
 		// 商家ID

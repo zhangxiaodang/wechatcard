@@ -21,6 +21,7 @@ import org.dom4j.io.XMLWriter;
 import cn.com.allinpay.frame.model.BranchparametersForm;
 import cn.com.allinpay.frame.model.CalculateinterestForm;
 import cn.com.allinpay.frame.model.Yufuka;
+import cn.com.allinpay.frame.util.WechatCardCommonUtil;
 
 public class AllinpayAPI {
 	private static java.text.DecimalFormat df = new java.text.DecimalFormat(
@@ -51,29 +52,16 @@ public class AllinpayAPI {
 	private static String app_secret = "";
 	private static String api_v = "";
 	private static String DESKey = "";
-	private static String befurl = "http://116.236.192.117:8080/aop/rest?";
-
-	// #befurl=http://210.22.146.163:7001/aop/rest?//联通生产
-	// befurl=http://27.115.64.18:30064/aop/rest?//联通:测试
-	// #befurl=http://116.236.192.117:8080/aop/rest?//电信：测试
+	private static String befurl = "";
 
 	private static void initParameters(BranchparametersForm _branchInfoform) {
-		// 初始化befurl
-		// PropertiesManager _propertiesManager = new PropertiesManager();
-		// befurl = _propertiesManager.getProperty("befurl");
 		// 初始化其他信息
 		app_key = _branchInfoform.getAppkey();
 		app_secret = _branchInfoform.getAppsecret();
 		api_v = _branchInfoform.getApiversion();
 		DESKey = _branchInfoform.getDeskey();
+		befurl = WechatCardCommonUtil.getBefUrl();
 	}
-
-	/*
-	 * order_id String 必须 合作机构订单号 0000000001 brh_id String 必须 机构号 0229000001
-	 * brand_no String 必须 品牌号 0001 phone_num String 必须 手机号 138XXXXX password
-	 * String 必须 密码（六位数字），des加密 chan_no String 必须 渠道号 云POS为1000000000
-	 * 云phone为4000000000， 云网为4000000001， 商家服务台为4000000002
-	 */
 
 	public static Yufuka openaccount(Yufuka yufuka,
 			BranchparametersForm _branchInfoform) {

@@ -67,6 +67,7 @@ public class WebConstantValue {
 	
 	/** 申请新卡失败 **/
 	public static final String APPLY_CARD_ERROR = "申请新卡失败！";
+	public static final String BAND_CARD_ERROR = "绑定旧卡失败！";
 	/** 修改密码成功 **/
 	public static final String CHANGE_PASS_SUCCES = "修改密码成功！";
 	/** 修改密码失败 **/
