@@ -1,7 +1,7 @@
 $(function() {
 	// 获取验证码
-	//$("#get_code").touchClick(function(){
-	$("#get_code").click(function(){
+	$("#get_code").touchClick(function(){
+	//$("#get_code").click(function(){
         var newphone = $("#newphone").val();
 
         if (!newphone.isPhone()) {
