@@ -84,7 +84,7 @@ public class WEC0010Controller extends BaseController {
 			logger.info("zhangxd取得的openid为:" + strOpenID);
 
 			// todo-zhangxd
-			 strOpenID = "asdfasdfoo";
+			// strOpenID = "asdfasdfoo";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.isEmpty()) {
