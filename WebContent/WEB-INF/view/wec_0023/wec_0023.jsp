@@ -27,12 +27,7 @@
 <body>
 
 <div class="container-fluid">
-        该手机号已被其他微信号绑定<a href="#" id="tijiao">点击重新绑定</a>
-   <!-- <div class="form-group">
-       <div class="col-sm-12 tijiao">
-           <button id="tijiao" type="button" class="btn btn-primary btn-lg btn-block">点击重新绑定</button>
-       </div>
-   </div> -->
+     <div style="margin-top:35px;font-size:16px;">该手机号已被其他微信号绑定<a href="#" id="tijiao">点击重新绑定</a></div>
 </div>
 
 </body>

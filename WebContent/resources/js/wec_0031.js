@@ -32,7 +32,14 @@ $(function () {
     $("#chongzhi_pass").on('click', function (evt) {
     	window.location.href = 'wec0032?cardno='+cardno;
     });
-    
+    // 整个头部都可以点击
+    $("header.carousel").click(function(evt) {
+        $(".bs-example-modal-lg").modal('show');
+    });
+
+    $(".bs-example-modal-lg").click(function (evt) {
+        $(this).modal('hide');
+    });
     // 条形码
     $("#bcTarget").empty().barcode(dzcardno, "code11",{barWidth:1, barHeight:50});
     

@@ -6,43 +6,59 @@ body {
     padding: 0;
 }
 
-.container-fluid>.row>.col-md-12 > header.jumbotron {
-    background: #6699FF;
+header.carousel {
+    background: #dedede;
     border-radius: 0;
     text-align: center;
     margin-bottom: 0;
-    padding: 20px 0 10px;
-}
-
-header.jumbotron {
+    padding: 20px 10px 10px 10px;
     overflow: hidden;
 }
 
-header.jumbotron::after {
+header.carousel::after {
     clear: both;
 }
 
-header.jumbotron > img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-    float: left;
-    margin: 10px;
+header.carousel > .carousel-inner > .item {
+    position: relative;
 }
 
-header.jumbotron > h1 {
-    font-size: 3.1em;
-    font-weight: bold;
-    color: #f9f9f9;
-    letter-spacing: -1px;
+header.carousel > .carousel-inner > .item > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 }
 
-/*header.jumbotron > p {*/
-    /*font-size: 1.5em;*/
-    /*font-weight: normal;*/
-    /*color: #ccc;*/
-    /*letter-spacing: -.5px;*/
-/*}*/
+header.carousel > .carousel-inner > .item > .kh {
+    position: absolute;
+    left: 22px;
+    bottom: 18px;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #000;
+}
+
+header.carousel > .show2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+header.carousel > .show2 > .click2 {
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+}
+
+header.carousel > .hy,
+header.carousel > .hy > .row > div.col-xs-4.col-md-4{
+    background-color: #fff;
+}
+
+
+header.carousel > .hy > .row > div.col-xs-4.col-md-4 + div.col-xs-4.col-md-4 {
+    border-left: 1px solid #dedede;
+}
+
 
 #txm {
     margin-bottom: 0;
@@ -71,7 +87,7 @@ header.jumbotron > h1 {
     border: 0;
     padding: 20px 15px;
     margin-bottom: 0;
-    font-size: 1.1em;
+    font-size: 1.5em;
     position: relative;
     font-weight: 400;
 }
@@ -80,27 +96,15 @@ header.jumbotron > h1 {
     border-top: 1px solid #ddd;
 }
 
-.list-img-left {
-	position: absolute;
-    left: 5px;
-    top: 15px;
-    width: 30px;
-    height: 30px;
-}
-
-.list-img-right {
+#list > li > img {
     position: absolute;
     right: 10px;
-    top: 23px;
+    top: 27px;
     cursor: pointer;
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
 }
 
 .modal .jumbotron {
     padding: 0;
-}
-
-.barcodeImg {
-	margin-left: 23%;
 }

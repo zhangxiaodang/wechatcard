@@ -33,42 +33,64 @@
     <div class="row">
         <div class="col-md-12">
 
-            <header class="jumbotron">
-                <img src="${membercard.card_info.merbercardimg}"  data-toggle="modal" data-target=".bs-example-modal-lg" alt=""/>
-                <h1>余额：${membercard.card_info.money}</h1>
-                <p >卡号： ${membercard.card_info.dzcardno}</p>
+            <header id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="${membercard.card_info.merbercardimg}" />
+                        <div class="kh">NO.<span>${membercard.card_info.dzcardno}</span></div>
+                    </div>
+                </div>
+                <div class="show2">
+                    <img class="click2" src="resources/images/hand.png" />
+                    <span>点击卡片展示二维码</span>
+                </div>
+                <div class="hy">
+                    <div class="row">
+                        <div class="col-xs-4 col-md-4">
+                            <div><strong>会员等级</strong></div>
+                            <div>微信会员卡</div>
+                        </div>
+                        <div class="col-xs-4 col-md-4">
+                            <div><strong>储值</strong></div>
+                            <div>${membercard.card_info.money}</div>
+                        </div>
+                        <div class="col-xs-4 col-md-4">
+                            <div><strong>积分</strong></div>
+                            <div>0.00</div>
+                        </div>
+                    </div>
+                </div>
             </header>
 
         </div>
     </div>
 
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">将本页面展示给店员即可使用</h4>
-                </div>
+
+
+                <!--<div class="modal-header">-->
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <!--<h4 class="modal-title" id="gridSystemModalLabel">将本页面展示给店员即可使用</h4>-->
+                <!--</div>-->
                 <div class="modal-body">
                     <div class="jumbotron">
                         <ul class="list-group" id="txm">
                             <li class="list-group-item">
-                                <!-- <img src="${membercard.card_info.merbercardtxm}" alt=""/> -->
-                                <div class="barcodeImg" id="bcTarget"></div>   
+                                <img src="../images/txm.png" alt=""/>
                             </li>
-                            
-                            <!-- 
                             <li class="list-group-item">
-                                ${membercard.card_info.dzcardno}
+                                99062547
                             </li>
-                             -->
                             <li class="list-group-item">
-                                <!-- <img id="imgQrcode" src="${membercard.card_info.cardcode}" /> -->
-                                <div align="center" id="qrcode"></div>
+                                <img src="../images/ewm.jpg" />
                             </li>
                         </ul>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
