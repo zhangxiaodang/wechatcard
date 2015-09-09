@@ -39,8 +39,8 @@ $(function () {
     });
 
     // 获取验证码
-    //$("#get_code").touchClick(function(){
-    $("#get_code").click(function(){
+    $("#get_code").touchClick(function(){
+    //$("#get_code").click(function(){
         var mobile = $("#mobile").val();
         if (!mobile.isPhone()) {
             $.mAlert("请输入有效的手机号码");

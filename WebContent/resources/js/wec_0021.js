@@ -1,12 +1,15 @@
 $(function () {
 
-	// 验证账户
+	// 获取验证码
     $("#get_code").touchClick(function(){
         var mobile = $("#mobile").val();
         if (!mobile.isPhone()) {
             $.mAlert("请输入有效的手机号码");
             return;
         }
+        
+        // 清空验证码
+        $("#txtYzmHide").val("");
 
         $("#get_code>button").dxlCountdown({
             firstText: "发送验证码",
@@ -30,13 +33,15 @@ $(function () {
         var new_card_psd2 = $('#new_card_psd2').val();
         param.memberphone = $("#mobile").val();
         param.memberyzm = $("#yzm").val();
+        // 后台验证码
+        param.yzmhide = $('#txtYzmHide').val();
 
         if (!param.memberphone.isPhone()) {
             $.mAlert("请输入有效的手机号码");
             return;
         }
 
-        if (!param.memberyzm || param.memberyzm.length != 6) {
+        if (!param.memberyzm || param.memberyzm.length != 6 || param.memberyzm != param.yzmhide) {
             $.mAlert("验证码错误");
             return;
         }
@@ -84,8 +89,11 @@ $(function () {
         }, function (data) {
         	// 转为JSON
         	data = JSON.parse(data);
+        	
         	if (data.state == '000000') {
                 $.mAlert("验证码已发送，请注意查收");
+                // 保存验证码
+                $('#txtYzmHide').val(data.yzm);
                 $focusDom.focus();
                 setTimeout(function() {
                     getCodeBtn.prop('disabled', false);

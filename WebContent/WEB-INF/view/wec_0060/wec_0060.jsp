@@ -38,7 +38,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" for="yzm"><span class="red-text">* </span>验证码：</span>
-                    <input type="text" id="yzm" class="form-control" aria-describedby="basic-addon1" maxlength="6">
+                    <input type="text" id="yzm" class="form-control" placeholder="验证码不可为空"   aria-describedby="basic-addon1" maxlength="6">
                 </div>
                 <div id="get_code"><button type="button" class="btn btn-info">获取验证码</button></div>
 
@@ -51,5 +51,8 @@
         </div>
     </div>
 </div>
+
+	<!-- 隐藏后台返回的验证码 -->
+	<input id="txtYzmHide" type="hidden">
 </body>
 </html>
