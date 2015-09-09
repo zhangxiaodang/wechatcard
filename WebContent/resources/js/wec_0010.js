@@ -39,6 +39,7 @@ $(function () {
 
     // 验证账户
     $("#get_code").touchClick(function(){
+    //$("#get_code").click(function(){
         var mobile = $("#mobile").val();
         if (!mobile.isPhone()) {
             $.mAlert("请输入有效的手机号码");
@@ -49,7 +50,7 @@ $(function () {
             firstText: "发送验证码",
             sendText: "重新发送",
             waitText: "秒",
-            mobile: $("#mobile"),
+            memberphone: $("#mobile"),
             sendAction: function() {
                 sendCode($("#mobile").val(), $("#yzm"));
             },
@@ -187,10 +188,13 @@ $(function () {
         var getCodeBtn = $("#get_code>button");
         getCodeBtn.prop('disabled', true);
         $.dxlSmsSend({
-            mobile: mobile
+        	memberphone: mobile
         }, function (data) {
-            if (data.code == 1) {
-                $.mAlert("验证码已发送，请注意查收");
+        	// 转为JSON
+        	data = JSON.parse(data);
+        	
+            if (data.state == '000000') {
+                $.mAlert("验证码已发送，请注意查收!");
                 $focusDom.focus();
                 setTimeout(function() {
                     getCodeBtn.prop('disabled', false);

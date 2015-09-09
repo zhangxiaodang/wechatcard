@@ -31,7 +31,8 @@ import cn.com.allinpay.wechatcard.view.WEC0010View;
 public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 
 	/** logger **/
-	private static final Logger logger = Logger.getLogger(WEC0010ServiceImp.class);
+	private static final Logger logger = Logger
+			.getLogger(WEC0010ServiceImp.class);
 
 	/** 注册的dao **/
 	@Autowired
@@ -73,7 +74,8 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 			return resultModel;
 		}
 		// 根据urlFlag查询商户的id
-		Map<String, String> merchantInfo = commonService.getMerchantInfoByUrlFlag(memberView.getUrlflag());
+		Map<String, String> merchantInfo = commonService
+				.getMerchantInfoByUrlFlag(memberView.getUrlflag());
 		// 如果没有商户信息，则提示用户
 		if (merchantInfo == null || "".equals(merchantInfo.get("merchantid"))) {
 			resultModel.setState(WebConstantValue.HTTP_ERROR);
@@ -98,7 +100,7 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 			resultModel = wec0022Service.bindingOldCard(memberView);
 		}
 		if (!WebConstantValue.HTTP_OK.equals(resultModel.getState())) {
-			throw new MException(resultModel.getMsg(),resultModel.getState() );
+			throw new MException(resultModel.getMsg(), resultModel.getState());
 		}
 
 		resultModel.setState(WebConstantValue.HTTP_OK);
@@ -118,11 +120,12 @@ public class WEC0010ServiceImp extends BaseService implements IWEC0010Service {
 		// 调用通联接口返回验证码，这里先todo
 		int verify = (int) ((Math.random() * 9 + 1) * 100000);
 		MsgUtil _smsManager = new MsgUtil();
-		_smsManager.demoClient(memberView.getMemberphone(), WebConstantValue.VERIFYMSG + verify);
+		_smsManager.demoClient(memberView.getMemberphone(),
+				WebConstantValue.VERIFYMSG + verify);
 		WEC0010Model resultModel = new WEC0010Model();
 		resultModel.setState(WebConstantValue.HTTP_OK);
 		resultModel.setMsg(WebConstantValue.GET_YZM_SUCCESS);
-		resultModel.setYzm("4rba");
+		resultModel.setYzm(String.valueOf(verify));
 
 		logger.info("========================Service getYzm End==========================");
 		return resultModel;

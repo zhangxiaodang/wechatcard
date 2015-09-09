@@ -84,7 +84,7 @@ public class WEC0010Controller extends BaseController {
 			logger.info("zhangxd取得的openid为:" + strOpenID);
 
 			// todo-zhangxd
-			// strOpenID = "asdfasdfoo";
+			// strOpenID = "AAasdfasdfoo";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.isEmpty()) {
@@ -153,7 +153,7 @@ public class WEC0010Controller extends BaseController {
 			resultModel.setState(e.getCauseCode());
 			resultModel.setMsg(e.getCauseMsg());
 			return WebJsonUtil.bean2Json(resultModel);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.info("========================Exception register Start==========================");
 			e.printStackTrace();
 
@@ -170,9 +170,11 @@ public class WEC0010Controller extends BaseController {
 	@ResponseBody
 	public String getYzm(WEC0010View memberView) {
 		logger.info("========================Controller getYzm Start==========================");
-		logger.info(memberView);
 		WEC0010Model resultModel = new WEC0010Model();
+
 		try {
+			logger.info("zhangxd===手机号：" + memberView.getMemberphone());
+
 			// 获取验证码
 			resultModel = registerService.getYzm(memberView);
 		} catch (Exception e) {
