@@ -6,15 +6,15 @@ $(function () {
 
     function listPage() {
         $.post('wec0033/get_consume?dzcardno='+dzcardno, {
-            page: pageNum,
-            limit: 10
+        	page_num: pageNum,
+            rows: 1
         }, function (data) {
             if(data.state == '000000') {
             	if(data.rows.length < 1){
             		$.mAlert( data['msg'] );
             	}
                 $("#jzgd").text("加载更多").prop('disabled', false);
-                pageNum = data.page;
+                // pageNum = data.page;
                 var dataList = data.rows;
                 var a = '';
                 if(!dataList.length) {
@@ -36,6 +36,7 @@ $(function () {
             }else{
             	$.mAlert( data['msg'] );
             }
+            pageNum += 1;
         },'json');
     }
 

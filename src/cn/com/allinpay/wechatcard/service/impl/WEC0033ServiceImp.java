@@ -41,6 +41,7 @@ public class WEC0033ServiceImp extends BaseService implements IWEC0033Service {
 	public WEC0033Model get_consume(WEC0033View wec0033View) throws Exception {
 		logger.info("========================Service get_coupon Start==========================");
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		wec0033View.setDzcardno("18363017058");
 		paramMap.put(BEAN, wec0033View);
 		// 获取优惠券信息
 		List<Map<String, Object>> consume_list = wec_0033_Dao.get_consume(paramMap);
