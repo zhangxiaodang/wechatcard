@@ -22,7 +22,7 @@ $(function () {
     /**
     * 充值记录
     */
-   $("#consume").on('click', function (evt) {
+   $("#recharge").on('click', function (evt) {
    		window.location.href = 'wec0036?dzcardno='+dzcardno;
    });
     

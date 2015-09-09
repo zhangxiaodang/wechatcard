@@ -136,10 +136,10 @@
         },
         "dxlSmsSend":function(par,callback){
             var json = {
-                "mobile": ""
+            	"memberphone": ""
             };
             json = $.extend(json,par);
-            $.post("http://localhost:8080/wechatcard/register", json,function(data){
+            $.post("/wechatcard/wec0010/getyzm", json,function(data){
                 $.isFunction(callback) ? callback( data ) : "";
             });
         },

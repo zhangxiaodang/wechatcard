@@ -77,14 +77,16 @@
                 <div class="modal-body">
                     <div class="jumbotron">
                         <ul class="list-group" id="txm">
+                        	<!-- 
                             <li class="list-group-item">
                                 <img src="../images/txm.png" alt=""/>
                             </li>
                             <li class="list-group-item">
                                 99062547
                             </li>
+                             -->
                             <li class="list-group-item">
-                                <img src="../images/ewm.jpg" />
+                                <div align="center" id="qrcode"></div>
                             </li>
                         </ul>
                     </div>
