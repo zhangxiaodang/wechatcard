@@ -1,12 +1,16 @@
 $(function() {
-	// 验证账户
+	// 获取验证码
 	$("#get_code").touchClick(function(){
+	//$("#get_code").click(function(){
         var newphone = $("#newphone").val();
 
         if (!newphone.isPhone()) {
             $.mAlert("请输入有效的新手机号");
             return;
         }
+        
+        // 清空验证码
+        $("#txtYzmHide").val("");
 
         $("#get_code>button").dxlCountdown({
             firstText: "发送验证码",
@@ -27,6 +31,8 @@ $(function() {
 		var old_mobile = $("#old_mobile").val();
 		param.newphone = $("#newphone").val();
 		param.yzm = $("#yzm").val();
+        // 后台验证码
+        param.yzmhide = $('#txtYzmHide').val();
 		
 		if ('' === param.newphone) {
 			$.mAlert("手机号不可为空！");
@@ -47,6 +53,11 @@ $(function() {
 			$.mAlert("验证码不可为空！");
 			return;
 		}
+		
+		if (param.yzm.length != 6 || param.yzm != param.yzmhide) {
+            $.mAlert("验证码错误！");
+            return;
+        }
 
 		$.post("wec0060/change_phone", param, function(data) {
 			data = JSON.parse(data);
@@ -70,6 +81,8 @@ $(function() {
         	
             if (data.state == '000000') {
                 $.mAlert("验证码已发送，请注意查收");
+                // 保存验证码
+                $('#txtYzmHide').val(data.yzm);
                 $focusDom.focus();
                 setTimeout(function() {
                     getCodeBtn.prop('disabled', false);

@@ -119,5 +119,7 @@
         </div>
     </div>
 
+	<!-- 隐藏后台返回的验证码 -->
+	<input id="txtYzmHide" type="hidden">
 </body>
 </html>

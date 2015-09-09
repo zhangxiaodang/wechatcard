@@ -11,8 +11,9 @@ $(function () {
         display: 'modal', //显示方式
         mode: 'scroller', //日期选择模式
         lang:'zh',
-        startYear:currYear - 10, //开始年份
-        endYear:currYear + 10 //结束年份
+        //startYear:currYear - 90, //开始年份
+        startYear:1950, //开始年份
+        endYear:currYear //结束年份
     };
 
     $('#shengri').val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
@@ -37,7 +38,7 @@ $(function () {
         }
     });
 
-    // 验证账户
+    // 获取验证码
     $("#get_code").touchClick(function(){
     //$("#get_code").click(function(){
         var mobile = $("#mobile").val();
@@ -45,6 +46,9 @@ $(function () {
             $.mAlert("请输入有效的手机号码");
             return;
         }
+        
+        // 清空验证码
+        $("#txtYzmHide").val("");
 
         $("#get_code>button").dxlCountdown({
             firstText: "发送验证码",
@@ -72,13 +76,15 @@ $(function () {
         // 默认为空
         param.password = "";
         param.memberbirthday = $("#shengri").val();
+        // 后台验证码
+        param.yzmhide = $('#txtYzmHide').val();
 
         if (!param.memberphone.isPhone()) {
             $.mAlert("请输入有效的手机号码");
             return;
         }
 
-        if (!param.memberyzm || param.memberyzm.length != 6) {
+        if (!param.memberyzm || param.memberyzm.length != 6 || param.memberyzm != param.yzmhide) {
             $.mAlert("验证码错误");
             return;
         }
@@ -195,6 +201,8 @@ $(function () {
         	
             if (data.state == '000000') {
                 $.mAlert("验证码已发送，请注意查收!");
+                // 保存验证码
+                $('#txtYzmHide').val(data.yzm);
                 $focusDom.focus();
                 setTimeout(function() {
                     getCodeBtn.prop('disabled', false);
