@@ -48,7 +48,7 @@ public class WEC0033View extends BaseView{
 	}
 
 	public int getRn_start() {
-		this.rn_start = this.rows * this.page_num;
+		this.rn_start = this.rows * this.page_num + 1;
 		return rn_start;
 	}
 

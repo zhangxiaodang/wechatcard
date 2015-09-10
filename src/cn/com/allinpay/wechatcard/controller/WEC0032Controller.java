@@ -62,7 +62,7 @@ public class WEC0032Controller extends BaseController {
 			super.logger.info("zhangxd==卡号 strCardNo：" + strCardNo);
 
 			// todo-zhangxd
-//			 strOpenID = "asdfasdfoo";
+//			strOpenID = "asdfasdfoo";
 
 			// 卡号
 			mv.addObject("cardno", strCardNo);

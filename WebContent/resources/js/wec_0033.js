@@ -7,7 +7,7 @@ $(function () {
     function listPage() {
         $.post('wec0033/get_consume?dzcardno='+dzcardno, {
         	page_num: pageNum,
-            rows: 1
+            rows: 10
         }, function (data) {
             if(data.state == '000000') {
             	if(data.rows.length < 1){

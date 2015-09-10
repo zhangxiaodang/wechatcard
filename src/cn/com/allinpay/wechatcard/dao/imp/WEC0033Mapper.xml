@@ -5,20 +5,20 @@
 	
 	<!-- 获取消费记录 -->
 	<select id="get_consume" parameterType="java.util.Map" resultType="java.util.Map">
-		select consumesj as "consumesj", merchantaddr as "merchantaddr", consumenum as "consumenum", cardname as "cardname", dzcardno as "dzcardno",
-			merbercardimg as "merbercardimg", consumenr as "consumenr", rn as "rn" from (
-            select a.consumesj, c.merchantaddr, a.consumenum, b.cardname, b.dzcardno, c.merbercardimg, a.consumenr,rownum as rn
-			    from consume a, membercard b, merchant c, member d
-				where a.membercardid = b.merbercardid 
-				and b.merchantid = c.merchantid
-				and a.memberid = d.memberid
-                  
-				and d.memberopenid = #{bean.openid} 
-				and c.urlflag = #{bean.urlflag}
-				and b.dzcardno = #{bean.dzcardno}
-            )
-            where rn >= #{bean.rn_start} and #{bean.rn_end} >= rn
-            order by consumesj
+	    select consumesj as "consumesj", merchantaddr as "merchantaddr", consumenum as "consumenum", cardname as "cardname", dzcardno as "dzcardno", merbercardimg as "merbercardimg", consumenr as "consumenr", rn  from (
+		    select consumesj, merchantaddr, consumenum, cardname, dzcardno, merbercardimg, consumenr, rn from (
+		        select a.consumesj, c.merchantaddr, a.consumenum, b.cardname, b.dzcardno, c.merbercardimg, a.consumenr,rownum as rn
+		            from consume a, membercard b, merchant c, member d
+		              where a.membercardid = b.merbercardid 
+		              and b.merchantid = c.merchantid
+		              and a.memberid = d.memberid
+		              and d.memberopenid = #{bean.openid} 
+					  and c.urlflag = #{bean.urlflag}
+					  and b.dzcardno = #{bean.dzcardno}
+		              order by consumesj desc
+		    ) 
+		) 
+		where rn >= #{bean.rn_start} and #{bean.rn_end} >= rn
 	</select>
 </mapper>
 	
