@@ -6,24 +6,24 @@
 	<!-- 获取消费记录 -->
 	<select id="get_recharge" parameterType="java.util.Map" resultType="java.util.Map">
 		select rechargesj as "rechargesj", rechargemode as "rechargemode", rechargenum as "rechargenum", rechargecode as "rechargecode", dzcardno as "dzcardno",  cardname as "cardname", merbercardimg as "merbercardimg" ,rn from (
-		    select rechargesj, rechargemode , rechargenum , rechargecode, dzcardno ,  cardname , merbercardimg, rn from (
-		        select a.rechargesj as rechargesj, d.itemvalue as rechargemode, a.rechargenum as rechargenum, c.itemvalue as rechargecode, b.dzcardno as dzcardno, b.cardname as cardname, f.merbercardimg as merbercardimg,rownum rn
-		            from recharge a, membercard b, selectoptions c, selectoptions d, member e, merchant f
-		            where a.membercardid = b.merbercardid
-		            and a.rechargecode = c.itemcode
-		            and c.itemtype = '1006'
-		            and a.rechargemode = d.itemcode
-		            and d.itemtype = '1007'
+	        select rechargesj, rechargemode , rechargenum , rechargecode, dzcardno ,  cardname , merbercardimg,rownum rn from (
+	            select a.rechargesj as rechargesj, d.itemvalue as rechargemode, a.rechargenum as rechargenum, c.itemvalue as rechargecode, b.dzcardno as dzcardno, b.cardname as cardname, f.merbercardimg as merbercardimg
+	                from recharge a, membercard b, selectoptions c, selectoptions d, member e, merchant f
+	                where a.membercardid = b.merbercardid
+	                and a.rechargecode = c.itemcode
+	                and c.itemtype = '1006'
+	                and a.rechargemode = d.itemcode
+	                and d.itemtype = '1007'
 		            and a.memberid = e.memberid
 		            and a.merchantid = f.merchantid
 		            and e.memberopenid = #{bean.openid} 
 				    and f.urlflag = #{bean.urlflag}
 				    and b.dzcardno = #{bean.dzcardno}
 		            order by rechargesj desc
-		    ) 
+			    ) 
+	        where rownum >= #{bean.rn_start}
 		) 
-		where rn >= #{bean.rn_start} and #{bean.rn_end} >= rn
-
+		where #{bean.rn_end} >= rn
 	</select>
 </mapper>
 	
