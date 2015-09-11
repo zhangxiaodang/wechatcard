@@ -19,7 +19,7 @@
 			    ) 
 	        where rownum >= #{bean.rn_start}
 			)
-		where #{bean.rn_end} >= rn
+		where #{bean.rn_end} >= rn 
 	</select>
 </mapper>
 	
