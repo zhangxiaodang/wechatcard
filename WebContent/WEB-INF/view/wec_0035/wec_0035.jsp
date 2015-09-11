@@ -26,8 +26,8 @@
 <div class="container-fluid">
     <div class="panel-body">
         <div class="input-group">
-            <span class="input-group-addon" for="new_card_psd1"><span class="red-text">* </span>卡&nbsp;&nbsp;&nbsp;号：</span>
-            <input type="text" id="new_card_psd1" class="form-control" disabled="disabled" aria-describedby="basic-addon1" value="${dzcardno}">
+            <span class="input-group-addon" for="cardno"><span class="red-text">* </span>卡&nbsp;&nbsp;&nbsp;号：</span>
+            <input type="text" id="cardno" class="form-control" readonly="readonly"  aria-describedby="basic-addon1" value="${dzcardno}">
         </div>
         <div class="input-group" style="margin-top:20px;">
             <span class="input-group-addon" for="oldpassword"><span class="red-text">* </span>原密码：</span>

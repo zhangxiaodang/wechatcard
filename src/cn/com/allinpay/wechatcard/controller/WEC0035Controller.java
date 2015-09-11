@@ -74,7 +74,7 @@ public class WEC0035Controller extends BaseController {
 					.getAttribute(SESSION_KEY_URLFLAG);
 
 			// 会员openid
-			memberView.setOpenid((String) super.session
+			memberView.setMemberopenid((String) super.session
 					.getAttribute(SESSION_KEY_OPENID));
 			// 调用修改密码的service
 			resultModel = wec0035Service.change_pass(memberView);

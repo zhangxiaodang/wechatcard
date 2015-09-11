@@ -6,6 +6,7 @@ $(function () {
 		param.password = $("#password").val();
 	    param.confirmpassword = $("#confirmpassword").val();
 	    param.oldpassword = $("#oldpassword").val();
+	    param.cardno = $("#cardno").val();
 	    
 	    if(!check_pass(param.oldpassword)) {
 	        $.mAlert("原密码只能为6位数字！");
