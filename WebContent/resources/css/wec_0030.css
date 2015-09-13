@@ -32,7 +32,23 @@ body {
 	margin-bottom: 1px;
 }
 
+#my-card .tab-pane .list-group-item1 {
+	float: left;
+	width: 100%;
+	background: #6699FF;
+	padding: 0;
+	border: 0;
+	margin-bottom: 1px;
+}
+
+
 #my-card .tab-pane .list-group-item>div {
+	float: left;
+	width: 100%;
+	margin: 15px 10px;
+}
+
+#my-card .tab-pane .list-group-item1>div {
 	float: left;
 	width: 100%;
 	margin: 15px 10px;
@@ -41,7 +57,13 @@ body {
 #my-card .tab-pane .list-group-item>div>img {
 	width: 100px;
 	height: 100px;
-	border-radius: 50px;
+	float: left;
+	margin-right: 10px;
+}
+
+#my-card .tab-pane .list-group-item1>div>img {
+	width: 95%;
+	height: 100%;
 	float: left;
 	margin-right: 10px;
 }
@@ -52,12 +74,35 @@ body {
 	font-weight: bold;
 }
 
+#my-card .tab-pane .list-group-item1>div>h4 {
+	padding: 10px;
+	font-size: 1.3em;
+    font-weight: 600;
+    color: #000;
+}
+
 #my-card .tab-pane .list-group-item>div>p {
 	font-size: 18px;
 	font-weight: bold;
 }
 
+#my-card .tab-pane .list-group-item1>div>p {
+	font-size: 18px;
+	font-weight: bold;
+}
+
 #my-card .tab-pane .list-group-item>em {
+	clear: both;
+	display: block;
+	margin-top: 10px;
+	padding: 10px;
+	color: #999;
+	font-style: normal;
+	font-size: 16px;
+	border: 0;
+}
+
+#my-card .tab-pane .list-group-item1>em {
 	clear: both;
 	display: block;
 	margin-top: 10px;
@@ -103,4 +148,9 @@ body {
 #quan>.list-group>a.list-group-item>div>p {
 	color: #666;
 	font-weight: normal;
+}
+
+.list-group-cardno {
+	position: absolute;
+	bottom: 120px;
 }

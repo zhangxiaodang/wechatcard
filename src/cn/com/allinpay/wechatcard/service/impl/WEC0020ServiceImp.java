@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantUrlValue;
 import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.dao.WEC0020Dao;
 import cn.com.allinpay.wechatcard.service.ICommonService;
 import cn.com.allinpay.wechatcard.service.IWEC0020Service;
@@ -78,14 +77,10 @@ public class WEC0020ServiceImp extends BaseService implements IWEC0020Service {
 			phone_is_used = true;
 		}
 		// 查询商户的会员卡图片
-		@SuppressWarnings("unused")
-		Map<String, String> memchantInfo = commonService.getMerchantInfoByUrlFlag(strUrlFlag);
-		Map<String, Object> imMap = new HashMap<String, Object>();
-		// 设置默认图片
-		imMap.put("merbercardimg", memberInfo.get("merbercardimg"));
-		imMap = WebUtil.test_set_null_card_img_map(imMap);
-		
-		mv.addObject("merbercardimg", imMap.get("merbercardimg"));
+		Map<String, String> memchantInfo = commonService
+				.getMerchantInfoByUrlFlag(strUrlFlag);
+
+		mv.addObject("merbercardimg", memchantInfo.get("merbercardimg"));
 		mv.addObject("phone_is_used", phone_is_used);
 		mv.addObject("membergrade", memberInfo.get("membergrade"));
 

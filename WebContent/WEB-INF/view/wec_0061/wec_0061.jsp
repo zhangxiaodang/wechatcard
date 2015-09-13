@@ -34,9 +34,9 @@
                     温馨提示
                     </font>
                     <br>
-                    <font size="4" color="black">
-                    对不起！您还不是会员，享受更多<br>
-                    优惠服务，请点击申请会员卡。
+                    <font size="2.5" color="black">
+                    &nbsp;&nbsp;对不起！您还不是会员，享受更多<br>
+                    &nbsp;&nbsp;优惠服务，请点击申请会员卡。
                     </font>
                     </span>
                 </div>

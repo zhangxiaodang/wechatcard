@@ -26,6 +26,11 @@
 </script>
 <body>
 
+<div class="heading">
+	<span>消费记录</span>
+	<hr style="border:none;border-top:1.5px solid #000;width:98%;margin-top:3px;" />
+</div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">

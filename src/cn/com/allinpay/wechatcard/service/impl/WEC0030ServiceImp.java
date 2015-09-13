@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import cn.com.allinpay.frame.service.BaseService;
 import cn.com.allinpay.frame.util.WebConstantValue;
-import cn.com.allinpay.frame.util.WebUtil;
 import cn.com.allinpay.wechatcard.dao.WEC0030Dao;
 import cn.com.allinpay.wechatcard.model.WEC0030Model;
 import cn.com.allinpay.wechatcard.service.IWEC0030Service;
@@ -38,29 +37,25 @@ public class WEC0030ServiceImp extends BaseService implements IWEC0030Service {
 	 * 获取会员的卡和优惠券信息
 	 */
 	@Override
-	public WEC0030Model get_card_coupon(WEC0010View memberView) throws Exception {
+	public WEC0030Model get_card_coupon(WEC0010View memberView)
+			throws Exception {
 		logger.info("========================Service get_card_voucher Start==========================");
-		
+
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put(BEAN, memberView);
 		// 获取会员卡信息
 		List<Map<String, Object>> card_list = wec_0030_Dao.get_card(paramMap);
-		// todo-zhangxd
-		// 如果有空图片地址的话，给一个默认的图片地址。
-		card_list = WebUtil.test_set_null_card_img(card_list);
-		
+
 		// 获取会员的优惠券信息
-		List<Map<String, Object>> coupons_list = wec_0030_Dao.get_coupon(paramMap);
-		// todo-zhangxd
-		// 如果有空优惠券地址的话，给一个默认的图片地址。
-		coupons_list = WebUtil.test_set_null_coupon_img(coupons_list);
-		
+		List<Map<String, Object>> coupons_list = wec_0030_Dao
+				.get_coupon(paramMap);
+
 		// 返回前台提示信息
 		WEC0030Model resultModel = new WEC0030Model();
-		
+
 		resultModel.setCard_list(card_list);
 		resultModel.setCoupon_list(coupons_list);
-		
+
 		resultModel.setState(WebConstantValue.HTTP_OK);
 
 		logger.info("========================Service get_card_voucher End==========================");

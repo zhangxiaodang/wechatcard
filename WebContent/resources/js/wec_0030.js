@@ -18,11 +18,12 @@ $(function () {
 
             if(ka_len) {
                 for(var i = 0; i < ka_len; i++) {
-                    ka_html += '<a href="#" class="list-group-item active" id="card_'+ card_list[i]['merbercardid'] +'">' +
+                    ka_html += '<a href="#" class="list-group-item1 active" id="card_'+ card_list[i]['merbercardid'] +'">' +
                         '<div>' +
                         '<img src="'+ card_list[i]['merbercardimg'] +'" alt=""/>' +
-                        '<h4 class="list-group-item-heading">'+ card_list[i]['dzcardno'] +'</h4>' +
-                        '<p class="list-group-item-text">'+card_list[i]['cardname']+'</p>' +
+                        //'<h4 class="list-group-item-heading">No.'+ card_list[i]['dzcardno'] +'</h4>' +
+                        '<h4 class="list-group-cardno">No.'+ card_list[i]['dzcardno'] +'</h4>' +
+                        //'<p class="list-group-item-text">'+card_list[i]['cardname']+'</p>' +
                         '</div>' +
                         '<em><font color="#000000">会员储值卡，会员专享活动</font></em>' +
                     '</a>';
