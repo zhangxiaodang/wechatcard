@@ -85,9 +85,9 @@ header.carousel > .hy > .row > div.col-xs-4.col-md-4 + div.col-xs-4.col-md-4 {
 
 #list > li {
     border: 0;
-    padding: 20px 15px;
+    padding: 15px 15px;
     margin-bottom: 0;
-    font-size: 1.5em;
+    font-size: 1.2em;
     position: relative;
     font-weight: 400;
 }
@@ -99,9 +99,9 @@ header.carousel > .hy > .row > div.col-xs-4.col-md-4 + div.col-xs-4.col-md-4 {
 .list-img-left {
 	position: absolute;
     left: 5px;
-    top: 15px;
-    width: 30px;
-    height: 30px;
+    top: 10px;
+    width: 28px;
+    height: 28px;
 }
 
 .list-img-right {

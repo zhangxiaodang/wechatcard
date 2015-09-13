@@ -69,7 +69,6 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
-
                 <!--<div class="modal-header">-->
                     <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
                     <!--<h4 class="modal-title" id="gridSystemModalLabel">将本页面展示给店员即可使用</h4>-->
@@ -99,7 +98,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <ul id="list" class="list-group">
+            <ul id="list" class="list-group-item">
                 <li class="list-group-item" id="change_pass">
                     <img class="list-img-left" src="resources/images/carddetail/modifypassword.png" alt=""/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卡密码修改
