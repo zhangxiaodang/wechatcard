@@ -25,6 +25,7 @@
     <script type="text/javascript">
     	var cardno = "${membercard.card_info.cardno}";
     	var dzcardno = "${membercard.card_info.dzcardno}";
+    	var zh_list = ${membercard.card_info.zh};
     </script>
 </head>
 <body>
@@ -32,7 +33,6 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-
             <header id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
@@ -61,10 +61,24 @@
                     </div>
                 </div>
             </header>
-
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-12">
+			<ul class="list-group" style="margin-left:0px;" id="zh_list">
+			   <!-- <li class="list-group-item">18363017058： ￥378.21</li>
+			   <li class="list-group-item">18363017058： ￥148.61</li>
+			   <li class="list-group-item">18363017058： ￥668.22</li> -->
+			</ul>
+		</div>
+	</div>
+	<!-- <div class="row">
+		<div style="width:100%;background-color:#fff;">
+			<div style="width:100%;background-color:#fff;padding:3px 0px 3px 0px">18363017058： ￥378.2</div>
+			<div style="width:100%;background-color:#fff;padding:3px 0px 3px 0px">18363017058： ￥378.2</div>
+			<div style="width:100%;background-color:#fff;padding:3px 0px 3px 0px">18363017058： ￥378.2</div>
+		</div>
+	</div> -->
     <div class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -95,7 +109,7 @@
             </div>
         </div>
     </div>
-
+	
     <div class="row">
         <div class="col-md-12">
             <ul id="list" class="list-group-item">

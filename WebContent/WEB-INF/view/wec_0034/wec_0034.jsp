@@ -44,6 +44,18 @@
             <p>${coupon.coupon_info.couponcontent}</p>
             <p>有限期：${coupon.coupon_info.starttime}至${coupon.coupon_info.endtime}</p>
             <p>适用门店：全国各门店</p>
+            <div class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="${coupon.coupon_info.couponcode}" />
+                    </div>
+                    <h2>券号：${coupon.coupon_info.merchantcouponid}</h2>
+                    <h3>将本页面展示给店员即可使用</h3>
+                </div>
+            </div>
         </div>
     </div>
 </div>

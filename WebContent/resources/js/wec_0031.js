@@ -50,5 +50,23 @@ $(function () {
     });
     
     qrcode.makeCode(cardno);
+    
+    // 显示账户
+    set_zh();
 });
+
+/**
+ * 设置账户信息
+ */
+function set_zh(){
+    var $zh_list = $("#zh_list");
+    var zh_list_html = '';
+    if(zh_list) {
+        for(var i = 0; i < zh_list.length; i++) {
+        	zh_list_html += '<li class="list-group-item">'+zh_list[i]['cph']+'： ￥'+zh_list[i]['yxye']+'</li>';
+        }
+
+        $zh_list.empty().append( zh_list_html );
+    }
+}
     
