@@ -41,6 +41,7 @@ public class WEC0036ServiceImp extends BaseService implements IWEC0036Service {
 	public WEC0036Model get_recharge(WEC0036View wec0036View) throws Exception {
 		logger.info("========================Service get_recharge Start==========================");
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		// todo-zhangxd
 		wec0036View.setDzcardno("18363017058");
 		paramMap.put(BEAN, wec0036View);
 		// 获取充值信息

@@ -8,22 +8,52 @@
 	<select id="getCurrentPhoneNum" parameterType="java.util.Map"
 		resultType="String">
 		select a.memberphone as "memberphone"
-		from member a, merchant b
+		from member a,
+		merchant b
 		where
-		     a.merchantid = b.merchantid
-		 and b.urlflag = #{urlflag}
-		 and a.memberopenid = #{openid}
+		a.merchantid = b.merchantid
+		and b.urlflag = #{urlflag}
+		and a.memberopenid = #{openid}
+	</select>
+
+	<!-- 获取手机号对应的实体卡号 -->
+	<select id="getCardnoFromDzcardno" parameterType="java.util.Map"
+		resultType="String">
+		select c.cardno as "cardno"
+		from member a,
+		merchant b,
+		membercard c
+		where
+		c.dzcardno =  #{oldphone}
+		and a.merchantid = b.merchantid
+		and b.urlflag = #{urlflag}
+		and a.memberopenid = #{openid}
 	</select>
 
 	<!-- 更新手机号 -->
 	<update id="updatePhoneNum" parameterType="java.util.Map">
 		update
-			member
+		member
 		set
-			memberphone = #{newphone}
-		where 
-		     memberopenid = #{openid}
-		 and merchantid = (select merchantid from merchant where urlflag = #{urlflag})
+		memberphone = #{newphone}
+		where
+		memberopenid = #{openid}
+		and merchantid = (select merchantid from merchant where urlflag =
+		#{urlflag})
 	</update>
+
+	<!-- 更换手机号 电子卡号替换 成新手机号 -->
+	<update id="updateDzcardno" parameterType="java.util.Map">
+		update
+		membercard
+		set
+		dzcardno = #{newphone}
+		where
+		memberid = #{memberid}
+		and merchantid = (select merchantid from merchant where urlflag =
+		#{urlflag})
+	</update>
+
+
 </mapper>
 	

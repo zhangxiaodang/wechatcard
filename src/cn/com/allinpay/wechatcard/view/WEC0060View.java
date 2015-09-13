@@ -11,6 +11,15 @@ public class WEC0060View extends BaseView {
 	 * 新手机号
 	 */
 	private String newphone = "";
+	/**
+	 * 原手机号
+	 */
+	private String oldphone = "";
+	
+	/**
+	 * 卡密码
+	 */
+	private String password = "";
 
 	/**
 	 * 验证码.
@@ -31,6 +40,22 @@ public class WEC0060View extends BaseView {
 
 	public void setYzm(String yzm) {
 		this.yzm = yzm;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getOldphone() {
+		return oldphone;
+	}
+
+	public void setOldphone(String oldphone) {
+		this.oldphone = oldphone;
 	}
 
 }

@@ -1,6 +1,7 @@
 package cn.com.allinpay.frame.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,8 @@ public class CalculateinterestForm extends BaseModel {
 	private String loginType;
 	// 增加查询机构号
 	private String conorgan_id;
+	//绑定 用
+	private String alias;
 	// 查询条件
 	private String startdate;
 	private String enddate;
@@ -1065,6 +1068,55 @@ public class CalculateinterestForm extends BaseModel {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	@Override
+	public String toString() {
+		return "CalculateinterestForm [i=" + i + ", organization_id=" + organization_id + ", organization_name="
+				+ organization_name + ", loginType=" + loginType + ", conorgan_id=" + conorgan_id + ", alias=" + alias
+				+ ", startdate=" + startdate + ", enddate=" + enddate + ", concard_id=" + concard_id + ", conuserid="
+				+ conuserid + ", conusername=" + conusername + ", conpassword=" + conpassword + ", conpageno="
+				+ conpageno + ", constate=" + constate + ", confinanc_name=" + confinanc_name + ", cardproductList="
+				+ cardproductList + ", keyid=" + keyid + ", card_id=" + card_id + ", account_type=" + account_type
+				+ ", interest_rate=" + interest_rate + ", product_sn=" + product_sn + ", product_id=" + product_id
+				+ ", account_balance=" + account_balance + ", start_date=" + start_date + ", end_date=" + end_date
+				+ ", sum_balance=" + sum_balance + ", offline_balance=" + offline_balance + ", account_state="
+				+ account_state + ", collect_date=" + collect_date + ", operate_date=" + operate_date
+				+ ", interest_money=" + interest_money + ", operatorid=" + operatorid + ", save_money=" + save_money
+				+ ", interest_ratename=" + interest_ratename + ", return_message=" + return_message + ", product_state="
+				+ product_state + ", password=" + password + ", amount=" + amount + ", mer_id=" + mer_id
+				+ ", mer_order_id=" + mer_order_id + ", pay_txn_id=" + pay_txn_id + ", trans_card_id=" + trans_card_id
+				+ ", trans_prdt_no=" + trans_prdt_no + ", sum_updatedate=" + sum_updatedate + ", new_card_id="
+				+ new_card_id + ", order_id=" + order_id + ", pay_order_id=" + pay_order_id + ", trans_no=" + trans_no
+				+ ", state=" + state + ", statename=" + statename + ", result=" + result + ", rescode=" + rescode
+				+ ", prdt_name=" + prdt_name + ", reason=" + reason + ", recharge_type=" + recharge_type
+				+ ", detail_stat=" + detail_stat + ", recharge_tujing=" + recharge_tujing + ", req_man=" + req_man
+				+ ", req_date=" + req_date + ", recharge_man=" + recharge_man + ", recharge_date=" + recharge_date
+				+ ", remark=" + remark + ", int_txn_dt=" + int_txn_dt + ", int_txn_tm=" + int_txn_tm
+				+ ", accept_brh_id=" + accept_brh_id + ", int_txn_seq_id=" + int_txn_seq_id + ", access_ref_seq_id="
+				+ access_ref_seq_id + ", txn_at=" + txn_at + ", txn_fee_at=" + txn_fee_at + ", txn_sta_cd=" + txn_sta_cd
+				+ ", term_id=" + term_id + ", txn_cd=" + txn_cd + ", inforet_code=" + inforet_code + ", transret_code="
+				+ transret_code + ", requesttime=" + requesttime + ", requestman=" + requestman + ", dealflag="
+				+ dealflag + ", dealflagname=" + dealflagname + ", keyidbox=" + Arrays.toString(keyidbox)
+				+ ", batch_id=" + batch_id + ", sn=" + sn + ", trans_time=" + trans_time + ", trans_time_wx="
+				+ trans_time_wx + ", user_charge=" + user_charge + ", bank_charge=" + bank_charge + ", financ_name="
+				+ financ_name + ", total_amount=" + total_amount + ", principal=" + principal + ", income=" + income
+				+ ", inouttype=" + inouttype + ", branchMap=" + branchMap + ", stateTxt=" + stateTxt + ", ckrsxf="
+				+ ckrsxf + ", yhcd=" + yhcd + ", deptname=" + deptname + ", ll=" + ll + ", branchname=" + branchname
+				+ ", custname=" + custname + ", valid_balance=" + valid_balance + ", day_interest=" + day_interest
+				+ ", opertime=" + opertime + ", operor=" + operor + ", ismobile=" + ismobile + ", isdel=" + isdel
+				+ ", id=" + id + ", bank_back_code=" + bank_back_code + ", back_code=" + back_code
+				+ ", canTransferMore=" + canTransferMore + ", branchid=" + branchid + ", sourceid=" + sourceid
+				+ ", company=" + company + ", uuid=" + uuid + ", bankBalanceMoney=" + bankBalanceMoney + ", paralabel="
+				+ paralabel + ", username=" + username + ", mytoken=" + mytoken + "]";
 	}
 
 }

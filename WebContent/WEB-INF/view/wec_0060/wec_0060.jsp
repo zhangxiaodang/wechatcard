@@ -32,6 +32,11 @@
                     <span class="input-group-addon" for="old_mobile"><span class="red-text">* </span>原手机号：</span>
                     <input type="text" id="old_mobile" class="form-control" readonly="readonly" value="${oldphone}" placeholder="手机号不可为空" aria-describedby="basic-addon1">
                 </div>
+               
+                <div class="input-group">
+                    <span class="input-group-addon" for="password"><span class="red-text">* </span>卡密码：</span>
+                    <input type="text" id="password" class="form-control" value="" placeholder="卡密码不可为空" aria-describedby="basic-addon1" maxlength="6">
+                </div>
                 <div class="input-group">
                     <span class="input-group-addon" for="newphone"><span class="red-text">* </span>新手机号：</span>
                     <input type="text" id="newphone" class="form-control" value="" placeholder="新手机号不可为空" aria-describedby="basic-addon1" maxlength="11">

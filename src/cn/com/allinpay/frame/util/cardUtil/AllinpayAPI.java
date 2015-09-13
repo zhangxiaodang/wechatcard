@@ -1,10 +1,15 @@
 package cn.com.allinpay.frame.util.cardUtil;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,10 +29,8 @@ import cn.com.allinpay.frame.model.Yufuka;
 import cn.com.allinpay.frame.util.WechatCardCommonUtil;
 
 public class AllinpayAPI {
-	private static java.text.DecimalFormat df = new java.text.DecimalFormat(
-			"####0.00");
-	private static java.text.DecimalFormat intdf = new java.text.DecimalFormat(
-			"#");
+	private static java.text.DecimalFormat df = new java.text.DecimalFormat("####0.00");
+	private static java.text.DecimalFormat intdf = new java.text.DecimalFormat("#");
 
 	/************************************ 生产环境 *****************************************/
 	/*
@@ -63,8 +66,7 @@ public class AllinpayAPI {
 		befurl = WechatCardCommonUtil.getBefUrl();
 	}
 
-	public static Yufuka openaccount(Yufuka yufuka,
-			BranchparametersForm _branchInfoform) {
+	public static Yufuka openaccount(Yufuka yufuka, BranchparametersForm _branchInfoform) {
 
 		initParameters(_branchInfoform);// 初始化参数
 		try {
@@ -73,28 +75,20 @@ public class AllinpayAPI {
 				_sf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
 			}
 			String timestamp = _sf.format(new Date());// 时间戳
-			String signstring = "" + app_secret + "app_key" + app_key
-					+ "brand_no" + yufuka.getBrand_no() + "brh_id"
-					+ yufuka.getBrh_id() + "chan_no" + yufuka.getChan_no()
-					+ "formatxml" + "methodallinpay.ppcs.cloud.card.open"
-					+ "order_id" + yufuka.getOrder_id() + "password"
-					+ yufuka.getPassword() + "phone_num"
-					+ yufuka.getPhone_num() + "sign_methodmd5" + "sign_v1"
-					+ "timestamp" + timestamp + "v" + api_v + "" + app_secret
-					+ "";// 需要签名的字符串
+			String signstring = "" + app_secret + "app_key" + app_key + "brand_no" + yufuka.getBrand_no() + "brh_id"
+					+ yufuka.getBrh_id() + "chan_no" + yufuka.getChan_no() + "formatxml"
+					+ "methodallinpay.ppcs.cloud.card.open" + "order_id" + yufuka.getOrder_id() + "password"
+					+ yufuka.getPassword() + "phone_num" + yufuka.getPhone_num() + "sign_methodmd5" + "sign_v1"
+					+ "timestamp" + timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
 			System.out.println("timestamp=" + timestamp);
 			System.out.println("signstring=" + signstring);
 
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl + "app_key=" + app_key + "&brand_no="
-					+ yufuka.getBrand_no() + "&brh_id=" + yufuka.getBrh_id()
-					+ "&chan_no=" + yufuka.getChan_no() + "&format=xml"
-					+ "&method=allinpay.ppcs.cloud.card.open" + "&order_id="
-					+ yufuka.getOrder_id() + "&password="
-					+ yufuka.getPassword() + "&phone_num="
-					+ yufuka.getPhone_num() + "&sign=" + md5sign
-					+ "&sign_method=md5" + "&sign_v=1" + "&timestamp="
-					+ timestamp + "&v=" + api_v + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&brand_no=" + yufuka.getBrand_no() + "&brh_id="
+					+ yufuka.getBrh_id() + "&chan_no=" + yufuka.getChan_no() + "&format=xml"
+					+ "&method=allinpay.ppcs.cloud.card.open" + "&order_id=" + yufuka.getOrder_id() + "&password="
+					+ yufuka.getPassword() + "&phone_num=" + yufuka.getPhone_num() + "&sign=" + md5sign
+					+ "&sign_method=md5" + "&sign_v=1" + "&timestamp=" + timestamp + "&v=" + api_v + "";// 拼装url
 			System.out.println(url);
 			URL urls = new URL(url);// url定义
 			SAXReader saxReader = new SAXReader();
@@ -103,8 +97,7 @@ public class AllinpayAPI {
 			Element rootElm = document.getRootElement();// 获取根节点
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
-				String msg = null == sub_msg ? rootElm.element("msg").getText()
-						: sub_msg.getText();
+				String msg = null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText();
 				yufuka.setReturnMsg(msg);
 			} else {
 				Element brh_id = rootElm.element("brh_id");
@@ -130,8 +123,8 @@ public class AllinpayAPI {
 	}
 
 	// 查询余额API:根据生产环境做修正
-	public static CalculateinterestForm getCardinfoAPI(String strcardid,
-			String strpassword, BranchparametersForm _branchInfoform) {
+	public static CalculateinterestForm getCardinfoAPI(String strcardid, String strpassword,
+			BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
 		ArrayList producList = new ArrayList();
@@ -144,24 +137,16 @@ public class AllinpayAPI {
 			String pinblock = timestamp + "aop" + strpassword;// pinblock构成
 			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
 			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
-			byte[] data = DESEncryptDecrypt.CBCEncrypt(
-					pinblock.getBytes("UTF-8"), key, iv);// DES加密
+			byte[] data = DESEncryptDecrypt.CBCEncrypt(pinblock.getBytes("UTF-8"), key, iv);// DES加密
 			String _DesInfo = (new sun.misc.BASE64Encoder()).encode(data);// Base64编码后的DES数据
 			String des_urlencode = URLEncoder.encode(_DesInfo, "UTF-8");// urlencode转义
-			String signstring = "" + app_secret + "app_key" + app_key
-					+ "card_id" + strcardid
-					+ "formatxmlmethodallinpay.card.cardinfo.getpassword"
-					+ _DesInfo + "sign_methodmd5sign_v1timestamp" + timestamp
-					+ "v" + api_v + "" + app_secret + "";// 需要签名的字符串
+			String signstring = "" + app_secret + "app_key" + app_key + "card_id" + strcardid + "formatxml"
+					+ "methodallinpay.card.cardinfo.get" + "password" + _DesInfo + "sign_methodmd5sign_v1timestamp"
+					+ timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.card.cardinfo.get&timestamp="
-					+ timestamp + "&card_id=" + strcardid + "&password="
-					+ des_urlencode + "&sign=" + md5sign + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.card.cardinfo.get&timestamp=" + timestamp + "&card_id="
+					+ strcardid + "&password=" + des_urlencode + "&sign=" + md5sign + "";// 拼装url
 			// System.out.println(url);
 			URL urls = new URL(url);// url定义
 			SAXReader saxReader = new SAXReader();
@@ -171,26 +156,19 @@ public class AllinpayAPI {
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
 				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element(
-								"msg").getText() : sub_msg.getText());
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
 			} else {
 				Element cardinfo = rootElm.element("card_info");
-				Element card_product_info_arrays = cardinfo
-						.element("card_product_info_arrays");
+				Element card_product_info_arrays = cardinfo.element("card_product_info_arrays");
 				_calculateinterestForm.setReturn_message("00");// 设置00为成功返回标识
-				for (Iterator i = card_product_info_arrays
-						.elementIterator("card_product_info"); i.hasNext();) {
+				for (Iterator i = card_product_info_arrays.elementIterator("card_product_info"); i.hasNext();) {
 					Element card = (Element) i.next();
 					CalculateinterestForm _productForm = new CalculateinterestForm();
-					_productForm.setProduct_id(card.element("product_id")
-							.getText());
-					String account_balance = card.element("valid_balance")
-							.getText();// 账户余额:可用余额
-					_productForm.setAccount_balance(df.format(Double
-							.parseDouble(account_balance) / 100));// 设置账户余额，转化为元
+					_productForm.setProduct_id(card.element("product_id").getText());
+					String account_balance = card.element("valid_balance").getText();// 账户余额:可用余额
+					_productForm.setAccount_balance(df.format(Double.parseDouble(account_balance) / 100));// 设置账户余额，转化为元
 					_productForm.setCard_id(card.element("card_id").getText());// 设置卡号
-					_productForm.setProduct_state(card.element("product_stat")
-							.getText());// 设置产品状态
+					_productForm.setProduct_state(card.element("product_stat").getText());// 设置产品状态
 
 					producList.add(_productForm);// 产品集
 				}
@@ -203,9 +181,224 @@ public class AllinpayAPI {
 		return _calculateinterestForm;
 	}
 
+	/**
+	 * 卡别名解绑
+	 * 
+	 * @param card_id
+	 * @param password
+	 * @param alias
+	 * @param order_id
+	 * @param _branchInfoform
+	 * @return
+	 */
+	public static CalculateinterestForm unbundleCardAlias(String card_id, String password, String alias,
+			String order_id, BranchparametersForm _branchInfoform) {
+		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
+		initParameters(_branchInfoform);// 初始化参数
+		HttpURLConnection urlConnection = null;
+		PrintWriter out = null;
+		BufferedReader in = null;
+		String result = "";
+		try {
+			SimpleDateFormat _sf = new SimpleDateFormat("yyyyMMddHHmmss");
+			if (timeError) {
+				_sf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+			}
+			String timestamp = _sf.format(new Date());// 时间戳
+			String pinblock = timestamp + "aop" + password;// pinblock构成
+			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
+			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
+			byte[] data = DESEncryptDecrypt.CBCEncrypt(pinblock.getBytes("UTF-8"), key, iv);// DES加密
+			String _DesInfo = (new sun.misc.BASE64Encoder()).encode(data);// Base64编码后的DES数据
+			String des_urlencode = URLEncoder.encode(_DesInfo, "UTF-8");// urlencode转义
+			String signstring = "" + app_secret + "alias" + alias + "app_key" + app_key + "card_id" + card_id
+					+ "formatxml" + "methodallinpay.card.alias.remove" + "order_id" + order_id + "password" + _DesInfo
+					+ "sign_methodmd5" + "sign_v1" + "timestamp" + timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
+			System.out.println("signstring=" + signstring);
+
+			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
+			System.out.println("md5sign=" + md5sign);
+			String param = "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.card.alias.remove&timestamp=" + timestamp + "&card_id="
+					+ card_id + "&order_id=" + order_id + "&alias=" + alias + "&password=" + des_urlencode + "&sign="
+					+ md5sign + "";// 拼装url
+			// String url = befurl + param;
+			befurl = befurl.replace("?", "");
+			System.out.println("befurl=" + befurl);
+			System.out.println("param=" + param);
+
+			URL realUrl = new URL(befurl);// url定义
+			URLConnection conn = realUrl.openConnection();
+			// 设置通用的请求属性
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+
+			// 发送POST请求必须设置如下两行
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			// 获取URLConnection对象对应的输出流
+			out = new PrintWriter(conn.getOutputStream());
+			// 发送请求参数
+			out.print(param);
+			// flush输出流的缓冲
+			out.flush();
+			// 定义BufferedReader输入流来读取URL的响应
+			in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+			String line;
+			while ((line = in.readLine()) != null) {
+				result += line;
+			}
+			// 创建xml解析对象
+			System.out.println("result=" + result);
+			SAXReader saxReader = new SAXReader();
+			Document document = saxReader.read(new ByteArrayInputStream(result.getBytes("UTF-8")));
+			System.out.println("document=" + formatXML(document));
+			// 得到xml的根节点(message)
+			Element rootElm = document.getRootElement();// 获取根节点
+			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
+				Element sub_msg = rootElm.element("sub_msg");
+				_calculateinterestForm
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
+			} else {
+				Element ecard_alias = rootElm.element("card_alias");
+				Element eorder_id = rootElm.element("order_id");
+				Element ecard_id = rootElm.element("card_id");
+				Element trans_no = rootElm.element("trans_no");
+				_calculateinterestForm.setReturn_message("00");// 设置00为成功返回标识
+				_calculateinterestForm.setOrder_id(eorder_id.getText());
+				_calculateinterestForm.setCard_id(ecard_id.getText());
+				_calculateinterestForm.setTrans_no(trans_no.getText());
+				_calculateinterestForm.setAlias(ecard_alias.getText());
+				System.out.println("_calculateinterestForm=" + _calculateinterestForm);
+
+			}
+		} catch (Exception e) {
+			_calculateinterestForm.setReturn_message("远程通信中断，请检查网络！");
+			e.printStackTrace();
+		} finally {
+			if (urlConnection != null)
+				urlConnection.disconnect();
+			try {
+				if (out != null) {
+					out.close();
+				}
+				if (in != null) {
+					in.close();
+				}
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return _calculateinterestForm;
+	}
+
+	/**
+	 * 卡别名绑定 绑手机号或者身份证号
+	 * 
+	 * @param card_id
+	 * @param password
+	 * @param alias
+	 * @param order_id
+	 * @param _branchInfoform
+	 * @return
+	 */
+	public static CalculateinterestForm bundleCardAlias(String card_id, String password, String alias, String order_id,
+			BranchparametersForm _branchInfoform) {
+		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
+		initParameters(_branchInfoform);// 初始化参数
+		HttpURLConnection urlConnection = null;
+		PrintWriter out = null;
+		BufferedReader in = null;
+		String result = "";
+		try {
+			SimpleDateFormat _sf = new SimpleDateFormat("yyyyMMddHHmmss");
+			if (timeError) {
+				_sf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+			}
+			String timestamp = _sf.format(new Date());// 时间戳
+			String pinblock = timestamp + "aop" + password;// pinblock构成
+			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
+			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
+			byte[] data = DESEncryptDecrypt.CBCEncrypt(pinblock.getBytes("UTF-8"), key, iv);// DES加密
+			String _DesInfo = (new sun.misc.BASE64Encoder()).encode(data);// Base64编码后的DES数据
+			String des_urlencode = URLEncoder.encode(_DesInfo, "UTF-8");// urlencode转义
+			String signstring = "" + app_secret + "alias" + alias + "app_key" + app_key + "card_id" + card_id
+					+ "formatxml" + "methodallinpay.card.alias.bind" + "order_id" + order_id + "password" + _DesInfo
+					+ "sign_methodmd5" + "sign_v1" + "timestamp" + timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
+			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
+			String param = "app_key=" + app_key + "&format=xml&v=" + api_v + "&sign_method=md5&sign_v=1"
+					+ "&method=allinpay.card.alias.bind&timestamp=" + timestamp + "&card_id=" + card_id + "&order_id="
+					+ order_id + "&alias=" + alias + "&password=" + des_urlencode + "&sign=" + md5sign + "";// 拼装url
+			befurl = befurl.replace("?", "");
+			System.out.println("befurl=" + befurl);
+			System.out.println("param=" + param);
+			URL realUrl = new URL(befurl);// url定义
+			URLConnection conn = realUrl.openConnection();
+			// 设置通用的请求属性
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+
+			// 发送POST请求必须设置如下两行
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			// 获取URLConnection对象对应的输出流
+			out = new PrintWriter(conn.getOutputStream());
+			// 发送请求参数
+			out.print(param);
+			// flush输出流的缓冲
+			out.flush();
+			// 定义BufferedReader输入流来读取URL的响应
+			in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+			String line;
+			while ((line = in.readLine()) != null) {
+				result += line;
+			}
+			// 创建xml解析对象
+			System.out.println("result=" + result);
+			SAXReader saxReader = new SAXReader();
+			Document document = saxReader.read(new ByteArrayInputStream(result.getBytes("UTF-8")));
+			System.out.println("document=" + formatXML(document));
+			Element rootElm = document.getRootElement();// 获取根节点
+			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
+				Element sub_msg = rootElm.element("sub_msg");
+				_calculateinterestForm
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
+			} else {
+				Element ecard_alias = rootElm.element("card_alias");
+				Element eorder_id = rootElm.element("order_id");
+				Element ecard_id = rootElm.element("card_id");
+				Element trans_no = rootElm.element("trans_no");
+
+				_calculateinterestForm.setReturn_message("00");// 设置00为成功返回标识
+				_calculateinterestForm.setOrder_id(eorder_id.getText());
+				_calculateinterestForm.setCard_id(ecard_id.getText());
+				_calculateinterestForm.setTrans_no(trans_no.getText());
+				_calculateinterestForm.setAlias(ecard_alias.getText());
+			}
+		} catch (Exception e) {
+			_calculateinterestForm.setReturn_message("远程通信中断，请检查网络！");
+			e.printStackTrace();
+		} finally {
+			if (urlConnection != null)
+				urlConnection.disconnect();
+			try {
+				if (out != null) {
+					out.close();
+				}
+				if (in != null) {
+					in.close();
+				}
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+		return _calculateinterestForm;
+	}
+
 	// 换卡操作:测试成功。将老卡换到未激活的卡里，必须是未激活的。order_id自己生成
-	public static CalculateinterestForm changeCardAPI(String card_id,
-			String new_card_id, String order_id,
+	public static CalculateinterestForm changeCardAPI(String card_id, String new_card_id, String order_id,
 			BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
@@ -215,21 +408,13 @@ public class AllinpayAPI {
 				_sf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
 			}
 			String timestamp = _sf.format(new Date());// 时间戳
-			String signstring = "" + app_secret + "app_key" + app_key
-					+ "card_id" + card_id
-					+ "formatxmlmethodallinpay.ppcs.cardchange.addnew_card_id"
-					+ new_card_id + "order_id" + order_id
-					+ "sign_methodmd5sign_v1timestamp" + timestamp + "v"
-					+ api_v + "" + app_secret + "";// 需要签名的字符串
+			String signstring = "" + app_secret + "app_key" + app_key + "card_id" + card_id
+					+ "formatxmlmethodallinpay.ppcs.cardchange.addnew_card_id" + new_card_id + "order_id" + order_id
+					+ "sign_methodmd5sign_v1timestamp" + timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.ppcs.cardchange.add&timestamp="
-					+ timestamp + "&card_id=" + card_id + "&new_card_id="
-					+ new_card_id + "&order_id=" + order_id + "&sign="
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.ppcs.cardchange.add&timestamp=" + timestamp
+					+ "&card_id=" + card_id + "&new_card_id=" + new_card_id + "&order_id=" + order_id + "&sign="
 					+ md5sign + "";// 拼装url
 			URL urls = new URL(url);// url定义
 			SAXReader saxReader = new SAXReader();
@@ -240,9 +425,8 @@ public class AllinpayAPI {
 			Element theorder_id = rootElm.element("order_id");
 			Element trans_no = rootElm.element("trans_no");
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
-				_calculateinterestForm.setReturn_message(null == rootElm
-						.element("sub_msg") ? rootElm.element("msg").getText()
-						: rootElm.element("sub_msg").getText());
+				_calculateinterestForm.setReturn_message(null == rootElm.element("sub_msg")
+						? rootElm.element("msg").getText() : rootElm.element("sub_msg").getText());
 			} else {
 				_calculateinterestForm.setCard_id(oldcard_id.getText());
 				_calculateinterestForm.setNew_card_id(newcard_id.getText());
@@ -258,9 +442,8 @@ public class AllinpayAPI {
 	}
 
 	// 单卡充值 syp测试成功
-	public static CalculateinterestForm cardSingleTopup(String order_id,
-			String card_id, String prdt_no, String amount, String top_up_way,
-			String desn, String oprid, BranchparametersForm _branchInfoform) {
+	public static CalculateinterestForm cardSingleTopup(String order_id, String card_id, String prdt_no, String amount,
+			String top_up_way, String desn, String oprid, BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
 		try {
@@ -271,25 +454,17 @@ public class AllinpayAPI {
 			String timestamp = _sf.format(new Date());// 时间戳
 
 			String urlencode = URLEncoder.encode(desn, "UTF-8");
-			String signstring = "" + app_secret + "amount" + amount + "app_key"
-					+ app_key + "card_id" + card_id + "desn" + desn
-					+ "formatxmlmethodallinpay.ppcs.cardsingletopup.addoprId"
-					+ oprid + "order_id" + order_id + "prdt_no" + prdt_no
-					+ "sign_methodmd5sign_v1timestamp" + timestamp
-					+ "top_up_way" + top_up_way + "v" + api_v + "" + app_secret
-					+ "";// 需要签名的字符串
+			String signstring = "" + app_secret + "amount" + amount + "app_key" + app_key + "card_id" + card_id + "desn"
+					+ desn + "formatxmlmethodallinpay.ppcs.cardsingletopup.addoprId" + oprid + "order_id" + order_id
+					+ "prdt_no" + prdt_no + "sign_methodmd5sign_v1timestamp" + timestamp + "top_up_way" + top_up_way
+					+ "v" + api_v + "" + app_secret + "";// 需要签名的字符串
 			// System.out.println("signstring:"+signstring);
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.ppcs.cardsingletopup.add&timestamp="
-					+ timestamp + "&card_id=" + card_id + "&oprId=" + oprid
-					+ "&order_id=" + order_id + "&prdt_no=" + prdt_no
-					+ "&amount=" + amount + "&top_up_way=" + top_up_way
-					+ "&desn=" + urlencode + "&sign=" + md5sign + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.ppcs.cardsingletopup.add&timestamp=" + timestamp
+					+ "&card_id=" + card_id + "&oprId=" + oprid + "&order_id=" + order_id + "&prdt_no=" + prdt_no
+					+ "&amount=" + amount + "&top_up_way=" + top_up_way + "&desn=" + urlencode + "&sign=" + md5sign
+					+ "";// 拼装url
 			// System.out.println("url:"+url);
 			URL urls = new URL(url);// url定义
 			SAXReader saxReader = new SAXReader();
@@ -300,19 +475,15 @@ public class AllinpayAPI {
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
 				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element(
-								"msg").getText() : sub_msg.getText());
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
 			} else {
 				_calculateinterestForm.setOrder_id(theorder_id.getText());
 				_calculateinterestForm.setTrans_no(trans_no.getText());
 				_calculateinterestForm.setReturn_message("00");// 设置00为成功返回标识
 				Element result_info = rootElm.element("result_info");
-				_calculateinterestForm.setCard_id(result_info
-						.element("card_id").getText());
-				_calculateinterestForm.setProduct_id(result_info.element(
-						"prdt_no").getText());
-				_calculateinterestForm.setAmount(result_info.element("amount")
-						.getText());
+				_calculateinterestForm.setCard_id(result_info.element("card_id").getText());
+				_calculateinterestForm.setProduct_id(result_info.element("prdt_no").getText());
+				_calculateinterestForm.setAmount(result_info.element("amount").getText());
 			}
 		} catch (Exception e) {
 			_calculateinterestForm.setReturn_message("远程通信中断，请检查网络！");
@@ -322,10 +493,9 @@ public class AllinpayAPI {
 	}
 
 	// 消费：卡密支付接口
-	public static CalculateinterestForm cardPayWithPassword(String mer_id,
-			String mer_tm, String order_id, String mer_order_id,
-			String pay_cur, String payment_id, String amount, String card_id,
-			String password, String type, BranchparametersForm _branchInfoform) {
+	public static CalculateinterestForm cardPayWithPassword(String mer_id, String mer_tm, String order_id,
+			String mer_order_id, String pay_cur, String payment_id, String amount, String card_id, String password,
+			String type, BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
 		try {
@@ -338,40 +508,24 @@ public class AllinpayAPI {
 			String cardblock = timestamp + "aop" + card_id;// cardblock构成
 			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
 			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
-			byte[] passdata = DESEncryptDecrypt.CBCEncrypt(
-					passblock.getBytes("UTF-8"), key, iv);// DES加密
-			byte[] carddata = DESEncryptDecrypt.CBCEncrypt(
-					cardblock.getBytes("UTF-8"), key, iv);// DES加密
-			String _passDesInfo = (new sun.misc.BASE64Encoder())
-					.encode(passdata);// Base64编码后的DES数据
-			String _cardDesInfo = (new sun.misc.BASE64Encoder())
-					.encode(carddata);// Base64编码后的DES数据
-			String des_pass_urlencode = URLEncoder
-					.encode(_passDesInfo, "UTF-8");// urlencode转义
-			String des_card_urlencode = URLEncoder
-					.encode(_cardDesInfo, "UTF-8");// urlencode转义
-			String signstring = "" + app_secret + "amount" + amount + "app_key"
-					+ app_key + "card_id" + _cardDesInfo + "formatxmlmer_id"
-					+ mer_id + "mer_order_id" + mer_order_id + "mer_tm"
-					+ mer_tm
-					+ "methodallinpay.card.paywithpassword.addorder_id"
-					+ order_id + "password" + _passDesInfo + "pay_cur"
-					+ pay_cur + "payment_id" + payment_id
-					+ "sign_methodmd5sign_v1timestamp" + timestamp + "type"
-					+ type + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
+			byte[] passdata = DESEncryptDecrypt.CBCEncrypt(passblock.getBytes("UTF-8"), key, iv);// DES加密
+			byte[] carddata = DESEncryptDecrypt.CBCEncrypt(cardblock.getBytes("UTF-8"), key, iv);// DES加密
+			String _passDesInfo = (new sun.misc.BASE64Encoder()).encode(passdata);// Base64编码后的DES数据
+			String _cardDesInfo = (new sun.misc.BASE64Encoder()).encode(carddata);// Base64编码后的DES数据
+			String des_pass_urlencode = URLEncoder.encode(_passDesInfo, "UTF-8");// urlencode转义
+			String des_card_urlencode = URLEncoder.encode(_cardDesInfo, "UTF-8");// urlencode转义
+			String signstring = "" + app_secret + "amount" + amount + "app_key" + app_key + "card_id" + _cardDesInfo
+					+ "formatxmlmer_id" + mer_id + "mer_order_id" + mer_order_id + "mer_tm" + mer_tm
+					+ "methodallinpay.card.paywithpassword.addorder_id" + order_id + "password" + _passDesInfo
+					+ "pay_cur" + pay_cur + "payment_id" + payment_id + "sign_methodmd5sign_v1timestamp" + timestamp
+					+ "type" + type + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.card.paywithpassword.add&timestamp="
-					+ timestamp + "&card_id=" + des_card_urlencode + "&mer_tm="
-					+ mer_tm + "&mer_order_id=" + mer_order_id + "&pay_cur="
-					+ pay_cur + "&payment_id=" + payment_id + "&amount="
-					+ amount + "&password=" + des_pass_urlencode + "&order_id="
-					+ order_id + "&type=" + type + "&mer_id=" + mer_id
-					+ "&sign=" + md5sign + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.card.paywithpassword.add&timestamp=" + timestamp
+					+ "&card_id=" + des_card_urlencode + "&mer_tm=" + mer_tm + "&mer_order_id=" + mer_order_id
+					+ "&pay_cur=" + pay_cur + "&payment_id=" + payment_id + "&amount=" + amount + "&password="
+					+ des_pass_urlencode + "&order_id=" + order_id + "&type=" + type + "&mer_id=" + mer_id + "&sign="
+					+ md5sign + "";// 拼装url
 			// System.out.println(url);
 			URL urls = new URL(url);// url定义
 			SAXReader saxReader = new SAXReader();
@@ -381,22 +535,16 @@ public class AllinpayAPI {
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
 				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element(
-								"msg").getText() : sub_msg.getText());
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
 			} else {
 				_calculateinterestForm.setReturn_message("00");// 设置00为成功返回标识
 				Element result_info = rootElm.element("pay_result_info");
-				_calculateinterestForm.setCard_id(result_info
-						.element("card_id").getText());
-				_calculateinterestForm.setAmount(result_info.element("amount")
-						.getText());
+				_calculateinterestForm.setCard_id(result_info.element("card_id").getText());
+				_calculateinterestForm.setAmount(result_info.element("amount").getText());
 				_calculateinterestForm.setOrder_id(theorder_id.getText());
-				_calculateinterestForm.setMer_id(result_info.element("mer_id")
-						.getText());
-				_calculateinterestForm.setPay_txn_id(result_info.element(
-						"pay_txn_id").getText());
-				_calculateinterestForm.setMer_order_id(result_info.element(
-						"mer_order_id").getText());
+				_calculateinterestForm.setMer_id(result_info.element("mer_id").getText());
+				_calculateinterestForm.setPay_txn_id(result_info.element("pay_txn_id").getText());
+				_calculateinterestForm.setMer_order_id(result_info.element("mer_order_id").getText());
 				// Element _type=result_info.element("type");
 				// Element _mer_tm=result_info.element("mer_tm");
 				// Element _mer_order_id=result_info.element("mer_order_id");
@@ -417,10 +565,9 @@ public class AllinpayAPI {
 	 * mer_id--, mer_tm--, order_id--, mer_order_id--, pay_cur--, payment_id--,
 	 * amount--, card_id--, type--
 	 */
-	public static CalculateinterestForm cardPayNoPassword(String mer_id,
-			String mer_tm, String order_id, String mer_order_id,
-			String pay_cur, String payment_id, String amount, String card_id,
-			String type, BranchparametersForm _branchInfoform) {
+	public static CalculateinterestForm cardPayNoPassword(String mer_id, String mer_tm, String order_id,
+			String mer_order_id, String pay_cur, String payment_id, String amount, String card_id, String type,
+			BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
 		try {
@@ -432,32 +579,20 @@ public class AllinpayAPI {
 			String cardblock = timestamp + "aop" + card_id;// cardblock构成
 			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
 			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
-			byte[] carddata = DESEncryptDecrypt.CBCEncrypt(
-					cardblock.getBytes("UTF-8"), key, iv);// DES加密
-			String _cardDesInfo = (new sun.misc.BASE64Encoder())
-					.encode(carddata);// Base64编码后的DES数据
-			String des_card_urlencode = URLEncoder
-					.encode(_cardDesInfo, "UTF-8");// urlencode转义
-			String signstring = "" + app_secret + "amount" + amount + "app_key"
-					+ app_key + "card_id" + _cardDesInfo + "formatxmlmer_id"
-					+ mer_id + "mer_order_id" + mer_order_id + "mer_tm"
-					+ mer_tm
-					+ "methodallinpay.card.paywithcontract.addorder_id"
-					+ order_id + "pay_cur" + pay_cur + "payment_id"
-					+ payment_id + "sign_methodmd5sign_v1timestamp" + timestamp
-					+ "type" + type + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
+			byte[] carddata = DESEncryptDecrypt.CBCEncrypt(cardblock.getBytes("UTF-8"), key, iv);// DES加密
+			String _cardDesInfo = (new sun.misc.BASE64Encoder()).encode(carddata);// Base64编码后的DES数据
+			String des_card_urlencode = URLEncoder.encode(_cardDesInfo, "UTF-8");// urlencode转义
+			String signstring = "" + app_secret + "amount" + amount + "app_key" + app_key + "card_id" + _cardDesInfo
+					+ "formatxmlmer_id" + mer_id + "mer_order_id" + mer_order_id + "mer_tm" + mer_tm
+					+ "methodallinpay.card.paywithcontract.addorder_id" + order_id + "pay_cur" + pay_cur + "payment_id"
+					+ payment_id + "sign_methodmd5sign_v1timestamp" + timestamp + "type" + type + "v" + api_v + ""
+					+ app_secret + "";// 需要签名的字符串
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.card.paywithcontract.add&timestamp="
-					+ timestamp + "&card_id=" + des_card_urlencode + "&mer_tm="
-					+ mer_tm + "&mer_order_id=" + mer_order_id + "&pay_cur="
-					+ pay_cur + "&payment_id=" + payment_id + "&amount="
-					+ amount + "&order_id=" + order_id + "&type=" + type
-					+ "&mer_id=" + mer_id + "&sign=" + md5sign + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.card.paywithcontract.add&timestamp=" + timestamp
+					+ "&card_id=" + des_card_urlencode + "&mer_tm=" + mer_tm + "&mer_order_id=" + mer_order_id
+					+ "&pay_cur=" + pay_cur + "&payment_id=" + payment_id + "&amount=" + amount + "&order_id="
+					+ order_id + "&type=" + type + "&mer_id=" + mer_id + "&sign=" + md5sign + "";// 拼装url
 			// System.out.println(url);
 			URL urls = new URL(url);// url定义
 			SAXReader saxReader = new SAXReader();
@@ -467,22 +602,16 @@ public class AllinpayAPI {
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
 				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element(
-								"msg").getText() : sub_msg.getText());
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
 			} else {
 				_calculateinterestForm.setReturn_message("00");// 设置00为成功返回标识
 				Element result_info = rootElm.element("pay_result_info");
-				_calculateinterestForm.setCard_id(result_info
-						.element("card_id").getText());
-				_calculateinterestForm.setAmount(result_info.element("amount")
-						.getText());
+				_calculateinterestForm.setCard_id(result_info.element("card_id").getText());
+				_calculateinterestForm.setAmount(result_info.element("amount").getText());
 				_calculateinterestForm.setOrder_id(theorder_id.getText());
-				_calculateinterestForm.setMer_id(result_info.element("mer_id")
-						.getText());
-				_calculateinterestForm.setPay_txn_id(result_info.element(
-						"pay_txn_id").getText());
-				_calculateinterestForm.setMer_order_id(result_info.element(
-						"mer_order_id").getText());
+				_calculateinterestForm.setMer_id(result_info.element("mer_id").getText());
+				_calculateinterestForm.setPay_txn_id(result_info.element("pay_txn_id").getText());
+				_calculateinterestForm.setMer_order_id(result_info.element("mer_order_id").getText());
 				// Element _type=result_info.element("type");
 				// Element _mer_tm=result_info.element("mer_tm");
 				// Element _mer_order_id=result_info.element("mer_order_id");
@@ -499,10 +628,8 @@ public class AllinpayAPI {
 	}
 
 	// 卡内转账
-	public static CalculateinterestForm cardaccounttransfer(String card_id,
-			String password, String trans_card_id, String prdt_no,
-			String trans_prdt_no, String amout, String order_id,
-			BranchparametersForm _branchInfoform) {
+	public static CalculateinterestForm cardaccounttransfer(String card_id, String password, String trans_card_id,
+			String prdt_no, String trans_prdt_no, String amout, String order_id, BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
 		URL urls = null;
@@ -516,47 +643,27 @@ public class AllinpayAPI {
 			String passblock = timestamp + "aop" + password;// passblock构成
 			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
 			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
-			byte[] passdata = DESEncryptDecrypt.CBCEncrypt(
-					passblock.getBytes("UTF-8"), key, iv);// DES加密
-			String _passDesInfo = (new sun.misc.BASE64Encoder())
-					.encode(passdata);// Base64编码后的DES数据
-			String des_pass_urlencode = URLEncoder
-					.encode(_passDesInfo, "UTF-8");// urlencode转义
-			String signstring = ""
-					+ app_secret
-					+ "amount"
-					+ amout
-					+ "app_key"
-					+ app_key
-					+ "card_id"
-					+ card_id
-					+ "formatxmlmethodallinpay.card.cardaccount.transferorder_id"
-					+ order_id + "password" + _passDesInfo + "prdt_no"
-					+ prdt_no + "sign_methodmd5sign_v1timestamp" + timestamp
-					+ "trans_card_id" + trans_card_id + "trans_prdt_no"
-					+ trans_prdt_no + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
+			byte[] passdata = DESEncryptDecrypt.CBCEncrypt(passblock.getBytes("UTF-8"), key, iv);// DES加密
+			String _passDesInfo = (new sun.misc.BASE64Encoder()).encode(passdata);// Base64编码后的DES数据
+			String des_pass_urlencode = URLEncoder.encode(_passDesInfo, "UTF-8");// urlencode转义
+			String signstring = "" + app_secret + "amount" + amout + "app_key" + app_key + "card_id" + card_id
+					+ "formatxmlmethodallinpay.card.cardaccount.transferorder_id" + order_id + "password" + _passDesInfo
+					+ "prdt_no" + prdt_no + "sign_methodmd5sign_v1timestamp" + timestamp + "trans_card_id"
+					+ trans_card_id + "trans_prdt_no" + trans_prdt_no + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.card.cardaccount.transfer&timestamp="
-					+ timestamp + "&card_id=" + card_id + "&trans_prdt_no="
-					+ trans_prdt_no + "&prdt_no=" + prdt_no + "&trans_card_id="
-					+ trans_card_id + "&amount=" + amout + "&password="
-					+ des_pass_urlencode + "&order_id=" + order_id + "&sign="
-					+ md5sign + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.card.cardaccount.transfer&timestamp=" + timestamp
+					+ "&card_id=" + card_id + "&trans_prdt_no=" + trans_prdt_no + "&prdt_no=" + prdt_no
+					+ "&trans_card_id=" + trans_card_id + "&amount=" + amout + "&password=" + des_pass_urlencode
+					+ "&order_id=" + order_id + "&sign=" + md5sign + "";// 拼装url
 			urls = new URL(url);// url定义
 			urlConnection = (HttpURLConnection) urls.openConnection();
 			urlConnection.setRequestMethod("POST");
 			urlConnection.setDoOutput(true);
 			urlConnection.setDoInput(true);
 			urlConnection.setUseCaches(false);
-			urlConnection.setRequestProperty("content-type",
-					"application/x-www-form-urlencoded");
-			OutputStreamWriter out = new OutputStreamWriter(
-					urlConnection.getOutputStream());
+			urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+			OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
 			out.flush();
 			out.close();
 
@@ -581,23 +688,16 @@ public class AllinpayAPI {
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
 				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element(
-								"msg").getText() : sub_msg.getText());
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
 			} else {
 				_calculateinterestForm.setReturn_message("00");// 设置00为成功返回标识
-				_calculateinterestForm.setCard_id(rootElm.element("card_id")
-						.getText());
-				_calculateinterestForm.setAmount(rootElm.element("amount")
-						.getText());
+				_calculateinterestForm.setCard_id(rootElm.element("card_id").getText());
+				_calculateinterestForm.setAmount(rootElm.element("amount").getText());
 				_calculateinterestForm.setOrder_id(theorder_id.getText());
-				_calculateinterestForm.setProduct_id(rootElm.element("prdt_no")
-						.getText());
-				_calculateinterestForm.setTrans_no(rootElm.element("trans_no")
-						.getText());
-				_calculateinterestForm.setTrans_card_id(rootElm.element(
-						"trans_card_id").getText());
-				_calculateinterestForm.setTrans_prdt_no(rootElm.element(
-						"trans_prdt_no").getText());
+				_calculateinterestForm.setProduct_id(rootElm.element("prdt_no").getText());
+				_calculateinterestForm.setTrans_no(rootElm.element("trans_no").getText());
+				_calculateinterestForm.setTrans_card_id(rootElm.element("trans_card_id").getText());
+				_calculateinterestForm.setTrans_prdt_no(rootElm.element("trans_prdt_no").getText());
 			}
 		} catch (Exception e) {
 			_calculateinterestForm.setReturn_message("远程通信中断，请检查网络！");
@@ -611,8 +711,8 @@ public class AllinpayAPI {
 	}
 
 	// 销卡
-	public static CalculateinterestForm backcard(String card_id,
-			String order_id, BranchparametersForm _branchInfoform) {
+	public static CalculateinterestForm backcard(String card_id, String order_id,
+			BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
 		URL urls = null;
@@ -626,36 +726,24 @@ public class AllinpayAPI {
 			String passblock = timestamp + "aop" + card_id;// passblock构成
 			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
 			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
-			byte[] carddata = DESEncryptDecrypt.CBCEncrypt(
-					passblock.getBytes("UTF-8"), key, iv);// DES加密
-			String _carddataInfo = (new sun.misc.BASE64Encoder())
-					.encode(carddata);// Base64编码后的DES数据
-			String des_card_urlencode = URLEncoder.encode(_carddataInfo,
-					"UTF-8");// urlencode转义
-			String signstring = "" + app_secret + "app_key" + app_key
-					+ "card_id" + _carddataInfo
-					+ "formatxmlmethodallinpay.ppcs.cardreturn.addorder_id"
-					+ order_id + "sign_methodmd5sign_v1timestamp" + timestamp
-					+ "v" + api_v + "" + app_secret + "";// 需要签名的字符串
+			byte[] carddata = DESEncryptDecrypt.CBCEncrypt(passblock.getBytes("UTF-8"), key, iv);// DES加密
+			String _carddataInfo = (new sun.misc.BASE64Encoder()).encode(carddata);// Base64编码后的DES数据
+			String des_card_urlencode = URLEncoder.encode(_carddataInfo, "UTF-8");// urlencode转义
+			String signstring = "" + app_secret + "app_key" + app_key + "card_id" + _carddataInfo
+					+ "formatxmlmethodallinpay.ppcs.cardreturn.addorder_id" + order_id
+					+ "sign_methodmd5sign_v1timestamp" + timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.ppcs.cardreturn.add&timestamp="
-					+ timestamp + "&card_id=" + des_card_urlencode
-					+ "&order_id=" + order_id + "&sign=" + md5sign + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.ppcs.cardreturn.add&timestamp=" + timestamp
+					+ "&card_id=" + des_card_urlencode + "&order_id=" + order_id + "&sign=" + md5sign + "";// 拼装url
 			urls = new URL(url);// url定义
 			urlConnection = (HttpURLConnection) urls.openConnection();
 			urlConnection.setRequestMethod("POST");
 			urlConnection.setDoOutput(true);
 			urlConnection.setDoInput(true);
 			urlConnection.setUseCaches(false);
-			urlConnection.setRequestProperty("content-type",
-					"application/x-www-form-urlencoded");
-			OutputStreamWriter out = new OutputStreamWriter(
-					urlConnection.getOutputStream());
+			urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+			OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
 			out.flush();
 			out.close();
 			// 从服务器读取响应
@@ -665,35 +753,25 @@ public class AllinpayAPI {
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
 				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element(
-								"msg").getText() : sub_msg.getText());
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
 			} else {
 				Element _order_id = rootElm.element("order_id");
 				Element _card_id = rootElm.element("card_id");
 				Element _result = rootElm.element("result");
 				_calculateinterestForm.setOrder_id(_order_id.getText());
 				_calculateinterestForm.setCard_id(_card_id.getText());
-				_calculateinterestForm.setReturn_message("true".equals(_result
-						.getText()) ? "00" : "01");// 根据返回结果显示具体情况
-				Element return_info_arrays = rootElm
-						.element("return_info_arrays");
+				_calculateinterestForm.setReturn_message("true".equals(_result.getText()) ? "00" : "01");// 根据返回结果显示具体情况
+				Element return_info_arrays = rootElm.element("return_info_arrays");
 				ArrayList returnList = new ArrayList();
-				for (Iterator i = return_info_arrays
-						.elementIterator("return_info"); i.hasNext();) {
+				for (Iterator i = return_info_arrays.elementIterator("return_info"); i.hasNext();) {
 					CalculateinterestForm _retrunForm = new CalculateinterestForm();
 					Element returninfo = (Element) i.next();
-					_retrunForm.setAmount(returninfo.element("amount")
-							.getText());
-					_retrunForm.setPrdt_name(returninfo.element("prdt_name")
-							.getText());
-					_retrunForm.setProduct_id(returninfo.element("prdt_no")
-							.getText());
-					_retrunForm.setRescode(returninfo.element("rescode")
-							.getText());
-					_retrunForm.setTrans_no(returninfo.element("trans_no")
-							.getText());
-					_retrunForm.setReason(returninfo.element("reason")
-							.getText());
+					_retrunForm.setAmount(returninfo.element("amount").getText());
+					_retrunForm.setPrdt_name(returninfo.element("prdt_name").getText());
+					_retrunForm.setProduct_id(returninfo.element("prdt_no").getText());
+					_retrunForm.setRescode(returninfo.element("rescode").getText());
+					_retrunForm.setTrans_no(returninfo.element("trans_no").getText());
+					_retrunForm.setReason(returninfo.element("reason").getText());
 					returnList.add(_retrunForm);// 产品集
 				}
 				_calculateinterestForm.setCardproductList(returnList);//
@@ -710,9 +788,8 @@ public class AllinpayAPI {
 	}
 
 	// 修改卡密码
-	public static CalculateinterestForm changePasswordAPI(String strcardid,
-			String strpassword, String strnewpassword, String strorderid,
-			BranchparametersForm _branchInfoform) {
+	public static CalculateinterestForm changePasswordAPI(String strcardid, String strpassword, String strnewpassword,
+			String strorderid, BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
 		try {
@@ -725,50 +802,30 @@ public class AllinpayAPI {
 			String newpasswd = timestamp + "aop" + strnewpassword;// pinblock构成
 			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
 			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
-			byte[] passwddata = DESEncryptDecrypt.CBCEncrypt(
-					passwd.getBytes("UTF-8"), key, iv);// DES加密
-			byte[] newpasswddata = DESEncryptDecrypt.CBCEncrypt(
-					newpasswd.getBytes("UTF-8"), key, iv);// DES加密
-			String _passwdDesInfo = (new sun.misc.BASE64Encoder())
-					.encode(passwddata);// Base64编码后的DES数据
-			String _newpasswdDesInfo = (new sun.misc.BASE64Encoder())
-					.encode(newpasswddata);// Base64编码后的DES数据
-			String des_urlpassencode = URLEncoder.encode(_passwdDesInfo,
-					"UTF-8");// urlencode转义
-			String des_urlnewpassencode = URLEncoder.encode(_newpasswdDesInfo,
-					"UTF-8");// urlencode转义
-			String signstring = ""
-					+ app_secret
-					+ "app_key"
-					+ app_key
-					+ "card_id"
-					+ strcardid
-					+ "formatxmlmethodallinpay.card.password.changenew_password"
-					+ _newpasswdDesInfo + "order_id" + strorderid + "password"
-					+ _passwdDesInfo + "sign_methodmd5sign_v1timestamp"
-					+ timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
+			byte[] passwddata = DESEncryptDecrypt.CBCEncrypt(passwd.getBytes("UTF-8"), key, iv);// DES加密
+			byte[] newpasswddata = DESEncryptDecrypt.CBCEncrypt(newpasswd.getBytes("UTF-8"), key, iv);// DES加密
+			String _passwdDesInfo = (new sun.misc.BASE64Encoder()).encode(passwddata);// Base64编码后的DES数据
+			String _newpasswdDesInfo = (new sun.misc.BASE64Encoder()).encode(newpasswddata);// Base64编码后的DES数据
+			String des_urlpassencode = URLEncoder.encode(_passwdDesInfo, "UTF-8");// urlencode转义
+			String des_urlnewpassencode = URLEncoder.encode(_newpasswdDesInfo, "UTF-8");// urlencode转义
+			String signstring = "" + app_secret + "app_key" + app_key + "card_id" + strcardid
+					+ "formatxmlmethodallinpay.card.password.changenew_password" + _newpasswdDesInfo + "order_id"
+					+ strorderid + "password" + _passwdDesInfo + "sign_methodmd5sign_v1timestamp" + timestamp + "v"
+					+ api_v + "" + app_secret + "";// 需要签名的字符串
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.card.password.change&timestamp="
-					+ timestamp + "&order_id=" + strorderid + "&card_id="
-					+ strcardid + "&password=" + des_urlpassencode
-					+ "&new_password=" + des_urlnewpassencode + "&sign="
-					+ md5sign + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.card.password.change&timestamp=" + timestamp
+					+ "&order_id=" + strorderid + "&card_id=" + strcardid + "&password=" + des_urlpassencode
+					+ "&new_password=" + des_urlnewpassencode + "&sign=" + md5sign + "";// 拼装url
 			URL urls = new URL(url);// url定义
 			SAXReader saxReader = new SAXReader();
 			Document document = saxReader.read(urls);
-			System.out.println(" changePasswordAPI document="
-					+ formatXML(document));
+			System.out.println(" changePasswordAPI document=" + formatXML(document));
 			Element rootElm = document.getRootElement();// 获取根节点
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
 				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element(
-								"msg").getText() : sub_msg.getText());
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
 			} else {
 				Element card_id = rootElm.element("card_id");
 				Element order_id = rootElm.element("order_id");
@@ -786,9 +843,8 @@ public class AllinpayAPI {
 	}
 
 	// 查询交易流水:0-挂起，1-失败，2-成功，3-已冲正，4-撤销
-	public static CalculateinterestForm searchtxnlogAPI(String begindate,
-			String enddate, String cardid, String password, String pageno,
-			String pagesize, BranchparametersForm _branchInfoform) {
+	public static CalculateinterestForm searchtxnlogAPI(String begindate, String enddate, String cardid,
+			String password, String pageno, String pagesize, BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
 		begindate = begindate.replace("-", "");
@@ -804,95 +860,62 @@ public class AllinpayAPI {
 			String passwd = timestamp + "aop" + password;// pinblock构成
 			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
 			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
-			byte[] passwddata = DESEncryptDecrypt.CBCEncrypt(
-					passwd.getBytes("UTF-8"), key, iv);// DES加密
-			String _passwdDesInfo = (new sun.misc.BASE64Encoder())
-					.encode(passwddata);// Base64编码后的DES数据
-			String des_urlpassencode = URLEncoder.encode(_passwdDesInfo,
-					"UTF-8");// urlencode转义
-			String signstring = ""
-					+ app_secret
-					+ "app_key"
-					+ app_key
-					+ "begin_date"
-					+ begindate
-					+ "card_id"
-					+ cardid
-					+ "end_date"
-					+ enddate
-					+ "formatxmlmethodallinpay.card.txnlogByCardId.searchpage_no"
-					+ pageno + "page_size" + pagesize + "password"
-					+ _passwdDesInfo + "sign_methodmd5sign_v1timestamp"
+			byte[] passwddata = DESEncryptDecrypt.CBCEncrypt(passwd.getBytes("UTF-8"), key, iv);// DES加密
+			String _passwdDesInfo = (new sun.misc.BASE64Encoder()).encode(passwddata);// Base64编码后的DES数据
+			String des_urlpassencode = URLEncoder.encode(_passwdDesInfo, "UTF-8");// urlencode转义
+			String signstring = "" + app_secret + "app_key" + app_key + "begin_date" + begindate + "card_id" + cardid
+					+ "end_date" + enddate + "formatxmlmethodallinpay.card.txnlogByCardId.searchpage_no" + pageno
+					+ "page_size" + pagesize + "password" + _passwdDesInfo + "sign_methodmd5sign_v1timestamp"
 					+ timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.card.txnlogByCardId.search&timestamp="
-					+ timestamp + "&begin_date=" + begindate + "&card_id="
-					+ cardid + "&password=" + des_urlpassencode + "&end_date="
-					+ enddate + "&page_no=" + pageno + "&page_size=" + pagesize
-					+ "&sign=" + md5sign + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.card.txnlogByCardId.search&timestamp=" + timestamp
+					+ "&begin_date=" + begindate + "&card_id=" + cardid + "&password=" + des_urlpassencode
+					+ "&end_date=" + enddate + "&page_no=" + pageno + "&page_size=" + pagesize + "&sign=" + md5sign
+					+ "";// 拼装url
 			urls = new URL(url);// url定义
 			urlConnection = (HttpURLConnection) urls.openConnection();
 			urlConnection.setRequestMethod("POST");
 			urlConnection.setDoOutput(true);
 			urlConnection.setDoInput(true);
 			urlConnection.setUseCaches(false);
-			urlConnection.setRequestProperty("content-type",
-					"application/x-www-form-urlencoded");
-			OutputStreamWriter out = new OutputStreamWriter(
-					urlConnection.getOutputStream());
+			urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+			OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
 			out.flush();
 			out.close();
 			// 从服务器读取响应
 			SAXReader saxReader = new SAXReader();
 			Document document = saxReader.read(urlConnection.getInputStream());
-			System.out.println("searchtxnlogAPI document="
-					+ formatXML(document));
+			System.out.println("searchtxnlogAPI document=" + formatXML(document));
 			Element rootElm = document.getRootElement();// 获取根节点
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
 				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element(
-								"msg").getText() : sub_msg.getText());
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
 			} else {
 				_calculateinterestForm.setReturn_message("00");
 				Element total = rootElm.element("total");
-				if (null == total || "".equals(total.getText())
-						|| "0".equals(total.getText())) {
+				if (null == total || "".equals(total.getText()) || "0".equals(total.getText())) {
 					return _calculateinterestForm;
 				} else {
 					Element txn_log_arrays = rootElm.element("txn_log_arrays");
 					ArrayList returnList = new ArrayList();
 					int count = 1;
-					for (Iterator i = txn_log_arrays.elementIterator("txn_log"); i
-							.hasNext();) {
+					for (Iterator i = txn_log_arrays.elementIterator("txn_log"); i.hasNext();) {
 						CalculateinterestForm _retrunForm = new CalculateinterestForm();
 						Element returninfo = (Element) i.next();
 						_retrunForm.setI(String.valueOf(count++));
-						_retrunForm.setCard_id(returninfo.element("card_id")
-								.getText());// 卡号
-						_retrunForm.setProduct_id(returninfo.element("prdt_no")
-								.getText());// 产品号
-						_retrunForm.setInt_txn_dt(returninfo.element(
-								"int_txn_dt").getText());// 交易日期
-						_retrunForm.setInt_txn_tm(returninfo.element(
-								"int_txn_tm").getText());// 交易时间
-						_retrunForm.setAccept_brh_id(returninfo.element(
-								"accept_brh_id").getText());// 商户号
-						_retrunForm.setInt_txn_seq_id(returninfo.element(
-								"int_txn_seq_id").getText());// 交易流水
-						_retrunForm.setAccess_ref_seq_id(returninfo.element(
-								"access_ref_seq_id").getText());// 交易参考号
-						_retrunForm.setTxn_at(df.format(Double
-								.parseDouble(returninfo.element("txn_at")
-										.getText()) / 100));// 交易金额
-						_retrunForm.setTxn_fee_at(df.format(Double
-								.parseDouble(returninfo.element("txn_fee_at")
-										.getText()) / 100));// 手续费
+						_retrunForm.setCard_id(returninfo.element("card_id").getText());// 卡号
+						_retrunForm.setProduct_id(returninfo.element("prdt_no").getText());// 产品号
+						_retrunForm.setInt_txn_dt(returninfo.element("int_txn_dt").getText());// 交易日期
+						_retrunForm.setInt_txn_tm(returninfo.element("int_txn_tm").getText());// 交易时间
+						_retrunForm.setAccept_brh_id(returninfo.element("accept_brh_id").getText());// 商户号
+						_retrunForm.setInt_txn_seq_id(returninfo.element("int_txn_seq_id").getText());// 交易流水
+						_retrunForm.setAccess_ref_seq_id(returninfo.element("access_ref_seq_id").getText());// 交易参考号
+						_retrunForm
+								.setTxn_at(df.format(Double.parseDouble(returninfo.element("txn_at").getText()) / 100));// 交易金额
+						_retrunForm.setTxn_fee_at(
+								df.format(Double.parseDouble(returninfo.element("txn_fee_at").getText()) / 100));// 手续费
 						// 0-挂起，1-失败，2-成功，3-已冲正，4-撤销
 						String sta = returninfo.element("txn_sta_cd").getText();
 						if ("2".equals(sta)) {
@@ -906,19 +929,14 @@ public class AllinpayAPI {
 						} else if ("1".equals(sta)) {
 							_retrunForm.setTxn_sta_cd("挂起");
 						}
-						_retrunForm.setTerm_id(returninfo.element("term_id")
-								.getText());// 终端号
-						_retrunForm.setTxn_cd(returninfo.element("txn_cd")
-								.getText());// 交易码
+						_retrunForm.setTerm_id(returninfo.element("term_id").getText());// 终端号
+						_retrunForm.setTxn_cd(returninfo.element("txn_cd").getText());// 交易码
 						returnList.add(_retrunForm);// 交易流水级
-						String time = _retrunForm.getInt_txn_dt()
-								+ _retrunForm.getInt_txn_tm();
-						time = DateManager.getStringTime(
-								DateManager.DATE_TIME_PATTERN1, time,
+						String time = _retrunForm.getInt_txn_dt() + _retrunForm.getInt_txn_tm();
+						time = DateManager.getStringTime(DateManager.DATE_TIME_PATTERN1, time,
 								DateManager.DATE_TIME_PATTERN2);
 						_retrunForm.setTrans_time(time);
-						time = DateManager.getStringTime(
-								DateManager.DATE_TIME_PATTERN2, time,
+						time = DateManager.getStringTime(DateManager.DATE_TIME_PATTERN2, time,
 								DateManager.DATE_TIME_PATTERN3);
 						_retrunForm.setTrans_time_wx(time);
 					}
@@ -937,8 +955,8 @@ public class AllinpayAPI {
 	}
 
 	// 查询余额API:根据生产环境做修正
-	public static CalculateinterestForm getCardinfoNopassAPI(String strcardid,
-			String strorderid, BranchparametersForm _branchInfoform) {
+	public static CalculateinterestForm getCardinfoNopassAPI(String strcardid, String strorderid,
+			BranchparametersForm _branchInfoform) {
 		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
 		initParameters(_branchInfoform);// 初始化参数
 		ArrayList producList = new ArrayList();
@@ -948,20 +966,13 @@ public class AllinpayAPI {
 				_sf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
 			}
 			String timestamp = _sf.format(new Date());// 时间戳
-			String signstring = "" + app_secret + "app_key" + app_key
-					+ "card_id" + strcardid
-					+ "formatxmlmethodallinpay.ppcs.cardinfo.getorder_id"
-					+ strorderid + "sign_methodmd5sign_v1timestamp" + timestamp
-					+ "v" + api_v + "" + app_secret + "";// 需要签名的字符串
+			String signstring = "" + app_secret + "app_key" + app_key + "card_id" + strcardid
+					+ "formatxmlmethodallinpay.ppcs.cardinfo.getorder_id" + strorderid
+					+ "sign_methodmd5sign_v1timestamp" + timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
 			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl
-					+ "app_key="
-					+ app_key
-					+ "&format=xml&v="
-					+ api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.ppcs.cardinfo.get&timestamp="
-					+ timestamp + "&card_id=" + strcardid + "&order_id="
-					+ strorderid + "&sign=" + md5sign + "";// 拼装url
+			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
+					+ "&sign_method=md5&sign_v=1&method=allinpay.ppcs.cardinfo.get&timestamp=" + timestamp + "&card_id="
+					+ strcardid + "&order_id=" + strorderid + "&sign=" + md5sign + "";// 拼装url
 			URL urls = new URL(url);// url定义
 			SAXReader saxReader = new SAXReader();
 			Document document = saxReader.read(urls);
@@ -970,26 +981,19 @@ public class AllinpayAPI {
 			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
 				Element sub_msg = rootElm.element("sub_msg");
 				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element(
-								"msg").getText() : sub_msg.getText());
+						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
 			} else {
 				Element cardinfo = rootElm.element("card_info");
-				Element card_product_info_arrays = cardinfo
-						.element("card_product_info_arrays");
+				Element card_product_info_arrays = cardinfo.element("card_product_info_arrays");
 				_calculateinterestForm.setReturn_message("00");// 设置00为成功返回标识
-				for (Iterator i = card_product_info_arrays
-						.elementIterator("card_product_info"); i.hasNext();) {
+				for (Iterator i = card_product_info_arrays.elementIterator("card_product_info"); i.hasNext();) {
 					Element card = (Element) i.next();
 					CalculateinterestForm _productForm = new CalculateinterestForm();
-					_productForm.setProduct_id(card.element("product_id")
-							.getText());
-					String account_balance = card.element("valid_balance")
-							.getText();// 账户余额:查询的是可用余额
-					_productForm.setAccount_balance(df.format(Double
-							.parseDouble(account_balance) / 100));// 设置账户余额，转化为元
+					_productForm.setProduct_id(card.element("product_id").getText());
+					String account_balance = card.element("valid_balance").getText();// 账户余额:查询的是可用余额
+					_productForm.setAccount_balance(df.format(Double.parseDouble(account_balance) / 100));// 设置账户余额，转化为元
 					_productForm.setCard_id(card.element("card_id").getText());// 设置卡号
-					_productForm.setProduct_state(card.element("product_stat")
-							.getText());// 设置产品状态
+					_productForm.setProduct_state(card.element("product_stat").getText());// 设置产品状态
 					producList.add(_productForm);// 产品集
 				}
 				_calculateinterestForm.setCardproductList(producList);
