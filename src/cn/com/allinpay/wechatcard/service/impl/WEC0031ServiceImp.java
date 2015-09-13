@@ -115,24 +115,26 @@ public class WEC0031ServiceImp extends BaseService implements IWEC0031Service {
 			card_info.put("money", "0.00");
 		}
 
-		Map<String, Object> zhInfo1 = new HashMap<String, Object>();
-		// 账户余额
-		zhInfo1.put("ye", "100.00");
-		// 产品号
-		zhInfo1.put("cph", "AAAA");
-		// 有效余额
-		zhInfo1.put("yxye", "99.00");
-		// 增加
-		zhList.add(JsonUtil.bean2Json(zhInfo1));
-		Map<String, Object> zhInfo2 = new HashMap<String, Object>();
-		// 账户余额
-		zhInfo2.put("ye", "800.00");
-		// 产品号
-		zhInfo2.put("cph", "BBBB");
-		// 有效余额
-		zhInfo2.put("yxye", "22.00");
-		// 增加
-		zhList.add(JsonUtil.bean2Json(zhInfo2));
+		// ================测试数据 START================
+		// Map<String, Object> zhInfo1 = new HashMap<String, Object>();
+		// // 账户余额
+		// zhInfo1.put("ye", "100.00");
+		// // 产品号
+		// zhInfo1.put("cph", "AAAA");
+		// // 有效余额
+		// zhInfo1.put("yxye", "99.00");
+		// // 增加
+		// zhList.add(JsonUtil.bean2Json(zhInfo1));
+		// Map<String, Object> zhInfo2 = new HashMap<String, Object>();
+		// // 账户余额
+		// zhInfo2.put("ye", "800.00");
+		// // 产品号
+		// zhInfo2.put("cph", "BBBB");
+		// // 有效余额
+		// zhInfo2.put("yxye", "22.00");
+		// // 增加
+		// zhList.add(JsonUtil.bean2Json(zhInfo2));
+		// ================测试数据 END================
 
 		// 放到返回信息中
 		card_info.put("zh", zhList);
