@@ -57,19 +57,26 @@ public class WEC0060Controller extends BaseController {
 			super.logger.info("zhangxd==获取网页code：" + strCode);
 			super.logger.info("zhangxd==获取网页urlflag：" + strUrlFlag);
 
-			// 放到session中
-			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
+			if (strUrlFlag != null) {
+				// 放到session中
+				super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
+			} else {
+				// 从session中取得
+				strUrlFlag = (String) super.session
+						.getAttribute(SESSION_KEY_URLFLAG);
+			}
 
 			// 从session中取得openid
 			strOpenID = (String) super.session.getAttribute(SESSION_KEY_OPENID);
-			// 从其它页面跳转过来时
+
+			// 从菜单跳转过来时
 			if (strOpenID == null || strOpenID.isEmpty()) {
 				// 取得OpenID
 				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
 			}
 
 			// todo-zhangxd
-//			strOpenID = "asdfasdfoo";
+			// strOpenID = "asdfasdfoo";
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.equals("")) {
@@ -79,7 +86,8 @@ public class WEC0060Controller extends BaseController {
 			} else {
 				// 放到Session中
 				super.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
-				logger.info("用户openid:" + strOpenID);
+				logger.info("session中的openid:" + strOpenID);
+				logger.info("session中的urlflag:" + strUrlFlag);
 
 				// 是否注册
 				boolean isRegister = this.commonService.isRegister(strUrlFlag,

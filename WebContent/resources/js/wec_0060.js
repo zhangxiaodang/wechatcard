@@ -30,9 +30,15 @@ $(function() {
 		var param = {};
 		var old_mobile = $("#old_mobile").val();
 		param.newphone = $("#newphone").val();
+		param.passwd = $("#password").val();
 		param.yzm = $("#yzm").val();
         // 后台验证码
         param.yzmhide = $('#txtYzmHide').val();
+        
+        if('' == param.passwd) {
+        	$.mAlert("卡密码不可为空！");
+        	return;
+        }
 		
 		if ('' === param.newphone) {
 			$.mAlert("手机号不可为空！");
@@ -63,9 +69,14 @@ $(function() {
 			data = JSON.parse(data);
 			$.mAlert(data.msg);
 			if (data.state === '000000') {
-				$('#old_mobile').val(param.newphone);
-				$("#newphone").val('');
-				$("#yzm").val('');
+				setTimeout(function() {
+					window.location.href = 'wec0060';
+                }, 3 * 1000);
+//				$('#old_mobile').val(param.newphone);
+//				$("#newphone").val('');
+//				$("#password").val('');
+//				$("#yzm").val('');
+//				$("#txtYzmHide").val('');
 			}
 		})
 	})

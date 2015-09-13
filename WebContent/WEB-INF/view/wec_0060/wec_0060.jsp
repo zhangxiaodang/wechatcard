@@ -35,7 +35,7 @@
                
                 <div class="input-group">
                     <span class="input-group-addon" for="password"><span class="red-text">* </span>卡密码：</span>
-                    <input type="text" id="password" class="form-control" value="" placeholder="卡密码不可为空" aria-describedby="basic-addon1" maxlength="6">
+                    <input type="password" id="password" class="form-control" value="" placeholder="卡密码不可为空" aria-describedby="basic-addon1" maxlength="6">
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" for="newphone"><span class="red-text">* </span>新手机号：</span>
