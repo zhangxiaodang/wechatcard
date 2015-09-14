@@ -20,6 +20,11 @@
     <script src="resources/js/public/bootstrap.min.js"></script>
     <script src="resources/js/public/m.js"></script>
     <script src="resources/js/wec_0030.js"></script>
+    
+    <script type="text/javascript">
+    	var newcardflag = '${newcardflag}';
+    </script>
+    
 </head>
 <body>
 
@@ -44,6 +49,8 @@
                         <div class="form-group">
                             <div class="col-sm-12 old_card_bind">
                                 <button id="old_card_bind" type="button" class="btn btn-primary btn-lg">绑定旧卡</button>
+                                
+                                <button id="new_card_bind" type="button" class="btn btn-primary btn-lg">申请新卡</button>
                             </div>
                         </div>
                     </div>

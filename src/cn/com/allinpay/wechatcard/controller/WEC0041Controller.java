@@ -65,7 +65,7 @@ public class WEC0041Controller extends BaseController {
 				mv.addObject("coupon", coupon);
 				mv.setViewName(WEC0041_VIEW);
 			} else {
-				// 返回注册页面
+				// 返回温馨提示页面
 				mv.setViewName("wec_0061/wec_0061");
 			}
 		} catch (Exception e) {

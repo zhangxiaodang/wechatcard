@@ -51,7 +51,7 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 			logger.info("取得用户openid失败,errcode:" + result.getErrcode()
 					+ ",errmsg:" + result.getErrmsg());
 		}
-		
+
 		// 返回
 		return strOpenId;
 	}
@@ -95,7 +95,8 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 	@Override
 	public Map<String, String> getParametersByMerchantid(String merchantid) {
 		// TODO Auto-generated method stub
-		Map<String, String> result = this.dao.getParametersByMerchantid(merchantid);
+		Map<String, String> result = this.dao
+				.getParametersByMerchantid(merchantid);
 		return result;
 	}
 
@@ -104,5 +105,19 @@ public class CommonServiceImp extends BaseService implements ICommonService {
 		// TODO Auto-generated method stub
 		String result = this.dao.getOrderIdByDual(id);
 		return result;
+	}
+
+	@Override
+	public boolean isNewCard(String openid) {
+
+		// 查询
+		int intResult = this.dao.isNewCardFlag(openid);
+
+		// 判断结果
+		if (intResult > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

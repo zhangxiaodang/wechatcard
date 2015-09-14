@@ -125,6 +125,15 @@ body {
 	width: 99%;
 }
 
+#ka .new_card_bind {
+	text-align: center;
+}
+
+#ka #new_card_bind {
+	width: 99%;
+	margin-top: 10px;
+}
+
 #quan>.list-group>.list-group-item {
 	background: #FFF;
 	color: #000;

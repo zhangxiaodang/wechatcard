@@ -58,11 +58,17 @@ public interface ICommonService {
 	 * @return
 	 */
 	public Map<String, String> getParametersByMerchantid(String merchantid);
-	
+
 	/**
 	 * @param id
 	 * @return
 	 */
-	public  String  getOrderIdByDual(String  id);
+	public String getOrderIdByDual(String id);
 
+	/**
+	 * 微信用户是否有申请新卡
+	 * 
+	 * @return
+	 */
+	public boolean isNewCard(String openid);
 }

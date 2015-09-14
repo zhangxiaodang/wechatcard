@@ -1,7 +1,20 @@
 $(function () {
+	
+	// 有申请新卡时
+	if (newcardflag == '01') {
+		$("#new_card_bind").hide();
+	} else {
+		$("#new_card_bind").show();
+	}
 
+	// 绑定旧卡
     $("#old_card_bind").on('click', function (evt) {
     	window.location.href = 'wec0022';
+    });
+    
+    // 申请新卡
+    $("#new_card_bind").on('click', function (evt) {
+    	window.location.href = 'wec0021';
     });
     
     $("#get_quan").on('click', function (evt) {

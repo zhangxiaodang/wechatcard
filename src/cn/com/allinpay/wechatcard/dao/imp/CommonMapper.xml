@@ -40,5 +40,15 @@
 	<select id="getOrderIdByDual" parameterType="String" resultType="String">
 	       select SEQ_ORDERID.nextval as "orderId" from dual
 	</select>
+	
+	<select id="isNewCardFlag"  parameterType="String"  resultType="int">
+		select
+			count(1) as cnt
+		from membercard
+		where
+			 memberid = (select memberid from member where memberopenid = #{openid})
+		 and cardmode = '01'
+	</select>
+	
 </mapper>
 	

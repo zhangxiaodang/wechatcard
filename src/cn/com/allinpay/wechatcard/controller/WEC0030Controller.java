@@ -85,6 +85,14 @@ public class WEC0030Controller extends BaseController {
 
 				// 已注册时
 				if (isRegister) {
+					boolean isNewCard = this.commonService.isNewCard(strOpenID);
+
+					if (isNewCard) {
+						mv.addObject("newcardflag", "01");
+					} else {
+						mv.addObject("newcardflag", "02");
+					}
+
 					// 返回我的卡包页面
 					mv.setViewName(WEC0030_VIEW);
 				} else {

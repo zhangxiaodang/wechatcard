@@ -86,7 +86,18 @@ public class WEC0043Controller extends BaseController {
 				// 放到Session中
 				super.session.setAttribute(SESSION_KEY_OPENID, strOpenID);
 				logger.info("用户openid:" + strOpenID);
-				mv.setViewName(WEC0043_VIEW);
+
+				// 是否注册
+				boolean isRegister = this.commonService.isRegister(strUrlFlag,
+						strOpenID);
+
+				// 注册时
+				if (isRegister) {
+					mv.setViewName(WEC0043_VIEW);
+				} else {
+					// 返回温馨提示页面
+					mv.setViewName("wec_0061/wec_0061");
+				}
 			}
 		} catch (Exception e) {
 			logger.info("异常：\n" + e.getMessage());
