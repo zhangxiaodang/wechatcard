@@ -43,9 +43,6 @@ public class WEC0034ServiceImp extends BaseService implements IWEC0034Service {
 		paramMap.put(BEAN, coupon);
 		// 获取优惠券信息
 		Map<String, Object> coupon_info = wec_0034_Dao.get_coupon(paramMap);
-		// todo-zhangxd
-		// 如果有空图片地址的话，给一个默认的图片地址。
-		coupon_info = WebUtil.test_set_null_coupon_img_map(coupon_info);
 		
 		// 返回前台提示信息
 		WEC0034Model resultModel = new WEC0034Model();

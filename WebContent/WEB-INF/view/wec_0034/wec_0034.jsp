@@ -19,9 +19,11 @@
     <script src="resources/js/public/jquery.min.js"></script>
     <script src="resources/js/public/bootstrap.min.js"></script>
     <script src="resources/js/public/m.js"></script>
+    <script src="resources/js/public/qrcode.js"></script>
     <script src="resources/js/wec_0034.js"></script>
     <script type="text/javascript">
     	var couponid = "${coupon.coupon_info.couponid}";
+    	var coupno = "${coupon.coupon_info.merchantcouponid}";
     </script>
 </head>
 <body>
@@ -29,32 +31,42 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
+        	<!--
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                 </ol>
+
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
                         <img src="${coupon.coupon_info.couponimg}" />
                     </div>
                 </div>
+                
             </div>
+             -->
 
-            <h1>${coupon.coupon_info.couponname}</h1>
-            <p>${coupon.coupon_info.couponcontent}</p>
-            <p>有限期：${coupon.coupon_info.starttime}至${coupon.coupon_info.endtime}</p>
             <div class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
+                    	<!-- 
                         <img src="${coupon.coupon_info.couponcode}" />
+                         -->
+                        <div align="center" id="qrcode" style="margin-top: 10px;"></div>
                     </div>
                     <h2>券号：${coupon.coupon_info.merchantcouponid}</h2>
+                    <!--
                     <h3>将本页面展示给店员即可使用</h3>
+                    -->
                 </div>
             </div>
+
+            <h1>${coupon.coupon_info.couponname}</h1>
+            <p>有限期：${coupon.coupon_info.starttime}至${coupon.coupon_info.endtime}</p>
+            <p>${coupon.coupon_info.couponcontent}</p>
         </div>
     </div>
 </div>
