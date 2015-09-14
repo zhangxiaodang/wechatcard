@@ -44,7 +44,6 @@
             <h1>${coupon.coupon_info.couponname}</h1>
             <p>${coupon.coupon_info.couponcontent}</p>
             <p>有限期：${coupon.coupon_info.couponkssj}至${coupon.coupon_info.couponjssj}</p>
-            <p>适用门店：全国各门店</p>
 
             <div class="form-group">
                 <div class="col-sm-12 tijiao">

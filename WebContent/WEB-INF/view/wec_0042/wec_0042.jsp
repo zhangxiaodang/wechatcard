@@ -43,7 +43,6 @@
             <h1>${coupon.coupon_info.couponname}</h1>
             <p>${coupon.coupon_info.bz}</p>
             <p>有限期：${coupon.coupon_info.starttime}至${coupon.coupon_info.endtime}</p>
-            <p>适用门店：全国各门店</p>
 
             <div class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
