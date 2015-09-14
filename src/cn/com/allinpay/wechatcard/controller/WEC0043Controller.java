@@ -56,8 +56,14 @@ public class WEC0043Controller extends BaseController {
 			super.logger.info("zhangxd==获取网页code：" + strCode);
 			super.logger.info("zhangxd==获取网页urlflag：" + strUrlFlag);
 
-			// 放到session中
-			super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
+			if (strUrlFlag != null) {
+				// 放到session中
+				super.session.setAttribute(SESSION_KEY_URLFLAG, strUrlFlag);
+			} else {
+				// 从session中取得
+				strUrlFlag = (String) super.session
+						.getAttribute(SESSION_KEY_URLFLAG);
+			}
 
 			// 从session中取得openid
 			strOpenID = (String) super.session.getAttribute(SESSION_KEY_OPENID);

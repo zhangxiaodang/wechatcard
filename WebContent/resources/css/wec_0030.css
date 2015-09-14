@@ -150,6 +150,15 @@ body {
 	font-weight: normal;
 }
 
+#quan .get_quan {
+	text-align: center;
+}
+
+#quan #get_quan {
+	width: 99%;
+	margin-top: 20px;
+}
+
 .list-group-cardno {
 	position: absolute;
 	margin-top: 170px;

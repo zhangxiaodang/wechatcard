@@ -3,6 +3,10 @@ $(function () {
     $("#old_card_bind").on('click', function (evt) {
     	window.location.href = 'wec0022';
     });
+    
+    $("#get_quan").on('click', function (evt) {
+    	window.location.href = 'wec0043';
+    });
 
     
     $.post('get_card_coupon',function(data) {
@@ -10,7 +14,8 @@ $(function () {
             var card_list = data['card_list'] || [];
             var coupon_list = data['coupon_list'] || [];
             var $ka = $("#ka_list");
-            var $quan = $("#quan");
+            //var $quan = $("#quan");
+            var $quan = $("#quan_list");
             var ka_html = '';
             var quan_html = '';
             var ka_len = card_list.length;

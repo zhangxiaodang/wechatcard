@@ -65,6 +65,7 @@ public class WEC0030Controller extends BaseController {
 				// 取得OpenID
 				strOpenID = this.commonService.getOpenID(strUrlFlag, strCode);
 			}
+
 			// todo-zhangxd
 			// strOpenID = "asdfasdfoo";
 
