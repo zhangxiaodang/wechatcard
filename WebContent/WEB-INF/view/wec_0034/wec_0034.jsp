@@ -65,8 +65,8 @@
             </div>
 
             <h1>${coupon.coupon_info.couponname}</h1>
-            <p>有限期：${coupon.coupon_info.starttime}至${coupon.coupon_info.endtime}</p>
             <p>${coupon.coupon_info.couponcontent}</p>
+            <p>有限期：${coupon.coupon_info.starttime}至${coupon.coupon_info.endtime}</p>
         </div>
     </div>
 </div>

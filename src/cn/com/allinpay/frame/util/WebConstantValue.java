@@ -10,7 +10,9 @@ package cn.com.allinpay.frame.util;
  */
 public class WebConstantValue {
 
-	public static final String TESTOPENID= "o7BS3wWNOaXC-NTXCfG0yGr5oWxM";
+	// public static final String TESTOPENID= "o7BS3wWNOaXC-NTXCfG0yGr5oWxM";
+	public static final String TESTOPENID = "asdfasdfoo";
+
 	/** 空字符串 **/
 	public static final String EMPTY = "";
 

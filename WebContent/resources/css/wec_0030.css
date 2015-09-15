@@ -35,7 +35,7 @@ body {
 #my-card .tab-pane .list-group-item1 {
 	float: left;
 	width: 100%;
-	background: #6699FF;
+	/* background: #6699FF; */
 	padding: 0;
 	border: 0;
 	margin-bottom: 1px;
