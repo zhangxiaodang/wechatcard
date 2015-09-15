@@ -16,14 +16,18 @@ $(function () {
      * 消费记录
      */
     $("#consume").on('click', function (evt) {
-    	window.location.href = 'wec0033?dzcardno='+dzcardno;
+    	//window.location.href = 'wec0033?dzcardno='+dzcardno;
+    	// 消费记录查询页面
+    	window.location.href = 'wec0037?dzcardno='+dzcardno;
     });
     
     /**
     * 充值记录
     */
    $("#recharge").on('click', function (evt) {
-   		window.location.href = 'wec0036?dzcardno='+dzcardno;
+   		//window.location.href = 'wec0036?dzcardno='+dzcardno;
+	   // 充值记录查询页面
+	   window.location.href = 'wec0038?dzcardno='+dzcardno;
    });
     
     /**

@@ -50,13 +50,13 @@ public class WebConstantUrlValue {
 
 	/** 获取会员卡信息的URL. */
 	public static final String WEC0031_GET_INFO = "/get_card_info";
-	
+
 	/** 消费记录URL. */
 	public static final String WEC0033_INDEX = "/wec0033";
 
 	/** 消费记录URL. */
 	public static final String WEC0033_GET_CONSUME = "/wec0033/get_consume";
-	
+
 	/** 充值记录URL. */
 	public static final String WEC0036_INDEX = "/wec0036";
 
@@ -65,7 +65,7 @@ public class WebConstantUrlValue {
 
 	/** 我要充值页面的URL. */
 	public static final String WEC0032_INDEX = "/wec0032";
-	
+
 	/** 充值URL. */
 	public static final String WEC0032_CHONGZHI = "/wec0032/chongzhi";
 
@@ -111,4 +111,16 @@ public class WebConstantUrlValue {
 
 	/** 全局错误页面. */
 	public static final String WEC_ERROR = "/wec_error";
+
+	/** 消费记录查询页面URL. */
+	public static final String WEC0037_INDEX = "/wec0037";
+
+	/** 消费记录查询校验URL. */
+	public static final String WEC0037_CHECK = "/wec0037/check";
+
+	/** 充值记录查询页面URL. */
+	public static final String WEC0038_INDEX = "/wec0038";
+
+	/** 充值记录查询校验URL. */
+	public static final String WEC0038_CHECK = "/wec0038/check";
 }

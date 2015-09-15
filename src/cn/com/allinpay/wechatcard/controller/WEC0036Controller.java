@@ -28,6 +28,12 @@ public class WEC0036Controller extends BaseController {
 	/** 页面URL. */
 	private static String WEC0036_VIEW = "wec_0036/wec_0036";
 
+	private static String SESSION_CARDNO = "dzcardno";
+
+	private static String SESSION_DATE_START = "date_start";
+
+	private static String SESSION_DATE_END = "date_end";
+
 	/** 充值记录的service. */
 	@Autowired
 	private IWEC0036Service wec0036Service;
@@ -40,10 +46,21 @@ public class WEC0036Controller extends BaseController {
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0036_INDEX, method = RequestMethod.GET)
 	public ModelAndView getPageIndex() {
-		String dzcardno = super.request.getParameter("dzcardno");
+
+		// 卡号
+		String dzcardno = super.request.getParameter(SESSION_CARDNO);
+		String date_start = super.request.getParameter(SESSION_DATE_START);
+		String date_end = super.request.getParameter(SESSION_DATE_END);
+
+		// 放入session中
+		super.session.setAttribute(SESSION_CARDNO, dzcardno);
+		super.session.setAttribute(SESSION_DATE_START, date_start);
+		super.session.setAttribute(SESSION_DATE_END, date_end);
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(WEC0036_VIEW);
 		mv.addObject("dzcardno", dzcardno);
+
 		// 返回
 		return mv;
 	}
@@ -66,7 +83,7 @@ public class WEC0036Controller extends BaseController {
 					.getAttribute(SESSION_KEY_OPENID);
 			wec0036View.setOpenid(strOpenID);
 			wec0036View.setUrlflag(strUrlFlag);
-			// 调用注册的service 
+			// 调用注册的service
 			resultModel = wec0036Service.get_recharge(wec0036View);
 		} catch (Exception e) {
 			logger.info("========================Exception get_recharge Start==========================");

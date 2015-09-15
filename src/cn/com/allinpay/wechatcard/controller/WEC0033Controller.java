@@ -28,6 +28,12 @@ public class WEC0033Controller extends BaseController {
 	/** 页面URL. */
 	private static String WEC0033_VIEW = "wec_0033/wec_0033";
 
+	private static String SESSION_CARDNO = "dzcardno";
+
+	private static String SESSION_DATE_START = "date_start";
+
+	private static String SESSION_DATE_END = "date_end";
+
 	/** 消费记录的service. */
 	@Autowired
 	private IWEC0033Service wec0033Service;
@@ -40,7 +46,17 @@ public class WEC0033Controller extends BaseController {
 	 */
 	@RequestMapping(value = WebConstantUrlValue.WEC0033_INDEX, method = RequestMethod.GET)
 	public ModelAndView getPageIndex() {
-		String dzcardno = super.request.getParameter("dzcardno");
+
+		// 卡号
+		String dzcardno = super.request.getParameter(SESSION_CARDNO);
+		String date_start = super.request.getParameter(SESSION_DATE_START);
+		String date_end = super.request.getParameter(SESSION_DATE_END);
+
+		// 放入session中
+		super.session.setAttribute(SESSION_CARDNO, dzcardno);
+		super.session.setAttribute(SESSION_DATE_START, date_start);
+		super.session.setAttribute(SESSION_DATE_END, date_end);
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(WEC0033_VIEW);
 		mv.addObject("dzcardno", dzcardno);
@@ -66,7 +82,7 @@ public class WEC0033Controller extends BaseController {
 					.getAttribute(SESSION_KEY_OPENID);
 			wec0033View.setOpenid(strOpenID);
 			wec0033View.setUrlflag(strUrlFlag);
-			// 调用注册的service 
+			// 调用注册的service
 			resultModel = wec0033Service.get_consume(wec0033View);
 		} catch (Exception e) {
 			logger.info("========================Exception get_consume Start==========================");
