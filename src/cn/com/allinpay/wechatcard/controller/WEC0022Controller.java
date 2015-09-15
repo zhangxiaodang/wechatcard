@@ -58,7 +58,7 @@ public class WEC0022Controller extends BaseController {
 			String strOpenID = (String) this.session
 					.getAttribute(SESSION_KEY_OPENID);
 			memberView.setMemberopenid(strOpenID);
-
+			strOpenID = "o7BS3wWNOaXC-NTXCfG0yGr5oWxM";
 			// 调用注册的service
 			resultModel = wec0022Service.bindingOldCard(memberView);
 		} catch (Exception e) {

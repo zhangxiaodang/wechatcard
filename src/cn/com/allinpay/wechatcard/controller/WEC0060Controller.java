@@ -76,7 +76,7 @@ public class WEC0060Controller extends BaseController {
 			}
 
 			// todo-zhangxd
-			// strOpenID = "WWasdfasdfoo";
+			// strOpenID = WebConstantValue.TESTOPENID;;
 
 			// 未获取openid时
 			if (strOpenID == null || strOpenID.equals("")) {
