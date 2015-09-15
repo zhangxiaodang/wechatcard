@@ -28,7 +28,7 @@ $(function() {
     
 	$('#tijiao').on('click', function(evt) {
 		var param = {};
-		var old_mobile = $("#old_mobile").val();
+		param.oldphone = $("#old_mobile").val();
 		param.newphone = $("#newphone").val();
 		param.passwd = $("#password").val();
 		param.yzm = $("#yzm").val();
@@ -50,7 +50,7 @@ $(function() {
             return;
         }
 		
-		if (old_mobile === param.newphone) {
+		if (param.oldphone === param.newphone) {
 			$.mAlert("原手机号和新手机号相同！");
 			return;
 		}
