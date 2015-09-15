@@ -320,7 +320,7 @@ public class AllinpayAPI {
 			String pinblock = timestamp + "aop" + password;// pinblock构成
 			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
 			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
-			byte[] data = DESEncryptDecrypt.CBCEncrypt(pinblock.getBytes("UTF-8"), key, iv);// DES加密
+			byte[] data = DESEncryptDecrypt.CBCEncrypt(password.getBytes("UTF-8"), key, iv);// DES加密
 			String _DesInfo = (new sun.misc.BASE64Encoder()).encode(data);// Base64编码后的DES数据
 			String des_urlencode = URLEncoder.encode(_DesInfo, "UTF-8");// urlencode转义
 			String signstring = "" + app_secret + "alias" + alias + "app_key" + app_key + "card_id" + card_id
@@ -465,10 +465,11 @@ public class AllinpayAPI {
 					+ "&card_id=" + card_id + "&oprId=" + oprid + "&order_id=" + order_id + "&prdt_no=" + prdt_no
 					+ "&amount=" + amount + "&top_up_way=" + top_up_way + "&desn=" + urlencode + "&sign=" + md5sign
 					+ "";// 拼装url
-			// System.out.println("url:"+url);
+			System.out.println("url:"+url);
 			URL urls = new URL(url);// url定义
 			SAXReader saxReader = new SAXReader();
 			Document document = saxReader.read(urls);
+			System.out.println("document=" + formatXML(document));
 			Element rootElm = document.getRootElement();// 获取根节点
 			Element theorder_id = rootElm.element("order_id");
 			Element trans_no = rootElm.element("trans_no");
@@ -841,118 +842,104 @@ public class AllinpayAPI {
 		}
 		return _calculateinterestForm;
 	}
-
-	// 查询交易流水:0-挂起，1-失败，2-成功，3-已冲正，4-撤销
-	public static CalculateinterestForm searchtxnlogAPI(String begindate, String enddate, String cardid,
-			String password, String pageno, String pagesize, BranchparametersForm _branchInfoform) {
-		CalculateinterestForm _calculateinterestForm = new CalculateinterestForm();
-		initParameters(_branchInfoform);// 初始化参数
-		begindate = begindate.replace("-", "");
-		enddate = enddate.replace("-", "");
-		URL urls = null;
-		HttpURLConnection urlConnection = null;
-		try {
-			SimpleDateFormat _sf = new SimpleDateFormat("yyyyMMddHHmmss");
-			if (timeError) {
-				_sf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
-			}
-			String timestamp = _sf.format(new Date());// 时间戳
-			String passwd = timestamp + "aop" + password;// pinblock构成
-			byte[] key = DESKey.getBytes("UTF8");// 密钥编码
-			byte[] iv = DESKey.getBytes("UTF8");// 初始向量编码
-			byte[] passwddata = DESEncryptDecrypt.CBCEncrypt(passwd.getBytes("UTF-8"), key, iv);// DES加密
-			String _passwdDesInfo = (new sun.misc.BASE64Encoder()).encode(passwddata);// Base64编码后的DES数据
-			String des_urlpassencode = URLEncoder.encode(_passwdDesInfo, "UTF-8");// urlencode转义
-			String signstring = "" + app_secret + "app_key" + app_key + "begin_date" + begindate + "card_id" + cardid
-					+ "end_date" + enddate + "formatxmlmethodallinpay.card.txnlogByCardId.searchpage_no" + pageno
-					+ "page_size" + pagesize + "password" + _passwdDesInfo + "sign_methodmd5sign_v1timestamp"
-					+ timestamp + "v" + api_v + "" + app_secret + "";// 需要签名的字符串
-			String md5sign = MD5.signature(signstring);// 对字符串进行md5加密
-			String url = befurl + "app_key=" + app_key + "&format=xml&v=" + api_v
-					+ "&sign_method=md5&sign_v=1&method=allinpay.card.txnlogByCardId.search&timestamp=" + timestamp
-					+ "&begin_date=" + begindate + "&card_id=" + cardid + "&password=" + des_urlpassencode
-					+ "&end_date=" + enddate + "&page_no=" + pageno + "&page_size=" + pagesize + "&sign=" + md5sign
-					+ "";// 拼装url
-			urls = new URL(url);// url定义
-			urlConnection = (HttpURLConnection) urls.openConnection();
-			urlConnection.setRequestMethod("POST");
-			urlConnection.setDoOutput(true);
-			urlConnection.setDoInput(true);
-			urlConnection.setUseCaches(false);
-			urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
-			OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
-			out.flush();
-			out.close();
-			// 从服务器读取响应
-			SAXReader saxReader = new SAXReader();
-			Document document = saxReader.read(urlConnection.getInputStream());
-			System.out.println("searchtxnlogAPI document=" + formatXML(document));
-			Element rootElm = document.getRootElement();// 获取根节点
-			if ("error_response".equals(rootElm.getName())) {// 如果出现错误
-				Element sub_msg = rootElm.element("sub_msg");
-				_calculateinterestForm
-						.setReturn_message(null == sub_msg ? rootElm.element("msg").getText() : sub_msg.getText());
-			} else {
-				_calculateinterestForm.setReturn_message("00");
-				Element total = rootElm.element("total");
-				if (null == total || "".equals(total.getText()) || "0".equals(total.getText())) {
-					return _calculateinterestForm;
-				} else {
-					Element txn_log_arrays = rootElm.element("txn_log_arrays");
-					ArrayList returnList = new ArrayList();
-					int count = 1;
-					for (Iterator i = txn_log_arrays.elementIterator("txn_log"); i.hasNext();) {
-						CalculateinterestForm _retrunForm = new CalculateinterestForm();
-						Element returninfo = (Element) i.next();
-						_retrunForm.setI(String.valueOf(count++));
-						_retrunForm.setCard_id(returninfo.element("card_id").getText());// 卡号
-						_retrunForm.setProduct_id(returninfo.element("prdt_no").getText());// 产品号
-						_retrunForm.setInt_txn_dt(returninfo.element("int_txn_dt").getText());// 交易日期
-						_retrunForm.setInt_txn_tm(returninfo.element("int_txn_tm").getText());// 交易时间
-						_retrunForm.setAccept_brh_id(returninfo.element("accept_brh_id").getText());// 商户号
-						_retrunForm.setInt_txn_seq_id(returninfo.element("int_txn_seq_id").getText());// 交易流水
-						_retrunForm.setAccess_ref_seq_id(returninfo.element("access_ref_seq_id").getText());// 交易参考号
-						_retrunForm
-								.setTxn_at(df.format(Double.parseDouble(returninfo.element("txn_at").getText()) / 100));// 交易金额
-						_retrunForm.setTxn_fee_at(
-								df.format(Double.parseDouble(returninfo.element("txn_fee_at").getText()) / 100));// 手续费
-						// 0-挂起，1-失败，2-成功，3-已冲正，4-撤销
-						String sta = returninfo.element("txn_sta_cd").getText();
-						if ("2".equals(sta)) {
-							_retrunForm.setTxn_sta_cd("成功");
-						} else if ("1".equals(sta)) {
-							_retrunForm.setTxn_sta_cd("失败");
-						} else if ("4".equals(sta)) {
-							_retrunForm.setTxn_sta_cd("撤销");
-						} else if ("3".equals(sta)) {
-							_retrunForm.setTxn_sta_cd("已冲正");
-						} else if ("1".equals(sta)) {
-							_retrunForm.setTxn_sta_cd("挂起");
-						}
-						_retrunForm.setTerm_id(returninfo.element("term_id").getText());// 终端号
-						_retrunForm.setTxn_cd(returninfo.element("txn_cd").getText());// 交易码
-						returnList.add(_retrunForm);// 交易流水级
-						String time = _retrunForm.getInt_txn_dt() + _retrunForm.getInt_txn_tm();
-						time = DateManager.getStringTime(DateManager.DATE_TIME_PATTERN1, time,
-								DateManager.DATE_TIME_PATTERN2);
-						_retrunForm.setTrans_time(time);
-						time = DateManager.getStringTime(DateManager.DATE_TIME_PATTERN2, time,
-								DateManager.DATE_TIME_PATTERN3);
-						_retrunForm.setTrans_time_wx(time);
-					}
-					_calculateinterestForm.setCardproductList(returnList);//
-				}
-			}
-		} catch (Exception e) {
-			_calculateinterestForm.setReturn_message("远程通信中断，请检查网络！");
-			e.printStackTrace();
-		} finally {
-			if (null != urlConnection) {
-				urlConnection.disconnect();
-			}
-		}
-		return _calculateinterestForm;
-	}
+	//查询交易流水:0-挂起，1-失败，2-成功，3-已冲正，4-撤销
+	 public static CalculateinterestForm searchtxnlogAPI(String begindate, String enddate,String cardid,String password,String pageno,String pagesize, BranchparametersForm _branchInfoform) {
+	            CalculateinterestForm _calculateinterestForm=new CalculateinterestForm();
+	            initParameters(_branchInfoform);//初始化参数
+	            begindate=begindate.replace("-","");
+	            enddate=enddate.replace("-","");
+	            URL urls=null;
+	            HttpURLConnection  urlConnection =null;
+	            try {
+	                SimpleDateFormat _sf = new SimpleDateFormat("yyyyMMddHHmmss");
+	                if(timeError){
+	              	  _sf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+	                }
+	                String timestamp=_sf.format(new Date());//时间戳
+	                String passwd=timestamp+"aop"+password;//pinblock构成
+	                byte[] key = DESKey.getBytes("UTF8");//密钥编码
+	                byte[] iv =  DESKey.getBytes("UTF8");//初始向量编码
+	                byte[] passwddata = DESEncryptDecrypt.CBCEncrypt(passwd.getBytes("UTF-8"), key, iv);//DES加密
+	                String _passwdDesInfo =(new sun.misc.BASE64Encoder()).encode(passwddata);//Base64编码后的DES数据
+	                String des_urlpassencode=URLEncoder.encode(_passwdDesInfo,"UTF-8");//urlencode转义
+	                String signstring=""+app_secret+"app_key"+app_key+"begin_date"+begindate+"card_id"+cardid+"end_date"+enddate+"formatxmlmethodallinpay.card.txnlogByCardId.searchpage_no"+pageno+"page_size"+pagesize+"password"+_passwdDesInfo+"sign_methodmd5sign_v1timestamp"+timestamp+"v"+api_v+""+app_secret+"";//需要签名的字符串
+	                String md5sign=MD5.signature(signstring);//对字符串进行md5加密
+	                String url=befurl+"app_key="+app_key+"&format=xml&v="+api_v+"&sign_method=md5&sign_v=1&method=allinpay.card.txnlogByCardId.search&timestamp="+timestamp+"&begin_date="+begindate+"&card_id="+cardid+"&password="+des_urlpassencode+"&end_date="+enddate+"&page_no="+pageno+"&page_size="+pagesize+"&sign="+md5sign+"";//拼装url
+	                urls = new URL(url);//url定义
+	                urlConnection = (HttpURLConnection )urls.openConnection();
+	                urlConnection.setRequestMethod("POST");
+	                urlConnection.setDoOutput(true);
+	                urlConnection.setDoInput(true);
+	                urlConnection.setUseCaches(false);
+	                urlConnection.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+	                OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
+	                out.flush();
+	                out.close();
+	                // 从服务器读取响应
+	                SAXReader saxReader = new SAXReader();
+	                Document document = saxReader.read(urlConnection.getInputStream());
+	                System.out.println("searchtxnlogAPI document="+formatXML(document));
+	                Element rootElm = document.getRootElement();//获取根节点
+	                if("error_response".equals(rootElm.getName())){//如果出现错误
+	                     Element sub_msg=rootElm.element("sub_msg");
+	                     _calculateinterestForm.setReturn_message(null==sub_msg?rootElm.element("msg").getText():sub_msg.getText());
+	                }else{
+	                    _calculateinterestForm.setReturn_message("00");
+	                    Element total=rootElm.element("total");
+	                    if(null==total||"".equals(total.getText())||"0".equals(total.getText())){
+	                        return _calculateinterestForm;
+	                    }else{
+	                        Element txn_log_arrays=rootElm.element("txn_log_arrays");
+	                        ArrayList returnList=new ArrayList();
+	                        int count=1;
+	                        for(Iterator i = txn_log_arrays.elementIterator("txn_log"); i.hasNext();){
+	                            CalculateinterestForm _retrunForm=new CalculateinterestForm();
+	                            Element returninfo = (Element) i.next();
+	                            _retrunForm.setI(String.valueOf(count++));
+	                            _retrunForm.setCard_id(returninfo.element("card_id").getText());//卡号
+	                            _retrunForm.setProduct_id(returninfo.element("prdt_no").getText());//产品号
+	                            _retrunForm.setInt_txn_dt(returninfo.element("int_txn_dt").getText());//交易日期
+	                            _retrunForm.setInt_txn_tm(returninfo.element("int_txn_tm").getText());//交易时间
+	                            _retrunForm.setAccept_brh_id(returninfo.element("accept_brh_id").getText());//商户号
+	                            _retrunForm.setInt_txn_seq_id(returninfo.element("int_txn_seq_id").getText());//交易流水
+	                            _retrunForm.setAccess_ref_seq_id(returninfo.element("access_ref_seq_id").getText());//交易参考号
+	                            _retrunForm.setTxn_at(df.format(Double.parseDouble(returninfo.element("txn_at").getText())/100));//交易金额
+	                            _retrunForm.setTxn_fee_at(df.format(Double.parseDouble(returninfo.element("txn_fee_at").getText())/100));//手续费
+	                            //0-挂起，1-失败，2-成功，3-已冲正，4-撤销
+	                            String sta=returninfo.element("txn_sta_cd").getText();
+	                            if("2".equals(sta)){
+	                                _retrunForm.setTxn_sta_cd("成功");
+	                            }else if("1".equals(sta)){
+	                                _retrunForm.setTxn_sta_cd("失败");
+	                            }else if("4".equals(sta)){
+	                                _retrunForm.setTxn_sta_cd("撤销");
+	                            }else if("3".equals(sta)){
+	                                _retrunForm.setTxn_sta_cd("已冲正");
+	                            }else if("1".equals(sta)){
+	                                _retrunForm.setTxn_sta_cd("挂起");
+	                            }
+	                            _retrunForm.setTerm_id(returninfo.element("term_id").getText());//终端号
+	                            _retrunForm.setTxn_cd(returninfo.element("txn_cd").getText());//交易码
+	                            returnList.add(_retrunForm);//交易流水级
+	                        	String time= 	_retrunForm.getInt_txn_dt()+ _retrunForm.getInt_txn_tm();
+	                        	time=  DateManager.getStringTime(DateManager.DATE_TIME_PATTERN1,time , DateManager.DATE_TIME_PATTERN2);
+	            				_retrunForm.setTrans_time(time);
+	            				time=  DateManager.getStringTime(DateManager.DATE_TIME_PATTERN2,time , DateManager.DATE_TIME_PATTERN3);
+	            				_retrunForm.setTrans_time_wx(time);
+	                        }
+	                        _calculateinterestForm.setCardproductList(returnList);//
+	                    }
+	                }
+	            } catch (Exception e) {
+	                _calculateinterestForm.setReturn_message("远程通信中断，请检查网络！");
+	                e.printStackTrace();
+	            }finally{
+	                if(null!=urlConnection){
+	                    urlConnection.disconnect();
+	                }
+	            }
+	            return _calculateinterestForm;
+	    }
 
 	// 查询余额API:根据生产环境做修正
 	public static CalculateinterestForm getCardinfoNopassAPI(String strcardid, String strorderid,

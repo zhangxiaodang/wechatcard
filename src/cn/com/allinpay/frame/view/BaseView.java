@@ -29,6 +29,11 @@ public class BaseView {
 	public void setOpenid(String openid) {
 		this.openid = openid;
 	}
+
+	@Override
+	public String toString() {
+		return "BaseView [urlflag=" + urlflag + ", openid=" + openid + "]";
+	}
 	
 	
 }
