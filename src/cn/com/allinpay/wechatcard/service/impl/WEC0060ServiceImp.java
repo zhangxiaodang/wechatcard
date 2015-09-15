@@ -83,13 +83,14 @@ public class WEC0060ServiceImp extends BaseService implements IWEC0060Service {
 		paramMap.put("newphone", view.getNewphone());
 		// 原手机号
 		paramMap.put("oldphone", view.getOldphone());
-
+		logger.info(view.toString());
 		// 调用接口修改手机号 todo
 		// 获取手机号对应的实体卡号
 		String cardno = this.wec0060Dao.getCardnoFromDzcardno(paramMap);
-
+		logger.info("cardno=" + cardno);
 		if (cardno == null || "".equals(cardno)) {
 			// 无实体卡号
+			logger.info("无实体卡号");
 			int result2 = wec0060Dao.updatePhoneNum(paramMap);
 			resultModel.setState(WebConstantValue.HTTP_OK);
 			resultModel.setMsg(WebConstantValue.CHANGE_PHONE_SUCCES);
@@ -123,7 +124,7 @@ public class WEC0060ServiceImp extends BaseService implements IWEC0060Service {
 			_branchInfoform.setApiversion(parameters.get("apiversion"));
 			_branchInfoform.setDeskey(parameters.get("deskey"));
 
-			CalculateinterestForm unbunlForm = AllinpayAPI.unbundleCardAlias(cardno, view.getPassword(),
+			CalculateinterestForm unbunlForm = AllinpayAPI.unbundleCardAlias(cardno, view.getPasswd(),
 					view.getOldphone(), orderid, _branchInfoform);
 			if (unbunlForm.getReturn_message() == null || !"00".equals(unbunlForm.getReturn_message())) {
 				// 如果根据openid获取会员的id，获取不到，提示用户。
@@ -136,7 +137,7 @@ public class WEC0060ServiceImp extends BaseService implements IWEC0060Service {
 			} else {
 				// 解绑成功
 				// 绑定新手机号
-				CalculateinterestForm bunlForm = AllinpayAPI.bundleCardAlias(cardno, view.getPassword(),
+				CalculateinterestForm bunlForm = AllinpayAPI.bundleCardAlias(cardno, view.getPasswd(),
 						view.getNewphone(), orderid, _branchInfoform);
 				if (bunlForm.getReturn_message() == null || !"00".equals(bunlForm.getReturn_message())) {
 					// 如果根据openid获取会员的id，获取不到，提示用户。

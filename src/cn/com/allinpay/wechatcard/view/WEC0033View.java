@@ -13,6 +13,8 @@ public class WEC0033View extends BaseView{
 	
 	// 电子卡号
 	private String dzcardno = "";
+	// 实体卡号
+	private String cardno = "";
 	
 	// 每页显示条数
 	private int rows = 10;
@@ -63,6 +65,20 @@ public class WEC0033View extends BaseView{
 
 	public void setRn_end(int rn_end) {
 		this.rn_end = rn_end;
+	}
+
+	public String getCardno() {
+		return cardno;
+	}
+
+	public void setCardno(String cardno) {
+		this.cardno = cardno;
+	}
+
+	@Override
+	public String toString() {
+		return "WEC0033View [dzcardno=" + dzcardno + ", cardno=" + cardno + ", rows=" + rows + ", page_num=" + page_num
+				+ ", rn_start=" + rn_start + ", rn_end=" + rn_end + "]";
 	}
 	
 }

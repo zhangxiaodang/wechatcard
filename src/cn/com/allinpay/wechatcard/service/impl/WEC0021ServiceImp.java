@@ -92,6 +92,7 @@ public class WEC0021ServiceImp extends BaseService implements IWEC0021Service {
 		yufuka.setOrder_id(orderid);
 
 		yufuka = AllinpayAPI.openaccount(yufuka, _branchInfoform);
+		AllinpayAPI.cardSingleTopup(orderid, yufuka.getCard_id(), "0001", "10", "1", "备注充值10单位分", "admin", _branchInfoform);
 		if (yufuka.getReturnMsg() == null
 				|| !"00".equals(yufuka.getReturnMsg())) {
 			// 如果根据openid获取会员的id，获取不到，提示用户。

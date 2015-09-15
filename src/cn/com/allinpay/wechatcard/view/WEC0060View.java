@@ -19,7 +19,7 @@ public class WEC0060View extends BaseView {
 	/**
 	 * 卡密码
 	 */
-	private String password = "";
+	private String passwd = "";
 
 	/**
 	 * 验证码.
@@ -42,12 +42,14 @@ public class WEC0060View extends BaseView {
 		this.yzm = yzm;
 	}
 
-	public String getPassword() {
-		return password;
+	 
+
+	public String getPasswd() {
+		return passwd;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 
 	public String getOldphone() {
@@ -56,6 +58,12 @@ public class WEC0060View extends BaseView {
 
 	public void setOldphone(String oldphone) {
 		this.oldphone = oldphone;
+	}
+
+	@Override
+	public String toString() {
+		return "WEC0060View [newphone=" + newphone + ", oldphone=" + oldphone + ", password=" + passwd + ", yzm="
+				+ yzm + "]";
 	}
 
 }
